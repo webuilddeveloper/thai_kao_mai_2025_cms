@@ -1,0 +1,700 @@
+<!-- <h1>Demo</h1>
+<nav>
+    <div>
+        <a routerLink="/demo" routerLinkActive="active">routerLink demo</a>
+        | <a [routerLink]="['/demo-link', 1]">routerLink demo-link </a>
+        | <a [routerLink]="['/demo-link-more', 'x', 'y']">routerLink demo-link-more </a>
+        | <a routerLink="/" (click)="goToDemoParameter()"
+            routerLinkActive="active">routerFunction demo-parameter</a>
+    </div>
+</nav>
+<hr> -->
+<ngx-spinner></ngx-spinner>
+<!-- BEGIN: Header-->
+<header class="page-topbar" id="header" [hidden]="isLogin">
+    <div class="navbar navbar-fixed">
+        <!-- <nav class="navbar-main navbar-color nav-collapsible navbar-dark gradient-45deg-purple-deep-orange gradient-shadow" [ngClass]="{'sideNav-lock': isLock, 'nav-collapsed': !isLock}"></nav> -->
+        <nav class="navbar-main navbar-color nav-collapsible navbar-dark gradient-shadow background-header"
+            [ngClass]="{'sideNav-lock': isLock, 'nav-collapsed': !isLock}">
+            <div class="nav-wrapper">
+                <div class="header-search-wrapper hide-on-med-and-down">
+                    <!-- Informative Core CMS -->
+                    <!-- <i class="material-icons">search</i> -->
+                    <!-- <input class="header-search-input z-depth-2" type="text" name="Search" placeholder="Explore Materialize" data-search="template-list">
+                    <ul class="search-list collection display-none"></ul> -->
+                </div>
+                <ul class="navbar-list right">
+                    <!-- <li class="dropdown-language"><a class="waves-effect waves-block waves-light translation-button"
+                            href="#" data-target="translation-dropdown"><span class="flag-icon flag-icon-gb"></span></a>
+                    </li> -->
+                    <!-- <li class="hide-on-med-and-down"><a class="waves-effect waves-block waves-light toggle-fullscreen"
+                            href="javascript:void(0);"><i class="material-icons">settings_overscan</i></a></li> -->
+                    <!-- <li class="hide-on-large-only search-input-wrapper"><a
+                            class="waves-effect waves-block waves-light search-button" href="javascript:void(0);"><i
+                                class="material-icons">search</i></a></li> -->
+                    <!-- <li><a class="waves-effect waves-block waves-light notification-button" href="javascript:void(0);"
+                            data-target="notifications-dropdown"><i class="material-icons">notifications_none<small
+                                    class="notification-badge">5</small></i></a></li> -->
+                    <li>
+                        <a class="waves-effect waves-block waves-light profile-button" href="javascript:void(0);"
+                            data-target="profile-dropdown">
+                            <span class="avatar-status avatar-online" style="margin-right: 10px !important;">
+                                <img [src]="this.imageUrl" alt="avatar">
+                                <i></i>
+                            </span>
+                            <span style="color: #ffffff !important;">
+                                ยินดีต้อนรับ : {{username}}
+                            </span>
+
+                        </a>
+                    </li>
+                    <!-- src="app-assets/images/avatar/avatar-7.png" -->
+                    <!-- <li><a class="waves-effect waves-block waves-light sidenav-trigger" href="#"
+                            data-target="slide-out-right"><i class="material-icons">format_indent_increase</i></a></li> -->
+                </ul>
+                <!-- translation-button-->
+                <ul class="dropdown-content" id="translation-dropdown">
+                    <li class="dropdown-item"><a class="grey-text text-darken-1" href="#!" data-language="en"><i
+                                class="flag-icon flag-icon-gb"></i> English</a></li>
+                    <li class="dropdown-item"><a class="grey-text text-darken-1" href="#!" data-language="fr"><i
+                                class="flag-icon flag-icon-fr"></i> French</a></li>
+                    <li class="dropdown-item"><a class="grey-text text-darken-1" href="#!" data-language="pt"><i
+                                class="flag-icon flag-icon-pt"></i> Portuguese</a></li>
+                    <li class="dropdown-item"><a class="grey-text text-darken-1" href="#!" data-language="de"><i
+                                class="flag-icon flag-icon-de"></i> German</a></li>
+                </ul>
+                <!-- notifications-dropdown-->
+                <ul class="dropdown-content" id="notifications-dropdown">
+                    <li>
+                        <h6>NOTIFICATIONS<span class="new badge">5</span></h6>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a class="black-text" href="#!"><span
+                                class="material-icons icon-bg-circle cyan small">add_shopping_cart</span> A new order
+                            has been placed!</a>
+                        <time class="media-meta grey-text darken-2" datetime="2015-06-12T20:50:48+08:00">2 hours
+                            ago</time>
+                    </li>
+                    <li><a class="black-text" href="#!"><span
+                                class="material-icons icon-bg-circle red small">stars</span> Completed the task</a>
+                        <time class="media-meta grey-text darken-2" datetime="2015-06-12T20:50:48+08:00">3 days
+                            ago</time>
+                    </li>
+                    <li><a class="black-text" href="#!"><span
+                                class="material-icons icon-bg-circle teal small">settings</span> Settings updated</a>
+                        <time class="media-meta grey-text darken-2" datetime="2015-06-12T20:50:48+08:00">4 days
+                            ago</time>
+                    </li>
+                    <li><a class="black-text" href="#!"><span
+                                class="material-icons icon-bg-circle deep-orange small">today</span> Director meeting
+                            started</a>
+                        <time class="media-meta grey-text darken-2" datetime="2015-06-12T20:50:48+08:00">6 days
+                            ago</time>
+                    </li>
+                    <li><a class="black-text" href="#!"><span
+                                class="material-icons icon-bg-circle amber small">trending_up</span> Generate monthly
+                            report</a>
+                        <time class="media-meta grey-text darken-2" datetime="2015-06-12T20:50:48+08:00">1 week
+                            ago</time>
+                    </li>
+                </ul>
+                <!-- profile-dropdown-->
+                <ul class="dropdown-content" id="profile-dropdown">
+                    <li *ngFor="let i of og; let idx = index">
+                        <a class="grey-text text-darken-1" href="JavaScript:void(0)">ตำแหน่ง {{i.title}}</a></li>
+                    <li><a class="grey-text text-darken-1" href="/personal-info"><i
+                                class="material-icons">person_outline</i> Profile</a></li>
+                    <!-- <li><a class="grey-text text-darken-1" href="app-chat.html"><i
+                                class="material-icons">chat_bubble_outline</i> Chat</a></li>
+                    <li><a class="grey-text text-darken-1" href="page-faq.html"><i
+                                class="material-icons">help_outline</i> Help</a></li>
+                    <li class="divider"></li>
+                    <li><a class="grey-text text-darken-1" href="user-lock-screen.html"><i
+                                class="material-icons">lock_outline</i> Lock</a></li> -->
+                    <li><a class="grey-text text-darken-1" href="JavaScript:void(0)" (click)="logout()"><i
+                                class="material-icons">keyboard_tab</i> Logout</a></li>
+                </ul>
+            </div>
+            <nav class="display-none search-sm">
+                <div class="nav-wrapper">
+                    <form id="navbarForm">
+                        <div class="input-field search-input-sm">
+                            <input class="search-box-sm mb-0" type="search" required="" id="search"
+                                placeholder="Explore Materialize" data-search="template-list">
+                            <label class="label-icon" for="search"><i
+                                    class="material-icons search-sm-icon">search</i></label><i
+                                class="material-icons search-sm-close">close</i>
+                            <ul class="search-list collection search-list-sm display-none"></ul>
+                        </div>
+                    </form>
+                </div>
+            </nav>
+        </nav>
+    </div>
+</header>
+<!-- END: Header-->
+<ul class="display-none" id="default-search-main" [hidden]="isLogin">
+    <li class="auto-suggestion-title">
+        <a class="collection-item" href="#">
+            <h6 class="search-title">FILES</h6>
+        </a>
+    </li>
+    <li class="auto-suggestion">
+        <a class="collection-item" href="#">
+            <div class="display-flex">
+                <div class="display-flex align-item-center flex-grow-1">
+                    <div class="avatar"><img src="app-assets/images/icon/pdf-image.png" width="24" height="30"
+                            alt="sample image"></div>
+                    <div class="member-info display-flex flex-column"><span class="black-text">Two new item
+                            submitted</span><small class="grey-text">Marketing Manager</small></div>
+                </div>
+                <div class="status"><small class="grey-text">17kb</small></div>
+            </div>
+        </a>
+    </li>
+    <li class="auto-suggestion">
+        <a class="collection-item" href="#">
+            <div class="display-flex">
+                <div class="display-flex align-item-center flex-grow-1">
+                    <div class="avatar"><img src="app-assets/images/icon/doc-image.png" width="24" height="30"
+                            alt="sample image"></div>
+                    <div class="member-info display-flex flex-column"><span class="black-text">52 Doc file
+                            Generator</span><small class="grey-text">FontEnd Developer</small></div>
+                </div>
+                <div class="status"><small class="grey-text">550kb</small></div>
+            </div>
+        </a>
+    </li>
+    <li class="auto-suggestion">
+        <a class="collection-item" href="#">
+            <div class="display-flex">
+                <div class="display-flex align-item-center flex-grow-1">
+                    <div class="avatar"><img src="app-assets/images/icon/xls-image.png" width="24" height="30"
+                            alt="sample image"></div>
+                    <div class="member-info display-flex flex-column"><span class="black-text">25 Xls File
+                            Uploaded</span><small class="grey-text">Digital Marketing Manager</small></div>
+                </div>
+                <div class="status"><small class="grey-text">20kb</small></div>
+            </div>
+        </a>
+    </li>
+    <li class="auto-suggestion">
+        <a class="collection-item" href="#">
+            <div class="display-flex">
+                <div class="display-flex align-item-center flex-grow-1">
+                    <div class="avatar"><img src="app-assets/images/icon/jpg-image.png" width="24" height="30"
+                            alt="sample image"></div>
+                    <div class="member-info display-flex flex-column"><span class="black-text">Anna Strong</span><small
+                            class="grey-text">Web Designer</small></div>
+                </div>
+                <div class="status"><small class="grey-text">37kb</small></div>
+            </div>
+        </a>
+    </li>
+    <li class="auto-suggestion-title">
+        <a class="collection-item" href="#">
+            <h6 class="search-title">MEMBERS</h6>
+        </a>
+    </li>
+    <li class="auto-suggestion">
+        <a class="collection-item" href="#">
+            <div class="display-flex">
+                <div class="display-flex align-item-center flex-grow-1">
+                    <div class="avatar"><img class="circle" src="app-assets/images/avatar/avatar-7.png" width="30"
+                            alt="sample image"></div>
+                    <div class="member-info display-flex flex-column"><span class="black-text">John Doe</span><small
+                            class="grey-text">UI designer</small></div>
+                </div>
+            </div>
+        </a>
+    </li>
+    <li class="auto-suggestion">
+        <a class="collection-item" href="#">
+            <div class="display-flex">
+                <div class="display-flex align-item-center flex-grow-1">
+                    <div class="avatar"><img class="circle" src="app-assets/images/avatar/avatar-8.png" width="30"
+                            alt="sample image"></div>
+                    <div class="member-info display-flex flex-column"><span class="black-text">Michal Clark</span><small
+                            class="grey-text">FontEnd Developer</small></div>
+                </div>
+            </div>
+        </a>
+    </li>
+    <li class="auto-suggestion">
+        <a class="collection-item" href="#">
+            <div class="display-flex">
+                <div class="display-flex align-item-center flex-grow-1">
+                    <div class="avatar"><img class="circle" src="app-assets/images/avatar/avatar-10.png" width="30"
+                            alt="sample image"></div>
+                    <div class="member-info display-flex flex-column"><span class="black-text">Milena
+                            Gibson</span><small class="grey-text">Digital Marketing</small></div>
+                </div>
+            </div>
+        </a>
+    </li>
+    <li class="auto-suggestion">
+        <a class="collection-item" href="#">
+            <div class="display-flex">
+                <div class="display-flex align-item-center flex-grow-1">
+                    <div class="avatar"><img class="circle" src="app-assets/images/avatar/avatar-12.png" width="30"
+                            alt="sample image"></div>
+                    <div class="member-info display-flex flex-column"><span class="black-text">Anna Strong</span><small
+                            class="grey-text">Web Designer</small></div>
+                </div>
+            </div>
+        </a>
+    </li>
+</ul>
+<ul class="display-none" id="page-search-title" [hidden]="isLogin">
+    <li class="auto-suggestion-title">
+        <a class="collection-item" href="#">
+            <h6 class="search-title">PAGES</h6>
+        </a>
+    </li>
+</ul>
+<ul class="display-none" id="search-not-found" [hidden]="isLogin">
+    <li class="auto-suggestion"><a class="collection-item display-flex align-items-center" href="#"><span
+                class="material-icons">error_outline</span><span class="member-info">No results found.</span></a></li>
+</ul>
+
+<!-- BEGIN: SideNav-->
+<aside class="sidenav-main nav-expanded nav-collapsible sidenav-light navbar-full sidenav-active-rounded"
+    [ngClass]="{'nav-lock': isLock}" [hidden]="isLogin">
+    <div class="brand-sidebar background-sidebar">
+        <h1 class="logo-wrapper">
+            <!-- <a class="brand-logo darken-1" href="index.html"><img src="app-assets/images/logo/materialize-logo.png" alt="materialize logo" /><span class="logo-text hide-on-med-and-down">Materialize</span></a><a class="navbar-toggler" (click)="isLock = !isLock"><i class="material-icons">radio_button_checked</i></a></h1> -->
+            <!-- <a class="brand-logo darken-1" href="index.html"><img src="app-assets/images/logo/materialize-logo.png" -->
+            <a class="brand-logo darken-1" href="index.html"><img src="./assets/img/logo.png"
+                    alt="materialize logo" /><span class="logo-text hide-on-med-and-down"
+                    style="color: #ffffff !important;">We Tech Makers</span></a><a class="navbar-toggler"
+                (click)="isLock = !isLock"><i class="material-icons">radio_button_checked</i></a>
+            <!-- <a class="brand-logo darken-1" href="index.html"><img src="./assets/img/dopa.gif"
+                    alt="materialize logo" /><span class="logo-text hide-on-med-and-down"
+                    style="color: #ffffff !important;">DOPA Connect</span></a><a class="navbar-toggler"
+                (click)="isLock = !isLock"><i class="material-icons">radio_button_checked</i></a> -->
+        </h1>
+        <!-- <a href="index.html"></a><a class="navbar-toggler" (click)="isLock = !isLock"><i class="material-icons">radio_button_checked</i></a></h1> -->
+    </div>
+
+    <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out"
+        data-menu="menu-navigation" data-collapsible="menu-accordion">
+
+        <!-- สถิตและภาพรวม -->
+        <li class="active bold"><a class="collapsible-header waves-effect waves-cyan " href="JavaScript:void(0)"><i
+                    class="material-icons">dashboard</i><span class="menu-title"
+                    data-i18n="Dashboard">สถิติและภาพรวม</span></a>
+            <div class="collapsible-body">
+                <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                    <!-- <li><a href="./dashboard"><i class="material-icons">radio_button_unchecked</i><span data-i18n="demo-routing-object">Dashboard</span></a>
+                    </li> -->
+                    <li *ngFor="let i of permission(menuSummary) ; let idx = index" class="active">
+                        <a [ngClass]="{ 'active': i.isActive }" routerLink="/" (click)="goToRouting(i)"><i
+                                class="material-icons">radio_button_unchecked</i><span
+                                data-i18n="other">{{i.name}}</span></a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <!-- สมาชิก -->
+        <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="JavaScript:void(0)"><i
+                    class="material-icons">supervisor_account</i><span class="menu-title"
+                    data-i18n="Member">จัดการสมาชิก</span></a>
+            <div class="collapsible-body">
+                <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                    <!-- <li><a href="./splash"><i class="material-icons">radio_button_unchecked</i><span data-i18n="demo-routing-object">splash</span></a>
+                  </li> -->
+                    <li *ngFor="let i of permission(menuMember); let idx = index" class="active">
+                        <a [ngClass]="{ 'active': i.isActive }" style="display:inline-table;width: 90%;" routerLink="/"
+                            (click)="goToRouting(i)"><i class="material-icons">radio_button_unchecked</i><span
+                                data-i18n="member">{{i.name}}</span></a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <!-- จัดการรูปภาพ -->
+        <li [hidden]="permission(menuImage).length == 0" class="bold"><a
+                class="collapsible-header waves-effect waves-cyan " href="JavaScript:void(0)"><i
+                    class="material-icons">perm_media</i><span class="menu-title"
+                    data-i18n="Image">จัดการรูปภาพ</span></a>
+            <div class="collapsible-body">
+                <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+
+                    <li *ngFor="let i of permission(menuImage); let idx = index" class="active">
+                        <a [ngClass]="{ 'active': i.isActive }" style="display:inline-table;width: 90%;" routerLink="/"
+                            (click)="goToRouting(i)"><i class="material-icons">radio_button_unchecked</i><span
+                                data-i18n="main">{{i.name}}</span></a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <!-- เมนูหลัก -->
+        <li [hidden]="permission(menuMain).length == 0" class="bold"><a
+                class="collapsible-header waves-effect waves-cyan " href="JavaScript:void(0)"><i
+                    class="material-icons">today</i><span class="menu-title" data-i18n="Main">เมนูหลัก</span></a>
+            <div class="collapsible-body">
+                <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                    <li *ngFor="let i of permission(menuMain); let idx = index" class="active">
+                        <a [ngClass]="{ 'active': i.isActive }" style="display:inline-table;width: 90%;" routerLink="/"
+                            (click)="goToRouting(i)"><i class="material-icons">radio_button_unchecked</i><span
+                                data-i18n="main">{{i.name}}</span></a>
+                    </li>
+                    <!-- <li>
+                <a href="./news"><i class="material-icons">radio_button_unchecked</i><span data-i18n="demo-routing-object">ข่าวประชาสัมพันธ์</span></a>
+            </li>
+            <li>
+                <a routerLink="/news"><i class="material-icons">radio_button_unchecked</i><span data-i18n="demo-routing-object">ข่าวประชาสัมพันธ์</span></a>
+            </li>
+            <li><a href="./event"><i class="material-icons">radio_button_unchecked</i><span data-i18n="demo-routing-object">Event & Calendar</span></a>
+            </li> -->
+                </ul>
+            </div>
+        </li>
+        <!-- จัดการหมวดหมู่ -->
+        <li [hidden]="permission(menuCategory).length == 0" class="bold"><a
+                class="collapsible-header waves-effect waves-cyan " href="JavaScript:void(0)"><i
+                    class="material-icons">view_carousel</i><span class="menu-title"
+                    data-i18n="Image">จัดการหมวดหมู่</span></a>
+            <div class="collapsible-body">
+                <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+
+                    <li *ngFor="let i of permission(menuCategory); let idx = index" class="active">
+                        <a [ngClass]="{ 'active': i.isActive }" style="display:inline-table;width: 90%;" routerLink="/"
+                            (click)="goToRouting(i)"><i class="material-icons">radio_button_unchecked</i><span
+                                data-i18n="main">{{i.name}}</span></a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <!-- จัดการนโยบาย -->
+        <!-- <li [hidden]="permission(menuPolicy).length == 0" class="bold"><a
+                class="collapsible-header waves-effect waves-cyan " href="JavaScript:void(0)"><i
+                    class="material-icons">view_carousel</i><span class="menu-title"
+                    data-i18n="Image">จัดการนโยบาย</span></a>
+            <div class="collapsible-body">
+                <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+
+                    <li *ngFor="let i of permission(menuPolicy); let idx = index" class="active">
+                        <a [ngClass]="{ 'active': i.isActive }" routerLink="/" (click)="goToRouting(i)"><i
+                                class="material-icons">radio_button_unchecked</i><span
+                                data-i18n="main">{{i.name}}</span></a>
+                    </li>
+                </ul>
+            </div>
+        </li> -->
+        <!-- รายงานเชิงสถิติ-->
+        <li [hidden]="permission(menuReport).length == 0" class="bold"><a
+                class="collapsible-header waves-effect waves-cyan " href="JavaScript:void(0)"><i
+                    class="material-icons">view_carousel</i><span class="menu-title"
+                    data-i18n="Image">รายงานเชิงสถิติ</span></a>
+            <div class="collapsible-body">
+                <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+
+                    <li *ngFor="let i of permission(menuReport); let idx = index" class="active">
+                        <a [ngClass]="{ 'active': i.isActive }" style="display:inline-table;width: 90%;" routerLink="/"
+                            (click)="goToRouting(i)"><i class="material-icons">radio_button_unchecked</i><span
+                                data-i18n="main">{{i.name}}</span></a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <!-- รายงานเชิงวิเคราะห์-->
+        <!-- <li [hidden]="permission(menuAnalyze).length == 0" class="bold"><a
+                class="collapsible-header waves-effect waves-cyan " href="JavaScript:void(0)"><i
+                    class="material-icons">view_carousel</i><span class="menu-title"
+                    data-i18n="Image">รายงานเชิงวิเคราะห์</span></a>
+            <div class="collapsible-body">
+                <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+
+                    <li *ngFor="let i of permission(menuAnalyze); let idx = index" class="active">
+                        <a [ngClass]="{ 'active': i.isActive }" routerLink="/" (click)="goToRouting(i)"><i
+                                class="material-icons">radio_button_unchecked</i><span
+                                data-i18n="main">{{i.name}}</span></a>
+                    </li>
+                </ul>
+            </div>
+        </li> -->
+        <!-- master-->
+        <li [hidden]="permission(menuMaster).length == 0" class="bold">
+            <a class="collapsible-header waves-effect waves-cyan" href="JavaScript:void(0)"><i
+                    class="material-icons">view_carousel</i><span class="menu-title" data-i18n="Image">Master</span></a>
+            <div class="collapsible-body">
+                <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                    <li *ngFor="let i of permission(menuMaster); let idx = index" class="active">
+                        <a [ngClass]="{ active: i.isActive }" style="display:inline-table;width: 90%;" routerLink="/" (click)="goToRouting(i)"><i
+                                class="material-icons">radio_button_unchecked</i><span
+                                data-i18n="main">{{ i.name }}</span></a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <!-- master-->
+        <li [hidden]="permission(menuWaitingManage).length == 0" class="bold">
+            <a class="collapsible-header waves-effect waves-cyan" href="JavaScript:void(0)"><i
+                    class="material-icons">view_carousel</i><span class="menu-title"
+                    data-i18n="Image">รอการจัดการ</span></a>
+            <div class="collapsible-body">
+                <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                    <li *ngFor="let i of permission(menuWaitingManage); let idx = index" class="active">
+                        <a [ngClass]="{ active: i.isActive }" style="display:inline-table;width: 90%;" routerLink="/" (click)="goToRouting(i)"><i
+                                class="material-icons">radio_button_unchecked</i><span
+                                data-i18n="main">{{ i.name }}</span></a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <!-- Demo -->
+
+        <!-- <li class="navigation-header">
+                <a class="navigation-header-text">
+                    <p class="padding-left-10">Routing</p>
+                </a><i class="navigation-header-icon material-icons">more_horiz</i>
+                </li> -->
+        <!-- routerLink="/demo-routing" -->
+        <!-- <li class="active"><a class="active" routerLink="/" (click)="goToDemoRouting()"><i class="material-icons">radio_button_unchecked</i><span data-i18n="demo-routing">routing</span></a>
+                </li> -->
+        <!-- [routerLink]="['/demo-routing-param', 1]" -->
+        <!-- <li><a routerLink="/" (click)="goToDemoRoutingParam()"><i class="material-icons">radio_button_unchecked</i><span data-i18n="demo-routing-param">routing-param</span></a>
+                </li> -->
+        <!-- [routerLink]="['/demo-routing-params', 'x', 'y']" -->
+        <!-- <li><a routerLink="/" (click)="goToDemoRoutingParams()"><i class="material-icons">radio_button_unchecked</i><span data-i18n="demo-routing-params">routing-params</span></a>
+                </li>
+                <li><a routerLink="/" (click)="goToDemoRoutingObject()"><i class="material-icons">radio_button_unchecked</i><span data-i18n="demo-routing-object">routing-object</span></a>
+            </li> -->
+
+        <!-- <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="JavaScript:void(0)"><i class="material-icons">android</i><span class="menu-title" data-i18n="Demo">Demo</span><span class="badge badge pill orange float-right mr-10">{{menuDemo.length}}</span></a>
+            <div class="collapsible-body">
+                <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                    <li *ngFor="let i of menuDemo; let idx = index" class="active">
+                        <a [ngClass]="{ 'active': i.isActive }" routerLink="/" (click)="goToRouting(i)"><i
+                                class="material-icons">radio_button_unchecked</i><span
+                                data-i18n="demo">{{i.name}}</span></a>
+                    </li>
+
+                    <li><a href="./demo-form"><i class="material-icons">radio_button_unchecked</i><span
+                                data-i18n="demo-routing-object">form</span></a>
+                    </li>
+                    <li><a href="./demo-application"><i class="material-icons">radio_button_unchecked</i><span
+                                data-i18n="demo-routing-object">application</span></a>
+                    </li>
+                    <li><a href="./demo-login"><i class="material-icons">radio_button_unchecked</i><span
+                                data-i18n="demo-routing-object">login</span></a>
+                    </li>
+                    <li><a href="./demo-drop-zone"><i class="material-icons">radio_button_unchecked</i><span
+                                data-i18n="demo-routing-object">drop-zone</span></a>
+                    </li>
+                    <li><a href="./demo-select-option"><i class="material-icons">radio_button_unchecked</i><span
+                                data-i18n="demo-routing-object">select-option</span></a>
+                    </li>
+
+                </ul>
+            </div>
+        </li> -->
+
+        <!-- รายงาน-->
+        <li [hidden]="permission(menuReport2).length == 0" class="bold"><a
+          class="collapsible-header waves-effect waves-cyan " href="JavaScript:void(0)"><i
+              class="material-icons">view_carousel</i><span class="menu-title"
+              data-i18n="Image">รายงาน</span></a>
+      <div class="collapsible-body">
+          <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+
+              <li *ngFor="let i of permission(menuReport2); let idx = index" class="active">
+                  <a [ngClass]="{ 'active': i.isActive }" style="display:inline-table;width: 90%;" routerLink="/"
+                      (click)="goToRouting(i)"><i class="material-icons">radio_button_unchecked</i><span
+                          data-i18n="main">{{i.name}}</span></a>
+              </li>
+          </ul>
+      </div>
+  </li>
+
+        <!-- Logout -->
+        <li class="bold"><a (click)="logout()" class="waves-effect waves-cyan " href="JavaScript:void(0)"><i
+                    class="material-icons">exit_to_app</i><span class="menu-title"
+                    data-i18n="Demo">ออกจากระบบ</span></a></li>
+    </ul>
+
+    <!-- <div class="navigation-background"></div><a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only" href="#" data-target="slide-out"><i class="material-icons">menu</i></a> -->
+</aside>
+<!-- END: SideNav-->
+
+<!-- BEGIN: Page Main-->
+<div id="main" [hidden]="isLogin">
+    <div class="row">
+        <div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper" style="width: 100%;">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m12 l12 breadcrumbs-left">
+                        <!-- {{menuMain | json}} -->
+                        <router-outlet></router-outlet>
+                        <!-- <app-dashboard></app-dashboard> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END: Page Main-->
+
+<!-- BEGIN: Footer-->
+<!-- <footer class="page-footer footer footer-static footer-dark gradient-45deg-purple-deep-orange gradient-shadow navbar-border navbar-shadow" [hidden]="isLogin"></footer> -->
+<footer
+    class="page-footer footer footer-static footer-dark gradient-shadow navbar-border navbar-shadow background-footer"
+    [hidden]="isLogin">
+    <div class="footer-copyright">
+        <div class="container"><span>&copy; 2020 <a href="http://themeforest.net/user/pixinvent/portfolio?ref=pixinvent"
+                    target="_blank">We Tech Makers Co.,Ltd.</a> All rights reserved.</span><span
+                class="right hide-on-small-only">Design and Developed by <a href="http://www.webuild.co.th/">We Build &
+                    Operate Co.,Ltd.</a></span></div>
+    </div>
+
+    <!-- https://pixinvent.com/ -->
+    <!-- PIXINVENT -->
+</footer>
+<!-- END: Footer-->
+
+<!-- BEGIN: Login-->
+<div class="row login" [hidden]="!isLogin">
+    <div class="container">
+        <div id="login-page" class="row">
+
+            <div [hidden]="isSignUp" class="z-depth-4 card-panel border-radius-6 login-card bg-opacity-8 centered">
+                <div class="col s6">
+                    <form class="login-form">
+
+                        <div class="row" style="text-align: center;">
+                            <div class="input-field col s12">
+                                <h1 class="ml-4">เข้าสู่ระบบ</h1>
+                                <h3 class="ml-4">เข้าสู่ระบบด้วยบัญชีของท่าน</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix pt-2">person_outline</i>
+                                <input id="username" type="text" [(ngModel)]="model.username"
+                                    (ngModelChange)="model.username = $event" name="model.username">
+                                <label for="username" class="center-align">ชื่อเข้าระบบ</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12" style="margin-top: -5px !important;">
+                                <i class="material-icons prefix pt-2">lock_outline</i>
+                                <input id="password" type="password" [(ngModel)]="model.password"
+                                    (ngModelChange)="model.password = $event" name="model.password"
+                                    (keyup.enter)="login(model.username, model.password)">
+                                <label for="password">รหัสผ่าน</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <a href="JavaScript:void(0)"
+                                    class="btn waves-effect waves-light border-round gradient-45deg-purple-deep-orange col s12 btn-login"
+                                    (click)="login(model.username, model.password)">เข้าสู่ระบบ</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col s6">
+                    <div class="row" style="text-align: center;">
+                        <div class="input-field col s12">
+                            <h1 style="color: #00743f; font-size: xx-large;">We Tech Makers</h1>
+                            <!-- <h1 style="color: #04385D; font-size: xx-large;">DOPA Connect</h1> -->
+                            <div class="row">
+                                <img src="./assets/img/logo.png" width="150" height="180" style="width: 100%;"/>
+                                <!-- <img src="./assets/img/dopa.gif" width="150" height="150" /> -->
+                            </div>
+                            <div class="row" style="font-size: 16px;">
+                                Powered By
+                            </div>
+                            <div class="row">
+                                <img style="width: 35%; height: 35%;" src="./assets/img/_logo@3x.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- ลงทะเบียน -->
+            <div [hidden]="!isSignUp" class="z-depth-4 card-panel border-radius-6 login-card bg-opacity-9 centered"
+                style="width: 700px !important;">
+                <form class="login-form">
+                    <div class="row" style="text-align: center;">
+                        <div class="input-field col s12">
+                            <h2 class="ml-4">ลงทะเบียนเข้าใช้งาน</h2>
+                            <!-- <img width="250" height="100" src="./assets/img/webuild.png"/> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s6">
+                            <div class="col s12">
+                                <citxt (cModel)="model.username = $event" [label]="'ชื่อผู้ใช้ : '"></citxt>
+                            </div>
+                            <div class="col s12">
+                                <citxt (cModel)="model.password = $event" [label]="'รหัสผ่าน : '"></citxt>
+                            </div>
+                        </div>
+                        <div class="col s6">
+                            <cds (cModel)="model.image = $event" [label]="'รูปภาพ (เลือกภาพ/วางภาพที่นี่)'"
+                                [data]="[{ imageUrl: this.model.imageUrl || '' }]" [code]="'splash'">
+                            </cds>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s3">
+                            <csop (cModel)="model.prefixName = $event" [label]="'คำนำหน้า '"
+                                [data]="model.prefixName || 'none'" [sources]="listPrefixName">
+                            </csop>
+                        </div>
+                        <div class="col s5">
+                            <citxt (cModel)="model.firstName = $event" [label]="'ชื่อ : '"></citxt>
+                        </div>
+                        <div class="col s4">
+                            <citxt (cModel)="model.lastName = $event" [label]="'นามสกุล : '"></citxt>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s6">
+                            <cdp (cModel)="model.birthday = $event" [label]="'วันเกิด'" [data]="''">
+                            </cdp>
+                        </div>
+                        <div class="col s6">
+                            <citxt (cModel)="model.phone = $event" [label]="'เบอร์โทรศัพท์ : '"></citxt>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12">
+                            <citxt (cModel)="model.email = $event" [label]="'อีเมล : '"></citxt>
+                        </div>
+                    </div>
+
+                    <!-- <div class="row">
+                        <div class="col s12">
+                            <citxt (cModel)="model.address = $event" [label]="'ที่อยู่ : '"></citxt>
+                        </div>
+                    </div> -->
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <a href="JavaScript:void(0)"
+                                class="btn waves-effect waves-light border-round gradient-45deg-purple-deep-orange col s12"
+                                (click)="signUp(model)">sing up</a>
+                        </div>
+                        <div class="input-field col s6" style="text-align: center">
+                            <p class="margin medium-small">have an account?</p>
+                            <p (click)="hiddenSignUp()" class="margin medium-small"><a href="javascript:void(0)">login
+                                    here</a></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<!-- END: Login-->

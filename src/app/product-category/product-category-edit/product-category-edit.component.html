@@ -1,0 +1,151 @@
+<h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>{{title}}</span></h5>
+<ol class="breadcrumbs mb-0">
+  <li class="breadcrumb-item"><a href="javascript:void(0)">จัดการหมวดหมู่</a>
+  </li>
+  <!-- <li class="breadcrumb-item"><a href="javascript:void(0)">หมวดหมู่เบอร์ติดต่อ</a>
+    </li> -->
+  <li class="breadcrumb-item active">{{title}}
+  </li>
+</ol>
+<br>
+<br>
+<ngx-spinner>
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<!-- BEGIN: Page Main-->
+
+<!-- <div class="row"> -->
+<div class="col s9">
+  <div class="container">
+    <section class="users-list-wrapper section">
+      <div class="users-list-filter">
+
+        <!-- Header -->
+        <div class="card-panel" style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+
+          <div class="row">
+            <div class="col s8">
+              <i class="material-icons header-icon">
+                border_color
+              </i>
+              <span style="position: relative; float:left; padding-left: 10px; padding-top: 10px;">
+                {{title}}
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+
+          <!-- BEGIN: Do Something This Here -->
+
+          <div class="row">
+            <div class="col s6">
+              <!-- <div class="row"> -->
+              <div class="col s12">
+                <cinum (cModel)="editModel.sequence = $event" [label]="'ลำดับ : '" [data]="editModel.sequence || 0">
+                </cinum>
+              </div>
+              <!-- <div class="col s12" style="padding-bottom: 20px;">
+                                      <csop (cModel)="editModel.language = $event" [label]="'* ภาษา : '"
+                                          [data]="editModel.language || 'th'"
+                                          [sources]="[{ value: 'th', display: 'ไทย' }, { value: 'en', display: 'อังกฤษ' }]">
+                                      </csop>
+                                  </div> -->
+              <div class="col s12">
+                <citxt (cModel)="editModel.title = $event" [label]="'* หัวข้อ : '" [data]="editModel.title || ''">
+                </citxt>
+              </div>
+              <div class="col s12">
+                <citxt (cModel)="editModel.titleEN = $event" [label]="'* หัวข้อ (ภาษาอังกฤษ): '"
+                  [data]="editModel.titleEN || ''"></citxt>
+              </div>
+              <!-- </div> -->
+
+            </div>
+
+            <div class="col s6">
+              <div class="col s12">
+                <cds (cModel)="editModel.image = $event" [label]="'* รูปภาพ (เลือกภาพ/วางภาพที่นี่)'"
+                  [data]="[{ imageUrl: this.editModel.imageUrl || '' }]" [code]="'contact-categoty'"></cds>
+              </div>
+              <div class="col s12" style="color: red;padding-top: 20px;">
+                <span>*Maximum 10 MB</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- END: Do Something This Here -->
+
+        </div>
+
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="col s3" style="padding-left: 0px !important;">
+  <div class="row">
+    <div class="col s12">
+      <div class="container">
+        <section class="users-list-wrapper section">
+          <div class="users-list-filter">
+
+            <!-- Header -->
+            <div class="card-panel" style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+              <div class="row">
+                <div class="col s8">
+                  <span style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+                    ตั้งค่าการแสดงผล *
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+              <div class="row">
+                <div class="col s12" style="padding-bottom: 40px !important;">
+                  <ccb (cModel)="editModel.isActive = $event" [label]="'ใช้งาน'" [data]="editModel.isActive"></ccb>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- </div> -->
+
+<!-- <div class="row"> -->
+<div class="col s12">
+  <div class="container">
+    <section class="users-list-wrapper section">
+      <div class="users-list-filter">
+        <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+
+          <!-- BEGIN: Do Something This Here -->
+
+          <div class="row">
+            <div class="col s12" style="text-align: center; margin-top: 10px;">
+              <cbtn [hidden]="code != ''" (click)="create()" [label]="'บันทึก'" [color]="'blue'"></cbtn>
+              <cbtn [hidden]="code == ''" (click)="update()" [label]="'บันทึก'" [color]="'blue'"></cbtn>
+              <cbtn [label]="'ยกเลิก'" [color]="'red'" (click)="back()"></cbtn>
+            </div>
+          </div>
+
+          <!-- END: Do Something This Here -->
+
+        </div>
+
+      </div>
+    </section>
+  </div>
+</div>
+<!-- </div> -->
+
+
+<!-- END: Page Main-->

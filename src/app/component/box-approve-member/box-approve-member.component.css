@@ -1,0 +1,26 @@
+.curr-field {
+    background-color: #9ACDFE;
+}
+
+.new-field {
+    background-color: #FE9AFF;
+}
+
+.box-s {
+    height: 35px;
+    align-items: center;
+    display: flex;
+    color: black;
+}
+
+.title-field {
+    display: flex;
+    align-items: center;
+    background-color: #dfdfdf;
+}
+
+.check-field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,52 @@
+.dropzone.single {
+    width: 210px; 
+    height: 210px;
+    font-size: 12px !important;
+    border-style: dashed;
+}
+.dropzone.gallery {
+    height: 210px;
+}
+.dropzone.label {
+    font-size: 10px;
+}
+.dropzone.image {
+    width: 100%; 
+    height: 100%;
+    opacity: .8;
+}
+.dropzone.preview {
+    align-items: center !important;
+    border-radius: 5px !important;
+    display: flex !important;
+    height: 180px !important;
+    justify-content: center !important;
+    margin: 10px !important;
+    max-width: 180px !important;
+    min-height: 140px !important;
+    min-width: 180px !important;
+    /* padding: 0px 30px !important; */
+    position: relative !important;
+}
+
+  ::ng-deep .modal{
+    max-height: 100%;
+  }
+
+  ::ng-deep .modal-dialog{
+    max-width: 100%;
+  }
+
+  input[type='file'] {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+  }
+
+  .photo.button{
+   display: flex;
+   justify-content: center;
+   padding: 15vh 0;
+   cursor: pointer;
+  }

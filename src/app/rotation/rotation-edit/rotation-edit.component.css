@@ -1,0 +1,9 @@
+.text-right {
+  text-align: end;
+}
+
+.image-box {
+  width:100%;
+   height:250px;
+    border-radius:10px
+}

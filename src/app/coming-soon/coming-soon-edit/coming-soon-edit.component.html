@@ -1,0 +1,398 @@
+<h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>{{title}}</span></h5>
+<ol class="breadcrumbs mb-0">
+  <li class="breadcrumb-item"><a href="javascript:void(0)">เมนูหลัก</a>
+  </li>
+  <!-- <li class="breadcrumb-item"><a href="javascript:void(0)">ข่าวประชาสัมพันธ์</a>
+    </li> -->
+  <li class="breadcrumb-item active">{{title}}
+  </li>
+</ol>
+<br>
+<br>
+<ngx-spinner>
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<!-- BEGIN: Page Main-->
+
+<!-- <div class="row">
+    <div class="col s12">
+        <div class="container">
+            <section class="users-list-wrapper section">
+                <div class="users-list-filter">
+                    <div class="card-panel">
+
+
+                        <div class="row">
+                            {{editModel | json}}
+                        </div>
+
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div> -->
+
+<div class="col s9" style="padding-left: 0px !important;">
+  <div class="row">
+    <div class="col s12">
+      <div class="container">
+        <section class="users-list-wrapper section">
+          <div class="users-list-filter">
+
+            <!-- Header -->
+            <div class="card-panel" style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+
+              <div class="row" [hidden]="hiddenBtnComment">
+                <div class="col s6">
+                    <i class="material-icons header-icon">
+                        border_color
+                    </i>
+                    <span
+                        style="position: relative; float:left; padding-left: 10px; padding-top: 10px;">
+                        {{title}}
+                    </span>
+                </div>
+                <div class="col s6" [hidden]="hiddenComment">
+                    <div class="col s6">
+                      <cbtn [label]="'Export Excel'" [color]="'green'" [icon]="'file_download'" (click)="exportAsXLSX()"></cbtn>
+                    </div>
+                    <div class="col s6">
+                        <cbtn [label]="'กลับ'" [color]="'blue'" (click)="hiddenComment = !hiddenComment">
+                        </cbtn>
+                    </div>
+                </div>
+                <div class="col s6" [hidden]="!hiddenComment">
+                    <div class="col s6">
+                    </div>
+                    <div class="col s6">
+                        <cbtn [label]="'รายการ comment'" [color]="'blue'" (click)="hiddenComment = !hiddenComment">
+                        </cbtn>
+                    </div>
+                </div>
+              </div>
+              <div class="row" [hidden]="!hiddenBtnComment">
+                  <div class="col s6">
+                      <i class="material-icons header-icon">
+                          border_color
+                      </i>
+                      <span
+                          style="position: relative; float:left; padding-left: 10px; padding-top: 10px;">
+                          {{title}}
+                      </span>
+                  </div>
+                  <div class="col s6">
+                  </div>
+              </div>
+
+
+            </div>
+
+            <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;" >
+
+              <!-- BEGIN: Do Something This Here -->
+
+              <div class="row">
+                <div class="col s8">
+                  <div class="row">
+                    <div class="col s12">
+                      <cinum (cModel)="editModel.sequence = $event" [label]="'ลำดับข้อมูล'"
+                        [data]="editModel.sequence || 0"></cinum>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col s12" style="margin-top: -15px !important; padding-bottom: 10px !important;">
+                      <csop (cModel)="editModel.language = $event" [label]="'* ภาษา : '" [data]="editModel.language"
+                        [sources]="[{ value: 'th', display: 'ไทย' }, { value: 'en', display: 'อังกฤษ' }]">
+                      </csop>
+                    </div>
+                  </div>
+
+                  <!-- <div class="row">
+                    <div class="col s12" style="padding-bottom: 10px !important;">
+                      <csop (cModel)="editModel.category = $event" [label]="'* หมวดหมู่ : '" [data]="editModel.category"
+                        [sources]="listCategory">
+                      </csop>
+                    </div>
+                  </div> -->
+
+                  <div class="row">
+                    <div class="col s12" >
+                      <citxt (cModel)="editModel.title = $event" [label]="'* หัวข้อ : '" [data]="editModel.title || ''">
+                      </citxt>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col s12" >
+                      <citxt (cModel)="editModel.codeShort = $event" [label]="'* รหัส : '" [data]="editModel.codeShort || ''">
+                      </citxt>
+                    </div>
+                  </div>
+
+                  <!-- <div class="row">
+                    <div class="col s12" style="margin-top: -15px !important;">
+                      <citxt (cModel)="editModel.textButton = $event" [label]="'ชื่อปุ่มแหล่งอ้างอิง : '"
+                        [data]="editModel.textButton || ''"></citxt>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col s12" style="margin-top: -15px !important;">
+                      <citxt (cModel)="editModel.linkUrl = $event" [label]="'ลิ้งค์แหล่งอ้างอิง : '"
+                        [data]="editModel.linkUrl || ''"></citxt>
+                    </div>
+                  </div> -->
+
+                </div>
+
+                <div class="col s4">
+                  <div class="col s5">
+                    <cds (cModel)="editModel.image = $event" [label]="'* รูปปก (คลิกเลือกภาพ/ลากวางภาพที่นี่)'"
+                      [data]="[{ imageUrl: this.editModel.imageUrl || '' }]" [code]="'news'"></cds>
+                  </div>
+                  <div class="col s12" style="color: red;padding-top: 20px;">
+                    <span>*Maximum 10 MB</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- END: Do Something This Here -->
+
+            </div>
+            <!-- comment -->
+            <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;" [hidden]="hiddenComment">
+
+                <!-- BEGIN: Do Something This Here -->
+
+                <div style="overflow-x:auto;">
+                <table id="users-list-datatable" class="bordered centered striped">
+                    <thead>
+                        <tr>
+                            <th>ลำดับ</th>
+                            <th>ความคิดเห็น</th>
+                            <th>ชื่อผู้ใช้</th>
+                            <th>วันที่</th>
+                            <th>จัดการความคิดเห็น</th>
+                            <th>ตรวจสอบความคิดเห็น</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let i of commentList; let idx = index">
+                            <td>
+                                <div class="w30">
+                                    {{idx + 1}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="w300">
+                                    {{i.description}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="w200">
+                                    {{i.createBy}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="w150">
+                                    {{i.createDate | datetimeFormat}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="w200 green-text" [hidden]="!i.isActive">
+                                    <cbtn [label]="'อนุญาตให้แสดงความคิดเห็น'" [color]="'blue'" (click)="manageComment(i)">
+                                    </cbtn>
+                                </div>
+                                <div class="w200 red-text" [hidden]="i.isActive">
+                                    <!-- <cbtn [label]="'ไม่อนุญาตให้แสดงความคิดเห็น'" [color]="'red'" (click)="verifyComment(i)">
+                                    </cbtn> -->
+                                    <cbtn [label]="'ไม่อนุญาตให้แสดงความคิดเห็น'" [color]="'red'" (click)="manageComment(i)">
+                                    </cbtn>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="w150">
+                                    <cbtn [label]="'ตรวจสอบ'" [color]="'blue'" (click)="verifyComment(i)">
+                                    </cbtn>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+
+                <!-- <div class="row">
+
+                    <div class="col s6">
+                        <ul>
+                            <li>{{commentPagination.textPage}}</li>
+                        </ul>
+                    </div>
+                    <div class="col s6">
+                        <div style="text-align: right;">
+                            <ul>
+                                <li *ngFor="let item of [] | paginate: commentPagination"></li>
+                            </ul>
+                            <pagination-controls (pageChange)="commentPagination.currentPage = $event"
+                                previousLabel="ก่อนหน้า" nextLabel="ถัดไป"></pagination-controls>
+                        </div>
+                    </div>
+
+                </div> -->
+
+                <!-- END: Do Something This Here -->
+
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" [hidden]="!hiddenComment">
+    <div class="col s12">
+      <div class="container">
+        <section class="users-list-wrapper section">
+          <div class="users-list-filter">
+
+            <!-- Header -->
+            <div class="card-panel" style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+
+              <div class="row">
+                <div class="col s8">
+                  <i class="material-icons header-icon">
+                    border_color
+                  </i>
+                  <span style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+                    รายละเอียด
+                  </span>
+                </div>
+              </div>
+
+            </div>
+            <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+
+              <!-- BEGIN: Do Something This Here -->
+
+              <div class="row">
+                <div class="col s6">
+
+                  <div class="row">
+                    <div class="col s12">
+                      <ctxte (cModel)="editModel.description = $event" [label]="'รายละเอียด : '"
+                        [data]="editModel.description || ''"></ctxte>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col s6">
+
+                  <div class="row">
+                    <div class="col s12">
+                      <cdm (cModel)="editModel.gallery = $event"
+                        [label]="'รูปภาพประกอบข่าว (คลิกเลือกภาพ/ลากวางภาพที่นี่)'" [data]="editModel.gallery || []"
+                        [code]="'news'"></cdm>
+                    </div>
+                    <div class="col s12" style="color: red;padding-top: 20px;">
+                      <span>*Maximum 10 MB</span>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col s1"></div>
+                <div class="col s4">
+                  <div class="col s12">
+                      <cdsf (cModel)="editModel.file = $event"
+                          [label]="'ไฟล์ PDF (เลือกไฟล์ PDF , Excel/วางไฟล์ PDF , Excelที่นี่)'"
+                          [data]="[{ imageUrl: editModel.fileUrl == '' ? '' : imageFile }]"
+                          [code]="'news'">
+                      </cdsf>
+                  </div>
+                  <div class="col s12" style="color: red;padding-top: 20px;">
+                      <span>*Maximum 100 MB</span>
+                  </div>
+              </div>
+              </div>
+
+              <!-- END: Do Something This Here -->
+
+            </div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" [hidden]="!hiddenComment">
+    <div class="col s12">
+      <div class="container">
+        <section class="users-list-wrapper section">
+          <div class="users-list-filter">
+
+            <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+
+              <!-- BEGIN: Do Something This Here -->
+
+              <div class="row" [hidden]="isSaveSuccess">
+                <div class="col s12" style="text-align: center; margin-top: 10px;">
+                  <cbtn (click)="checkSave()" [label]="'บันทึก'" [color]="'blue'"></cbtn>
+                  <cbtn [label]="'ยกเลิก'" [color]="'red'" (click)="back()"></cbtn>
+                </div>
+              </div>
+
+              <!-- END: Do Something This Here -->
+
+            </div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col s3" style="padding-left: 0px !important;">
+  <div class="row">
+    <div class="col s12">
+      <div class="container">
+        <section class="users-list-wrapper section">
+          <div class="users-list-filter">
+
+            <!-- Header -->
+            <div class="card-panel" style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+              <div class="row">
+                <div class="col s8">
+                  <span style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+                    ตั้งค่าการแสดงผล *
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+              <div class="row">
+                <div class="col s12" style="padding-bottom: 40px !important;">
+                  <ccb (cModel)="editModel.isActive = $event" [label]="'เผยแพร่'"
+                    [data]="editModel.isActive"></ccb>
+                  <ccb (cModel)="editModel.isHighlight = $event" [label]="'รายการแนะนำ'"
+                    [data]="editModel.isHighlight"></ccb>
+                  <ccb (cModel)="editModel.isPublic = $event" [label]="'เปิดสาธารณะ'"
+                    [data]="editModel.isPublic"></ccb>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- END: Page Main-->

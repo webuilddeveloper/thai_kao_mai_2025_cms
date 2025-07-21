@@ -1,0 +1,300 @@
+<h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>{{title}}</span></h5>
+<ol class="breadcrumbs mb-0">
+  <li class="breadcrumb-item"><a href="javascript:void(0)">จัดการสมาชิก</a>
+  </li>
+  <li class="breadcrumb-item"><a href="javascript:void(0)">ผู้ดูแลระบบ</a>
+  </li>
+  <li class="breadcrumb-item active">{{title}}
+  </li>
+</ol>
+<br>
+<br>
+<ngx-spinner>
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<!-- BEGIN: Page Main-->
+
+<div *ngIf="isShow == '1'" class="row">
+  <div class="col s12">
+    <div class="container">
+      <section class="users-list-wrapper section">
+        <div class="users-list-filter">
+          <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+
+            <!-- BEGIN: Do Something This Here -->
+
+            <div class="row">
+
+              <div class="col s6">
+
+                <div class="col s5">
+                  <csw [hidden]="!category.approveAction" (cModel)="editModel.isActive = $event" [label]="'ใช้งาน'"
+                    [data]="editModel.isActive"></csw>
+                </div>
+
+                <div class="col s12">
+                  <citxt (cModel)="editModel.username = $event" [label]="'ชื่อผู้ใช้ : '"
+                    [data]="editModel.username || ''"></citxt>
+                </div>
+                <div class="col s12">
+                  <citxt (cModel)="editModel.password = $event" [label]="'รหัสผ่าน : '"
+                    [data]="editModel.password || ''"></citxt>
+                </div>
+
+                <div class="col s12" style="padding-bottom: 20px;">
+                  <csop (cModel)="editModel.prefixName = $event" [label]="'คำนำหน้าชื่อ : '"
+                    [data]="editModel.prefixName || 'none'" [sources]="listPrefixName">
+                  </csop>
+                </div>
+
+                <div class="col s12">
+                  <citxt (cModel)="editModel.firstName = $event" [label]="'ชื่อ : '" [data]="editModel.firstName || ''">
+                  </citxt>
+                </div>
+                <div class="col s12">
+                  <citxt (cModel)="editModel.lastName = $event" [label]="'นามสกุล : '"
+                    [data]="editModel.lastName || ''"></citxt>
+                </div>
+                <div class="col s12">
+                  <cdp (cModel)="editModel.birthDay = $event" [label]="'วันเกิด'" [data]="editModel.birthDay"></cdp>
+                </div>
+
+                <div class="col s12">
+                  <citxt (cModel)="editModel.phone = $event" [label]="'เบอร์โทรศัพท์ : '"
+                    [data]="editModel.phone || ''"></citxt>
+                </div>
+
+                <div class="col s12">
+                  <citxt (cModel)="editModel.email = $event" [label]="'อีเมล : '" [data]="editModel.email || ''">
+                  </citxt>
+                </div>
+
+                <div>
+                  <div class="col s12" style="padding-bottom: 20px;">
+                    <csop (cModel)="editModel.center = $event" [label]="'* ศูนย์ : '" [data]="editModel.center"
+                      [sources]="listCenter">
+                    </csop>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="col s6">
+
+                <div class="col s12">
+                  <cds (cModel)="editModel.image = $event" [label]="'รูปภาพ (เลือกภาพ/วางภาพที่นี่)'"
+                    [data]="[{ imageUrl: this.editModel.imageUrl || '' }]" [code]="'member'">
+                  </cds>
+                </div>
+                <div class="col s12" style="color: red;padding-top: 20px;">
+                  <span>*Maximum 10 MB</span>
+                </div>
+
+                <div class="col s12" style="padding-top: 20px;padding-bottom: 20px">
+                  <cbtn [label]="'เลือกตำแหน่ง'" [color]="'blue'" (click)="readCategory()"></cbtn>
+                </div>
+
+                <!-- <div class="row">
+                                    <div class="col s12" style="padding-top: 20px;padding-bottom: 20px">
+                                        <csop (cModel)="chooseCategory($event)" [label]="'เลือกตำแหน่ง : '"
+                                            [data]="editModel.category" [sources]="listCategory">
+                                        </csop>
+                                    </div>
+                                </div> -->
+
+                <div class="row">
+                  <div class="col s12">
+                    <div class="container">
+                      <section class="users-list-wrapper section">
+                        <div class="users-list-filter">
+                          <div class="card-panel">
+
+
+                            <div class="responsive-table">
+                              <table id="users-list-datatable" class="table">
+                                <thead>
+                                  <tr>
+                                    <th>#</th>
+                                    <th>ตำแหน่ง</th>
+                                    <th>ลบ</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let i of messageInput; let idx = index">
+                                    <td>{{idx + 1}}</td>
+                                    <td>
+                                      <a href="javascript:void(0)">{{i.category}}</a>
+                                    </td>
+                                    <td>
+                                      <cbtnd (click)="deleteItem(i.category,idx)"></cbtnd>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            <br>
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- END: Do Something This Here -->
+
+          </div>
+
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isShow == '2'" class="row">
+  <div class="col s12">
+    <div class="container">
+      <section class="users-list-wrapper section">
+        <div class="users-list-filter">
+
+          <!-- Header -->
+          <div class="card-panel" style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+
+            <div class="row">
+              <div class="col s6">
+                <i class="material-icons" style="position: relative; float:left; font-size: 2.5em;">
+                  border_color
+                </i>
+                <span style="position: relative; float:left; padding-left: 10px; padding-top: 10px;">
+                  {{title}}
+                </span>
+              </div>
+              <div class="col s6">
+                <div class="col s12" style="text-align: right;">
+                  <cbtn [label]="'ตกลง'" [color]="'blue'" (click)="isShow = '1'"></cbtn>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="col s12" style="text-align: right;">
+                            <cbtn [label]="'test'" [color]="'blue'" (click)="test()"></cbtn>
+                        </div> -->
+
+          </div>
+
+          <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+
+            <!-- datatable start -->
+            <div class="row">
+
+              <div class="row">
+
+                <div class="col s2">
+                  <csop (cModel)="setPerPage($event)" [label]="'แสดง'" [data]="categoryPagination.itemsPerPageString"
+                    [sources]="[{ value: '5', display: '5'},{ value: '10', display: '10'},{ value: '50', display: '50'},{ value: '100', display: '100'}]">
+                  </csop>
+                </div>
+                <div class="col s7">
+
+                </div>
+                <div class="col s3">
+                  <citxt (keyup.enter)="readCategory()" (cModel)="categoryCriteria.keySearch = $event" [label]="'ค้นหา'"
+                    [data]="categoryCriteria.keySearch"></citxt>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="responsive-table">
+              <table id="users-list-datatable" class="table">
+                <thead>
+                  <tr>
+                    <th>
+                      <span class="header-checkbox">
+                        <label>
+                          <input type="checkbox" [(ngModel)]="allSelected" (change)="checkUncheckAll()" />
+                          <span></span>
+                        </label>
+                      </span>
+                    </th>
+                    <th>#</th>
+                    <th>ชื่อผู้ใช้</th>
+                    <!-- <th>ลบ</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let i of listCategory; let idx = index">
+                    <td>
+                      <span class="header-checkbox">
+                        <label>
+                          <input type="checkbox" [(ngModel)]="i.isSelected" (change)="isAllSelected()" />
+                          <span></span>
+                        </label>
+                      </span>
+                    </td>
+                    <td>{{idx + ((this.categoryPagination.currentPage - 1) * this.categoryPagination.itemsPerPage) + 1}}
+                    </td>
+                    <td>{{i.display}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <br>
+
+            <!-- END: Do Something This Here -->
+
+          </div>
+          <div class="row">
+
+            <div class="col s6">
+              <ul>
+                <li>{{categoryPagination.textPage}}</li>
+              </ul>
+            </div>
+            <div class="col s6">
+              <div style="text-align: right;">
+                <ul>
+                  <li *ngFor="let item of [] | paginate: categoryPagination"></li>
+                </ul>
+                <pagination-controls (pageChange)="categoryPagination.currentPage = $event" previousLabel="ก่อนหน้า"
+                  nextLabel="ถัดไป"></pagination-controls>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col s12">
+    <div class="container">
+      <section class="users-list-wrapper section">
+        <div class="users-list-filter">
+          <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+
+            <!-- BEGIN: Do Something This Here -->
+
+            <div class="row" [hidden]="isSaveSuccess">
+              <div class="col s12" style="text-align: center; margin-top: 10px;">
+                <cbtn [hidden]="code != ''" (click)="create()" [label]="'บันทึก'" [color]="'blue'"></cbtn>
+                <cbtn [hidden]="code == ''" (click)="update()" [label]="'บันทึก'" [color]="'blue'"></cbtn>
+                <cbtn [label]="'ยกเลิก'" [color]="'red'" (click)="back()"></cbtn>
+              </div>
+            </div>
+
+            <!-- END: Do Something This Here -->
+
+          </div>
+
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- END: Page Main-->

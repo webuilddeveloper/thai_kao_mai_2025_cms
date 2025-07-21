@@ -1,0 +1,14 @@
+<h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>รายงานยอดอ่าน "ร้องเรียน"</span></h5>
+<ol class="breadcrumbs mb-0">
+    <li class="breadcrumb-item"><a href="javascript:void(0)">รายงาน</a>
+    </li>
+    <li class="breadcrumb-item active">รายงานยอดอ่าน "ร้องเรียน"
+    </li>
+</ol>
+<br>
+<br>
+<!-- {{paginationModel.totalItems}} -->
+<app-report-reporter-criteria [paginationModel]="paginationModel" (messageToEmit)="getMessageCriteria($event)"></app-report-reporter-criteria>
+<app-report-reporter-list [paginationModel]="paginationModel" [criteriaModel]="criteriaModel" [messageInput]="listModel" (messageToEmit)="getMessageList($event)"></app-report-reporter-list>
+
+

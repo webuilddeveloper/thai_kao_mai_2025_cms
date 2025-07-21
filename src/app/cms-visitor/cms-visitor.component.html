@@ -1,0 +1,14 @@
+<h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>รายงานผู้เข้าชมเว็บ CMS</span></h5>
+<ol class="breadcrumbs mb-0">
+    <li class="breadcrumb-item"><a href="javascript:void(0)">รายงาน</a>
+    </li>
+    <li class="breadcrumb-item active">รายงานผู้เข้าชมเว็บ CMS
+    </li>
+</ol>
+<br>
+<br>
+<!-- {{paginationModel.totalItems}} -->
+<!-- <app-website-visitor-criteria [paginationModel]="paginationModel" (messageToEmit)="getMessageCriteria($event)"></app-website-visitor-criteria> -->
+<app-cms-visitor-list [paginationModel]="paginationModel" [criteriaModel]="criteriaModel" [messageInput]="listModel" (messageToEmit)="getMessageList($event)"></app-cms-visitor-list>
+
+

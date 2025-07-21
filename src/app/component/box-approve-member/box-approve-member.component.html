@@ -1,0 +1,20 @@
+<div class="row" style="border: 1px solid #c7c7c7;">
+    <div class="col s3 box-s title-field">
+       <p>{{label}}</p>
+    </div>
+    <div class="col s4 box-s curr-field">
+        {{oldData}}
+        <!-- <citxt [data]="oldData || ''" [readonly]="true"></citxt> -->
+    </div>
+    <div class="col s4 box-s new-field" [ngStyle]="{'background-color': (oldData == newData) ? '#FE9AFF' : '#be36c0'}">
+        {{newData}}
+        <!-- <citxt [data]="newData || ''" [readonly]="true"></citxt> -->
+    </div>
+    <div class="col s1 box-s check-field">
+        <label>
+            <input type="checkbox" [(ngModel)]="isSelected" (ngModelChange)="change = $event" style="color: white !important;"/>
+            <span style="padding-left: 20px;color: white !important;"></span>
+          </label>
+        <!-- <input type="checkbox" [(ngModel)]="isSelected" (ngModelChange)="emit($event)" /> -->
+    </div>
+</div>

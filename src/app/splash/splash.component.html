@@ -1,0 +1,11 @@
+<h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>ภาพพักหน้าจอ</span></h5>
+<ol class="breadcrumbs mb-0">
+    <li class="breadcrumb-item"><a href="javascript:void(0)">จัดการเมนูรูปภาพ</a>
+    </li>
+    <li class="breadcrumb-item active">ภาพพักหน้าจอ
+    </li>
+</ol>
+<br>
+<br>
+<app-splash-criteria [hidden]="true" (messageToEmit)="getMessageCriteria($event)"></app-splash-criteria>
+<app-splash-list [paginationModel]="paginationModel" [messageInput]="listModel" (messageToEmit)="getMessageList($event)"></app-splash-list>

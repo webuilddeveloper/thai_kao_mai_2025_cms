@@ -1,0 +1,11 @@
+<h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>พันธมิตร</span></h5>
+<ol class="breadcrumbs mb-0">
+    <li class="breadcrumb-item"><a href="javascript:void(0)">จัดการเมนูรูปภาพ</a>
+    </li>
+    <li class="breadcrumb-item active">พันธมิตร
+    </li>
+</ol>
+<br>
+<br>
+<app-alliance-criteria [hidden]="true" (messageToEmit)="getMessageCriteria($event)"></app-alliance-criteria>
+<app-alliance-list [paginationModel]="paginationModel" [messageInput]="listModel" (messageToEmit)="getMessageList($event)"></app-alliance-list>

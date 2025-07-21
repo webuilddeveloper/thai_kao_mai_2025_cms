@@ -1,0 +1,11 @@
+<ngx-dropzone class="dropzone single" [disabled]="readonly" (change)="fileChangeEvent($event)">
+    <ngx-dropzone-label>{{label}}</ngx-dropzone-label>
+    <ngx-dropzone-preview class="dropzone preview" *ngFor="let f of data" [removable]="true" (removed)="onRemoveApi(f)">
+        <ngx-dropzone-label class="dropzone label">
+            <img class="dropzone image" [src]="f.imageUrl"><br>{{ f.imageName }}
+        </ngx-dropzone-label>
+    </ngx-dropzone-preview>
+</ngx-dropzone>
+<ngx-photo-editor [imageChangedEvent]="imageChangedEvent" (imageCropped)="imageCropped($event)" [aspectRatio]="1/1"
+[viewMode]="0" [resizeToWidth]="500" [scalable]="true">
+</ngx-photo-editor>

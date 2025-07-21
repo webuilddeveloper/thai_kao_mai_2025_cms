@@ -1,0 +1,382 @@
+<h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>{{title}}</span></h5>
+<ol class="breadcrumbs mb-0">
+  <li class="breadcrumb-item"><a href="javascript:void(0)">จัดการสมาชิก</a>
+  </li>
+  <!-- <li class="breadcrumb-item"><a href="javascript:void(0)">ผู้ใช้งานระบบ</a>
+    </li> -->
+  <li class="breadcrumb-item active">{{title}}
+  </li>
+</ol>
+<br>
+<br>
+<ngx-spinner>
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<!-- BEGIN: Page Main-->
+
+<div class="row">
+  <div class="col s12">
+    <div class="container">
+      <section class="users-list-wrapper section">
+        <div class="users-list-filter">
+          <!-- Header -->
+          <div class="card-panel" style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+            <div class="row">
+              <div class="col s8">
+                <span class="material-icons header-icon">
+                  border_color
+                </span>
+                <span style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+                  {{title}}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+            <!-- BEGIN: Do Something This Here -->
+            <div class="row">
+              
+              <!-- ก้อน1 -->
+              <div class="col s8">
+
+                <!-- สถานะใช้งาน -->
+                <div class="col s12">
+                  <csw [hidden]="!category.approveAction" (cModel)="editModel.isActive = $event" [label]="'ใช้งาน'"
+                    [data]="editModel.isActive"></csw>
+                </div>
+
+                <div class="row">
+                  <div class="col s6">
+                    <citxt (cModel)="editModel.username = $event" [label]="'ชื่อผู้ใช้ : '"
+                      [data]="editModel.username || ''"></citxt>
+                  </div>
+                  <div class="col s6">
+                    <citxt (cModel)="editModel.password = $event" [label]="'รหัสผ่าน : '"
+                      [data]="editModel.password || ''"></citxt>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s6">
+                    <citxt (cModel)="editModel.idcard = $event" [label]="'บัตรประจำตัวประชาชน : '"
+                      [data]="editModel.idcard || ''"></citxt>
+                  </div>
+                  <div class="col s6">
+                    <citxt (cModel)="editModel.officerCode = $event" [label]="'รหัสสมาชิก : '"
+                      [data]="editModel.officerCode || ''"></citxt>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s6" style="padding-bottom: 20px;">
+                    <csop (cModel)="editModel.prefixName = $event" [label]="'คำนำหน้าชื่อ : '"
+                      [data]="editModel.prefixName || 'none'" [sources]="listPrefixName">
+                    </csop>
+                  </div>
+
+                  <div class="col s6" style="padding-bottom: 20px;">
+                    <csop (cModel)="editModel.sex = $event" [label]="'เพศ : '" [data]="editModel.sex || 'none'"
+                      [sources]="listSex">
+                    </csop>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s6">
+                    <citxt (cModel)="editModel.firstName = $event" [label]="'ชื่อ : '"
+                      [data]="editModel.firstName || ''"></citxt>
+                  </div>
+                  <div class="col s6">
+                    <citxt (cModel)="editModel.lastName = $event" [label]="'นามสกุล : '"
+                      [data]="editModel.lastName || ''"></citxt>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s6">
+                    <cdp (cModel)="editModel.birthDay = $event" [label]="'วันเกิด'" [data]="editModel.birthDay"></cdp>
+                  </div>
+                  <div class="col s6">
+                    <citxt (cModel)="editModel.job = $event" [label]="'อาชีพ : '" [data]="editModel.job || ''"></citxt>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s6">
+                    <citxt (cModel)="editModel.email = $event" [label]="'อีเมล : '" [data]="editModel.email || ''">
+                    </citxt>
+                  </div>
+                  <div class="col s6">
+                    <citxt (cModel)="editModel.phone = $event" [label]="'เบอร์โทรศัพท์ : '"
+                      [data]="editModel.phone || ''"></citxt>
+                  </div>
+                </div>
+              </div>
+              <!-- ก้อน3 -->
+              <div class="col s4">
+                <div class="row">
+                  <div class="col s12">
+                    <cds (cModel)="editModel.image = $event" [label]="'รูปภาพ (เลือกภาพ/วางภาพที่นี่)'"
+                      [data]="[{ imageUrl: this.editModel.imageUrl || '' }]" [code]="'member-mobile'">
+                    </cds>
+                  </div>
+                  <div class="col s12" style="color: red;padding-top: 20px;">
+                      <span>*Maximum 10 MB</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- END: Do Something This Here -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col s12">
+    <div class="container">
+      <section class="users-list-wrapper section">
+        <div class="users-list-filter">
+          <div class="card-panel">
+            <!-- BEGIN: Do Something This Here -->
+            <div class="row">
+              <!-- ก้อน1 -->
+              <div class="col s4">
+                <div class="col s12">
+                  <citxt (cModel)="editModel.address = $event" [label]="'ที่อยู่ : '" [data]="editModel.address || ''">
+                  </citxt>
+                </div>
+                <div class="col s12">
+                  <citxt (cModel)="editModel.road = $event" [label]="'ถนน : '" [data]="editModel.road || ''"></citxt>
+                </div>
+                <div class="col s12" style="padding-bottom: 20px;">
+                  <csop (cModel)="readCategoryPostCode($event)" [label]="'ตำบล/แขวง : '" (click)="validDistrict()"
+                    [data]="editModel.tambonCode || 'none'" [sources]="listCategoryTambon">
+                  </csop>
+                </div>
+              </div>
+              <!-- ก้อน2 -->
+              <div class="col s4">
+                <div class="col s12">
+                  <citxt (cModel)="editModel.moo = $event" [label]="'หมู่ที่ : '" [data]="editModel.moo || ''"></citxt>
+                </div>
+                <div class="col s12" style="padding-bottom: 20px;">
+                  <csop (cModel)="readCategoryDistrict($event)" [label]="'จังหวัด : '" [data]="editModel.provinceCode "
+                    [sources]="listCategoryProvince">
+
+                  </csop>
+                </div>
+                <div class="col s12" style="padding-bottom: 20px;">
+                  <csop (cModel)="editModel.postnoCode = $event" [label]="'รหัสไปรษณีย์ : '"
+                    (click)="validTambon()" [data]="editModel.postnoCode || 'none'" [sources]="listCategoryPostCode">
+                  </csop>
+                </div>
+              </div>
+              <!-- ก้อน3 -->
+              <div class="col s4">
+                <div class="col s12">
+                  <citxt (cModel)="editModel.soi = $event" [label]="'ซอย : '" [data]="editModel.soi || ''"></citxt>
+                </div>
+                <div class="col s12">
+                  <csop (cModel)="readCategoryTambon($event)" [label]="'อำเภอ/เขต : '" (click)="validProvince()"
+                    [data]="editModel.amphoeCode " [sources]="listCategoryDistrict">
+                  </csop>
+                </div>
+              </div>
+            </div>
+            <!-- END: Do Something This Here -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+<!-- BEGIN: Organization -->
+<div class="row">
+  <div class="container">
+    <div class="col s12">
+      <!-- Header -->
+      <div class="card-panel" style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+
+          <div class="row">
+              <div class="col s2">
+                      <i class="material-icons header-icon">
+                          featured_play_list
+                      </i>
+                  <span style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+                      รายการข้อมูล
+                  </span>
+              </div>
+              <div class="col s10" style="text-align: right;">
+                  <cbtn [label]="'ลบข้อมูล'" [color]="'red'" [icon]="'delete'" (click)="deleteAll()"></cbtn>
+              </div>
+          </div>
+
+      </div>
+      <!-- Detail -->
+      <div class="card-panel" style="margin-top: 0px; margin-bottom: 0px;">
+        <div class="row">
+          <div class="col s12">
+            <!-- {{ lvModel | json }} -->
+            <!-- datatable start -->
+            <div style="overflow-x:auto;">
+              <table id="users-list-datatable" class="bordered centered striped">
+                <thead>
+                  <tr>
+                    <th>
+                        <span class="header-checkbox">
+                            <label>
+                                <input type="checkbox" [(ngModel)]="itemSelected"
+                                    (change)="checkUncheckAll()" />
+                                <span style="padding-left: 20px;"></span>
+                            </label>
+                        </span>
+                    </th>
+                    <th>ลำดับ</th>
+                    <th>จัดการสิทธิ์</th>
+                    <th>หน่วยงาน</th>
+                    <th>เขต</th>
+                    <th>จังหวัด</th>
+                    <th>อำเภอ/เขต</th>
+                    <th>ตำบล/แขวง</th>
+                    <th>สถานะ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let i of editModel.countUnit; let idx = index">
+                    <td style="text-align: center; width: 10px;">
+                      <div class="w20" *ngIf="validateCategory(idx)">
+                        <label>
+                          <input type="checkbox" [(ngModel)]="i.isSelected"
+                            (change)="isAllSelected(idx)" />
+                          <span style="padding-left: 20px;"></span>
+                        </label>
+                      </div>
+  
+                    </td>
+
+                    <td style="width: 10px;">{{idx + 1}}</td>
+                    <td>
+                      <div class="w150" *ngIf="validateCategory(idx)">
+                        <mat-form-field style="height: 20px; width: 100%; font-family: Arial, Helvetica, sans-serif !important; padding-bottom: 0px !important;">
+                            <mat-select [(ngModel)]="i.status" (ngModelChange)="checkStatus($event,idx)" [(value)]="i.status">
+                                <mat-option *ngFor="let o of [{value:'A',display: 'ยืนยัน'},{value:'J',display:'ไม่ผ่าน'}]" value="{{o.value}}">{{o.display}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <!-- <cbtn [label]="'ลบ'" [color]="'red'" [icon]="'delete'" (click)="deleteOrganizationItem(idx)">
+                        </cbtn> -->
+                      </div>
+                    </td>
+                    <td>
+                      <div class="w200">
+                        <span [hidden]="i.titleLv0 == ''">
+                          {{i.titleLv0}}
+                        </span>
+                        <span [hidden]="i.titleLv0 != ''">
+                          -
+                        </span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="w150">
+                        <span [hidden]="i.titleLv1 == ''">
+                          {{i.titleLv1}}
+                        </span>
+                        <span [hidden]="i.titleLv1 != ''">
+                          -
+                        </span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="w150">
+                        <span [hidden]="i.titleLv2 == ''">
+                          {{i.titleLv2}}
+                        </span>
+                        <span [hidden]="i.titleLv2 != ''">
+                          -
+                        </span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="w150">
+                        <span [hidden]="i.titleLv3 == ''">
+                          {{i.titleLv3}}
+                        </span>
+                        <span [hidden]="i.titleLv3 != ''">
+                          -
+                        </span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="w150">
+                        <span [hidden]="i.titleLv4 == ''">
+                          {{i.titleLv4}}
+                        </span>
+                        <span [hidden]="i.titleLv4 != ''">
+                          -
+                        </span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="w150" [hidden]="i.status == ''">
+                        <span class="chip green lighten-5" *ngIf="i.status == 'A'">
+                          <span class="green-text">ตรวจสอบเรียบร้อยแล้ว</span>
+                        </span>
+                        <span class="chip red lighten-5" *ngIf="i.status == 'N'">
+                          <span class="orange-text">รอการยืนยันตัวตน</span>
+                        </span>
+                        <span class="chip yellow lighten-5" *ngIf="i.status == 'V'">
+                          <span class="orange-text">รอการตรวจสอบ</span>
+                        </span>
+                        <span class="chip yellow lighten-5" *ngIf="i.status == 'R'">
+                          <span class="red-text">รอการตรวจสอบ</span>
+                        </span>
+                        <!-- Reject -->
+                        <span class="chip red lighten-5" *ngIf="i.status == 'J'">
+                          <span class="red-text">ยืนยันตนไม่สำเร็จ</span>
+                        </span>
+                      </div>
+
+                    </td>
+                    <!-- <td><cbtnd (click)="delete(i, idx)"></cbtnd></td> -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- datatable ends -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- END: Organization -->
+
+<div class="row">
+    <div class="col s12">
+        <div class="container">
+            <section class="users-list-wrapper section">
+                <div class="users-list-filter">
+                    <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+
+                        <!-- BEGIN: Do Something This Here -->
+
+                        <div class="row" [hidden]="isSaveSuccess">
+                          <div class="col s12" style="text-align: center; margin-top: 10px;">
+                            <cbtn [hidden]="code != ''" (click)="create()" [label]="'บันทึก'" [color]="'blue'"></cbtn>
+                            <cbtn [hidden]="code == ''" (click)="update()" [label]="'บันทึก'" [color]="'blue'"></cbtn>
+                            <cbtn [label]="'ยกเลิก'" [color]="'red'" (click)="back()"></cbtn>
+                          </div>
+                        </div>
+
+                        <!-- END: Do Something This Here -->
+
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<!-- END: Page Main-->

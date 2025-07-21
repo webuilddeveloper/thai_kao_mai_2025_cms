@@ -1,0 +1,11 @@
+<h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>สิทธิ์ผู้ใช้งาน</span></h5>
+<ol class="breadcrumbs mb-0">
+    <li class="breadcrumb-item"><a href="javascript:void(0)">จัดการสมาชิก</a>
+    </li>
+    <li class="breadcrumb-item active">สิทธิ์ผู้ใช้งาน
+    </li>
+</ol>
+<br>
+<br>
+<app-user-role-criteria [hidden]="true" (messageToEmit)="getMessageCriteria($event)"></app-user-role-criteria>
+<app-user-role-list [paginationModel]="paginationModel" [messageInput]="listModel" (messageToEmit)="getMessageList($event)"></app-user-role-list>

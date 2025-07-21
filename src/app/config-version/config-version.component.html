@@ -1,0 +1,391 @@
+<ngx-spinner>
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
+<h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>{{navigation1}}</span></h5>
+<ol class="breadcrumbs mb-0">
+    <li class="breadcrumb-item"><a href="javascript:void(0)">{{navigation2}}</a>
+    </li>
+    <li class="breadcrumb-item active">{{navigation3}}
+    </li>
+</ol>
+<br>
+<br>
+
+<!-- BEGIN: List -->
+<div [hidden]="isForm">
+    <div class="col s12">
+        <div class="container">
+            <section class="users-list-wrapper section">
+                <div class="users-list-filter">
+                    <div class="card-panel"
+                        style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+                        <div class="row">
+                            <div class="col s2">
+                                <i class="material-icons header-icon">
+                                    featured_play_list
+                                </i>
+                                <span
+                                    style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+                                    รายการข้อมูล
+                                </span>
+                            </div>
+                            <div class="col s10" style="text-align: right;">
+                                <cbtn [label]="'เพิ่มข้อมูล'" [color]="'blue'" [icon]="'add_circle_outline'"
+                                    (click)="showForm()"></cbtn>
+                                <cbtn [label]="'ลบข้อมูล'" [color]="'red'" [icon]="'delete'"
+                                    (click)="delete()"></cbtn>
+                                <cbtn [hidden]="true" [label]="'Export Excel'" [color]="'green'"
+                                    [icon]="'file_download'" (click)="exportAsXLSX()"></cbtn>
+                                <cbtn [hidden]="true" [label]="'Re Order'" [color]="'gray'" [icon]="'autorenew'"
+                                    (click)="reOrder()"></cbtn>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-panel" style="margin-top: 0px;">
+                        <!-- <div class="row">
+                        <div class="col s2">
+                            <csop (cModel)="setPerPage($event)" [label]="'แสดง'" [data]="paginationModel.itemsPerPageString" [sources]="[{ value: '5', display: '5'},{ value: '10', display: '10'},{ value: '50', display: '50'},{ value: '100', display: '100'}]"></csop>
+                        </div>
+                        <div class="col s7">         
+                        </div>
+                        <div class="col s3">
+                            <citxt (keyup.enter)="search()" (cModel)="searchModel.keySearch = $event" [label]="'ค้นหา'" [data]="searchModel.keySearch"></citxt>
+                        </div>
+                    </div>     -->
+                        <div style="overflow-x:auto;">
+                            <table id="users-list-datatable" class="bordered centered striped">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <span class="header-checkbox">
+                                                <label>
+                                                    <input type="checkbox" [(ngModel)]="isChecked" (change)="checkAll($event)" />
+                                                    <span style="padding-left: 20px;"></span>
+                                                </label>
+                                            </span>
+                                        </th>
+                                        <th>จัดการ</th>
+                                        <th>Platform</th>
+                                        <th>Version</th>
+                                        <th>Active</th>
+                                        <th>Force</th>
+                                        <th>อัพเดทวันที่</th>
+                                        <th>อัพเดทโดย</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let i of models; let idx = index">
+                                        <td>
+                                            <div class="w20">
+                                                <label>
+                                                    <input type="checkbox" [(ngModel)]="i.isDelete" (change)="checkChange($event)" />
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="w75">
+                                                <cbtne [label]="'แก้ไขข้อมูล'" (click)="showForm(i)"></cbtne>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="w100">
+                                                {{i.platform}}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="w75">
+                                                {{i.version}}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="w75">
+                                                <div *ngIf="i.isActive">
+                                                    <span class="chip green lighten-5">
+                                                        <span class="green-text">Yes</span>
+                                                    </span>
+                                                </div>
+                                                <div *ngIf="!i.isActive">
+                                                    <span class="chip red lighten-5">
+                                                        <span class="red-text">No</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="w75">
+                                                <div *ngIf="i.isForce">
+                                                    <span class="chip green lighten-5">
+                                                        <span class="green-text">Yes</span>
+                                                    </span>
+                                                </div>
+                                                <div *ngIf="!i.isForce">
+                                                    <span class="chip red lighten-5">
+                                                        <span class="red-text">No</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="w100">
+                                                {{i.updateDate | datetimeFormat}}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="w100">
+                                                {{i.updateBy}}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- <div class="row">
+                            <div class="col s6">
+                                <ul>
+                                    <li>{{paginationModel.textPage}}</li>
+                                </ul>
+                            </div>
+                            <div class="col s6">
+                                <div style="text-align: right;">
+                                    <ul>
+                                        <li *ngFor="let item of [] | paginate: paginationModel"></li>
+                                    </ul>
+                                    <pagination-controls (pageChange)="paginationModel.currentPage = $event"
+                                        previousLabel="ก่อนหน้า" nextLabel="ถัดไป"></pagination-controls>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<!-- END: List -->
+
+<!-- BEGIN: Form -->
+<div [hidden]="!isForm">
+    <div class="col s9" style="padding-left: 0px !important;">
+        <div class="row">
+            <div class="col s12">
+                <div class="container">
+                    <section class="users-list-wrapper section">
+                        <div class="users-list-filter">
+                            <div class="card-panel"
+                                style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+                                <div class="row">
+                                    <div class="col s6">
+                                        <i class="material-icons header-icon">
+                                            border_color
+                                        </i>
+                                        <span
+                                            style="position: relative; float:left; padding-left: 10px; padding-top: 10px;">
+                                            {{navigation3}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+                                <div class="row">
+                                    <div class="col s8">
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <citxt (cModel)="model.platform = $event" [label]="'Platform : '"
+                                                    [data]="model.platform || ''"></citxt>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s12" style="margin-top: -15px !important;">
+                                                <citxt (cModel)="model.version = $event" [label]="'Version : '"
+                                                    [data]="model.version || ''"></citxt>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s12" style="margin-top: -15px !important;">
+                                                <citxt (cModel)="model.url = $event" [label]="'Url : '"
+                                                    [data]="model.url || ''"></citxt>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s12" style="margin-top: -15px !important;">
+                                                <citxt (cModel)="model.title = $event" [label]="'หัวข้อ Message : '"
+                                                    [data]="model.title || ''"></citxt>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s12" style="margin-top: -15px !important;">
+                                                <citxt (cModel)="model.description = $event" [label]="'ข้อความ Message : '"
+                                                    [data]="model.description || ''"></citxt>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="row">
+                                            <div class="col s12">
+                                                <cinum (cModel)="model.sequence = $event" [label]="'ลำดับข้อมูล'"
+                                                    [data]="model.sequence || 0"></cinum>
+                                            </div>
+                                        </div> -->
+                                        <!-- <div class="row">
+                                            <div class="col s12"
+                                                style="margin-top: -15px !important; padding-bottom: 10px !important;">
+                                                <csop (cModel)="readCategory($event)" [label]="'* ภาษา : '"
+                                                    [data]="model.language"
+                                                    [sources]="[{ value: 'th', display: 'ไทย' }, { value: 'en', display: 'อังกฤษ' }]">
+                                                </csop>
+                                            </div>
+                                        </div> -->
+                                        <!-- <div class="row">
+                                            <div class="col s12" style="padding-bottom: 10px !important;">
+                                                <csop (cModel)="model.category = $event" [label]="'* หมวดหมู่ : '"
+                                                    [data]="model.category" [sources]="listCategory">
+                                                </csop>
+                                            </div>
+                                        </div> -->
+                                        <!-- <div class="row">
+                                            <div class="col s12" style="margin-top: -15px !important;">
+                                                <citxt (cModel)="model.textButton = $event"
+                                                    [label]="'ชื่อปุ่มแหล่งอ้างอิง : '" [data]="model.textButton || ''">
+                                                </citxt>
+                                            </div>
+                                        </div> -->
+                                        <!-- <div class="row">
+                                            <div class="col s12" style="margin-top: -15px !important;">
+                                                <citxt (cModel)="model.linkUrl = $event"
+                                                    [label]="'ลิ้งค์แหล่งอ้างอิง : '" [data]="model.linkUrl || ''">
+                                                </citxt>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                    <!-- <div class="col s4">
+                                        <div class="col s5">
+                                            <cds (cModel)="model.image = $event"
+                                                [label]="'* รูปปก (คลิกเลือกภาพ/ลากวางภาพที่นี่)'"
+                                                [data]="[{ imageUrl: this.model.imageUrl || '' }]" [code]="'news'">
+                                            </cds>
+                                        </div>
+                                        <div class="col s12" style="color: red;padding-top: 20px;">
+                                            <span>*Maximum 10 MB</span>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="container">
+                    <section class="users-list-wrapper section">
+                        <div class="users-list-filter">
+                            <div class="card-panel"
+                                style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+                                <div class="row">
+                                    <div class="col s8">
+                                        <i class="material-icons header-icon">
+                                            border_color
+                                        </i>
+                                        <span
+                                            style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+                                            รายละเอียด
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+                                <div class="row">
+                                    <div class="col s8">
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <ctxte (cModel)="model.note = $event" [label]="'รายละเอียด : '"
+                                                    [data]="model.note || ''"></ctxte>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col s6">
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <cdm (cModel)="model.gallery = $event"
+                                                    [label]="'รูปภาพประกอบประกาศ สช. (คลิกเลือกภาพ/ลากวางภาพที่นี่)'"
+                                                    [data]="model.gallery || []" [code]="'news'"></cdm>
+                                            </div>
+                                            <div class="col s12" style="color: red;padding-top: 20px;">
+                                                <span>*Maximum 10 MB</span>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <!-- <div class="col s1"></div>
+                                    <div class="col s4">
+                                        <div class="col s12">
+                                            <cdsf (cModel)="model.file = $event"
+                                                [label]="'ไฟล์ PDF (เลือกไฟล์ PDF , Excel/วางไฟล์ PDF , Excelที่นี่)'"
+                                                [data]="[{ imageUrl: model.fileUrl == '' ? '' : imageFile }]"
+                                                [code]="'news'">
+                                            </cdsf>
+                                        </div>
+                                        <div class="col s12" style="color: red;padding-top: 20px;">
+                                            <span>*Maximum 100 MB</span>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="container">
+                    <section class="users-list-wrapper section">
+                        <div class="users-list-filter">
+                            <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+                                <div class="row">
+                                    <div class="col s12" style="text-align: center; margin-top: 10px;">
+                                        <cbtn *ngIf="model.code == undefined" (click)="create()" [label]="'บันทึก'" [color]="'blue'"></cbtn>
+                                        <cbtn *ngIf="model.code != undefined" (click)="update()" [label]="'อัพเดท'" [color]="'blue'"></cbtn>
+                                        <cbtn [label]="'ยกเลิก'" [color]="'red'" (click)="back()"></cbtn>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s3" style="padding-left: 0px !important;">
+        <div class="row">
+            <div class="col s12">
+                <div class="container">
+                    <section class="users-list-wrapper section">
+                        <div class="users-list-filter">
+                            <div class="card-panel"
+                                style="margin-bottom: 0px; background-color: lavender; vertical-align: text-top;">
+                                <div class="row">
+                                    <div class="col s8">
+                                        <span
+                                            style="position: relative; float: left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+                                            ตั้งค่า
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+                                <div class="row">
+                                    <div class="col s12" style="padding-bottom: 40px !important;">
+                                        <ccb (cModel)="model.isActive = $event" [label]="'Active'" [data]="model.isActive"></ccb>
+                                        <ccb (cModel)="model.isForce = $event" [label]="'Force'" [data]="model.isForce"></ccb>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END: Form -->

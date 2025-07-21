@@ -1,0 +1,12 @@
+<h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>รายงานผู้ติดต่อ</span></h5>
+<ol class="breadcrumbs mb-0">
+  <li class="breadcrumb-item"><a href="javascript:void(0)">รายงาน</a>
+  </li>
+  <li class="breadcrumb-item active">รายงานผู้ติดต่อ
+  </li>
+</ol>
+<br>
+<br>
+<!-- {{paginationModel.totalItems}} -->
+<app-about-comment-list [paginationModel]="paginationModel" [criteriaModel]="criteriaModel" [messageInput]="listModel"
+  (messageToEmit)="getMessageList($event)"></app-about-comment-list>

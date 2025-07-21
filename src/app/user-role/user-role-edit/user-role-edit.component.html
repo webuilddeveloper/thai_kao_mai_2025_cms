@@ -1,0 +1,614 @@
+<h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>{{title}}</span></h5>
+<ol class="breadcrumbs mb-0">
+  <li class="breadcrumb-item"><a href="javascript:void(0)">จัดการสมาชิก</a>
+  </li>
+  <li class="breadcrumb-item"><a href="javascript:void(0)">บทบาท</a>
+  </li>
+  <li class="breadcrumb-item active">{{title}}
+  </li>
+</ol>
+<br>
+<br>
+<ngx-spinner>
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<!-- BEGIN: Page Main-->
+<div class="row">
+  <div class="col s12">
+    <div class="container">
+      <!-- Header -->
+      <div class="card-panel" style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+        <div class="row">
+          <div class="col s2">
+            <span class="material-icons header-icon">
+              featured_play_list
+            </span>
+            <span style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+              {{title}}
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- Detail -->
+      <div class="card-panel" style="margin-top: 0px; margin-bottom: 0px;">
+        <!-- BEGIN: Do Something This Here -->
+        <div class="row">
+          <div class="col s12">
+            <div class="row">
+              <div class="col s12">
+                <citxt (cModel)="editModel.title = $event" [label]="'ตำแหน่ง : '" [data]="editModel.title || ''">
+                </citxt>
+              </div>
+            </div>
+          </div>
+          <div class="col s12">
+            <div class="row">
+              <div class="col s12">
+                <span>สิทธิ์ <a href="javascript:void(0)" (click)="checkAllAction()">เลือกทั้งหมด</a></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s1">
+                <ccb (cModel)="editModel.createAction = $event" [label]="'สร้าง'" [data]="editModel.createAction"></ccb>
+              </div>
+              <div class="col s1">
+                <ccb (cModel)="editModel.readAction = $event" [label]="'ดู'" [data]="editModel.readAction"></ccb>
+              </div>
+              <div class="col s1">
+                <ccb (cModel)="editModel.updateAction = $event" [label]="'แก้ไข'" [data]="editModel.updateAction"></ccb>
+              </div>
+              <div class="col s1">
+                <ccb (cModel)="editModel.deleteAction = $event" [label]="'ลบ'" [data]="editModel.deleteAction"></ccb>
+              </div>
+              <div class="col s1">
+                <ccb (cModel)="editModel.approveAction = $event" [label]="'อนุมัติ'" [data]="editModel.approveAction">
+                </ccb>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <!-- END: Do Something This Here -->
+      </div>
+      <!-- Detail -->
+      <!-- <div class="card-panel" style="margin-top: 0px; margin-bottom: 0px;">
+                <div class="row">
+                    <div class="col s6">
+                        <div class="row">
+                            <div class="col s12">
+                                <span>จัดการนโยบาย <a href="javascript:void(0)"
+                                        (click)="checkAllPolicy()">เลือกทั้งหมด</a></span>
+                            </div>
+                            <div class="col s12">
+                                <ccb (cModel)="editModel.policyApplicationPage = $event" [label]="'นโยบายแอพพลิเคชัน'"
+                                    [data]="editModel.policyApplicationPage"></ccb>
+                                <ccb (cModel)="editModel.policyMarketingPage = $event" [label]="'นโยบายการตลาด'"
+                                    [data]="editModel.policyMarketingPage"></ccb>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s6">
+                        <div class="row">
+                            <div class="col s12">
+                                <span>สมาชิกยอมรับนโยบาย <a href="javascript:void(0)"
+                                        (click)="checkAllMemberPolicy()">เลือกทั้งหมด</a></span>
+                            </div>
+                            <div class="col s12">
+                                <ccb (cModel)="editModel.memberMobilePolicyApplicationPage = $event"
+                                    [label]="'สมาชิกยอมรับนโยบายขั้นต้น'"
+                                    [data]="editModel.memberMobilePolicyApplicationPage"></ccb>
+                                <ccb (cModel)="editModel.memberMobilePolicyMarketingPage = $event"
+                                    [label]="'สมาชิกยอมรับนโยบายการตลาด'"
+                                    [data]="editModel.memberMobilePolicyMarketingPage"></ccb>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div> -->
+    </div>
+  </div>
+</div>
+
+<!-- BEGIN: Page -->
+<div class="row">
+  <div class="col s12">
+    <div class="container">
+
+      <!-- Header -->
+      <div class="card-panel"
+        style="margin-top: 0px; margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+
+        <div class="row">
+          <div class="col s2">
+            <span class="material-icons header-icon">
+              featured_play_list
+            </span>
+            <span style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+              เมนู
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- Detail -->
+      <div class="card-panel" style="margin-top: 0px; margin-bottom: 0px;">
+        <!-- BEGIN: Do Something This Here -->
+        <div class="row">
+          <div class="col s3">
+            <div class="col s12">
+              <span>การเข้าถึงการจัดการสมาชิก <a href="javascript:void(0)"
+                  (click)="checkAllMember()">เลือกทั้งหมด</a></span>
+            </div>
+            <div class="col s12">
+              <ccb (cModel)="editModel.userRolePage = $event" [label]="'การจัดการสิทธิ์ผู้ใช้งาน'"
+                [data]="editModel.userRolePage"></ccb>
+            </div>
+            <div class="col s12">
+              <ccb (cModel)="editModel.memberPage = $event" [label]="'การจัดการผู้ดูแลระบบ'"
+                [data]="editModel.memberPage">
+              </ccb>
+            </div>
+          </div>
+          <div class="col s3">
+            <div class="col s12">
+              <span>การเข้าถึงการจัดการรูปภาพ <a href="javascript:void(0)"
+                  (click)="checkAllImage()">เลือกทั้งหมด</a></span>
+            </div>
+            <div class="col s12">
+              <ccb (cModel)="editModel.mainPopupPage = $event" [label]="'โฆษณาหลัก (Popup)'"
+                [data]="editModel.mainPopupPage">
+              </ccb>
+            </div>
+            <div class="col s12">
+              <ccb (cModel)="editModel.bannerPage = $event" [label]="'โฆษณาในแอพ (Banner)'"
+                [data]="editModel.bannerPage">
+              </ccb>
+            </div>
+            <div class="col s12">
+              <ccb (cModel)="editModel.partnerPage = $event" [label]="'ผู้สนับสนุน (Partner)'"
+                [data]="editModel.partnerPage">
+              </ccb>
+            </div>
+            <div class="col s12">
+              <ccb (cModel)="editModel.alliancePage = $event" [label]="'พันธมิตร (Alliance)'"
+                [data]="editModel.alliancePage">
+              </ccb>
+            </div>
+            <div class="col s12">
+              <ccb (cModel)="editModel.officeActivitiesPage = $event" [label]="'กิจกรรมภายในออฟฟิศ'"
+                [data]="editModel.officeActivitiesPage">
+              </ccb>
+            </div>
+          </div>
+          <div class="col s3">
+            <div class="s12">
+              <span>การเข้าถึงการจัดการหมวดหมู่ <a href="javascript:void(0)"
+                  (click)="checkAllCategory()">เลือกทั้งหมด</a></span>
+            </div>
+            <div class="s12">
+              <ccb (cModel)="editModel.newsCategoryPage = $event" [label]="'หมวดหมู่ข่าวประชาสัมพันธ์'"
+                [data]="editModel.newsCategoryPage">
+              </ccb>
+            </div>
+            <div class="s12">
+              <ccb (cModel)="editModel.productCategoryPage = $event" [label]="'หมวดหมู่ผลิตภัณฑ์'"
+                [data]="editModel.productCategoryPage">
+              </ccb>
+            </div>
+            <div class="s12">
+              <ccb (cModel)="editModel.portfolioCategoryPage = $event" [label]="'หมวดหมู่ผลงาน'"
+                [data]="editModel.portfolioCategoryPage">
+              </ccb>
+            </div>
+            <div class="s12">
+              <ccb (cModel)="editModel.employeeCategoryPage = $event" [label]="'หมวดหมู่พนักงาน'"
+                [data]="editModel.employeeCategoryPage">
+              </ccb>
+            </div>
+            <div class="s12">
+              <ccb (cModel)="editModel.certificateCategoryPage = $event" [label]="'หมวดหมู่ใบรับรอง'"
+                [data]="editModel.certificateCategoryPage">
+              </ccb>
+            </div>
+          </div>
+          <div class="col s3">
+            <div class="s12">
+              <span>การเข้าถึงเมนูหลัก <a href="javascript:void(0)" (click)="checkAllMain()">เลือกทั้งหมด</a></span>
+            </div>
+            <div class="s12">
+              <ccb (cModel)="editModel.newsPage = $event" [label]="'ข่าวประชาสัมพันธ์'" [data]="editModel.newsPage">
+              </ccb>
+            </div>
+            <div class="s12">
+              <ccb (cModel)="editModel.productPage = $event" [label]="'ผลงาน'" [data]="editModel.productPage"></ccb>
+            </div>
+            <div class="s12">
+              <ccb (cModel)="editModel.portfolioPage = $event" [label]="'ผลิตภัณฑ์'" [data]="editModel.portfolioPage">
+              </ccb>
+            </div>
+            <div class="s12">
+              <ccb (cModel)="editModel.employeePage = $event" [label]="'พนักงาน'" [data]="editModel.employeePage">
+              </ccb>
+            </div>
+            <div class="s12">
+              <ccb (cModel)="editModel.workProcessPage = $event" [label]="'กระบวนการทำงาน'"
+                [data]="editModel.workProcessPage"></ccb>
+            </div>
+            <div class="s12">
+              <ccb (cModel)="editModel.certificatePage = $event" [label]="'ใบรับรอง'"
+                [data]="editModel.certificatePage"></ccb>
+            </div>
+          </div>
+        </div>
+        <br>
+        <!-- END: Do Something This Here -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END: Page -->
+
+
+<!-- BEGIN: report -->
+<div class="row">
+  <div class="col s12">
+    <div class="container">
+      <!-- Header -->
+      <div class="card-panel"
+        style="margin-top: 0px;margin-bottom: 0px;background-color: lavender;vertical-align: text-top;">
+        <div class="row">
+          <div class="col s2">
+            <span class="material-icons header-icon">
+              featured_play_list
+            </span>
+            <span style="
+                  position: relative;
+                  float: left;
+                  font-size: 1em;
+                  padding-left: 10px;
+                  padding-top: 10px;
+                ">
+              รายงาน
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- Detail -->
+      <div class="card-panel" style="margin-top: 0px; margin-bottom: 0px;">
+        <!-- BEGIN: Do Something This Here -->
+
+        <div class="row">
+          <div class="col s3">
+            <div class="row">
+              <div class="col s12">
+                <span>การเข้าถึงการจัดการรายงานเชิงสถิติ
+                  <a href="javascript:void(0)" (click)="checkAllReportStatistical()">เลือกทั้งหมด</a></span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col s12">
+                <ccb (cModel)="editModel.aboutCommentPage = $event" [label]="'รายงานผู้ติดต่อ'"
+                  [data]="editModel.aboutCommentPage"></ccb>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col s12">
+                <ccb (cModel)="editModel.websitevisitorPage = $event" [label]="'รายงานผู้เข้าชมเว็บไซต์'"
+                  [data]="editModel.websitevisitorPage"></ccb>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col s12">
+                <ccb (cModel)="editModel.cmsvisitorPage = $event" [label]="'รายงานผู้เข้าชมเว็บ CMS'"
+                  [data]="editModel.cmsvisitorPage"></ccb>
+              </div>
+            </div>
+
+            <!-- <div class="row">
+                            <div class="col s12">
+                                <ccb (cModel)="editModel.dashboardPage = $event" [label]="'รายงานสมาชิก (Dashboard)'" [data]="editModel.dashboardPage"></ccb>
+                            </div>
+                        </div> -->
+
+
+            <div class="row">
+              <div class="col s12">
+                <!-- เว้นบรรทัด -->
+                <br>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="col s3">
+                        <div class="row">
+                            <div class="col s12">
+                                <span>Master
+                                    <a href="javascript:void(0)" (click)="checkAllMaster()">เลือกทั้งหมด</a></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s12">
+                                <ccb (cModel)="editModel.swearWordsPage = $event" [label]="'คำหยาบ'" [data]="editModel.swearWordsPage"></ccb>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s12">
+                                <ccb (cModel)="editModel.masterVeterinaryPage = $event" [label]="'รายชื่อสมาชิกสัตวแพทย์สภา'" [data]="editModel.masterVeterinaryPage"></ccb>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s12">
+                                <ccb (cModel)="editModel.contentKeywordPage = $event" [label]="'คำค้นหาหน้าหลัก'" [data]="editModel.contentKeywordPage"></ccb>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s12">
+                                <ccb (cModel)="editModel.notificationExamPage = $event" [label]="'ส่งแจ้งเตือนข้อสอบ'" [data]="editModel.notificationExamPage"></ccb>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                                <ccb (cModel)="editModel.notificationResultPage = $event" [label]="'ส่งแจ้งเตือนหน่วยกิต'" [data]="editModel.notificationResultPage"></ccb>
+                            </div>
+                        </div>
+                    </div> -->
+
+        </div>
+        <br />
+
+        <!-- END: Do Something This Here -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END: report -->
+
+<!-- BEGIN: Category -->
+<div class="row">
+  <div class="col s12">
+    <div class="container">
+
+      <!-- Header -->
+      <div class="card-panel"
+        style="margin-top: 0px; margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+
+        <div class="row">
+          <div class="col s2">
+            <span class="material-icons header-icon">
+              featured_play_list
+            </span>
+            <span style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+              หมวดหมู่
+            </span>
+          </div>
+          <div class="col s10" style="text-align: right;">
+            <cbtn [label]="'เลือกทั้งหมด'" [color]="'blue'" [icon]="'add_circle_outline'"
+              (click)="chooseAllEvertThing()">
+            </cbtn>
+
+          </div>
+        </div>
+
+      </div>
+      <!-- Detail -->
+      <div class="card-panel" style="margin-top: 0px; margin-bottom: 0px;">
+
+        <!-- BEGIN: Do Something This Here -->
+        <div class="row">
+          <div class="col s4">
+            <div [hidden]="!editModel.newsPage" class="row">
+              <div class="col s12">
+
+                <div class="row" style="margin-top: 10px;">
+                  <div class="col s12">
+                    <span>การเข้าถึงข่าวสาร <a href="javascript:void(0)"
+                        (click)="chooseAllNews()">เลือกทั้งหมด</a></span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col s12">
+                    <csop (cModel)="chooseCategory('ข่าวสารและประชาสัมพันธ์', $event, 'newsPage')"
+                      [label]="'เลือกรายการ : '" [data]="editModel.category" [sources]="newsCategory">
+                    </csop>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div [hidden]="!editModel.productPage" class="row">
+              <div class="col s12">
+
+                <div class="row" style="margin-top: 10px;">
+                  <div class="col s12">
+                    <span>การเข้าถึงผลิตภัณฑ์ <a href="javascript:void(0)"
+                        (click)="chooseAllProduct()">เลือกทั้งหมด</a></span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col s12">
+                    <csop (cModel)="chooseCategory('ผลิตภัณฑ์', $event, 'productPage')" [label]="'เลือกรายการ : '"
+                      [data]="editModel.category" [sources]="productCategory">
+                    </csop>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div [hidden]="!editModel.portfolioPage" class="row">
+              <div class="col s12">
+
+                <div class="row" style="margin-top: 10px;">
+                  <div class="col s12">
+                    <span>การเข้าถึงผลงาน <a href="javascript:void(0)"
+                        (click)="chooseAllProduct()">เลือกทั้งหมด</a></span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col s12">
+                    <csop (cModel)="chooseCategory('ผลงาน', $event, 'portfolioPage')" [label]="'เลือกรายการ : '"
+                      [data]="editModel.category" [sources]="portfolioCategory">
+                    </csop>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div [hidden]="!editModel.employeePage" class="row">
+              <div class="col s12">
+
+                <div class="row" style="margin-top: 10px;">
+                  <div class="col s12">
+                    <span>การเข้าถึงพนักงาน <a href="javascript:void(0)"
+                        (click)="chooseAllEmployee()">เลือกทั้งหมด</a></span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col s12">
+                    <csop (cModel)="chooseCategory('พนักงาน', $event, 'employeePage')" [label]="'เลือกรายการ : '"
+                      [data]="editModel.category" [sources]="employeeCategory">
+                    </csop>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div [hidden]="!editModel.certificatePage" class="row">
+              <div class="col s12">
+
+                <div class="row" style="margin-top: 10px;">
+                  <div class="col s12">
+                    <span>การเข้าถึงใบรับรอง <a href="javascript:void(0)"
+                        (click)="chooseAllCertificate()">เลือกทั้งหมด</a></span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col s12">
+                    <csop (cModel)="chooseCategory('ใบรับรอง', $event, 'certificatePage')" [label]="'เลือกรายการ : '"
+                      [data]="editModel.category" [sources]="certificateCategory">
+                    </csop>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col s8">
+            <div class="row">
+
+              <div class="col s4">
+                <csop (cModel)="setPerPage($event)" [label]="'แสดง'" [data]="paginationModel.itemsPerPageString"
+                  [sources]="[{ value: '5', display: '5'},{ value: '10', display: '10'},{ value: '50', display: '50'},{ value: '100', display: '100'}]">
+                </csop>
+              </div>
+              <div class="col s8">
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <div class="responsive-table">
+                  <table id="users-list-datatable" class="table">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>เมนู</th>
+                        <th>หมวดหมู่</th>
+                        <th>ลบ</th>
+                        <!-- <th>ลบ</th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let i of messageInputSlice; let idx = index">
+                        <td>{{((paginationModel.currentPage - 1) * paginationModel.itemsPerPage) + (idx + 1)}}
+                        </td>
+                        <td><a href="javascript:void(0)">{{i.page}}</a></td>
+                        <td>
+                          <a href="javascript:void(0)">{{i.title}}</a>
+                        </td>
+                        <td>
+                          <cbtnd (click)="deleteItem(idx)"></cbtnd>
+                        </td>
+                        <!-- <td><cbtnd (click)="delete(i, idx)"></cbtnd></td> -->
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col s6">
+                <ul>
+                  <li>{{paginationModel.textPage}}</li>
+                </ul>
+              </div>
+              <div class="col s6">
+                <!-- <----- Pagination -->
+                <div style="text-align: right;">
+                  <ul>
+                    <li *ngFor="let item of [] | paginate: paginationModel"></li>
+                  </ul>
+                  <pagination-controls (pageChange)="paginationModel.currentPage = $event" previousLabel="ก่อนหน้า"
+                    nextLabel="ถัดไป"></pagination-controls>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <br>
+
+        <!-- END: Do Something This Here -->
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- END: Category -->
+
+
+<div class="row">
+  <div class="col s12">
+    <div class="container">
+      <section class="users-list-wrapper section">
+        <div class="users-list-filter">
+          <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+
+            <!-- BEGIN: Do Something This Here -->
+
+            <div class="row">
+              <div class="col s12" style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
+                <cbtn [label]="'บันทึก'" [color]="'blue'" (click)="create()" [hidden]="code != ''">
+                </cbtn>
+                <cbtn [label]="'บันทึก'" [color]="'blue'" (click)="update()" [hidden]="code == ''">
+                </cbtn>
+                <cbtn [label]="'ยกเลิก'" [color]="'red'" (click)="back()"></cbtn>
+              </div>
+            </div>
+
+            <!-- END: Do Something This Here -->
+
+          </div>
+
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- END: Page Main-->

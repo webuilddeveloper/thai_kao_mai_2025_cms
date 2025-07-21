@@ -1,0 +1,11 @@
+<h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>หมวดหมู่ข่าวประชาสัมพันธ์</span></h5>
+<ol class="breadcrumbs mb-0">
+    <li class="breadcrumb-item"><a href="javascript:void(0)">จัดการหมวดหมู่</a>
+    </li>
+    <li class="breadcrumb-item active">หมวดหมู่ข่าวประชาสัมพันธ์
+    </li>
+</ol>
+<br>
+<br>
+<app-news-category-criteria [hidden]="true" (messageToEmit)="getMessageCriteria($event)"></app-news-category-criteria>
+<app-news-category-list [paginationModel]="paginationModel" [messageInput]="listModel" (messageToEmit)="getMessageList($event)"></app-news-category-list>

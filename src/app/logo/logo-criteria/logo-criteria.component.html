@@ -1,0 +1,66 @@
+<ngx-spinner>
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<!-- BEGIN: Page Main-->
+
+<!-- {{criteriaModel | json}} -->
+
+<div class="col s12">
+    <div class="container">
+        <section class="users-list-wrapper section">
+            <div class="users-list-filter">
+
+                <mat-accordion>
+                    <mat-expansion-panel (opened)="isAdvanceSearch = true" (closed)="isAdvanceSearch = !isAdvanceSearch">
+                        <mat-expansion-panel-header style="background-color:lavender;" [collapsedHeight]="'60px'" [expandedHeight]="'60px'">
+                            <div style="margin-left:-10px !important;" class="col s4 l8">
+                                <i class="material-icons header-icon">
+                                    filter_list
+                                </i>
+                                <span
+                                    style="position: relative; float:left; font-size: 14px; padding-left: 10px; padding-top: 10px;">
+                                    ตัวกรอง
+                                </span>
+                            </div>
+                            <div class="col s8">
+                                <div class="col s12" style="text-align: right;" [hidden]="!isAdvanceSearch">
+                                    <cbtn [label]="'รีเซ็ต'" [color]="'gray'" [icon]="'cached'"
+                                        (click)="reset()"></cbtn>
+                                    <cbtn [label]="'ค้นหา'" [color]="'blue'" [icon]="'search'" (click)="search()">
+                                    </cbtn>
+                                </div>
+                            </div>
+                        </mat-expansion-panel-header>
+                        <div class="row">
+                            <div class="col s12 l4">
+                                <cdp (cModel)="criteriaModel.startDate = $event" [label]="'วันที่สร้าง'" [data]="''">
+                                </cdp>
+                            </div>
+                            <div class="col s12 l4">
+                                <cdp (cModel)="criteriaModel.endDate = $event" [label]="'ถึงวันที่'" [data]="''">
+                                </cdp>
+                            </div>
+                            <div class="col s12 l4">
+                                <csop (cModel)="criteriaModel.status = $event" [label]="'สถานะ'" [data]="''"
+                                    [sources]="[{ value: '', display: 'ทั้งหมด' },{ value: 'N', display: 'รออนุมัติการเผยแพร่' }, { value: 'A', display: 'เผยแพร่แล้ว' }]">
+                                </csop>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s12 l4">
+                                <citxt (cModel)="criteriaModel.sequence = $event" [label]="'ลำดับข้อมูล'">
+                                </citxt>
+                            </div>
+                            <div class="col s12 l4">
+                                <citxt (cModel)="criteriaModel.createBy = $event" [label]="'ผู้สร้าง'"></citxt>
+                            </div>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- END: Page Main-->

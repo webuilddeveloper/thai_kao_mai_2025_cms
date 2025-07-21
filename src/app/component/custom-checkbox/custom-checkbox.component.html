@@ -1,0 +1,17 @@
+<!-- {{data}} -->
+<!-- <span class="header-checkbox">
+    <label>
+        <input type="checkbox" [(ngModel)]="data" />
+        <span></span>
+    </label>
+</span> -->
+
+<div class="input-field col s12">
+  <label style="display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;">
+    <input type="checkbox" [(ngModel)]="data" (ngModelChange)="emit($event)" />
+    <span>{{label}}</span>
+  </label>
+</div>

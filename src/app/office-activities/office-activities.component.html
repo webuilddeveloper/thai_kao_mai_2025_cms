@@ -1,0 +1,11 @@
+<h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>กิจกรรมภายในออฟฟิศ</span></h5>
+<ol class="breadcrumbs mb-0">
+    <li class="breadcrumb-item"><a href="javascript:void(0)">จัดการเมนูรูปภาพ</a>
+    </li>
+    <li class="breadcrumb-item active">กิจกรรมภายในออฟฟิศ
+    </li>
+</ol>
+<br>
+<br>
+<app-office-activities-criteria [hidden]="true" (messageToEmit)="getMessageCriteria($event)"></app-office-activities-criteria>
+<app-office-activities-list [paginationModel]="paginationModel" [messageInput]="listModel" (messageToEmit)="getMessageList($event)"></app-office-activities-list>

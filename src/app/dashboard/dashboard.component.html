@@ -1,0 +1,120 @@
+<!-- <div style="background-image:url('assets/img/background2.jpg');
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-position: center;
+/* background-size: 100% 100%; */
+height: 550px;
+opacity: 0.5;
+/* border: 1px solid red; */
+">
+</div> -->
+
+
+<img src="assets/img/background2.png" style="width:100% !important; height:550px !important; opacity: 0.8;">
+
+
+<div [hidden]="true" class="row">
+    <div class="col s12">
+        <div class="container">
+            <section class="users-list-wrapper section">
+                <div class="users-list-filter">
+                    <div class="card-panel">
+
+                        <!-- BEGIN: Do Something This Here -->
+
+                        <h1>ภาพรวมการเข้าถึงแต่ละอุปกรณ์</h1>
+                        <!-- <div class="row col12">
+                            <div class="col s3" style="text-align: center;">
+                                <i class="material-icons prefix pt-2">person_outline</i>
+                            </div>
+                            <div class="col s3" style="text-align: center;">
+                                <i class="material-icons prefix pt-2">android</i>
+                            </div>
+                            <div class="col s3" style="text-align: center;">
+                                <i class="material-icons prefix pt-2">person_outline</i>
+                            </div>
+                            <div class="col s3" style="text-align: center;">
+                                <i class="material-icons prefix pt-2">person_outline</i>
+                            </div>
+                        </div> -->
+
+                        <div class="row">
+                            <div class="col s12" style="height: 150px !important;">
+                                <!-- <ngx-charts-pie-grid [scheme]="colorScheme" [results]="single"
+                                    (select)="onSelect($event)">
+                                </ngx-charts-pie-grid> -->
+                                <ngx-charts-number-card [scheme]="colorScheme" [results]="single"
+                                    [cardColor]="cardColor" (select)="onSelect($event)">
+                                </ngx-charts-number-card>
+                            </div>
+                        </div>
+
+                        <!-- END: Do Something This Here -->
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<div [hidden]="true" class="row">
+    <div class="col s6">
+        <div class="container">
+            <section class="users-list-wrapper section">
+                <div class="users-list-filter">
+                    <div class="card-panel">
+
+                        <!-- BEGIN: Do Something This Here -->
+
+                        <h1>ภาพรวมที่ผู้คนให้ความสนใจเข้าชม</h1>
+                        <div class="row">
+                            <div class="col s12" style="height: 400px !important;">
+                                <ngx-charts-pie-grid [scheme]="colorScheme" [results]="single2"
+                                    (select)="onSelect($event)">
+                                </ngx-charts-pie-grid>
+                            </div>
+                        </div>
+
+                        <!-- END: Do Something This Here -->
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="col s6">
+        <div class="container">
+            <section class="users-list-wrapper section">
+                <div class="users-list-filter">
+                    <div class="card-panel">
+
+                        <!-- BEGIN: Do Something This Here -->
+
+                        <h1>ภาพรวมที่ผู้คนให้ความสนใจเข้าชม</h1>
+                        <div class="row">
+                            <div class="col s12" style="height: 300px !important;">
+                                <ngx-charts-line-chart [scheme]="colorScheme" [legend]="legend"
+                                    [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis"
+                                    [yAxis]="yAxis" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                                    [timeline]="timeline" [results]="multi" (select)="onSelect($event)"
+                                    (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
+                                </ngx-charts-line-chart>
+
+                            </div>
+                        </div>
+                        <!-- <div class="row">
+                            <div class="col s12" style="height: 100px !important;">
+                                <ngx-charts-tree-map [scheme]="colorScheme" [results]="single2" [gradient]="gradient"
+                                    [animations]="animations" (select)="onSelect($event)">
+                                </ngx-charts-tree-map>
+                            </div>
+                        </div> -->
+
+                        <!-- END: Do Something This Here -->
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
