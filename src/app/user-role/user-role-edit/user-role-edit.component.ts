@@ -402,8 +402,8 @@ export class UserRoleEditComponent implements OnInit {
     // this.editModel.organizationPage = true;
     this.editModel.userRolePage = true;
     this.editModel.memberPage = true;
-    this.editModel.registerPage = true;
-    this.editModel.registerMemberPage = true;
+    this.editModel.partyMembersPage = true;
+    this.editModel.partyFanClubPage = true;
   }
 
   checkAllImage() {
@@ -445,8 +445,8 @@ export class UserRoleEditComponent implements OnInit {
     this.editModel.websitevisitorPage = true;
     this.editModel.cmsvisitorPage = true;
     // this.editModel.dashboardPage = true;
-    // this.editModel.reportMemberRegisterPage = true;
-    // this.editModel.reportNumberMemberRegisterPage = true;
+    // this.editModel.reportMemberpartyMembersPage = true;
+    // this.editModel.reportNumberMemberpartyMembersPage = true;
     // this.editModel.reportNewsPage = true;
     // this.editModel.reportKnowledgePage = true;
     // this.editModel.reportReporterCreatePage = true;
