@@ -70,7 +70,7 @@ export class UserRoleEditComponent implements OnInit {
     this.readCategory("lv0");
     this.readNewsCategory();
     this.readEventCategory();
-    this.readpolicyPartyCategory();
+    this.readPolicyPartyCategory();
     this.readPartyExecutiveCategory();
     this.readSuggestionCategory();
     this.readDonateCategory();
@@ -500,13 +500,13 @@ export class UserRoleEditComponent implements OnInit {
       );
   }
 
-  readpolicyPartyCategory() {
-    this.serviceProviderService.post("m/policy/category/read", {}).subscribe(
+  readPolicyPartyCategory() {
+    this.serviceProviderService.post("m/policyParty/category/read", {}).subscribe(
       (data) => {
         let model: any = {};
         model = data;
         model.objectData.forEach((element) => {
-          this.eventCategory.push({
+          this.policyPartyCategory.push({
             value: element.code,
             display: element.title,
           });
