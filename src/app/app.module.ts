@@ -220,6 +220,10 @@ import { EventCalendarCategoryComponent } from './event-calendar-category/event-
 import { EventCalendarCategoryListComponent } from './event-calendar-category/event-calendar-category-list/event-calendar-category-list.component';
 import { EventCalendarCategoryCriteriaComponent } from './event-calendar-category/event-calendar-category-criteria/event-calendar-category-criteria.component';
 import { EventCalendarCategoryEditComponent } from './event-calendar-category/event-calendar-category-edit/event-calendar-category-edit.component';
+import { PartyMembersComponent } from "./party-members/party-members.component";
+import { PartyMembersCriteriaComponent } from "./party-members/party-members-criteria/party-members-criteria.component";
+import { PartyMembersEditComponent } from "./party-members/party-members-edit/party-members-edit.component";
+import { PartyMembersListComponent } from "./party-members/party-members-list/party-members-list.component";
 
 export const DateFormat = {
   display: {
@@ -408,6 +412,10 @@ export const DateFormat = {
     EventCalendarCategoryListComponent,
     EventCalendarCategoryCriteriaComponent,
     EventCalendarCategoryEditComponent,
+    PartyMembersComponent,
+    PartyMembersCriteriaComponent,
+    PartyMembersEditComponent,
+    PartyMembersListComponent,
   ],
   imports: [
     BrowserModule,
