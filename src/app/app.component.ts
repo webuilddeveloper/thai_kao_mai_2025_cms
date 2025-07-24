@@ -94,52 +94,78 @@ export class AppComponent {
                     (err) => {}
                   );
 
-                this.serviceProviderService
-                  .post("register/page/read", { title: "productPage" })
-                  .subscribe(
-                    (data) => {
-                      let model: any = data;
-                      localStorage.setItem(
-                        "productPage",
-                        JSON.stringify(model.objectData)
-                      );
-                    },
-                    (err) => {}
-                  );
+                // this.serviceProviderService
+                //   .post("register/page/read", { title: "productPage" })
+                //   .subscribe(
+                //     (data) => {
+                //       let model: any = data;
+                //       localStorage.setItem(
+                //         "productPage",
+                //         JSON.stringify(model.objectData)
+                //       );
+                //     },
+                //     (err) => {}
+                //   );
+
+                // this.serviceProviderService
+                //   .post("register/page/read", { title: "portfolioPage" })
+                //   .subscribe(
+                //     (data) => {
+                //       let model: any = data;
+                //       localStorage.setItem(
+                //         "portfolioPage",
+                //         JSON.stringify(model.objectData)
+                //       );
+                //     },
+                //     (err) => {}
+                //   );
+
+                // this.serviceProviderService
+                //   .post("register/page/read", { title: "employeePage" })
+                //   .subscribe(
+                //     (data) => {
+                //       let model: any = data;
+                //       localStorage.setItem(
+                //         "employeePage",
+                //         JSON.stringify(model.objectData)
+                //       );
+                //     },
+                //     (err) => {}
+                //   );
+
+                // this.serviceProviderService
+                //   .post("register/page/read", { title: "certificatePage" })
+                //   .subscribe(
+                //     (data) => {
+                //       let model: any = data;
+                //       localStorage.setItem(
+                //         "certificatePage",
+                //         JSON.stringify(model.objectData)
+                //       );
+                //     },
+                //     (err) => {}
+                //   );
+
+                // this.serviceProviderService
+                //   .post("register/page/read", { title: "workProcessPage" })
+                //   .subscribe(
+                //     (data) => {
+                //       let model: any = data;
+                //       localStorage.setItem(
+                //         "workProcessPage",
+                //         JSON.stringify(model.objectData)
+                //       );
+                //     },
+                //     (err) => {}
+                //   );
 
                 this.serviceProviderService
-                  .post("register/page/read", { title: "portfolioPage" })
+                  .post("register/page/read", { title: "eventPage" })
                   .subscribe(
                     (data) => {
                       let model: any = data;
                       localStorage.setItem(
-                        "portfolioPage",
-                        JSON.stringify(model.objectData)
-                      );
-                    },
-                    (err) => {}
-                  );
-
-                this.serviceProviderService
-                  .post("register/page/read", { title: "employeePage" })
-                  .subscribe(
-                    (data) => {
-                      let model: any = data;
-                      localStorage.setItem(
-                        "employeePage",
-                        JSON.stringify(model.objectData)
-                      );
-                    },
-                    (err) => {}
-                  );
-
-                this.serviceProviderService
-                  .post("register/page/read", { title: "certificatePage" })
-                  .subscribe(
-                    (data) => {
-                      let model: any = data;
-                      localStorage.setItem(
-                        "certificatePage",
+                        "eventPage",
                         JSON.stringify(model.objectData)
                       );
                     },
@@ -160,12 +186,38 @@ export class AppComponent {
                   );
 
                 this.serviceProviderService
-                  .post("register/page/read", { title: "workProcessPage" })
+                  .post("register/page/read", { title: "partyExecutivePage" })
                   .subscribe(
                     (data) => {
                       let model: any = data;
                       localStorage.setItem(
-                        "workProcessPage",
+                        "partyExecutivePage",
+                        JSON.stringify(model.objectData)
+                      );
+                    },
+                    (err) => {}
+                  );
+
+                this.serviceProviderService
+                  .post("register/page/read", { title: "suggestionPage" })
+                  .subscribe(
+                    (data) => {
+                      let model: any = data;
+                      localStorage.setItem(
+                        "suggestionPage",
+                        JSON.stringify(model.objectData)
+                      );
+                    },
+                    (err) => {}
+                  );
+
+                this.serviceProviderService
+                  .post("register/page/read", { title: "donatePage" })
+                  .subscribe(
+                    (data) => {
+                      let model: any = data;
+                      localStorage.setItem(
+                        "donatePage",
                         JSON.stringify(model.objectData)
                       );
                     },
@@ -224,22 +276,22 @@ export class AppComponent {
         isActive: false,
         isShow: this.category.memberPage,
       },
-      // {
-      //   'name': 'จัดการสมาชิก',
-      //   'routing': '/member-veterinary',
-      //   'data': '',
-      //   'type': 'N',
-      //   'isActive': false,
-      //   'isShow': this.category.memberMobilePage
-      // },
-      // {
-      //   'name': 'จัดการสมาชิกใหม่',
-      //   'routing': '/member-veterinary-new',
-      //   'data': '',
-      //   'type': 'N',
-      //   'isActive': false,
-      //   'isShow': this.category.memberMobilePage
-      // },
+      {
+        name: "จัดการสมาชิกพรรค",
+        routing: "/register",
+        data: "",
+        type: "N",
+        isActive: false,
+        isShow: this.category.registerPage,
+      },
+      {
+        name: "จัดกากแฟนคลับพรรค",
+        routing: "/register-member",
+        data: "",
+        type: "N",
+        isActive: false,
+        isShow: this.category.registerMemberPage,
+      },
       // {
       //   'name': 'รายการขอแก้ไขข้อมูลสมาชิก',
       //   'routing': '/member-veterinary-approve',
@@ -367,12 +419,44 @@ export class AppComponent {
         isShow: this.category.certificateCategoryPage,
       },
       {
+        name: "หมวดหมู่ปฏิทินกิจกรรม",
+        routing: "/policy-party-category",
+        data: "",
+        type: "N",
+        isActive: false,
+        isShow: this.category.policyPartyCategoryPage,
+      },
+      {
         name: "หมวดหมู่นโยบายพรรค",
         routing: "/policy-party-category",
         data: "",
         type: "N",
         isActive: false,
         isShow: this.category.policyPartyCategoryPage,
+      },
+      {
+        name: "หมวดหมู่กรรมการบริหารพรรค",
+        routing: "/party-executive-category",
+        data: "",
+        type: "N",
+        isActive: false,
+        isShow: this.category.partyExecutiveCategoryPage,
+      },
+      {
+        name: "หมวดหมู่ข้อเสนอแนะ/ข้อแนะนำ",
+        routing: "/suggestion-category",
+        data: "",
+        type: "N",
+        isActive: false,
+        isShow: this.category.suggestionCategoryPage,
+      },
+      {
+        name: "หมวดหมู่บริจาค",
+        routing: "/donate-category",
+        data: "",
+        type: "N",
+        isActive: false,
+        isShow: this.category.donateCategoryPage,
       },
     ];
 
@@ -426,12 +510,44 @@ export class AppComponent {
         isShow: this.category.certificatePage,
       },
       {
+        name: "ปฏิทินกิจกรรม",
+        routing: "/event",
+        data: "",
+        type: "N",
+        isActive: false,
+        isShow: this.category.eventPage,
+      },
+      {
         name: "นโยบายพรรค",
         routing: "/policy-party",
         data: "",
         type: "N",
         isActive: false,
         isShow: this.category.policyPartyPage,
+      },
+      {
+        name: "กรรมการบริหารพรรค",
+        routing: "/party-executive",
+        data: "",
+        type: "N",
+        isActive: false,
+        isShow: this.category.partyExecutivePage,
+      },
+      {
+        name: "ข้อเสนอแนะ/ข้อแนะนำ",
+        routing: "/suggestion",
+        data: "",
+        type: "N",
+        isActive: false,
+        isShow: this.category.suggestionPage,
+      },
+      {
+        name: "บริจาค",
+        routing: "/donate",
+        data: "",
+        type: "N",
+        isActive: false,
+        isShow: this.category.donatePage,
       },
     ];
 
@@ -1038,7 +1154,12 @@ export class AppComponent {
     localStorage.removeItem("workProcessPage");
     localStorage.removeItem("portfolioPage");
     localStorage.removeItem("certificatePage");
+
+    localStorage.removeItem("eventPage");
     localStorage.removeItem("policyPartyPage");
+    localStorage.removeItem("partyExecutivePage");
+    localStorage.removeItem("suggestionPage");
+    localStorage.removeItem("donatePage");
 
     window.location.href = "";
   }

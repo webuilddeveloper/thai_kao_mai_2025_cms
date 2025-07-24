@@ -1,6 +1,6 @@
 import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from "ngx-spinner";
-import { ServiceProviderService } from "./../../shared/service-provider.service";
+import { ServiceProviderService } from "../../shared/service-provider.service";
 import {
   Component,
   OnInit,
@@ -41,29 +41,11 @@ export class UserRoleEditComponent implements OnInit {
   lvModel: any = [];
 
   newsCategory: any = [];
-  importantCategory: any = [];
   eventCategory: any = [];
-  contactCategory: any = [];
-  knowledgeCategory: any = [];
-  knowledgeVetCategory: any = [];
-  privilegeCategory: any = [];
-  pollCategory: any = [];
-  examinationCategory: any = [];
-  reporterCategory: any = [];
-  cooperativeFormCategory: any = [];
-  imageEventCategory: any = [];
-  eventAbroadCategory: any = [];
-  vetEnewsCategory: any = [];
-  lawCategory: any = [];
-  expertBranchCategory: any = [];
-  verifyApprovedUserCategory: any = [];
-  trainingInstituteCategory: any = [];
-  seminarCategory: any = [];
-  productCategory: any = [];
-  employeeCategory: any = [];
-  certificateCategory: any = [];
-  portfolioCategory: any = [];
   policyPartyCategory: any = [];
+  partyExecutiveCategory: any = [];
+  suggestionCategory: any = [];
+  donateCategory: any = [];
 
   messageInput: any = [];
   messageInputSlice: any = [];
@@ -87,28 +69,11 @@ export class UserRoleEditComponent implements OnInit {
   ngOnInit(): void {
     this.readCategory("lv0");
     this.readNewsCategory();
-    this.readImportantCategory();
     this.readEventCategory();
-    this.readContactCategory();
-    this.readKnowledgeCategory();
-    this.readKnowledgeVetCategory();
-    this.readPrivilegeCategory();
-    this.readPollCategory();
-    this.readExaminationCategory();
-    this.readReporterCategory();
-    this.readCooperativeFormCategory();
-    this.readImageEventCategory();
-    this.readEventAbroadCategory();
-    this.readVetEnewsCategory();
-    this.readLawCategory();
-    this.readExpertBranchCategory();
-    this.readVerifyApprovedUserCategory();
-    this.readTrainingInstituteCategory();
-    this.readSeminarCategory();
-    this.readProductCategory();
-    this.readEmployeeCategory();
-    this.readCertificateCategory();
-    this.readPortfolioCategory();
+    this.readpolicyPartyCategory();
+    this.readPartyExecutiveCategory();
+    this.readSuggestionCategory();
+    this.readDonateCategory();
 
     // this.editModel.image = [];
     this.activetedRoute.queryParams.subscribe((params) => {
@@ -280,23 +245,6 @@ export class UserRoleEditComponent implements OnInit {
               if (lv4 != "") this.lvModel[index].lv4 = lv4[index];
             }
           }, 2000);
-          // let lv1 = this.editModel.lv1.split(',');
-          // lv1.forEach(element => {
-          //   if (element != '')
-          //   this.lvModel.push({ lv1: element });
-          // });
-
-          // let lv2 = this.editModel.lv2.split(',');
-          // lv2.forEach(element => {
-          //   if (element != '')
-          //     this.lvModel.push({ lv2: element });
-          // });
-
-          // let lv3 = this.editModel.lv3.split(',');
-          // lv3.forEach(element => {
-          //   if (element != '')
-          //     this.lvModel.push({ lv3: element });
-          // });
 
           this.spinner.hide();
 
@@ -311,65 +259,16 @@ export class UserRoleEditComponent implements OnInit {
                 this.messageInput.forEach((element) => {
                   if (element.newsPage)
                     element.title = element.newsCategoryList[0].title;
-                  if (element.importantPage)
-                    element.title = element.importantCategoryList[0].title;
                   if (element.eventPage)
                     element.title = element.eventCategoryList[0].title;
-                  if (element.contactPage)
-                    element.title = element.contactCategoryList[0].title;
-                  if (element.knowledgePage)
-                    element.title = element.knowledgeCategoryList[0].title;
-                  if (element.knowledgeVetPage)
-                    element.title = element.knowledgeVetCategoryList[0].title;
-                  if (element.privilegePage)
-                    element.title = element.privilegeCategoryList[0].title;
-                  if (element.poiPage)
-                    element.title = element.poiCategoryList[0].title;
-                  if (element.pollPage)
-                    element.title = element.pollCategoryList[0].title;
-                  if (element.notificationPage)
-                    element.title = element.notificationCategoryList[0].title;
-                  if (element.welfarePage)
-                    element.title = element.welfareCategoryList[0].title;
-                  if (element.trainingPage)
-                    element.title = element.trainingCategoryList[0].title;
-                  if (element.reporterPage)
-                    element.title = element.reporterCategoryList[0].title;
-                  if (element.warningPage)
-                    element.title = element.warningCategoryList[0].title;
-                  if (element.fundPage)
-                    element.title = element.fundCategoryList[0].title;
-                  if (element.cooperativeFormPage)
-                    element.title =
-                      element.cooperativeFormCategoryList[0].title;
-                  if (element.examinationPage)
-                    element.title = element.examinationCategoryList[0].title;
-                  if (element.imageEventPage)
-                    element.title = element.imageEventCategoryList[0].title;
-                  if (element.eventAbroadPage)
-                    element.title = element.eventAbroadCategoryList[0].title;
-                  if (element.vetEnewsPage)
-                    element.title = element.vetEnewsCategoryList[0].title;
-                  if (element.lawPage)
-                    element.title = element.lawCategoryList[0].title;
-                  if (element.expertBranchPage)
-                    element.title = element.expertBranchCategoryList[0].title;
-                  if (element.VerifyApprovedUserPage)
-                    element.title =
-                      element.VerifyApprovedUserCategoryList[0].title;
-                  if (element.trainingInstitutePage)
-                    element.title =
-                      element.trainingInstituteCategoryList[0].title;
-                  if (element.seminarPage)
-                    element.title = element.seminarCategoryList[0].title;
-                  if (element.productPage)
-                    element.title = element.productCategoryList[0].title;
-                  if (element.employeePage)
-                    element.title = element.employeeCategoryList[0].title;
-                  if (element.certificatePage)
-                    element.title = element.certificateCategoryList[0].title;
-                  if (element.portfolioPage)
-                    element.title = element.portfolioCategoryList[0].title;
+                  if (element.policyPartyPage)
+                    element.title = element.policyPartyCategoryList[0].title;
+                  if (element.partyExecutivePage)
+                    element.title = element.partyExecutiveCategoryList[0].title;
+                  if (element.suggestionPage)
+                    element.title = element.suggestionCategoryList[0].title;
+                  if (element.donatePage)
+                    element.title = element.donateCategoryList[0].title;
                 });
 
                 this.setLocalTable(0, 10);
@@ -503,91 +402,34 @@ export class UserRoleEditComponent implements OnInit {
     // this.editModel.organizationPage = true;
     this.editModel.userRolePage = true;
     this.editModel.memberPage = true;
-    this.editModel.memberMobilePage = true;
-    this.editModel.personnelStructurePage = true;
-    this.editModel.personnelPage = true;
+    this.editModel.registerPage = true;
+    this.editModel.registerMemberPage = true;
   }
 
   checkAllImage() {
-    this.editModel.logoPage = true;
-    this.editModel.splashPage = true;
     this.editModel.mainPopupPage = true;
     this.editModel.bannerPage = true;
-    this.editModel.forceAdsPage = true;
-    this.editModel.rotationPage = true;
     this.editModel.partnerPage = true;
     this.editModel.alliancePage = true;
-    this.editModel.officeActivitiesPage = true;
+    // this.editModel.officeActivitiesPage = true;
   }
 
   checkAllCategory() {
     this.editModel.newsCategoryPage = true;
-    this.editModel.importantCategoryPage = true;
     this.editModel.eventCategoryPage = true;
-    this.editModel.contactCategoryPage = true;
-    this.editModel.knowledgeCategoryPage = true;
-    this.editModel.knowledgeVetCategoryPage = true;
-    this.editModel.privilegeCategoryPage = true;
-    this.editModel.poiCategoryPage = true;
-    this.editModel.pollCategoryPage = true;
-    this.editModel.examinationCategoryPage = true;
-    this.editModel.lawCategoryPage = true;
-    this.editModel.expertBranchCategoryPage = true;
-    this.editModel.verifyApprovedUserCategoryPage = true;
-    this.editModel.trainingInstituteCategoryPage = true;
-    // this.editModel.notificationCategoryPage = true;
-    // this.editModel.welfareCategoryPage = true;
-    // this.editModel.trainingCategoryPage = true;
-    this.editModel.reporterCategoryPage = true;
-    // this.editModel.warningCategoryPage = true;
-    // this.editModel.fundCategoryPage = true;
-    this.editModel.cooperativeFormCategoryPage = true;
-    this.editModel.imageEventCategoryPage = true;
-    this.editModel.eventAbroadCategoryPage = true;
-    this.editModel.vetEnewsCategoryPage = true;
-    this.editModel.personnelStructureCategoryPage = true;
-    this.editModel.personnelStructureCategoryPage2 = true;
-    this.editModel.seminarCategoryPage = true;
-    this.editModel.productCategoryPage = true;
-    this.editModel.employeeCategoryPage = true;
-    this.editModel.certificateCategoryPage = true;
-    this.editModel.portfolioCategoryPage = true;
+    this.editModel.policyPartyCategoryPage = true;
+    this.editModel.partyExecutiveCategoryPage = true;
+    this.editModel.suggestionCategoryPage = true;
+    this.editModel.donateCategoryPage = true;
   }
 
   checkAllMain() {
     this.editModel.newsPage = true;
     this.editModel.eventPage = true;
-    this.editModel.contactPage = true;
-    this.editModel.knowledgePage = true;
-    this.editModel.knowledgeVetPage = true;
-    this.editModel.privilegePage = true;
-    this.editModel.poiPage = true;
-    this.editModel.pollPage = true;
-    this.editModel.examinationPage = true;
-    this.editModel.notificationPage = true;
-    this.editModel.lawPage = true;
-    this.editModel.expertBranchPage = true;
-    // this.editModel.verifyApprovedUserPage = true;
-    this.editModel.trainingInstitutePage = true;
-    this.editModel.seminarPage = true;
-    // this.editModel.welfarePage = true;
-    // this.editModel.trainingPage = true;
-    this.editModel.reporterPage = true;
-    // this.editModel.warningPage = true;
-    // this.editModel.fundPage = true;
-    this.editModel.cooperativeFormPage = true;
-    this.editModel.imageEventPage = true;
-    this.editModel.eventAbroadPage = true;
-    this.editModel.vetEnewsPage = true;
-    this.editModel.importantPage = true;
-    this.editModel.relateAgencyPage = true;
-
-    this.editModel.employeePage = true;
-    this.editModel.productPage = true;
-    this.editModel.workProcessPage = true;
-    this.editModel.portfolioPage = true;
-    this.editModel.certificatePage = true;
     this.editModel.policyPartyPage = true;
+    this.editModel.partyExecutivePage = true;
+    this.editModel.suggestionPage = true;
+    this.editModel.donatePage = true;
   }
 
   checkAllMaster() {
@@ -598,25 +440,11 @@ export class UserRoleEditComponent implements OnInit {
     this.editModel.contentKeywordPage = true;
   }
 
-  checkAllReportAnalysis() {
-    this.editModel.reportNewsKeysearchPage = true;
-    this.editModel.reportEventCalendarKeysearchPage = true;
-    this.editModel.reportPrivilegeKeysearchPage = true;
-    this.editModel.reportPoiKeysearchPage = true;
-    this.editModel.reportPollKeysearchPage = true;
-    this.editModel.reportExaminationKeysearchPage = true;
-    this.editModel.reportContactKeysearchPage = true;
-    // this.editModel.reportWarningKeysearchPage = true;
-    // this.editModel.reportWelfareKeysearchPage = true;
-    this.editModel.reportKnowledgeKeysearchPage = true;
-    // this.editModel.reportReporterKeysearchPage = true;
-  }
-
   checkAllReportStatistical() {
     this.editModel.aboutCommentPage = true;
     this.editModel.websitevisitorPage = true;
     this.editModel.cmsvisitorPage = true;
-    this.editModel.dashboardPage = true;
+    // this.editModel.dashboardPage = true;
     // this.editModel.reportMemberRegisterPage = true;
     // this.editModel.reportNumberMemberRegisterPage = true;
     // this.editModel.reportNewsPage = true;
@@ -641,27 +469,8 @@ export class UserRoleEditComponent implements OnInit {
       (data) => {
         let model: any = {};
         model = data;
-        console.log("model", model);
         model.objectData.forEach((element) => {
           this.newsCategory.push({
-            value: element.code,
-            display: element.title,
-          });
-        });
-        // console.log('list', this.newCategory);
-      },
-      (err) => {}
-    );
-  }
-
-  readImportantCategory() {
-    this.serviceProviderService.post("m/important/category/read", {}).subscribe(
-      (data) => {
-        let model: any = {};
-        model = data;
-        console.log("model", model);
-        model.objectData.forEach((element) => {
-          this.importantCategory.push({
             value: element.code,
             display: element.title,
           });
@@ -679,7 +488,6 @@ export class UserRoleEditComponent implements OnInit {
         (data) => {
           let model: any = {};
           model = data;
-          console.log("model", model);
           model.objectData.forEach((element) => {
             this.eventCategory.push({
               value: element.code,
@@ -692,14 +500,13 @@ export class UserRoleEditComponent implements OnInit {
       );
   }
 
-  readContactCategory() {
-    this.serviceProviderService.post("m/contact/category/read", {}).subscribe(
+  readpolicyPartyCategory() {
+    this.serviceProviderService.post("m/policy/category/read", {}).subscribe(
       (data) => {
         let model: any = {};
         model = data;
-        console.log("model", model);
         model.objectData.forEach((element) => {
-          this.contactCategory.push({
+          this.eventCategory.push({
             value: element.code,
             display: element.title,
           });
@@ -710,34 +517,15 @@ export class UserRoleEditComponent implements OnInit {
     );
   }
 
-  readKnowledgeCategory() {
-    this.serviceProviderService.post("m/knowledge/category/read", {}).subscribe(
-      (data) => {
-        let model: any = {};
-        model = data;
-        console.log("model", model);
-        model.objectData.forEach((element) => {
-          this.knowledgeCategory.push({
-            value: element.code,
-            display: element.title,
-          });
-        });
-        // console.log('list', this.newCategory);
-      },
-      (err) => {}
-    );
-  }
-
-  readKnowledgeVetCategory() {
+  readPartyExecutiveCategory() {
     this.serviceProviderService
-      .post("m/knowledgeVet/category/read", {})
+      .post("m/partyExecutive/category/read", {})
       .subscribe(
         (data) => {
           let model: any = {};
           model = data;
-          console.log("model", model);
           model.objectData.forEach((element) => {
-            this.knowledgeVetCategory.push({
+            this.eventCategory.push({
               value: element.code,
               display: element.title,
             });
@@ -748,52 +536,15 @@ export class UserRoleEditComponent implements OnInit {
       );
   }
 
-  readPrivilegeCategory() {
-    this.serviceProviderService.post("m/privilege/category/read", {}).subscribe(
-      (data) => {
-        let model: any = {};
-        model = data;
-        console.log("model", model);
-        model.objectData.forEach((element) => {
-          this.privilegeCategory.push({
-            value: element.code,
-            display: element.title,
-          });
-        });
-        // console.log('list', this.newCategory);
-      },
-      (err) => {}
-    );
-  }
-
-  readPollCategory() {
-    this.serviceProviderService.post("m/poll/category/read", {}).subscribe(
-      (data) => {
-        let model: any = {};
-        model = data;
-        console.log("model", model);
-        model.objectData.forEach((element) => {
-          this.pollCategory.push({
-            value: element.code,
-            display: element.title,
-          });
-        });
-        // console.log('list', this.newCategory);
-      },
-      (err) => {}
-    );
-  }
-
-  readExaminationCategory() {
+  readSuggestionCategory() {
     this.serviceProviderService
-      .post("m/examination/category/read", {})
+      .post("m/suggestion/category/read", {})
       .subscribe(
         (data) => {
           let model: any = {};
           model = data;
-          console.log("model", model);
           model.objectData.forEach((element) => {
-            this.examinationCategory.push({
+            this.eventCategory.push({
               value: element.code,
               display: element.title,
             });
@@ -804,253 +555,13 @@ export class UserRoleEditComponent implements OnInit {
       );
   }
 
-  readReporterCategory() {
-    this.serviceProviderService.post("m/reporter/category/read", {}).subscribe(
-      (data) => {
-        let model: any = {};
-        model = data;
-        console.log("reporter", model);
-        model.objectData.forEach((element) => {
-          this.reporterCategory.push({
-            value: element.code,
-            display: element.title,
-          });
-        });
-        // console.log('list', this.newCategory);
-      },
-      (err) => {}
-    );
-  }
-
-  readCooperativeFormCategory() {
-    this.serviceProviderService
-      .post("m/cooperativeForm/category/read", {})
-      .subscribe(
-        (data) => {
-          let model: any = {};
-          model = data;
-          console.log("cooperativeForm", model);
-          model.objectData.forEach((element) => {
-            this.cooperativeFormCategory.push({
-              value: element.code,
-              display: element.title,
-            });
-          });
-          // console.log('list', this.newCategory);
-        },
-        (err) => {}
-      );
-  }
-
-  readImageEventCategory() {
-    this.serviceProviderService
-      .post("m/imageEvent/category/read", {})
-      .subscribe(
-        (data) => {
-          let model: any = {};
-          model = data;
-          console.log("imageEvent", model);
-          model.objectData.forEach((element) => {
-            this.imageEventCategory.push({
-              value: element.code,
-              display: element.title,
-            });
-          });
-          // console.log('list', this.newCategory);
-        },
-        (err) => {}
-      );
-  }
-
-  readEventAbroadCategory() {
-    this.serviceProviderService
-      .post("m/eventAbroad/category/read", {})
-      .subscribe(
-        (data) => {
-          let model: any = {};
-          model = data;
-          console.log("eventAbroad", model);
-          model.objectData.forEach((element) => {
-            this.eventAbroadCategory.push({
-              value: element.code,
-              display: element.title,
-            });
-          });
-          // console.log('list', this.newCategory);
-        },
-        (err) => {}
-      );
-  }
-
-  readVetEnewsCategory() {
-    this.serviceProviderService.post("m/vetEnews/category/read", {}).subscribe(
-      (data) => {
-        let model: any = {};
-        model = data;
-        console.log("vetEnews", model);
-        model.objectData.forEach((element) => {
-          this.vetEnewsCategory.push({
-            value: element.code,
-            display: element.title,
-          });
-        });
-        // console.log('list', this.newCategory);
-      },
-      (err) => {}
-    );
-  }
-
-  readLawCategory() {
-    this.serviceProviderService.post("m/law/category/read", {}).subscribe(
+  readDonateCategory() {
+    this.serviceProviderService.post("m/donate/category/read", {}).subscribe(
       (data) => {
         let model: any = {};
         model = data;
         model.objectData.forEach((element) => {
-          this.lawCategory.push({
-            value: element.code,
-            display: element.title,
-          });
-        });
-        // console.log('list', this.newCategory);
-      },
-      (err) => {}
-    );
-  }
-
-  readExpertBranchCategory() {
-    this.serviceProviderService
-      .post("m/expertBranch/category/read", {})
-      .subscribe(
-        (data) => {
-          let model: any = {};
-          model = data;
-          model.objectData.forEach((element) => {
-            this.expertBranchCategory.push({
-              value: element.code,
-              display: element.title,
-            });
-          });
-          // console.log('list', this.newCategory);
-        },
-        (err) => {}
-      );
-  }
-
-  readVerifyApprovedUserCategory() {
-    this.serviceProviderService
-      .post("m/verifyApprovedUser/category/read", {})
-      .subscribe(
-        (data) => {
-          let model: any = {};
-          model = data;
-          model.objectData.forEach((element) => {
-            this.verifyApprovedUserCategory.push({
-              value: element.code,
-              display: element.title,
-            });
-          });
-          // console.log('list', this.newCategory);
-        },
-        (err) => {}
-      );
-  }
-
-  readTrainingInstituteCategory() {
-    this.serviceProviderService
-      .post("m/trainingInstitute/category/read", {})
-      .subscribe(
-        (data) => {
-          let model: any = {};
-          model = data;
-          model.objectData.forEach((element) => {
-            this.trainingInstituteCategory.push({
-              value: element.code,
-              display: element.title,
-            });
-          });
-          // console.log('list', this.newCategory);
-        },
-        (err) => {}
-      );
-  }
-
-  readSeminarCategory() {
-    this.serviceProviderService.post("m/seminar/category/read", {}).subscribe(
-      (data) => {
-        let model: any = {};
-        model = data;
-        model.objectData.forEach((element) => {
-          this.seminarCategory.push({
-            value: element.code,
-            display: element.title,
-          });
-        });
-        // console.log('list', this.newCategory);
-      },
-      (err) => {}
-    );
-  }
-
-  readProductCategory() {
-    this.serviceProviderService.post("m/product/category/read", {}).subscribe(
-      (data) => {
-        let model: any = {};
-        model = data;
-        model.objectData.forEach((element) => {
-          this.productCategory.push({
-            value: element.code,
-            display: element.title,
-          });
-        });
-        // console.log('list', this.newCategory);
-      },
-      (err) => {}
-    );
-  }
-
-  readEmployeeCategory() {
-    this.serviceProviderService.post("m/employee/category/read", {}).subscribe(
-      (data) => {
-        let model: any = {};
-        model = data;
-        model.objectData.forEach((element) => {
-          this.employeeCategory.push({
-            value: element.code,
-            display: element.title,
-          });
-        });
-        // console.log('list', this.newCategory);
-      },
-      (err) => {}
-    );
-  }
-
-  readCertificateCategory() {
-    this.serviceProviderService
-      .post("m/certificate/category/read", {})
-      .subscribe(
-        (data) => {
-          let model: any = {};
-          model = data;
-          model.objectData.forEach((element) => {
-            this.certificateCategory.push({
-              value: element.code,
-              display: element.title,
-            });
-          });
-          // console.log('list', this.newCategory);
-        },
-        (err) => {}
-      );
-  }
-
-    readPortfolioCategory() {
-    this.serviceProviderService.post("m/portfolio/category/read", {}).subscribe(
-      (data) => {
-        let model: any = {};
-        model = data;
-        model.objectData.forEach((element) => {
-          this.portfolioCategory.push({
+          this.eventCategory.push({
             value: element.code,
             display: element.title,
           });
@@ -1080,52 +591,15 @@ export class UserRoleEditComponent implements OnInit {
   chooseAllEvertThing() {
     if (this.editModel.newsPage) this.chooseAllNews();
 
-    if (this.editModel.importantPage) this.chooseAllImportant();
-
     if (this.editModel.eventPage) this.chooseAllEvent();
 
-    if (this.editModel.contactPage) this.chooseAllContact();
+    if (this.editModel.policyPartyPage) this.chooseAllPolicy();
 
-    if (this.editModel.knowledgePage) this.chooseAllKnowledge();
+    if (this.editModel.partyExecutivePage) this.chooseAllPartyExecutive();
 
-    if (this.editModel.knowledgeVetPage) this.chooseAllKnowledgeVet();
+    if (this.editModel.suggestionPage) this.chooseAllSuggestion();
 
-    if (this.editModel.privilegePage) this.chooseAllPrivilege();
-
-    if (this.editModel.pollPage) this.chooseAllPoll();
-
-    if (this.editModel.reporterPage) this.chooseAllReporter();
-
-    if (this.editModel.cooperativeFormPage) this.chooseAllCooperativeForm();
-
-    if (this.editModel.examinationPage) this.chooseAllExamination();
-
-    if (this.editModel.imageEventPage) this.chooseAllImageEvent();
-
-    if (this.editModel.eventAbroadPage) this.chooseAllEventAbroad();
-
-    if (this.editModel.vetEnewsPage) this.chooseAllVetEnews();
-
-    if (this.editModel.lawPage) this.chooseAllLaw();
-
-    if (this.editModel.expertBranchPage) this.chooseAllExpertBranch();
-
-    // if (this.editModel.verifyApprovedUserPage)
-    //   this.chooseAllVerifyApprovedUser();
-
-    if (this.editModel.trainingInstitutePage) this.chooseAllTrainingInstitute();
-
-    if (this.editModel.seminarPage) this.chooseAllSeminar();
-
-    if (this.editModel.productPage) this.chooseAllProduct();
-
-    if (this.editModel.employeePage) this.chooseAllEmployee();
-
-    if (this.editModel.certificatePage) this.chooseAllCertificate();
-
-    if (this.editModel.portfolioPage) this.chooseAllPortfolio();
-
-    if (this.editModel.policyPartyPage) this.chooseAllPolicyParty();
+    if (this.editModel.donatePage) this.chooseAllDonate();
   }
 
   async chooseAllNews() {
@@ -1142,29 +616,6 @@ export class UserRoleEditComponent implements OnInit {
           category: element.value,
           title: element.display,
           newsPage: true,
-        });
-        // console.log("element doesn't exist");
-      } else {
-        // console.log("element found");
-      }
-    });
-    this.setLocalTable(0, 10);
-  }
-
-  async chooseAllImportant() {
-    await this.importantCategory.forEach((element) => {
-      if (
-        this.messageInput.findIndex(
-          (item) =>
-            item.category == element.value &&
-            item.page == "ข้อมูลสำคัญสำหรับสมาชิก"
-        ) === -1
-      ) {
-        this.messageInput.splice(0, 0, {
-          page: "ข้อมูลสำคัญสำหรับสมาชิก",
-          category: element.value,
-          title: element.display,
-          importantPage: true,
         });
         // console.log("element doesn't exist");
       } else {
@@ -1195,371 +646,20 @@ export class UserRoleEditComponent implements OnInit {
     this.setLocalTable(0, 10);
   }
 
-  async chooseAllContact() {
-    await this.contactCategory.forEach((element) => {
+  async chooseAllPolicy() {
+    await this.policyPartyCategory.forEach((element) => {
       if (
         this.messageInput.findIndex(
-          (item) => item.category == element.value && item.page == "เบอร์ติดต่อ"
+          (item) => item.category == element.value && item.page == "กิจกรรม"
         ) === -1
       ) {
         this.messageInput.splice(0, 0, {
-          page: "เบอร์ติดต่อ",
-          category: element.value,
-          title: element.display,
-          contactPage: true,
-        });
-        // console.log("element doesn't exist");
-      } else {
-        // console.log("element found");
-      }
-    });
-    this.setLocalTable(0, 10);
-  }
-
-  async chooseAllKnowledge() {
-    await this.knowledgeCategory.forEach((element) => {
-      if (
-        this.messageInput.findIndex(
-          (item) => item.category == element.value && item.page == "คลังเอกสาร"
-        ) === -1
-      ) {
-        this.messageInput.splice(0, 0, {
-          page: "คลังเอกสาร",
-          category: element.value,
-          title: element.display,
-          knowledgePage: true,
-        });
-        // console.log("element doesn't exist");
-      } else {
-        // console.log("element found");
-      }
-    });
-    this.setLocalTable(0, 10);
-  }
-
-  async chooseAllKnowledgeVet() {
-    await this.knowledgeVetCategory.forEach((element) => {
-      if (
-        this.messageInput.findIndex(
-          (item) =>
-            item.category == element.value && item.page == "สารสัตวแพทยสภา"
-        ) === -1
-      ) {
-        this.messageInput.splice(0, 0, {
-          page: "สารสัตวแพทยสภา",
-          category: element.value,
-          title: element.display,
-          knowledgeVetPage: true,
-        });
-        // console.log("element doesn't exist");
-      } else {
-        // console.log("element found");
-      }
-    });
-    this.setLocalTable(0, 10);
-  }
-
-  async chooseAllPrivilege() {
-    await this.privilegeCategory.forEach((element) => {
-      if (
-        this.messageInput.findIndex(
-          (item) =>
-            item.category == element.value && item.page == "สิทธิประโยชน์"
-        ) === -1
-      ) {
-        this.messageInput.splice(0, 0, {
-          page: "สิทธิประโยชน์",
-          category: element.value,
-          title: element.display,
-          privilegePage: true,
-        });
-        // console.log("element doesn't exist");
-      } else {
-        // console.log("element found");
-      }
-    });
-    this.setLocalTable(0, 10);
-  }
-
-  async chooseAllPoll() {
-    await this.pollCategory.forEach((element) => {
-      if (
-        this.messageInput.findIndex(
-          (item) => item.category == element.value && item.page == "แบบสำรวจ"
-        ) === -1
-      ) {
-        this.messageInput.splice(0, 0, {
-          page: "แบบสำรวจ",
-          category: element.value,
-          title: element.display,
-          pollPage: true,
-        });
-        // console.log("element doesn't exist");
-      } else {
-        // console.log("element found");
-      }
-    });
-    this.setLocalTable(0, 10);
-  }
-
-  async chooseAllExamination() {
-    await this.examinationCategory.forEach((element) => {
-      if (
-        this.messageInput.findIndex(
-          (item) => item.category == element.value && item.page == "แบบสำรวจ"
-        ) === -1
-      ) {
-        this.messageInput.splice(0, 0, {
-          page: "แบบสำรวจ",
-          category: element.value,
-          title: element.display,
-          examinationPage: true,
-        });
-        // console.log("element doesn't exist");
-      } else {
-        // console.log("element found");
-      }
-    });
-    this.setLocalTable(0, 10);
-  }
-
-  async chooseAllImageEvent() {
-    await this.imageEventCategory.forEach((element) => {
-      if (
-        this.messageInput.findIndex(
-          (item) => item.category == element.value && item.page == "ภาพกิจกรรม"
-        ) === -1
-      ) {
-        this.messageInput.splice(0, 0, {
-          page: "ภาพกิจกรรม",
-          category: element.value,
-          title: element.display,
-          imageEventPage: true,
-        });
-        // console.log("element doesn't exist");
-      } else {
-        // console.log("element found");
-      }
-    });
-    this.setLocalTable(0, 10);
-  }
-
-  async chooseAllEventAbroad() {
-    await this.eventAbroadCategory.forEach((element) => {
-      if (
-        this.messageInput.findIndex(
-          (item) => item.category == element.value && item.page == "ภาพกิจกรรม"
-        ) === -1
-      ) {
-        this.messageInput.splice(0, 0, {
-          page: "ภาพกิจกรรม",
-          category: element.value,
-          title: element.display,
-          eventAbroadPage: true,
-        });
-        // console.log("element doesn't exist");
-      } else {
-        // console.log("element found");
-      }
-    });
-    this.setLocalTable(0, 10);
-  }
-
-  async chooseAllVetEnews() {
-    await this.vetEnewsCategory.forEach((element) => {
-      if (
-        this.messageInput.findIndex(
-          (item) =>
-            item.category == element.value && item.page == "สัตวแพทยสภาอีนิวส์"
-        ) === -1
-      ) {
-        this.messageInput.splice(0, 0, {
-          page: "สัตวแพทยสภาอีนิวส์",
-          category: element.value,
-          title: element.display,
-          vetEnewsPage: true,
-        });
-        // console.log("element doesn't exist");
-      } else {
-        // console.log("element found");
-      }
-    });
-    this.setLocalTable(0, 10);
-  }
-
-  async chooseAllLaw() {
-    await this.lawCategory.forEach((element) => {
-      if (
-        this.messageInput.findIndex(
-          (item) => item.category == element.value && item.page == "กฎหมาย"
-        ) === -1
-      ) {
-        this.messageInput.splice(0, 0, {
-          page: "กฎหมาย",
-          category: element.value,
-          title: element.display,
-          lawPage: true,
-        });
-        // console.log("element doesn't exist");
-      } else {
-        // console.log("element found");
-      }
-    });
-    this.setLocalTable(0, 10);
-  }
-
-  async chooseAllExpertBranch() {
-    await this.expertBranchCategory.forEach((element) => {
-      if (
-        this.messageInput.findIndex(
-          (item) =>
-            item.category == element.value &&
-            item.page == "ตรวจสอบรายชื่อผู้ได้รับอนุมัติบัตรและวุฒิบัตร"
-        ) === -1
-      ) {
-        this.messageInput.splice(0, 0, {
-          page: "ตรวจสอบรายชื่อผู้ได้รับอนุมัติบัตรและวุฒิบัตร",
-          category: element.value,
-          title: element.display,
-          expertBranchPage: true,
-        });
-        // console.log("element doesn't exist");
-      } else {
-        // console.log("element found");
-      }
-    });
-    this.setLocalTable(0, 10);
-  }
-
-  // async chooseAllVerifyApprovedUser() {
-  //   await this.verifyApprovedUserCategory.forEach(element => {
-
-  //     if (this.messageInput.findIndex(item => item.category == element.value && item.page == 'ตรวจสอบรายชื่อผู้ได้รับอนุมัติบัตรและวุฒิบัตร') === -1) {
-  //       this.messageInput.splice(0, 0, { page: 'ตรวจสอบรายชื่อผู้ได้รับอนุมัติบัตรและวุฒิบัตร', category: element.value, title: element.display, verifyApprovedUserPage: true });
-  //       // console.log("element doesn't exist");
-  //     }
-  //     else {
-  //       // console.log("element found");
-  //     }
-
-  //   });
-  //   this.setLocalTable(0, 10);
-  // }
-
-  async chooseAllTrainingInstitute() {
-    await this.trainingInstituteCategory.forEach((element) => {
-      if (
-        this.messageInput.findIndex(
-          (item) => item.category == element.value && item.page == "การฝึกอบรม"
-        ) === -1
-      ) {
-        this.messageInput.splice(0, 0, {
-          page: "การฝึกอบรม",
-          category: element.value,
-          title: element.display,
-          trainingInstitutePage: true,
-        });
-        // console.log("element doesn't exist");
-      } else {
-        // console.log("element found");
-      }
-    });
-    this.setLocalTable(0, 10);
-  }
-
-  async chooseAllSeminar() {
-    await this.seminarCategory.forEach((element) => {
-      if (
-        this.messageInput.findIndex(
-          (item) => item.category == element.value && item.page == "สัมมนา"
-        ) === -1
-      ) {
-        this.messageInput.splice(0, 0, {
-          page: "สัมมนา",
-          category: element.value,
-          title: element.display,
-          seminarPage: true,
-        });
-      } else {
-        // console.log("element found");
-      }
-    });
-    this.setLocalTable(0, 10);
-  }
-
-  async chooseAllProduct() {
-    await this.productCategory.forEach((element) => {
-      if (
-        this.messageInput.findIndex(
-          (item) => item.category == element.value && item.page == "ผลิตภัณฑ์"
-        ) === -1
-      ) {
-        this.messageInput.splice(0, 0, {
-          page: "ผลิตภัณฑ์",
-          category: element.value,
-          title: element.display,
-          productPage: true,
-        });
-      } else {
-        // console.log("element found");
-      }
-    });
-    this.setLocalTable(0, 10);
-  }
-
-  async chooseAllEmployee() {
-    await this.employeeCategory.forEach((element) => {
-      if (
-        this.messageInput.findIndex(
-          (item) => item.category == element.value && item.page == "พนักงาน"
-        ) === -1
-      ) {
-        this.messageInput.splice(0, 0, {
-          page: "พนักงาน",
-          category: element.value,
-          title: element.display,
-          employeePage: true,
-        });
-      } else {
-        // console.log("element found");
-      }
-    });
-    this.setLocalTable(0, 10);
-  }
-
-  async chooseAllCertificate() {
-    await this.certificateCategory.forEach((element) => {
-      if (
-        this.messageInput.findIndex(
-          (item) => item.category == element.value && item.page == "ใบรับรอง"
-        ) === -1
-      ) {
-        this.messageInput.splice(0, 0, {
-          page: "ใบรับรอง",
-          category: element.value,
-          title: element.display,
-          certificatePage: true,
-        });
-      } else {
-        // console.log("element found");
-      }
-    });
-    this.setLocalTable(0, 10);
-  }
-
-  async chooseAllPolicyParty() {
-    await this.certificateCategory.forEach((element) => {
-      if (
-        this.messageInput.findIndex(
-          (item) => item.category == element.value && item.page == "นโยบายพรรค"
-        ) === -1
-      ) {
-        this.messageInput.splice(0, 0, {
-          page: "นโยบายพรรค",
+          page: "กิจกรรม",
           category: element.value,
           title: element.display,
           policyPartyPage: true,
         });
+        // console.log("element doesn't exist");
       } else {
         // console.log("element found");
       }
@@ -1567,38 +667,18 @@ export class UserRoleEditComponent implements OnInit {
     this.setLocalTable(0, 10);
   }
 
-  async chooseAllPortfolio() {
-    await this.portfolioCategory.forEach((element) => {
+  async chooseAllPartyExecutive() {
+    await this.partyExecutiveCategory.forEach((element) => {
       if (
         this.messageInput.findIndex(
-          (item) => item.category == element.value && item.page == "ผลงาน"
+          (item) => item.category == element.value && item.page == "กิจกรรม"
         ) === -1
       ) {
         this.messageInput.splice(0, 0, {
-          page: "ผลงาน",
+          page: "กิจกรรม",
           category: element.value,
           title: element.display,
-          portfolioPage: true,
-        });
-      } else {
-        // console.log("element found");
-      }
-    });
-    this.setLocalTable(0, 10);
-  }
-
-  async chooseAllReporter() {
-    await this.reporterCategory.forEach((element) => {
-      if (
-        this.messageInput.findIndex(
-          (item) => item.category == element.value && item.page == "รายงาน"
-        ) === -1
-      ) {
-        this.messageInput.splice(0, 0, {
-          page: "รายงาน",
-          category: element.value,
-          title: element.display,
-          reporterPage: true,
+          partyExecutivePage: true,
         });
         // console.log("element doesn't exist");
       } else {
@@ -1608,19 +688,39 @@ export class UserRoleEditComponent implements OnInit {
     this.setLocalTable(0, 10);
   }
 
-  async chooseAllCooperativeForm() {
-    await this.cooperativeFormCategory.forEach((element) => {
+  async chooseAllSuggestion() {
+    await this.suggestionCategory.forEach((element) => {
       if (
         this.messageInput.findIndex(
-          (item) =>
-            item.category == element.value && item.page == "ดาวน์โหลดเอกสาร"
+          (item) => item.category == element.value && item.page == "กิจกรรม"
         ) === -1
       ) {
         this.messageInput.splice(0, 0, {
-          page: "ดาวน์โหลดเอกสาร",
+          page: "กิจกรรม",
           category: element.value,
           title: element.display,
-          cooperativeFormPage: true,
+          suggestionPage: true,
+        });
+        // console.log("element doesn't exist");
+      } else {
+        // console.log("element found");
+      }
+    });
+    this.setLocalTable(0, 10);
+  }
+
+  async chooseAllDonate() {
+    await this.donateCategory.forEach((element) => {
+      if (
+        this.messageInput.findIndex(
+          (item) => item.category == element.value && item.page == "กิจกรรม"
+        ) === -1
+      ) {
+        this.messageInput.splice(0, 0, {
+          page: "กิจกรรม",
+          category: element.value,
+          title: element.display,
+          donatePage: true,
         });
         // console.log("element doesn't exist");
       } else {
@@ -1651,23 +751,6 @@ export class UserRoleEditComponent implements OnInit {
               newsPage: true,
             });
           }
-        }
-        if (param == "importantPage") {
-          if (
-            this.importantCategory.findIndex(
-              (item) => item.value == category
-            ) != -1
-          ) {
-            let idx = this.importantCategory.findIndex(
-              (item) => item.value == category
-            );
-            this.messageInput.splice(0, 0, {
-              page: page,
-              category: category,
-              title: this.importantCategory[idx].display,
-              importantPage: true,
-            });
-          }
         } else if (param == "eventPage") {
           if (
             this.eventCategory.findIndex((item) => item.value == category) != -1
@@ -1682,311 +765,9 @@ export class UserRoleEditComponent implements OnInit {
               eventPage: true,
             });
           }
-        } else if (param == "contactPage") {
-          if (
-            this.contactCategory.findIndex((item) => item.value == category) !=
-            -1
-          ) {
-            let idx = this.contactCategory.findIndex(
-              (item) => item.value == category
-            );
-            this.messageInput.splice(0, 0, {
-              page: page,
-              category: category,
-              title: this.contactCategory[idx].display,
-              contactPage: true,
-            });
-          }
-        } else if (param == "knowledgePage") {
-          if (
-            this.knowledgeCategory.findIndex(
-              (item) => item.value == category
-            ) != -1
-          ) {
-            let idx = this.knowledgeCategory.findIndex(
-              (item) => item.value == category
-            );
-            this.messageInput.splice(0, 0, {
-              page: page,
-              category: category,
-              title: this.knowledgeCategory[idx].display,
-              knowledgePage: true,
-            });
-          }
-        } else if (param == "knowledgeVetPage") {
-          if (
-            this.knowledgeVetCategory.findIndex(
-              (item) => item.value == category
-            ) != -1
-          ) {
-            let idx = this.knowledgeVetCategory.findIndex(
-              (item) => item.value == category
-            );
-            this.messageInput.splice(0, 0, {
-              page: page,
-              category: category,
-              title: this.knowledgeVetCategory[idx].display,
-              knowledgeVetPage: true,
-            });
-          }
-        } else if (param == "privilegePage") {
-          if (
-            this.privilegeCategory.findIndex(
-              (item) => item.value == category
-            ) != -1
-          ) {
-            let idx = this.privilegeCategory.findIndex(
-              (item) => item.value == category
-            );
-            this.messageInput.splice(0, 0, {
-              page: page,
-              category: category,
-              title: this.privilegeCategory[idx].display,
-              privilegePage: true,
-            });
-          }
-        } else if (param == "pollPage") {
-          if (
-            this.pollCategory.findIndex((item) => item.value == category) != -1
-          ) {
-            let idx = this.pollCategory.findIndex(
-              (item) => item.value == category
-            );
-            this.messageInput.splice(0, 0, {
-              page: page,
-              category: category,
-              title: this.pollCategory[idx].display,
-              pollPage: true,
-            });
-          }
-        } else if (param == "examinationPage") {
-          if (
-            this.examinationCategory.findIndex(
-              (item) => item.value == category
-            ) != -1
-          ) {
-            let idx = this.examinationCategory.findIndex(
-              (item) => item.value == category
-            );
-            this.messageInput.splice(0, 0, {
-              page: page,
-              category: category,
-              title: this.examinationCategory[idx].display,
-              examinationPage: true,
-            });
-          }
-        } else if (param == "reporterPage") {
-          if (
-            this.reporterCategory.findIndex((item) => item.value == category) !=
-            -1
-          ) {
-            let idx = this.reporterCategory.findIndex(
-              (item) => item.value == category
-            );
-            this.messageInput.splice(0, 0, {
-              page: page,
-              category: category,
-              title: this.reporterCategory[idx].display,
-              reporterPage: true,
-            });
-          }
-        } else if (param == "cooperativeFormPage") {
-          if (
-            this.cooperativeFormCategory.findIndex(
-              (item) => item.value == category
-            ) != -1
-          ) {
-            let idx = this.cooperativeFormCategory.findIndex(
-              (item) => item.value == category
-            );
-            this.messageInput.splice(0, 0, {
-              page: page,
-              category: category,
-              title: this.cooperativeFormCategory[idx].display,
-              cooperativeFormPage: true,
-            });
-          }
-        } else if (param == "imageEventPage") {
-          if (
-            this.imageEventCategory.findIndex(
-              (item) => item.value == category
-            ) != -1
-          ) {
-            let idx = this.imageEventCategory.findIndex(
-              (item) => item.value == category
-            );
-            this.messageInput.splice(0, 0, {
-              page: page,
-              category: category,
-              title: this.imageEventCategory[idx].display,
-              imageEventPage: true,
-            });
-          }
-        } else if (param == "eventAbroadPage") {
-          if (
-            this.eventAbroadCategory.findIndex(
-              (item) => item.value == category
-            ) != -1
-          ) {
-            let idx = this.eventAbroadCategory.findIndex(
-              (item) => item.value == category
-            );
-            this.messageInput.splice(0, 0, {
-              page: page,
-              category: category,
-              title: this.eventAbroadCategory[idx].display,
-              eventAbroadPage: true,
-            });
-          }
-        } else if (param == "vetEnewsPage") {
-          if (
-            this.vetEnewsCategory.findIndex((item) => item.value == category) !=
-            -1
-          ) {
-            let idx = this.vetEnewsCategory.findIndex(
-              (item) => item.value == category
-            );
-            this.messageInput.splice(0, 0, {
-              page: page,
-              category: category,
-              title: this.vetEnewsCategory[idx].display,
-              vetEnewsPage: true,
-            });
-          }
-        } else if (param == "lawPage") {
-          if (
-            this.lawCategory.findIndex((item) => item.value == category) != -1
-          ) {
-            let idx = this.lawCategory.findIndex(
-              (item) => item.value == category
-            );
-            this.messageInput.splice(0, 0, {
-              page: page,
-              category: category,
-              title: this.lawCategory[idx].display,
-              lawPage: true,
-            });
-          }
-        } else if (param == "expertBranchPage") {
-          if (
-            this.expertBranchCategory.findIndex(
-              (item) => item.value == category
-            ) != -1
-          ) {
-            let idx = this.expertBranchCategory.findIndex(
-              (item) => item.value == category
-            );
-            this.messageInput.splice(0, 0, {
-              page: page,
-              category: category,
-              title: this.expertBranchCategory[idx].display,
-              expertBranchPage: true,
-            });
-          }
-        }
-        // else if (param == 'verifyApprovedUserPage') {
-        //   if (this.verifyApprovedUserCategory.findIndex(item => item.value == category) != -1) {
-        //     let idx = this.verifyApprovedUserCategory.findIndex(item => item.value == category);
-        //     this.messageInput.splice(0, 0, { page: page, category: category, title: this.verifyApprovedUserCategory[idx].display, verifyApprovedUserPage: true });
-        //   }
-        // }
-        else if (param == "trainingInstitutePage") {
-          if (
-            this.trainingInstituteCategory.findIndex(
-              (item) => item.value == category
-            ) != -1
-          ) {
-            let idx = this.trainingInstituteCategory.findIndex(
-              (item) => item.value == category
-            );
-            this.messageInput.splice(0, 0, {
-              page: page,
-              category: category,
-              title: this.trainingInstituteCategory[idx].display,
-              trainingInstitutePage: true,
-            });
-          }
-        } else if (param == "seminarPage") {
-          if (
-            this.seminarCategory.findIndex((item) => item.value == category) !=
-            -1
-          ) {
-            let idx = this.seminarCategory.findIndex(
-              (item) => item.value == category
-            );
-            this.messageInput.splice(0, 0, {
-              page: page,
-              category: category,
-              title: this.seminarCategory[idx].display,
-              seminarPage: true,
-            });
-          }
-        } else if (param == "productPage") {
-          if (
-            this.productCategory.findIndex((item) => item.value == category) !=
-            -1
-          ) {
-            let idx = this.productCategory.findIndex(
-              (item) => item.value == category
-            );
-            this.messageInput.splice(0, 0, {
-              page: page,
-              category: category,
-              title: this.productCategory[idx].display,
-              productPage: true,
-            });
-          }
-        } else if (param == "employeePage") {
-          if (
-            this.employeeCategory.findIndex((item) => item.value == category) !=
-            -1
-          ) {
-            let idx = this.employeeCategory.findIndex(
-              (item) => item.value == category
-            );
-            this.messageInput.splice(0, 0, {
-              page: page,
-              category: category,
-              title: this.employeeCategory[idx].display,
-              employeePage: true,
-            });
-          }
-        } else if (param == "certificatePage") {
-          if (
-            this.certificateCategory.findIndex(
-              (item) => item.value == category
-            ) != -1
-          ) {
-            let idx = this.certificateCategory.findIndex(
-              (item) => item.value == category
-            );
-            this.messageInput.splice(0, 0, {
-              page: page,
-              category: category,
-              title: this.certificateCategory[idx].display,
-              certificatePage: true,
-            });
-          }
-        } else if (param == "portfolioPage") {
-          if (
-            this.portfolioCategory.findIndex((item) => item.value == category) !=
-            -1
-          ) {
-            let idx = this.portfolioCategory.findIndex(
-              (item) => item.value == category
-            );
-            this.messageInput.splice(0, 0, {
-              page: page,
-              category: category,
-              title: this.portfolioCategory[idx].display,
-              portfolioPage: true,
-            });
-          }
         } else if (param == "policyPartyPage") {
           if (
-            this.policyPartyCategory.findIndex(
-              (item) => item.value == category
-            ) != -1
+            this.policyPartyCategory.findIndex((item) => item.value == category) != -1
           ) {
             let idx = this.policyPartyCategory.findIndex(
               (item) => item.value == category
@@ -1998,7 +779,49 @@ export class UserRoleEditComponent implements OnInit {
               policyPartyPage: true,
             });
           }
-        } 
+        } else if (param == "partyExecutivePage") {
+          if (
+            this.partyExecutiveCategory.findIndex((item) => item.value == category) != -1
+          ) {
+            let idx = this.partyExecutiveCategory.findIndex(
+              (item) => item.value == category
+            );
+            this.messageInput.splice(0, 0, {
+              page: page,
+              category: category,
+              title: this.partyExecutiveCategory[idx].display,
+              partyExecutivePage: true,
+            });
+          }
+        } else if (param == "suggestionPage") {
+          if (
+            this.suggestionCategory.findIndex((item) => item.value == category) != -1
+          ) {
+            let idx = this.suggestionCategory.findIndex(
+              (item) => item.value == category
+            );
+            this.messageInput.splice(0, 0, {
+              page: page,
+              category: category,
+              title: this.suggestionCategory[idx].display,
+              suggestionPage: true,
+            });
+          }
+        } else if (param == "donatePage") {
+          if (
+            this.donateCategory.findIndex((item) => item.value == category) != -1
+          ) {
+            let idx = this.donateCategory.findIndex(
+              (item) => item.value == category
+            );
+            this.messageInput.splice(0, 0, {
+              page: page,
+              category: category,
+              title: this.donateCategory[idx].display,
+              donatePage: true,
+            });
+          }
+        }
         // console.log("element doesn't exist");
       } else {
         // console.log("element found");
