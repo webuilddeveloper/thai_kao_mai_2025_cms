@@ -16,8 +16,10 @@ export class AboutUsComponent implements OnInit {
   editModel: any = {};
   code: string = '';
   category: any = {};
-  mission: string = '';
-  missionEN: string = '';
+  ideology: string = '';
+  ideologyEN: string = '';
+  ideologyDes: string = '';
+  ideologyDesEN: string = '';
   messageInput: any = [];
   messageInputSlice: any = [];
   paginationModelDiffer: KeyValueDiffer<string, any>; // <----- Pagination
@@ -55,6 +57,7 @@ export class AboutUsComponent implements OnInit {
         isValid = true;
       }
     }
+    debugger;
 
     if (isValid)
       return;
@@ -65,7 +68,7 @@ export class AboutUsComponent implements OnInit {
     if (this.editModel.imageBg != undefined)
       this.editModel.imageBgUrl = this.editModel.imageBg[0].imageUrl;
 
-    this.editModel.missionList = this.messageInputSlice;
+    this.editModel.ideologyList = this.messageInputSlice;
 
     this.spinner.show();
     this.serviceProviderService.post('aboutUs/create', this.editModel).subscribe(data => {
@@ -100,7 +103,7 @@ export class AboutUsComponent implements OnInit {
       if (model.objectData.length > 0) {
         this.editModel = model.objectData[0];
         this.code = this.editModel.code;
-        this.messageInputSlice = model.objectData[0].missionList;
+        this.messageInputSlice = model.objectData[0].ideologyList;
       }
 
       this.spinner.hide();
@@ -142,6 +145,8 @@ export class AboutUsComponent implements OnInit {
       this.editModel.imageBgUrl = this.editModel.imageBg[0].imageUrl;
     }
 
+    this.editModel.ideologyList = this.messageInputSlice;
+
     this.spinner.show();
     this.serviceProviderService.post('aboutUs/update', this.editModel).subscribe(data => {
       let model: any = {}
@@ -171,6 +176,7 @@ export class AboutUsComponent implements OnInit {
   }
 
   deleteItem(param) {
+    this.messageInputSlice.splice(param + (this.paginationModel.itemsPerPage * (this.paginationModel.currentPage - 1)), 1);
     this.messageInput.splice(param + (this.paginationModel.itemsPerPage * (this.paginationModel.currentPage - 1)), 1);
     this.setLocalTable((this.paginationModel.currentPage - 1) * this.paginationModel.itemsPerPage, this.paginationModel.itemsPerPage + (this.paginationModel.currentPage - 1) * this.paginationModel.itemsPerPage);
   }
@@ -186,29 +192,44 @@ export class AboutUsComponent implements OnInit {
 
   }
 
-  addMission() {
+  addIdeology() {
     let isValid = false;
-    if (this.mission == '') {
-      this.toastr.warning('กรุณาใส่พันธกิจ', 'แจ้งเตือนระบบ', { timeOut: 2000 });
+    if (this.ideology == '') {
+      this.toastr.warning('กรุณาใส่อุดมการณ์', 'แจ้งเตือนระบบ', { timeOut: 2000 });
       isValid = true;
     }
 
-    if (this.missionEN == '') {
-      this.toastr.warning('กรุณาใส่พันธกิจ (ภาษาอังกฤษ)', 'แจ้งเตือนระบบ', { timeOut: 2000 });
+    if (this.ideologyEN == '') {
+      this.toastr.warning('กรุณาใส่อุดมการณ์ (ภาษาอังกฤษ)', 'แจ้งเตือนระบบ', { timeOut: 2000 });
       isValid = true;
     }
+
+    if (this.ideologyDes == '') {
+      this.toastr.warning('กรุณาใส่รายละเอียดอุดมการณ์', 'แจ้งเตือนระบบ', { timeOut: 2000 });
+      isValid = true;
+    }
+
+    if (this.ideologyDesEN == '') {
+      this.toastr.warning('กรุณาใส่รายละเอียดอุดมการณ์ (ภาษาอังกฤษ)', 'แจ้งเตือนระบบ', { timeOut: 2000 });
+      isValid = true;
+    }
+
 
     if (isValid)
       return;
 
     let model = {
-      title: this.mission,
-      titleEN: this.missionEN
+      title: this.ideology,
+      titleEN: this.ideologyEN,
+      description: this.ideologyDes,
+      descriptionEN: this.ideologyDesEN
     };
     this.messageInputSlice.push(model)
 
-    this.mission = "";
-    this.missionEN = "";
+    this.ideology = "";
+    this.ideologyEN = "";
+    this.ideologyDes = "";
+    this.ideologyDesEN = "";
   }
 
   drop(event: CdkDragDrop<any[]>) {

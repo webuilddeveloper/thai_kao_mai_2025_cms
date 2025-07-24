@@ -110,7 +110,7 @@
                                 </i>
                                 <span
                                     style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
-                                    รายละเอียด
+                                    ประวัติความเป็นมา
                                 </span>
                             </div>
                         </div>
@@ -124,14 +124,15 @@
 
                             <div class="col s6">
                                 <div class="col s12">
-                                    <ctxte (cModel)="editModel.description = $event" [label]="'รายละเอียด : '"
+                                    <ctxte (cModel)="editModel.description = $event" [label]="'ประวัติความเป็นมา : '"
                                         [data]="editModel.description || ''"></ctxte>
                                 </div>
                             </div>
                             <div class="col s6">
                                 <div class="col s12">
                                     <ctxte (cModel)="editModel.descriptionEN = $event"
-                                        [label]="'รายละเอียด (ภาษาอังกฤษ) : '" [data]="editModel.descriptionEN || ''">
+                                        [label]="'ประวัติความเป็นมา (ภาษาอังกฤษ) : '"
+                                        [data]="editModel.descriptionEN || ''">
                                     </ctxte>
                                 </div>
                             </div>
@@ -226,16 +227,103 @@
                         <div class="row">
 
                             <div class="col s6">
-                                <div class="col 12">
-                                    <citxt (cModel)="mission = $event" [data]="mission || ''" [label]="'พันธกิจ : '"></citxt>
-                                    <citxt (cModel)="missionEN = $event" [data]="missionEN || ''" [label]="'พันธกิจ (ภาษาอังกฤษ): '"></citxt>
-                                </div>
-                                <div class="col 12" style="text-align: right;">
-                                    <cbtn [label]="'เพิ่มพันธกิจ'" [color]="'light-blue'"  (click)="addMission()"></cbtn>
+                                <div class="col s12">
+                                    <ctxte (cModel)="editModel.mission = $event" [label]="'พันธกิจ : '"
+                                        [data]="editModel.mission || ''"></ctxte>
                                 </div>
                             </div>
                             <div class="col s6">
                                 <div class="col s12">
+                                    <ctxte (cModel)="editModel.missionEN = $event" [label]="'พันธกิจ (ภาษาอังกฤษ) : '"
+                                        [data]="editModel.missionEN || ''"></ctxte>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s6"></div>
+                        </div>
+
+                        <!-- END: Do Something This Here -->
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="users-list-wrapper section">
+                <div class="users-list-filter">
+
+                    <!-- Header -->
+                    <div class="card-panel"
+                        style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+
+                        <div class="row">
+                            <div class="col s8">
+                                <i class="material-icons header-icon">
+                                    border_color
+                                </i>
+                                <span
+                                    style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+                                    อุดมการณ์
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+
+                        <!-- BEGIN: Do Something This Here -->
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="col s12">
+                                    <div class="row">
+                                        <div class="col s6">
+                                            <div class="col s12">
+                                                <ctxte (cModel)="editModel.ideologyDes = $event" [label]="'รายละเอียดหลัก : '"
+                                                    [data]="editModel.ideologyDes || ''"></ctxte>
+                                            </div>
+                                        </div>
+                                        <div class="col s6">
+                                            <div class="col s12">
+                                                <ctxte (cModel)="editModel.ideologyDesEN = $event"
+                                                    [label]="'รายละเอียดหลัก (ภาษาอังกฤษ) : '"
+                                                    [data]="editModel.ideologyDesEN || ''"></ctxte>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s6">
+                                            <citxt (cModel)="ideology = $event" [data]="ideology || ''"
+                                                [label]="'หัวข้อ : '">
+                                            </citxt>
+                                        </div>
+                                        <div class="col s6">
+                                            <citxt (cModel)="ideologyEN = $event" [data]="ideologyEN || ''"
+                                                [label]="'หัวข้อ (ภาษาอังกฤษ) : '">
+                                            </citxt>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s6">
+                                            <ctxte (cModel)="ideologyDes = $event" [label]="'รายละเอียด : '"
+                                                [data]="ideologyDes || ''"></ctxte>
+                                        </div>
+                                        <div class="col s6">
+                                            <ctxte (cModel)="ideologyDesEN = $event"
+                                                [label]="'รายละเอียด (ภาษาอังกฤษ): '" [data]="ideologyDesEN || ''">
+                                            </ctxte>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s12">
+                                    <div class="col s12" style="text-align: center;">
+                                        <cbtn [label]="'เพิ่มอุดมการณ์'" [color]="'light-blue'" (click)="addIdeology()">
+                                        </cbtn>
+                                    </div>
+                                </div>
+
+                                <div class="col s12" style="margin-top: 40px;">
                                     <div class="row">
 
                                         <div class="col s4">
@@ -255,23 +343,28 @@
                                                     <thead>
                                                         <tr>
                                                             <th class="w55">หัวข้อ</th>
+                                                            <th class="w55">รายละเอียด</th>
                                                             <th class="w20">ลบ</th>
-                                                            <!-- <th>ลบ</th> -->
                                                         </tr>
                                                     </thead>
-                                                    <tbody cdkDropList (cdkDropListDropped)="drop($event)" class="tbody">
-                                                        <tr *ngFor="let i of messageInputSlice; let idx = index" cdkDrag class="tr">
-                                                            
-                                                            <!-- <td>{{((paginationModel.currentPage - 1) *
-                                                                paginationModel.itemsPerPage) + (idx + 1)}}
-                                                            </td> -->
+                                                    <tbody cdkDropList (cdkDropListDropped)="drop($event)"
+                                                        class="tbody">
+                                                        <tr *ngFor="let i of messageInputSlice; let idx = index" cdkDrag
+                                                            class="tr">
+
                                                             <td>
                                                                 <span>{{i.title}} <br>{{i.titleEN}}</span>
                                                             </td>
                                                             <td>
+                                                                <div [innerHTML]="i.description" class="hidden-text">
+                                                                </div>
+                                                                <!-- <span>{{i.description}} </span><br> -->
+                                                                <div [innerHTML]="i.descriptionEN" class="hidden-text">
+                                                                </div>
+                                                            </td>
+                                                            <td>
                                                                 <cbtnd (click)="deleteItem(idx)"></cbtnd>
                                                             </td>
-                                                            <!-- <td><cbtnd (click)="delete(i, idx)"></cbtnd></td> -->
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -286,7 +379,6 @@
                                             </ul>
                                         </div>
                                         <div class="col s6">
-                                            <!-- <----- Pagination -->
                                             <div style="text-align: right;">
                                                 <ul>
                                                     <li *ngFor="let item of [] | paginate: paginationModel"></li>
@@ -298,6 +390,9 @@
 
                                     </div>
                                 </div>
+
+
+
                             </div>
                         </div>
                         <!-- END: Do Something This Here -->

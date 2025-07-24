@@ -204,6 +204,10 @@ import { CertificateCategoryComponent } from "./certificate-category/certificate
 import { CertificateCategoryListComponent } from "./certificate-category/certificate-category-list/certificate-category-list.component";
 import { CertificateCategoryEditComponent } from "./certificate-category/certificate-category-edit/certificate-category-edit.component";
 import { CertificateCategoryCriteriaComponent } from "./certificate-category/certificate-category-criteria/certificate-category-criteria.component";
+import { PolicyPartyComponent } from './policy-party/policy-party.component';
+import { PolicyPartyCriteriaComponent } from './policy-party/policy-party-criteria/policy-party-criteria.component';
+import { PolicyPartyEditComponent } from './policy-party/policy-party-edit/policy-party-edit.component';
+import { PolicyPartyListComponent } from './policy-party/policy-party-list/policy-party-list.component';
 
 export const DateFormat = {
   display: {
@@ -376,6 +380,10 @@ export const DateFormat = {
     CertificateCategoryListComponent,
     CertificateCategoryEditComponent,
     CertificateCategoryCriteriaComponent,
+    PolicyPartyComponent,
+    PolicyPartyCriteriaComponent,
+    PolicyPartyEditComponent,
+    PolicyPartyListComponent,
   ],
   imports: [
     BrowserModule,

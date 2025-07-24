@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 export class ServiceProviderService {
   // ng build --base-href "/td-vet-font/" --prod
 
-  server: string = 'http://localhost:8500/';
+  server: string = 'http://localhost:8600/';
   // server: string = 'http://122.155.223.63/td-webuild-api/';
   // server: string = "http://gateway.we-builds.com/wtm-api/";
   //dev
