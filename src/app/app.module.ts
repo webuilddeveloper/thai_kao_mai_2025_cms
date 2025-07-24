@@ -212,6 +212,10 @@ import { PolicyPartyCategoryComponent } from './policy-party-category/policy-par
 import { PolicyPartyCategoryListComponent } from './policy-party-category/policy-party-category-list/policy-party-category-list.component';
 import { PolicyPartyCategoryEditComponent } from './policy-party-category/policy-party-category-edit/policy-party-category-edit.component';
 import { PolicyPartyCategoryCriteriaComponent } from './policy-party-category/policy-party-category-criteria/policy-party-category-criteria.component';
+import { PartyMembersComponent } from "./party-members/party-members.component";
+import { PartyMembersCriteriaComponent } from "./party-members/party-members-criteria/party-members-criteria.component";
+import { PartyMembersEditComponent } from "./party-members/party-members-edit/party-members-edit.component";
+import { PartyMembersListComponent } from "./party-members/party-members-list/party-members-list.component";
 
 export const DateFormat = {
   display: {
@@ -392,6 +396,10 @@ export const DateFormat = {
     PolicyPartyCategoryListComponent,
     PolicyPartyCategoryEditComponent,
     PolicyPartyCategoryCriteriaComponent,
+    PartyMembersComponent,
+    PartyMembersCriteriaComponent,
+    PartyMembersEditComponent,
+    PartyMembersListComponent,
   ],
   imports: [
     BrowserModule,

@@ -69,6 +69,8 @@ import { PolicyPartyComponent } from "./policy-party/policy-party.component";
 import { PolicyPartyEditComponent } from "./policy-party/policy-party-edit/policy-party-edit.component";
 import { PolicyPartyCategoryComponent } from "./policy-party-category/policy-party-category.component";
 import { PolicyPartyCategoryEditComponent } from "./policy-party-category/policy-party-category-edit/policy-party-category-edit.component";
+import { PartyMembersComponent } from "./party-members/party-members.component";
+import { PartyMembersEditComponent } from "./party-members/party-members-edit/party-members-edit.component";
 
 const routes: Routes = [
   { path: "", component: DashboardComponent },
@@ -163,6 +165,9 @@ const routes: Routes = [
     path: "policy-party-category-edit/:code",
     component: PolicyPartyCategoryEditComponent,
   },
+
+  { path: "party-members", component: PartyMembersComponent },
+  { path: "party-members-rdit/:code", component: PartyMembersEditComponent },
 ];
 
 @NgModule({
