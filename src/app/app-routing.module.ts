@@ -67,6 +67,8 @@ import { PortfolioCategoryComponent } from "./portfolio-category/portfolio-categ
 import { PortfolioCategoryEditComponent } from "./portfolio-category/portfolio-category-edit/portfolio-category-edit.component";
 import { PolicyPartyComponent } from "./policy-party/policy-party.component";
 import { PolicyPartyEditComponent } from "./policy-party/policy-party-edit/policy-party-edit.component";
+import { PolicyPartyCategoryComponent } from "./policy-party-category/policy-party-category.component";
+import { PolicyPartyCategoryEditComponent } from "./policy-party-category/policy-party-category-edit/policy-party-category-edit.component";
 
 const routes: Routes = [
   { path: "", component: DashboardComponent },
@@ -156,6 +158,11 @@ const routes: Routes = [
   },
   { path: "policy-party", component: PolicyPartyComponent },
   { path: "policy-party-edit/:code", component: PolicyPartyEditComponent },
+  { path: "policy-party-category", component: PolicyPartyCategoryComponent },
+  {
+    path: "policy-party-category-edit/:code",
+    component: PolicyPartyCategoryEditComponent,
+  },
 ];
 
 @NgModule({

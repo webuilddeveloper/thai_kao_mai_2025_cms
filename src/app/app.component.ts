@@ -366,6 +366,14 @@ export class AppComponent {
         isActive: false,
         isShow: this.category.certificateCategoryPage,
       },
+      {
+        name: "หมวดหมู่นโยบายพรรค",
+        routing: "/policy-party-category",
+        data: "",
+        type: "N",
+        isActive: false,
+        isShow: this.category.policyPartyCategoryPage,
+      },
     ];
 
     this.menuMain = [

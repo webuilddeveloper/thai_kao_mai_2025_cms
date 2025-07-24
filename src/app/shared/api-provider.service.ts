@@ -129,6 +129,31 @@ export class ApiProviderService {
     },
   };
 
+  policyParty = {
+    create: "policyParty/create",
+    read: "policyParty/read",
+    update: "policyParty/update",
+    delete: "policyParty/delete",
+    category: {
+      create: "policyParty/category/create",
+      read: "policyParty/category/read",
+      update: "policyParty/category/update",
+      delete: "policyParty/category/delete",
+    },
+    gallery: {
+      create: "policyParty/gallery/create",
+      read: "policyParty/gallery/read",
+      update: "policyParty/gallery/update",
+      delete: "policyParty/gallery/delete",
+    },
+    galleryFile: {
+      create: "policyParty/galleryFile/create",
+      read: "policyParty/galleryFile/read",
+      update: "policyParty/galleryFile/update",
+      delete: "policyParty/galleryFile/delete",
+    },
+  };
+
   certificate = {
     create: "certificate/create",
     read: "certificate/read",

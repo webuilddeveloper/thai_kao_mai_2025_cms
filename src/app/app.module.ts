@@ -208,6 +208,10 @@ import { PolicyPartyComponent } from './policy-party/policy-party.component';
 import { PolicyPartyCriteriaComponent } from './policy-party/policy-party-criteria/policy-party-criteria.component';
 import { PolicyPartyEditComponent } from './policy-party/policy-party-edit/policy-party-edit.component';
 import { PolicyPartyListComponent } from './policy-party/policy-party-list/policy-party-list.component';
+import { PolicyPartyCategoryComponent } from './policy-party-category/policy-party-category.component';
+import { PolicyPartyCategoryListComponent } from './policy-party-category/policy-party-category-list/policy-party-category-list.component';
+import { PolicyPartyCategoryEditComponent } from './policy-party-category/policy-party-category-edit/policy-party-category-edit.component';
+import { PolicyPartyCategoryCriteriaComponent } from './policy-party-category/policy-party-category-criteria/policy-party-category-criteria.component';
 
 export const DateFormat = {
   display: {
@@ -384,6 +388,10 @@ export const DateFormat = {
     PolicyPartyCriteriaComponent,
     PolicyPartyEditComponent,
     PolicyPartyListComponent,
+    PolicyPartyCategoryComponent,
+    PolicyPartyCategoryListComponent,
+    PolicyPartyCategoryEditComponent,
+    PolicyPartyCategoryCriteriaComponent,
   ],
   imports: [
     BrowserModule,

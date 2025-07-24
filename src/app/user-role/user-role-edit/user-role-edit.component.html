@@ -210,6 +210,11 @@
                 [data]="editModel.certificateCategoryPage">
               </ccb>
             </div>
+            <div class="s12">
+              <ccb (cModel)="editModel.policyPartyCategoryPage = $event" [label]="'หมวดหมู่นโยบายพรรค'"
+                [data]="editModel.policyPartyCategoryPage">
+              </ccb>
+            </div>
           </div>
           <div class="col s3">
             <div class="s12">
@@ -237,6 +242,10 @@
             <div class="s12">
               <ccb (cModel)="editModel.certificatePage = $event" [label]="'ใบรับรอง'"
                 [data]="editModel.certificatePage"></ccb>
+            </div>
+            <div class="s12">
+              <ccb (cModel)="editModel.policyPartyPage = $event" [label]="'นโยบายพรรค'"
+                [data]="editModel.policyPartyPage"></ccb>
             </div>
           </div>
         </div>
@@ -498,6 +507,26 @@
                   <div class="col s12">
                     <csop (cModel)="chooseCategory('ใบรับรอง', $event, 'certificatePage')" [label]="'เลือกรายการ : '"
                       [data]="editModel.category" [sources]="certificateCategory">
+                    </csop>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div [hidden]="!editModel.policyPartyPage" class="row">
+              <div class="col s12">
+
+                <div class="row" style="margin-top: 10px;">
+                  <div class="col s12">
+                    <span>การเข้าถึงนโยบายพรรค <a href="javascript:void(0)"
+                        (click)="chooseAllCertificate()">เลือกทั้งหมด</a></span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col s12">
+                    <csop (cModel)="chooseCategory('นโยบายพรรค', $event, 'policyPartyPage')" [label]="'เลือกรายการ : '"
+                      [data]="editModel.category" [sources]="policyPartyCategory">
                     </csop>
                   </div>
                 </div>

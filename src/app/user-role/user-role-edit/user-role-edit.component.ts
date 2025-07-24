@@ -63,6 +63,7 @@ export class UserRoleEditComponent implements OnInit {
   employeeCategory: any = [];
   certificateCategory: any = [];
   portfolioCategory: any = [];
+  policyPartyCategory: any = [];
 
   messageInput: any = [];
   messageInputSlice: any = [];
@@ -586,6 +587,7 @@ export class UserRoleEditComponent implements OnInit {
     this.editModel.workProcessPage = true;
     this.editModel.portfolioPage = true;
     this.editModel.certificatePage = true;
+    this.editModel.policyPartyPage = true;
   }
 
   checkAllMaster() {
@@ -1122,6 +1124,8 @@ export class UserRoleEditComponent implements OnInit {
     if (this.editModel.certificatePage) this.chooseAllCertificate();
 
     if (this.editModel.portfolioPage) this.chooseAllPortfolio();
+
+    if (this.editModel.policyPartyPage) this.chooseAllPolicyParty();
   }
 
   async chooseAllNews() {
@@ -1535,6 +1539,26 @@ export class UserRoleEditComponent implements OnInit {
           category: element.value,
           title: element.display,
           certificatePage: true,
+        });
+      } else {
+        // console.log("element found");
+      }
+    });
+    this.setLocalTable(0, 10);
+  }
+
+  async chooseAllPolicyParty() {
+    await this.certificateCategory.forEach((element) => {
+      if (
+        this.messageInput.findIndex(
+          (item) => item.category == element.value && item.page == "นโยบายพรรค"
+        ) === -1
+      ) {
+        this.messageInput.splice(0, 0, {
+          page: "นโยบายพรรค",
+          category: element.value,
+          title: element.display,
+          policyPartyPage: true,
         });
       } else {
         // console.log("element found");
@@ -1958,7 +1982,23 @@ export class UserRoleEditComponent implements OnInit {
               portfolioPage: true,
             });
           }
-        }
+        } else if (param == "policyPartyPage") {
+          if (
+            this.policyPartyCategory.findIndex(
+              (item) => item.value == category
+            ) != -1
+          ) {
+            let idx = this.policyPartyCategory.findIndex(
+              (item) => item.value == category
+            );
+            this.messageInput.splice(0, 0, {
+              page: page,
+              category: category,
+              title: this.policyPartyCategory[idx].display,
+              policyPartyPage: true,
+            });
+          }
+        } 
         // console.log("element doesn't exist");
       } else {
         // console.log("element found");
