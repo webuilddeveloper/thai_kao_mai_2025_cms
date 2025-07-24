@@ -125,9 +125,6 @@ export class PolicyPartyEditComponent implements OnInit {
     this.spinner.show();
     this.editModel.imageUrl = this.editModel.image[0].imageUrl;
 
-    if (this.editModel.imageE.length > 0)
-      this.editModel.imageExample = this.editModel.imageE[0].imageUrl;
-
     if (this.editModel.imageB.length > 0)
       this.editModel.imageBanner = this.editModel.imageB[0].imageUrl;
 
@@ -229,9 +226,6 @@ export class PolicyPartyEditComponent implements OnInit {
     debugger
     if (this.editModel.image != undefined)
       this.editModel.imageUrl = this.editModel.image[0].imageUrl;
-
-    if (this.editModel.imageE != undefined)
-      this.editModel.imageExample = this.editModel.imageE[0].imageUrl;
 
     if (this.editModel.imageB != undefined)
       this.editModel.imageBanner = this.editModel.imageB[0].imageUrl;

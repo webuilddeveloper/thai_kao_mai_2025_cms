@@ -212,6 +212,14 @@ import { PolicyPartyCategoryComponent } from './policy-party-category/policy-par
 import { PolicyPartyCategoryListComponent } from './policy-party-category/policy-party-category-list/policy-party-category-list.component';
 import { PolicyPartyCategoryEditComponent } from './policy-party-category/policy-party-category-edit/policy-party-category-edit.component';
 import { PolicyPartyCategoryCriteriaComponent } from './policy-party-category/policy-party-category-criteria/policy-party-category-criteria.component';
+import { EventCalendarComponent } from './event-calendar/event-calendar.component';
+import { EventCalendarCriteriaComponent } from './event-calendar/event-calendar-criteria/event-calendar-criteria.component';
+import { EventCalendarEditComponent } from './event-calendar/event-calendar-edit/event-calendar-edit.component';
+import { EventCalendarListComponent } from './event-calendar/event-calendar-list/event-calendar-list.component';
+import { EventCalendarCategoryComponent } from './event-calendar-category/event-calendar-category.component';
+import { EventCalendarCategoryListComponent } from './event-calendar-category/event-calendar-category-list/event-calendar-category-list.component';
+import { EventCalendarCategoryCriteriaComponent } from './event-calendar-category/event-calendar-category-criteria/event-calendar-category-criteria.component';
+import { EventCalendarCategoryEditComponent } from './event-calendar-category/event-calendar-category-edit/event-calendar-category-edit.component';
 
 export const DateFormat = {
   display: {
@@ -392,6 +400,14 @@ export const DateFormat = {
     PolicyPartyCategoryListComponent,
     PolicyPartyCategoryEditComponent,
     PolicyPartyCategoryCriteriaComponent,
+    EventCalendarComponent,
+    EventCalendarCriteriaComponent,
+    EventCalendarEditComponent,
+    EventCalendarListComponent,
+    EventCalendarCategoryComponent,
+    EventCalendarCategoryListComponent,
+    EventCalendarCategoryCriteriaComponent,
+    EventCalendarCategoryEditComponent,
   ],
   imports: [
     BrowserModule,
