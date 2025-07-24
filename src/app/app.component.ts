@@ -286,7 +286,7 @@ export class AppComponent {
       },
       {
         name: "จัดกากแฟนคลับพรรค",
-        routing: "/register-member",
+        routing: "/party-fan-club",
         data: "",
         type: "N",
         isActive: false,
