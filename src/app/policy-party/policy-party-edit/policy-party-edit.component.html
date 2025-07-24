@@ -112,32 +112,6 @@
                       </citxt>
                     </div>
                   </div>
-
-                  <div class="row">
-                    <div class="col s12" style="margin-top: -15px !important;">
-                      <cinum (cModel)="editModel.progress = $event" [label]="'ความคืบหน้า (%)'"
-                        [data]="editModel.progress || 0"></cinum>
-                      <!-- <citxt (cModel)="editModel.progress = $event" [label]="'ชื่อปุ่มแหล่งอ้างอิง : '" [data]="editModel.textButton || ''">
-                                            </citxt> -->
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col s12" style="margin-top: -15px !important; padding-bottom: 10px !important;">
-                      <csop (cModel)="editModel.status2 = $event" [label]="'* สถานะ : '" [data]="editModel.status2"
-                        [sources]="[{ value: 'S', display: 'สำเร็จแล้ว' }, { value: 'P', display: 'กำลังดำเนินการ' }]">
-                      </csop>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col s12">
-                      <citxt (cModel)="editModel.linkUrl = $event" [label]="'ลิ้งค์แหล่งอ้างอิง : '"
-                        [data]="editModel.linkUrl || ''">
-                      </citxt>
-                    </div>
-                  </div>
-
                 </div>
 
                 <div class="col s4">
@@ -213,19 +187,7 @@
                     <span>*Maximum 10 MB</span>
                   </div>
                 </div>
-                <div class="col s6">
-                  <div class="col s12">
-                    <cds (cModel)="editModel.imageE = $event" [label]="'* รูปตัวอย่าง (คลิกเลือกภาพ/ลากวางภาพที่นี่)'"
-                      [data]="[{ imageUrl: this.editModel.imageExample || '' }]" [code]="'product'">
-                    </cds>
-                  </div>
-                  <!-- <div class="col s12" style="color: red;">
-                                        <span>*ขนาดรูปภาพแนะนำ 120 x 600 px</span>
-                                    </div> -->
-                  <div class="col s12" style="color: red;">
-                    <span>*Maximum 10 MB</span>
-                  </div>
-                </div>
+                
               </div>
 
               <!-- END: Do Something This Here -->
@@ -527,79 +489,6 @@
     </div>
   </div>
 
-  <!-- <div class="row">
-        <div class="col s12">
-            <div class="container">
-                <section class="users-list-wrapper section">
-                    <div class="users-list-filter">
-
-                        <div class="card-panel" style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
-
-                            <div class="row">
-                                <div class="col s8">
-                                    <span style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
-                                        สิทธิ์การเห็นเนื้อหา *
-                                    </span>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
-                            <div class="row">
-                                <div class="col s12" style="padding-bottom: 40px !important;">
-                                    <ccb (cModel)="checkOG($event, 'auto')" [label]="'แสดงทั้งหมดตามสิทธิ์ที่รับมอบ'" [data]="editModel.chkAutoOG"></ccb>
-                                    <ccb (cModel)="checkOG($event, 'manual')" [label]="'แสดงเฉพาะหน่วยงานที่เลือก'" [data]="editModel.chkManualOG"></ccb>
-
-                                </div>
-                            </div>
-                            <div class="row" style="padding-bottom: 40px; margin-top: 0px;" *ngIf="editModel.chkManualOG && lv0Category.length != 0">
-                                <div class="col s12">
-                                    <label>หน่วยงาน</label>
-                                </div>
-                                <div class="col s12" *ngFor="let i of lv0Category; let idx = index">
-                                    <ccb (cModel)="readCategoryByLv($event, 'lv0', i)" [label]="i.title" [data]="i.check"></ccb>
-                                </div>
-                            </div>
-                            <div class="row" style="padding-bottom: 40px; margin-top: 0px;" *ngIf="editModel.chkManualOG && lv1Category.length != 0">
-                                <div class="col s12">
-                                    <label>เขต</label>
-                                </div>
-                                <div class="col s12" *ngFor="let i of lv1Category; let idx = index">
-                                    <ccb (cModel)="readCategoryByLv($event, 'lv1', i)" [label]="i.display" [data]="i.check"></ccb>
-                                </div>
-                            </div>
-                            <div class="row" style="padding-bottom: 40px; margin-top: 0px;" *ngIf="editModel.chkManualOG && lv2Category.length != 0">
-                                <div class="col s12">
-                                    <label>จังหวัด</label>
-                                </div>
-                                <div class="col s12" *ngFor="let i of lv2Category; let idx = index">
-                                    <ccb (cModel)="readCategoryByLv($event, 'lv2', i)" [label]="i.display" [data]="i.check"></ccb>
-                                </div>
-                            </div>
-                            <div class="row" style="padding-bottom: 40px; margin-top: 0px;" *ngIf="editModel.chkManualOG && lv3Category.length != 0">
-                                <div class="col s12">
-                                    <label>อำเภอ/เขต</label>
-                                </div>
-                                <div class="col s12" *ngFor="let i of lv3Category; let idx = index">
-                                    <ccb (cModel)="readCategoryByLv($event, 'lv3', i)" [label]="i.display" [data]="i.check"></ccb>
-                                </div>
-                            </div>
-                            <div class="row" style="padding-bottom: 40px; margin-top: 0px;" *ngIf="editModel.chkManualOG && lv4Category.length != 0">
-                                <div class="col s12">
-                                    <label>ตำบล/แขวง</label>
-                                </div>
-                                <div class="col s12" *ngFor="let i of lv4Category; let idx = index">
-                                    <ccb (cModel)="readCategoryByLv($event, 'lv4', i)" [label]="i.display" [data]="i.check"></ccb>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </section>
-            </div>
-        </div>
-    </div> -->
 </div>
 
 <!-- END: Page Main-->
