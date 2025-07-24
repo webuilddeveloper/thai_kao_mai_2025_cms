@@ -278,19 +278,19 @@ export class AppComponent {
       },
       {
         name: "จัดการสมาชิกพรรค",
-        routing: "/register",
+        routing: "/party-members",
         data: "",
         type: "N",
         isActive: false,
-        isShow: this.category.registerPage,
+        isShow: this.category.partyMembersPage,
       },
       {
         name: "จัดกากแฟนคลับพรรค",
-        routing: "/register-member",
+        routing: "/party-fan-club",
         data: "",
         type: "N",
         isActive: false,
-        isShow: this.category.registerMemberPage,
+        isShow: this.category.partyFanClubPage,
       },
       // {
       //   'name': 'รายการขอแก้ไขข้อมูลสมาชิก',
