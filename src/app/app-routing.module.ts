@@ -65,6 +65,8 @@ import { CertificateCategoryComponent } from "./certificate-category/certificate
 import { CertificateCategoryEditComponent } from "./certificate-category/certificate-category-edit/certificate-category-edit.component";
 import { PortfolioCategoryComponent } from "./portfolio-category/portfolio-category.component";
 import { PortfolioCategoryEditComponent } from "./portfolio-category/portfolio-category-edit/portfolio-category-edit.component";
+import { PolicyPartyComponent } from "./policy-party/policy-party.component";
+import { PolicyPartyEditComponent } from "./policy-party/policy-party-edit/policy-party-edit.component";
 
 const routes: Routes = [
   { path: "", component: DashboardComponent },
@@ -152,6 +154,8 @@ const routes: Routes = [
     path: "certificate-category-edit/:code",
     component: CertificateCategoryEditComponent,
   },
+  { path: "policy-party", component: PolicyPartyComponent },
+  { path: "policy-party-edit/:code", component: PolicyPartyEditComponent },
 ];
 
 @NgModule({

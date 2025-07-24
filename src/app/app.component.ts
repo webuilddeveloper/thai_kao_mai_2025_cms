@@ -147,6 +147,19 @@ export class AppComponent {
                   );
 
                 this.serviceProviderService
+                  .post("register/page/read", { title: "policyPartyPage" })
+                  .subscribe(
+                    (data) => {
+                      let model: any = data;
+                      localStorage.setItem(
+                        "policyPartyPage",
+                        JSON.stringify(model.objectData)
+                      );
+                    },
+                    (err) => {}
+                  );
+
+                this.serviceProviderService
                   .post("register/page/read", { title: "workProcessPage" })
                   .subscribe(
                     (data) => {
@@ -403,6 +416,14 @@ export class AppComponent {
         type: "N",
         isActive: false,
         isShow: this.category.certificatePage,
+      },
+      {
+        name: "นโยบายพรรค",
+        routing: "/policy-party",
+        data: "",
+        type: "N",
+        isActive: false,
+        isShow: this.category.policyPartyPage,
       },
     ];
 
@@ -1009,6 +1030,7 @@ export class AppComponent {
     localStorage.removeItem("workProcessPage");
     localStorage.removeItem("portfolioPage");
     localStorage.removeItem("certificatePage");
+    localStorage.removeItem("policyPartyPage");
 
     window.location.href = "";
   }
