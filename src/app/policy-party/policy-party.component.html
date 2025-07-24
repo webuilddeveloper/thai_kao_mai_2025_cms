@@ -1,16 +1,16 @@
-<h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>ผลงาน</span></h5>
+<h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>นโยบายพรรค</span></h5>
 <ol class="breadcrumbs mb-0">
     <li class="breadcrumb-item"><a href="javascript:void(0)">เมนูหลัก</a>
     </li>
-    <li class="breadcrumb-item active">ผลงาน
+    <li class="breadcrumb-item active">นโยบายพรรค
     </li>
 </ol>
 <br>
 <br>
 
 <!-- {{paginationModel.totalItems}} -->
-<app-portfolio-criteria (messageToEmit)="getMessageCriteria($event)"></app-portfolio-criteria>
-<app-portfolio-list [paginationModel]="paginationModel" [criteriaModel]="criteriaModel" [messageInput]="listModel" (messageToEmit)="getMessageList($event)"></app-portfolio-list>
+<app-policy-party-criteria (messageToEmit)="getMessageCriteria($event)"></app-policy-party-criteria>
+<app-policy-party-list [paginationModel]="paginationModel" [criteriaModel]="criteriaModel" [messageInput]="listModel" (messageToEmit)="getMessageList($event)"></app-policy-party-list>
 
 <!-- <----- Pagination -->
 <!-- <div style="text-align: right;">

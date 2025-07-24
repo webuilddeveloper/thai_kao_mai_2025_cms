@@ -130,6 +130,6 @@ export class PolicyPartyCategoryEditComponent implements OnInit {
       }
     
       back() {
-        this.router.navigate(['policyParty-category'], { skipLocationChange: true });
+        this.router.navigate(['policy-party-category'], { skipLocationChange: true });
       }
 }
