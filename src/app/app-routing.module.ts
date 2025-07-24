@@ -167,7 +167,7 @@ const routes: Routes = [
   },
 
   { path: "party-members", component: PartyMembersComponent },
-  { path: "party-members-rdit/:code", component: PartyMembersEditComponent },
+  { path: "party-members-edit/:code", component: PartyMembersEditComponent },
 ];
 
 @NgModule({
