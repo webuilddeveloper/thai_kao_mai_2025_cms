@@ -1,23 +1,34 @@
-import { Component, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FileUploadService } from 'src/app/shared/file-upload.service';
-import { ServiceProviderService } from 'src/app/shared/service-provider.service';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
-import { Router, ActivatedRoute } from '@angular/router';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  Inject,
+} from "@angular/core";
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from "@angular/material/dialog";
+import { FileUploadService } from "src/app/shared/file-upload.service";
+import { ServiceProviderService } from "src/app/shared/service-provider.service";
+import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrService } from "ngx-toastr";
+import { Router, ActivatedRoute } from "@angular/router";
+import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 @Component({
-  selector: 'app-party-members-edit',
-  templateUrl: './party-members-edit.component.html',
-  styleUrls: ['./party-members-edit.component.css']
+  selector: "app-party-members-edit",
+  templateUrl: "./party-members-edit.component.html",
+  styleUrls: ["./party-members-edit.component.css"],
 })
 export class PartyMembersEditComponent implements OnInit {
   Editor = ClassicEditor;
   listCategory: any = [];
-  editModel: any = {};
+  editModel: any = { status: "N" };
   code: any;
-  title = 'เพิ่มข้อมูลสมาชิกพรรค';
+  title = "เพิ่มข้อมูลสมาชิกพรรค";
   category: any;
   permission: any;
   permissionList: any;
@@ -49,94 +60,92 @@ export class PartyMembersEditComponent implements OnInit {
 
   lvModel: any = [];
 
-  constructor(private fileuploadService: FileUploadService
-    , private serviceProviderService: ServiceProviderService
-    , private spinner: NgxSpinnerService
-    , private toastr: ToastrService
-    , private router: Router
-    , public dialog: MatDialog
-    , private activetedRoute: ActivatedRoute) {
-
+  constructor(
+    private fileuploadService: FileUploadService,
+    private serviceProviderService: ServiceProviderService,
+    private spinner: NgxSpinnerService,
+    private toastr: ToastrService,
+    private router: Router,
+    public dialog: MatDialog,
+    private activetedRoute: ActivatedRoute
+  ) {
     this.listPrefixName = [
       {
-        value: 'นาย',
-        display: 'นาย'
+        value: "นาย",
+        display: "นาย",
       },
       {
-        value: 'นาง',
-        display: 'นาง'
+        value: "นาง",
+        display: "นาง",
       },
       {
-        value: 'นางสาว',
-        display: 'นางสาว'
-      }
+        value: "นางสาว",
+        display: "นางสาว",
+      },
     ];
 
     this.listSex = [
       {
-        value: 'ชาย',
-        display: 'ชาย'
+        value: "ชาย",
+        display: "ชาย",
       },
       {
-        value: 'หญิง',
-        display: 'หญิง'
-      }
+        value: "หญิง",
+        display: "หญิง",
+      },
     ];
 
     this.listMarital = [
       {
-        value: 'โสด',
-        display: 'โสด'
+        value: "โสด",
+        display: "โสด",
       },
       {
-        value: 'สมรส',
-        display: 'สมรส'
+        value: "สมรส",
+        display: "สมรส",
       },
       {
-        value: 'หย่าร้าง',
-        display: 'หย่าร้าง'
-      }
+        value: "หย่าร้าง",
+        display: "หย่าร้าง",
+      },
     ];
 
     this.listStatus = [
       {
-        value: 'รอการตรวจสอบ',
-        display: 'รอการตรวจสอบ'
+        value: "รอการตรวจสอบ",
+        display: "รอการตรวจสอบ",
       },
       {
-        value: 'รอการยืนยันตน',
-        display: 'รอการยืนยันตน'
+        value: "รอการยืนยันตน",
+        display: "รอการยืนยันตน",
       },
       {
-        value: 'ยืนยันตนสำเร็จ',
-        display: 'ยืนยันตนสำเร็จ'
-      }
-      ,
+        value: "ยืนยันตนสำเร็จ",
+        display: "ยืนยันตนสำเร็จ",
+      },
       {
-        value: 'ยืนยันตนไม่สำเร็จ',
-        display: 'ยืนยันตนไม่สำเร็จ'
-      }
+        value: "ยืนยันตนไม่สำเร็จ",
+        display: "ยืนยันตนไม่สำเร็จ",
+      },
     ];
-
   }
 
   ngOnInit(): void {
     // this.editModel.image = [];
-    this.activetedRoute.queryParams.subscribe(params => {
+    this.activetedRoute.queryParams.subscribe((params) => {
       let model: any = this.activetedRoute.snapshot.params;
       this.code = model.code;
-      this.readCategoryOrganization('lv0');
+      this.readCategoryOrganization("lv0");
       this.readCategoryProvince();
       // this.readCategory();
-      if (this.code != '') {
-        this.title = 'แก้ไขข้อมูลสมาชิกพรรค';
+      if (this.code != "") {
+        this.title = "แก้ไขข้อมูลสมาชิกพรรค";
         this.read();
       }
-
     });
 
-    if (localStorage.getItem('category') != null) {
-      this.category = JSON.parse(localStorage.getItem('category'));
+    if (localStorage.getItem("category") != null) {
+      this.category = JSON.parse(localStorage.getItem("category"));
     }
   }
 
@@ -144,77 +153,40 @@ export class PartyMembersEditComponent implements OnInit {
     this.spinner.show();
 
     let isValid = false;
-    if (this.editModel.username == '') {
-      this.toastr.warning('กรุณาใส่ชื่อผู้ใช้งาน', 'แจ้งเตือนระบบ', { timeOut: 2000 });
+    if (this.editModel.username == "") {
+      this.toastr.warning("กรุณาใส่ชื่อผู้ใช้งาน", "แจ้งเตือนระบบ", {
+        timeOut: 2000,
+      });
       isValid = true;
     }
 
-    if (this.editModel.password == '') {
-      this.toastr.warning('กรุณาใส่รหัสผ่าน', 'แจ้งเตือนระบบ', { timeOut: 2000 });
+    if (this.editModel.password == "") {
+      this.toastr.warning("กรุณาใส่รหัสผ่าน", "แจ้งเตือนระบบ", {
+        timeOut: 2000,
+      });
       isValid = true;
     }
 
     if (this.editModel.image.length == 0) {
-      this.toastr.warning('กรุณาใส่รูปภาพ', 'แจ้งเตือนระบบ', { timeOut: 2000 });
+      this.toastr.warning("กรุณาใส่รูปภาพ", "แจ้งเตือนระบบ", { timeOut: 2000 });
       isValid = true;
     }
 
-    if (isValid)
-      return;
+    if (isValid) return;
 
-    if (this.editModel.department1) {
-      if (this.editModel.countUnit != '') {
-        this.editModel.countUnit = this.editModel.countUnit + ',' + 'อาสาสมัครป้องกันภัยฝ่ายพลเรือน'
-      } else {
-        this.editModel.countUnit = 'อาสาสมัครป้องกันภัยฝ่ายพลเรือน'
-      }
-    }
-    if (this.editModel.department2) {
-      if (this.editModel.countUnit != '') {
-        this.editModel.countUnit = this.editModel.countUnit + ',' + 'เครือข่ายแจ้งเตือนภัยภาคประชาชน'
-      } else {
-        this.editModel.countUnit = 'เครือข่ายแจ้งเตือนภัยภาคประชาชน'
-      }
-    }
-    if (this.editModel.department3) {
-      if (this.editModel.countUnit != '') {
-        this.editModel.countUnit = this.editModel.countUnit + ',' + 'มิสเตอร์เตือนภัย'
-      } else {
-        this.editModel.countUnit = 'มิสเตอร์เตือนภัย'
-      }
-    }
-    if (this.editModel.department4) {
-      if (this.editModel.countUnit != '') {
-        this.editModel.countUnit = this.editModel.countUnit + ',' + 'อาสาสมัคร หนึ่งตำบลหนึ่งทีมกู้ชีพกู้ภัย (OTOS)'
-      } else {
-        this.editModel.countUnit = 'อาสาสมัคร หนึ่งตำบลหนึ่งทีมกู้ชีพกู้ภัย (OTOS)'
-      }
-    }
-    if (this.editModel.department5) {
-      if (this.editModel.countUnit != '') {
-        this.editModel.countUnit = this.editModel.countUnit + ',' + 'อาสาสมัครป้องกันและสาธารณภัย (อส.ปภ)'
-      } else {
-        this.editModel.countUnit = 'อาสาสมัครป้องกันและสาธารณภัย (อส.ปภ)'
-      }
-    }
-    if (this.editModel.department6) {
-      if (this.editModel.countUnit != '') {
-        this.editModel.countUnit = this.editModel.countUnit + ',' + 'องค์การสาธารณกุศล'
-      } else {
-        this.editModel.countUnit = 'องค์การสาธารณกุศล'
-      }
-    }
-
-    this.editModel.countUnit = '[]';
-    this.editModel.category = 'guest';
-
-    if (this.editModel.prefixName === 'นาย')
-      this.editModel.sex = 'ชาย'
-    else
-      this.editModel.sex = 'หญิง'
-
+    this.editModel.province = this.listCategoryProvince.find(
+      (f) => f.value == this.editModel.provinceCode
+    ).display;
+    this.editModel.amphoe = this.listCategoryDistrict.find(
+      (f) => f.value == this.editModel.amphoeCode
+    ).display;
+    this.editModel.tambon = this.listCategoryTambon.find(
+      (f) => f.value == this.editModel.tambonCode
+    ).display;
     this.editModel.imageUrl = this.editModel.image[0].imageUrl;
-    this.serviceProviderService.post('register/member/create', this.editModel).subscribe(data => {
+    this.editModel.imageIdCardUrl = this.editModel.imageIdCard[0].imageUrl;
+    this.editModel.imagePaymentUrl = this.editModel.imagePayment[0].imageUrl;
+    this.serviceProviderService.post('partyMembers/create', this.editModel).subscribe(data => {
 
       let model: any = {};
       model = data;
@@ -234,189 +206,242 @@ export class PartyMembersEditComponent implements OnInit {
   }
 
   read() {
-    console.log('code :: ',this.code);
-    this.serviceProviderService.post('register/member/read', { code: this.code }).subscribe(data => {
-      let model: any = {};
-      let rawCountUnit = [];
-      model = data;
-      this.editModel = model.objectData[0];
-      if(this.editModel.countUnit == '""' || this.editModel.countUnit == '[]' || this.editModel.countUnit == ''){
-        this.editModel.countUnit = [];
-      }else{
-        rawCountUnit = JSON.parse(this.editModel.countUnit);
-        this.editModel.countUnit = [];
-        rawCountUnit.forEach(c => {
-          if(c.status != 'D'){
-            this.editModel.countUnit.push(c)
-          }
-        });
-      }
+    console.log("code :: ", this.code);
+    this.serviceProviderService
+      .post("partyMembers/read", { code: this.code })
+      .subscribe(
+        (data) => {
+          let model: any = {};
+          let rawCountUnit = [];
+          model = data;
+          this.editModel = model.objectData[0];
 
-      console.log(this.editModel.countUnit)
-      // this.editModel.countUnit.forEach(e => {
-      //   this.lvModel.lv0Category = [];
-      //   this.lvModel.lv1Category = [];
-      //   this.lvModel.lv2Category = [];
-      //   this.lvModel.lv3Category = [];
-      //   this.lvModel.lv4Category = [];
-      //   this.lvModel.push({
-      //     lv0: e.titleLv0,
-      //     lv1: e.titleLv1,
-      //     lv2: e.titleLv2,
-      //     lv3: e.titleLv3,
-      //     lv4: e.titleLv4,
-      //   })
-      // });
+          this.readCategoryDistrict(this.editModel.provinceCode);
+          this.readCategoryTambon(this.editModel.amphoeCode);
+          this.readCategoryPostCode(this.editModel.tambonCode);
 
-      this.readCategoryDistrict(this.editModel.provinceCode);
-      this.readCategoryTambon(this.editModel.amphoeCode);
-      this.readCategoryPostCode(this.editModel.tambonCode);
-
-      this.spinner.hide();
-    }, err => {
-      this.spinner.hide();
-      this.toastr.error(err.message, 'แจ้งเตือนระบบ', { timeOut: 2000 });
-    });
+          this.spinner.hide();
+        },
+        (err) => {
+          this.spinner.hide();
+          this.toastr.error(err.message, "แจ้งเตือนระบบ", { timeOut: 2000 });
+        }
+      );
   }
 
   readCategoryOrganization(lv) {
+    this.serviceProviderService
+      .postByPass("organization/category/read", { category: lv })
+      .subscribe(
+        (data) => {
+          let model: any = {};
+          model = data;
 
-
-    this.serviceProviderService.postByPass('organization/category/read', { category: lv }).subscribe(data => {
-      let model: any = {};
-      model = data;
-
-      this.lv0Category = [];
-      model.objectData.forEach(element => {
-        this.lv0Category.push({ value: element.code, display: element.title });
-      });
-    }, err => { });
-
+          this.lv0Category = [];
+          model.objectData.forEach((element) => {
+            this.lv0Category.push({
+              value: element.code,
+              display: element.title,
+            });
+          });
+        },
+        (err) => {}
+      );
   }
 
   readCategoryOrganizationByLv(param, lv) {
-
-    if (lv == 'lv0') {
+    if (lv == "lv0") {
       this.editModel.lv0 = param;
-      this.serviceProviderService.postByPass('organization/category/read', { category: 'lv1', lv0: param }).subscribe(data => {
-        let model: any = {};
-        model = data;
-        this.lv1Category = [];
-        model.objectData.forEach(element => {
-          this.lv1Category.push({ value: element.code, display: element.title });
-        });
-      }, err => { });
-    }
-    else if (lv == 'lv1') {
+      this.serviceProviderService
+        .postByPass("organization/category/read", {
+          category: "lv1",
+          lv0: param,
+        })
+        .subscribe(
+          (data) => {
+            let model: any = {};
+            model = data;
+            this.lv1Category = [];
+            model.objectData.forEach((element) => {
+              this.lv1Category.push({
+                value: element.code,
+                display: element.title,
+              });
+            });
+          },
+          (err) => {}
+        );
+    } else if (lv == "lv1") {
       this.editModel.lv1 = param;
-      this.serviceProviderService.postByPass('organization/category/read', { category: 'lv2', lv1: param }).subscribe(data => {
-        let model: any = {};
-        model = data;
-        this.lv2Category = [];
-        model.objectData.forEach(element => {
-          this.lv2Category.push({ value: element.code, display: element.title });
-        });
-      }, err => { });
-    }
-    else if (lv == 'lv2') {
+      this.serviceProviderService
+        .postByPass("organization/category/read", {
+          category: "lv2",
+          lv1: param,
+        })
+        .subscribe(
+          (data) => {
+            let model: any = {};
+            model = data;
+            this.lv2Category = [];
+            model.objectData.forEach((element) => {
+              this.lv2Category.push({
+                value: element.code,
+                display: element.title,
+              });
+            });
+          },
+          (err) => {}
+        );
+    } else if (lv == "lv2") {
       this.editModel.lv2 = param;
-      this.serviceProviderService.postByPass('organization/category/read', { category: 'lv3', lv2: param }).subscribe(data => {
-        let model: any = {};
-        model = data;
-        this.lv3Category = [];
-        model.objectData.forEach(element => {
-          this.lv3Category.push({ value: element.code, display: element.title });
-        });
-      }, err => { });
+      this.serviceProviderService
+        .postByPass("organization/category/read", {
+          category: "lv3",
+          lv2: param,
+        })
+        .subscribe(
+          (data) => {
+            let model: any = {};
+            model = data;
+            this.lv3Category = [];
+            model.objectData.forEach((element) => {
+              this.lv3Category.push({
+                value: element.code,
+                display: element.title,
+              });
+            });
+          },
+          (err) => {}
+        );
     }
   }
 
   readCategoryProvince() {
-    if (this.editModel.language != '') {
-      this.serviceProviderService.post('route/province/read', {}).subscribe(data => {
-        let model: any = {};
-        model = data;
-        this.listCategoryProvince = [];
-        model.objectData.forEach(element => {
-          this.listCategoryProvince.push({ value: element.code, display: element.title });
-        });
-
-      }, err => { });
+    if (this.editModel.language != "") {
+      this.serviceProviderService.post("route/province/read", {}).subscribe(
+        (data) => {
+          let model: any = {};
+          model = data;
+          this.listCategoryProvince = [];
+          model.objectData.forEach((element) => {
+            this.listCategoryProvince.push({
+              value: element.code,
+              display: element.title,
+            });
+          });
+        },
+        (err) => {}
+      );
     }
   }
 
-  validProvince(){
-    if (this.editModel.provinceCode == '' || this.editModel.provinceCode == undefined) {
-      this.toastr.warning('กรุณาเลือกจังหวัด', 'แจ้งเตือนระบบ', { timeOut: 2000 });
+  validProvince() {
+    if (
+      this.editModel.provinceCode == "" ||
+      this.editModel.provinceCode == undefined
+    ) {
+      this.toastr.warning("กรุณาเลือกจังหวัด", "แจ้งเตือนระบบ", {
+        timeOut: 2000,
+      });
       return;
     }
   }
 
-  validDistrict(){
-    if (this.editModel.amphoeCode == '' || this.editModel.amphoeCode == undefined) {
-      this.toastr.warning('กรุณาเลือกอำเภอ', 'แจ้งเตือนระบบ', { timeOut: 2000 });
+  validDistrict() {
+    if (
+      this.editModel.amphoeCode == "" ||
+      this.editModel.amphoeCode == undefined
+    ) {
+      this.toastr.warning("กรุณาเลือกอำเภอ", "แจ้งเตือนระบบ", {
+        timeOut: 2000,
+      });
       return;
     }
   }
 
-  validTambon(){
-    if (this.editModel.tambonCode == '' || this.editModel.tambonCode == undefined) {
-      this.toastr.warning('กรุณาเลือกตำบล', 'แจ้งเตือนระบบ', { timeOut: 2000 });
+  validTambon() {
+    if (
+      this.editModel.tambonCode == "" ||
+      this.editModel.tambonCode == undefined
+    ) {
+      this.toastr.warning("กรุณาเลือกตำบล", "แจ้งเตือนระบบ", { timeOut: 2000 });
       return;
     }
   }
 
   readCategoryDistrict(param) {
-    if(param == 'none' || param == ''){
-
-    }else{
+    if (param == "none" || param == "") {
+    } else {
       this.editModel.provinceCode = param;
-      if (this.editModel.language != '') {
-        this.serviceProviderService.post('route/district/read', { province: this.editModel.provinceCode }).subscribe(data => {
-          let model: any = {};
-          model = data;
-          this.listCategoryDistrict = [];
-          model.objectData.forEach(element => {
-            this.listCategoryDistrict.push({ value: element.code, display: element.title });
-          });
-        }, err => { });
+      if (this.editModel.language != "") {
+        this.serviceProviderService
+          .post("route/district/read", {
+            province: this.editModel.provinceCode,
+          })
+          .subscribe(
+            (data) => {
+              let model: any = {};
+              model = data;
+              this.listCategoryDistrict = [];
+              model.objectData.forEach((element) => {
+                this.listCategoryDistrict.push({
+                  value: element.code,
+                  display: element.title,
+                });
+              });
+            },
+            (err) => {}
+          );
       }
     }
   }
 
   readCategoryTambon(param) {
-    if(param == 'none' || param == ''){
-
-    }else{
-
+    if (param == "none" || param == "") {
+    } else {
       this.editModel.amphoeCode = param;
-      if (this.editModel.language != '') {
-        this.serviceProviderService.post('route/tambon/read', { district: this.editModel.amphoeCode }).subscribe(data => {
-          let model: any = {};
-          model = data;
-          this.listCategoryTambon = [];
-          model.objectData.forEach(element => {
-            this.listCategoryTambon.push({ value: element.code, display: element.title });
-          });
-        }, err => { });
+      if (this.editModel.language != "") {
+        this.serviceProviderService
+          .post("route/tambon/read", { district: this.editModel.amphoeCode })
+          .subscribe(
+            (data) => {
+              let model: any = {};
+              model = data;
+              this.listCategoryTambon = [];
+              model.objectData.forEach((element) => {
+                this.listCategoryTambon.push({
+                  value: element.code,
+                  display: element.title,
+                });
+              });
+            },
+            (err) => {}
+          );
       }
     }
   }
 
   readCategoryPostCode(param) {
-    if(param == 'none' || param == ''){
-
-    }else{
+    if (param == "none" || param == "") {
+    } else {
       this.editModel.tambonCode = param;
-      if (this.editModel.language != '') {
-        this.serviceProviderService.post('route/postCode/read', { tambon: this.editModel.tambonCode }).subscribe(data => {
-          let model: any = {};
-          model = data;
-          this.listCategoryPostCode = [];
-          model.objectData.forEach(element => {
-            this.listCategoryPostCode.push({ value: element.code, display: element.postCode });
-          });
-        }, err => { });
+      if (this.editModel.language != "") {
+        this.serviceProviderService
+          .post("route/postCode/read", { tambon: this.editModel.tambonCode })
+          .subscribe(
+            (data) => {
+              let model: any = {};
+              model = data;
+              this.listCategoryPostCode = [];
+              model.objectData.forEach((element) => {
+                this.listCategoryPostCode.push({
+                  value: element.code,
+                  display: element.postCode,
+                });
+              });
+            },
+            (err) => {}
+          );
       }
     }
   }
@@ -424,8 +449,10 @@ export class PartyMembersEditComponent implements OnInit {
   update() {
     this.spinner.show();
     let isValid = false;
-    if (this.editModel.username == '') {
-      this.toastr.warning('กรุณาใส่ชื่อผู้ใช้งาน', 'แจ้งเตือนระบบ', { timeOut: 2000 });
+    if (this.editModel.username == "") {
+      this.toastr.warning("กรุณาใส่ชื่อผู้ใช้งาน", "แจ้งเตือนระบบ", {
+        timeOut: 2000,
+      });
       isValid = true;
     }
 
@@ -438,58 +465,69 @@ export class PartyMembersEditComponent implements OnInit {
     }
 
     if (this.editModel.department1) {
-      if (this.editModel.countUnit != '') {
-        this.editModel.countUnit = this.editModel.countUnit + ',' + 'อาสาสมัครป้องกันภัยฝ่ายพลเรือน'
+      if (this.editModel.countUnit != "") {
+        this.editModel.countUnit =
+          this.editModel.countUnit + "," + "อาสาสมัครป้องกันภัยฝ่ายพลเรือน";
       } else {
-        this.editModel.countUnit = 'อาสาสมัครป้องกันภัยฝ่ายพลเรือน'
+        this.editModel.countUnit = "อาสาสมัครป้องกันภัยฝ่ายพลเรือน";
       }
     }
     if (this.editModel.department2) {
-      if (this.editModel.countUnit != '') {
-        this.editModel.countUnit = this.editModel.countUnit + ',' + 'เครือข่ายแจ้งเตือนภัยภาคประชาชน'
+      if (this.editModel.countUnit != "") {
+        this.editModel.countUnit =
+          this.editModel.countUnit + "," + "เครือข่ายแจ้งเตือนภัยภาคประชาชน";
       } else {
-        this.editModel.countUnit = 'เครือข่ายแจ้งเตือนภัยภาคประชาชน'
+        this.editModel.countUnit = "เครือข่ายแจ้งเตือนภัยภาคประชาชน";
       }
     }
     if (this.editModel.department3) {
-      if (this.editModel.countUnit != '') {
-        this.editModel.countUnit = this.editModel.countUnit + ',' + 'มิสเตอร์เตือนภัย'
+      if (this.editModel.countUnit != "") {
+        this.editModel.countUnit =
+          this.editModel.countUnit + "," + "มิสเตอร์เตือนภัย";
       } else {
-        this.editModel.countUnit = 'มิสเตอร์เตือนภัย'
+        this.editModel.countUnit = "มิสเตอร์เตือนภัย";
       }
     }
     if (this.editModel.department4) {
-      if (this.editModel.countUnit != '') {
-        this.editModel.countUnit = this.editModel.countUnit + ',' + 'อาสาสมัคร หนึ่งตำบลหนึ่งทีมกู้ชีพกู้ภัย (OTOS)'
+      if (this.editModel.countUnit != "") {
+        this.editModel.countUnit =
+          this.editModel.countUnit +
+          "," +
+          "อาสาสมัคร หนึ่งตำบลหนึ่งทีมกู้ชีพกู้ภัย (OTOS)";
       } else {
-        this.editModel.countUnit = 'อาสาสมัคร หนึ่งตำบลหนึ่งทีมกู้ชีพกู้ภัย (OTOS)'
+        this.editModel.countUnit =
+          "อาสาสมัคร หนึ่งตำบลหนึ่งทีมกู้ชีพกู้ภัย (OTOS)";
       }
     }
     if (this.editModel.department5) {
-      if (this.editModel.countUnit != '') {
-        this.editModel.countUnit = this.editModel.countUnit + ',' + 'อาสาสมัครป้องกันและสาธารณภัย (อส.ปภ)'
+      if (this.editModel.countUnit != "") {
+        this.editModel.countUnit =
+          this.editModel.countUnit +
+          "," +
+          "อาสาสมัครป้องกันและสาธารณภัย (อส.ปภ)";
       } else {
-        this.editModel.countUnit = 'อาสาสมัครป้องกันและสาธารณภัย (อส.ปภ)'
+        this.editModel.countUnit = "อาสาสมัครป้องกันและสาธารณภัย (อส.ปภ)";
       }
     }
     if (this.editModel.department6) {
-      if (this.editModel.countUnit != '') {
-        this.editModel.countUnit = this.editModel.countUnit + ',' + 'องค์การสาธารณกุศล'
+      if (this.editModel.countUnit != "") {
+        this.editModel.countUnit =
+          this.editModel.countUnit + "," + "องค์การสาธารณกุศล";
       } else {
-        this.editModel.countUnit = 'องค์การสาธารณกุศล'
+        this.editModel.countUnit = "องค์การสาธารณกุศล";
       }
     }
 
-    this.editModel.lv0 = '';
-    this.editModel.lv1 = '';
-    this.editModel.lv2 = '';
-    this.editModel.lv3 = '';
-    this.editModel.lv4 = '';
-    
-    this.editModel.organization = 'manual';
-    if(this.editModel.countUnit.length > 0){
-      this.editModel.countUnit.forEach( e => {
-        if(e.status == 'A'){
+    this.editModel.lv0 = "";
+    this.editModel.lv1 = "";
+    this.editModel.lv2 = "";
+    this.editModel.lv3 = "";
+    this.editModel.lv4 = "";
+
+    this.editModel.organization = "manual";
+    if (this.editModel.countUnit.length > 0) {
+      this.editModel.countUnit.forEach((e) => {
+        if (e.status == "A") {
           this.replaceCategoryLv0(e);
           this.replaceCategoryLv1(e);
           this.replaceCategoryLv2(e);
@@ -500,29 +538,32 @@ export class PartyMembersEditComponent implements OnInit {
     }
 
     this.editModel.countUnit = JSON.stringify(this.editModel.countUnit);
-    if (this.editModel.prefixName === 'นาย')
-      this.editModel.sex = 'ชาย'
-    else
-      this.editModel.sex = 'หญิง'
+    if (this.editModel.prefixName === "นาย") this.editModel.sex = "ชาย";
+    else this.editModel.sex = "หญิง";
 
-    this.serviceProviderService.post('register/member/update', this.editModel).subscribe(data => {
+    this.serviceProviderService
+      .post("partyMembers/update", this.editModel)
+      .subscribe(
+        (data) => {
+          this.isSaveSuccess = true;
+          this.spinner.hide();
+          this.toastr.success("บันทึกข้อมูลสำเร็จ", "แจ้งเตือนระบบ", {
+            timeOut: 2000,
+          });
 
-      this.isSaveSuccess = true;
-      this.spinner.hide();
-      this.toastr.success('บันทึกข้อมูลสำเร็จ', 'แจ้งเตือนระบบ', { timeOut: 2000 });
-
-      setTimeout(() => {
-        this.back();
-      }, 2000);
-
-    }, err => {
-      this.spinner.hide();
-      this.toastr.error(err, 'แจ้งเตือนระบบ', { timeOut: 2000 });
-    });
+          setTimeout(() => {
+            this.back();
+          }, 2000);
+        },
+        (err) => {
+          this.spinner.hide();
+          this.toastr.error(err, "แจ้งเตือนระบบ", { timeOut: 2000 });
+        }
+      );
   }
 
   // readCategory() {
-  //   this.serviceProviderService.post('register/member/category/read', {}).subscribe(data => {
+  //   this.serviceProviderService.post('partyMembers/category/read', {}).subscribe(data => {
   //     let model: any = {};
   //     model = data;
   //     this.listCategory = [];
@@ -536,21 +577,18 @@ export class PartyMembersEditComponent implements OnInit {
   // }
 
   checkPermission(param, param2) {
-
-    if (param2 == 'createAction') {
-      let model = this.permissionList.filter(c => c.title == param);
-      if (model.length > 0 && this.code == '') {
+    if (param2 == "createAction") {
+      let model = this.permissionList.filter((c) => c.title == param);
+      if (model.length > 0 && this.code == "") {
         return model[0].createAction;
       }
-    }
-    else if (param2 == 'updateAction') {
-      let model = this.permissionList.filter(c => c.title == param);
-      if (model.length > 0 && this.code != '') {
+    } else if (param2 == "updateAction") {
+      let model = this.permissionList.filter((c) => c.title == param);
+      if (model.length > 0 && this.code != "") {
         return model[0].updateAction;
       }
-    }
-    else if (param2 == 'approveAction') {
-      let model = this.permissionList.filter(c => c.title == param);
+    } else if (param2 == "approveAction") {
+      let model = this.permissionList.filter((c) => c.title == param);
       if (model.length > 0) {
         if (!model[0].approveAction) {
           this.editModel.isActive = false;
@@ -562,95 +600,91 @@ export class PartyMembersEditComponent implements OnInit {
   }
 
   replaceCategoryLv0(param) {
-    let arrayLv0 = this.editModel.lv0.split(',');
+    let arrayLv0 = this.editModel.lv0.split(",");
 
     for (let i = 0; i < arrayLv0.length; i++) {
       if (arrayLv0[i] != param.lv0) {
-        if (this.editModel.lv0 == '') {
+        if (this.editModel.lv0 == "") {
           this.editModel.lv0 = param.lv0;
-        }else{
-          this.editModel.lv0 = this.editModel.lv0 + ',' + param.lv0;
+        } else {
+          this.editModel.lv0 = this.editModel.lv0 + "," + param.lv0;
         }
       }
     }
-
   }
   replaceCategoryLv1(param) {
-    let arrayLv1 = this.editModel.lv1.split(',');
+    let arrayLv1 = this.editModel.lv1.split(",");
 
     for (let i = 0; i < arrayLv1.length; i++) {
       if (arrayLv1[i] != param.lv1) {
-        if (this.editModel.lv1 == '') {
+        if (this.editModel.lv1 == "") {
           this.editModel.lv1 = param.lv1;
-        }else{
-          this.editModel.lv1 = this.editModel.lv1 + ',' + param.lv1;
+        } else {
+          this.editModel.lv1 = this.editModel.lv1 + "," + param.lv1;
         }
       }
     }
-
   }
   replaceCategoryLv2(param) {
-    let arrayLv2 = this.editModel.lv2.split(',');
+    let arrayLv2 = this.editModel.lv2.split(",");
 
     for (let i = 0; i < arrayLv2.length; i++) {
       if (arrayLv2[i] != param.lv2) {
-        if (this.editModel.lv2 == '') {
+        if (this.editModel.lv2 == "") {
           this.editModel.lv2 = param.lv2;
-        }else{
-          this.editModel.lv2 = this.editModel.lv2 + ',' + param.lv2;
+        } else {
+          this.editModel.lv2 = this.editModel.lv2 + "," + param.lv2;
         }
       }
     }
-
   }
   replaceCategoryLv3(param) {
-    let arrayLv3 = this.editModel.lv3.split(',');
+    let arrayLv3 = this.editModel.lv3.split(",");
 
     for (let i = 0; i < arrayLv3.length; i++) {
       if (arrayLv3[i] != param.lv3) {
-        if (this.editModel.lv3 == '') {
+        if (this.editModel.lv3 == "") {
           this.editModel.lv3 = param.lv3;
-        }else{
-          this.editModel.lv3 = this.editModel.lv3 + ',' + param.lv3;
+        } else {
+          this.editModel.lv3 = this.editModel.lv3 + "," + param.lv3;
         }
       }
     }
-
   }
   replaceCategoryLv4(param) {
-    let arrayLv4 = this.editModel.lv4.split(',');
+    let arrayLv4 = this.editModel.lv4.split(",");
 
     for (let i = 0; i < arrayLv4.length; i++) {
       if (arrayLv4[i] != param.lv4) {
-        if (this.editModel.lv4 == '') {
+        if (this.editModel.lv4 == "") {
           this.editModel.lv4 = param.lv4;
-        }else{
-          this.editModel.lv4 = this.editModel.lv4 + ',' + param.lv4;
+        } else {
+          this.editModel.lv4 = this.editModel.lv4 + "," + param.lv4;
         }
       }
     }
-
   }
 
   // start select user
   async isAllSelected(param) {
     let status = await this.validateCategory(param);
-    if(status) {
-      this.itemSelected = await this.editModel.countUnit.every(function (item: any) {
+    if (status) {
+      this.itemSelected = await this.editModel.countUnit.every(function (
+        item: any
+      ) {
         return item.isSelected == true;
-      })
+      });
     }
     this.getCheckedItemList();
   }
 
   async checkUncheckAll() {
-    
     for (var i = 0; i < this.editModel.countUnit.length; i++) {
       let status = await this.validateCategory(i);
-      
-      if(status) {
+
+      if (status) {
         this.editModel.countUnit[i].isSelected = this.itemSelected;
-      }else{
+      } else {
         // TODO..
       }
     }
@@ -672,15 +706,20 @@ export class PartyMembersEditComponent implements OnInit {
     if (isDelete) {
       this.editModel.countUnit.splice(param, 1);
     } else {
-      this.toastr.warning('คุณไม่ได้รับสิทธิในการลบข้อมูลนี้', 'แจ้งเตือนระบบ', { timeOut: 1000 });
+      this.toastr.warning(
+        "คุณไม่ได้รับสิทธิในการลบข้อมูลนี้",
+        "แจ้งเตือนระบบ",
+        { timeOut: 1000 }
+      );
     }
   }
 
   deleteAll() {
+    const dialogRef = this.dialog.open(ConfirmDeleteDialog, {
+      disableClose: true,
+    });
 
-    const dialogRef = this.dialog.open(ConfirmDeleteDialog, { disableClose: true });
-
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
 
       if (result) {
@@ -688,8 +727,8 @@ export class PartyMembersEditComponent implements OnInit {
 
         this.itemSelectedList.forEach((e) => {
           this.editModel.countUnit.forEach((o, index) => {
-            if(e.titleLv0 == o.titleLv0)
-              this.editModel.countUnit.splice(index,1);
+            if (e.titleLv0 == o.titleLv0)
+              this.editModel.countUnit.splice(index, 1);
           });
         });
       }
@@ -704,8 +743,8 @@ export class PartyMembersEditComponent implements OnInit {
     let code0 = this.editModel.countUnit[param].lv0;
 
     // validate lv 4
-    if (code4 != '') {
-      let arrayCategoryLv4 = this.category.lv4.split(',');
+    if (code4 != "") {
+      let arrayCategoryLv4 = this.category.lv4.split(",");
 
       for (let i = 0; i < arrayCategoryLv4.length; i++) {
         if (arrayCategoryLv4[i] == code4) {
@@ -715,8 +754,8 @@ export class PartyMembersEditComponent implements OnInit {
     }
 
     // validate lv 3
-    if (this.category.lv3 != '' && code3 != '') {
-      let arrayCategoryLv3 = this.category.lv3.split(',');
+    if (this.category.lv3 != "" && code3 != "") {
+      let arrayCategoryLv3 = this.category.lv3.split(",");
       for (let i = 0; i < arrayCategoryLv3.length; i++) {
         if (arrayCategoryLv3[i] == code3) {
           return true;
@@ -725,8 +764,8 @@ export class PartyMembersEditComponent implements OnInit {
     }
 
     // validate lv 2
-    if (this.category.lv2 != '' && code2 != '') {
-      let arrayCategoryLv2 = this.category.lv2.split(',');
+    if (this.category.lv2 != "" && code2 != "") {
+      let arrayCategoryLv2 = this.category.lv2.split(",");
       for (let i = 0; i < arrayCategoryLv2.length; i++) {
         if (arrayCategoryLv2[i] == code2) {
           return true;
@@ -735,8 +774,8 @@ export class PartyMembersEditComponent implements OnInit {
     }
 
     // validate lv 1
-    if (this.category.lv1 != '' && code1 != '') {
-      let arrayCategoryLv1 = this.category.lv1.split(',');
+    if (this.category.lv1 != "" && code1 != "") {
+      let arrayCategoryLv1 = this.category.lv1.split(",");
       for (let i = 0; i < arrayCategoryLv1.length; i++) {
         if (arrayCategoryLv1[i] == code1) {
           return true;
@@ -745,8 +784,8 @@ export class PartyMembersEditComponent implements OnInit {
     }
 
     // validate lv 0
-    if (this.category.lv0 != '' && code0 != '') {
-      let arrayCategoryLv0 = this.category.lv0.split(',');
+    if (this.category.lv0 != "" && code0 != "") {
+      let arrayCategoryLv0 = this.category.lv0.split(",");
       for (let i = 0; i < arrayCategoryLv0.length; i++) {
         if (arrayCategoryLv0[i] == code0) {
           return true;
@@ -755,7 +794,6 @@ export class PartyMembersEditComponent implements OnInit {
     } else {
       return false;
     }
-
   }
 
   async checkStatus(status, index) {
@@ -764,111 +802,158 @@ export class PartyMembersEditComponent implements OnInit {
       this.editModel.countUnit[index].status = status;
       this.editModel.status = status;
       this.editModel.isActive = true;
-      this.toastr.success('ข้อมูลถูกตรวจสอบเรียบร้อยแล้ว', '', { timeOut: 1000 });
+      this.toastr.success("ข้อมูลถูกตรวจสอบเรียบร้อยแล้ว", "", {
+        timeOut: 1000,
+      });
     } else {
-      this.toastr.warning('คุณไม่ได้รับสิทธิในการยืนยันข้อมูลนี้', 'แจ้งเตือนระบบ', { timeOut: 1000 });
+      this.toastr.warning(
+        "คุณไม่ได้รับสิทธิในการยืนยันข้อมูลนี้",
+        "แจ้งเตือนระบบ",
+        { timeOut: 1000 }
+      );
     }
   }
 
   readCategory(lv) {
-
-    this.serviceProviderService.postByPass('organization/category/read', { category: lv }).subscribe(data => {
-      let model: any = {};
-      model = data;
-      this.lv0Category = [];
-      model.objectData.forEach(element => {
-        this.lv0Category.push({ value: element.code, display: element.title });
-      });
-    }, err => { });
-
+    this.serviceProviderService
+      .postByPass("organization/category/read", { category: lv })
+      .subscribe(
+        (data) => {
+          let model: any = {};
+          model = data;
+          this.lv0Category = [];
+          model.objectData.forEach((element) => {
+            this.lv0Category.push({
+              value: element.code,
+              display: element.title,
+            });
+          });
+        },
+        (err) => {}
+      );
   }
 
   readCategoryByLv(param, lv, param2) {
-
-    if (lv == 'lv0') {
+    if (lv == "lv0") {
       param2.lv0 = param;
-      this.serviceProviderService.postByPass('organization/category/read', { category: 'lv1', lv0: param }).subscribe(data => {
-        let model: any = {};
-        model = data;
-        param2.lv1Category = [];
+      this.serviceProviderService
+        .postByPass("organization/category/read", {
+          category: "lv1",
+          lv0: param,
+        })
+        .subscribe(
+          (data) => {
+            let model: any = {};
+            model = data;
+            param2.lv1Category = [];
 
-        if (param != '') // <----- ต้องดักไม่งั้น lv จะเลือกได้
-        {
-          model.objectData.forEach(element => {
-            param2.lv1Category.push({ value: element.code, display: element.title });
-          });
-        }
-
-      }, err => { });
-    }
-    else if (lv == 'lv1') {
+            if (param != "") {
+              // <----- ต้องดักไม่งั้น lv จะเลือกได้
+              model.objectData.forEach((element) => {
+                param2.lv1Category.push({
+                  value: element.code,
+                  display: element.title,
+                });
+              });
+            }
+          },
+          (err) => {}
+        );
+    } else if (lv == "lv1") {
       param2.lv1 = param;
-      this.serviceProviderService.postByPass('organization/category/read', { category: 'lv2', lv1: param }).subscribe(data => {
-        let model: any = {};
-        model = data;
-        param2.lv2Category = [];
+      this.serviceProviderService
+        .postByPass("organization/category/read", {
+          category: "lv2",
+          lv1: param,
+        })
+        .subscribe(
+          (data) => {
+            let model: any = {};
+            model = data;
+            param2.lv2Category = [];
 
-        if (param != '') // <----- ต้องดักไม่งั้น lv จะเลือกได้
-        {
-          model.objectData.forEach(element => {
-            param2.lv2Category.push({ value: element.code, display: element.title });
-          });
-        }
-
-      }, err => { });
-    }
-    else if (lv == 'lv2') {
+            if (param != "") {
+              // <----- ต้องดักไม่งั้น lv จะเลือกได้
+              model.objectData.forEach((element) => {
+                param2.lv2Category.push({
+                  value: element.code,
+                  display: element.title,
+                });
+              });
+            }
+          },
+          (err) => {}
+        );
+    } else if (lv == "lv2") {
       param2.lv2 = param;
-      this.serviceProviderService.postByPass('organization/category/read', { category: 'lv3', lv2: param }).subscribe(data => {
-        let model: any = {};
-        model = data;
-        param2.lv3Category = [];
+      this.serviceProviderService
+        .postByPass("organization/category/read", {
+          category: "lv3",
+          lv2: param,
+        })
+        .subscribe(
+          (data) => {
+            let model: any = {};
+            model = data;
+            param2.lv3Category = [];
 
-        if (param != '') // <----- ต้องดักไม่งั้น lv จะเลือกได้
-        {
-          model.objectData.forEach(element => {
-            param2.lv3Category.push({ value: element.code, display: element.title });
-          });
-        }
-
-      }, err => { });
-    }
-    else if (lv == 'lv3') {
+            if (param != "") {
+              // <----- ต้องดักไม่งั้น lv จะเลือกได้
+              model.objectData.forEach((element) => {
+                param2.lv3Category.push({
+                  value: element.code,
+                  display: element.title,
+                });
+              });
+            }
+          },
+          (err) => {}
+        );
+    } else if (lv == "lv3") {
       param2.lv3 = param;
-      this.serviceProviderService.postByPass('organization/category/read', { category: 'lv4', lv3: param }).subscribe(data => {
-        let model: any = {};
-        model = data;
-        param2.lv4Category = [];
+      this.serviceProviderService
+        .postByPass("organization/category/read", {
+          category: "lv4",
+          lv3: param,
+        })
+        .subscribe(
+          (data) => {
+            let model: any = {};
+            model = data;
+            param2.lv4Category = [];
 
-        if (param != '') // <----- ต้องดักไม่งั้น lv จะเลือกได้
-        {
-          model.objectData.forEach(element => {
-            param2.lv4Category.push({ value: element.code, display: element.title });
-          });
-        }
-
-      }, err => { });
-    }
-    else if (lv == 'lv4') {
+            if (param != "") {
+              // <----- ต้องดักไม่งั้น lv จะเลือกได้
+              model.objectData.forEach((element) => {
+                param2.lv4Category.push({
+                  value: element.code,
+                  display: element.title,
+                });
+              });
+            }
+          },
+          (err) => {}
+        );
+    } else if (lv == "lv4") {
       param2.lv4 = param;
     }
-
   }
 
   back() {
-    this.router.navigate(['party-members'], { skipLocationChange: true });
+    this.router.navigate(["party-members"], { skipLocationChange: true });
   }
 
 }
 
 @Component({
-  selector: 'confirm-delete-dialog',
-  templateUrl: 'confirm-delete-dialog.html',
+  selector: "confirm-delete-dialog",
+  templateUrl: "confirm-delete-dialog.html",
 })
 export class ConfirmDeleteDialog {
   constructor(
     public dialogRef: MatDialogRef<ConfirmDeleteDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
 
   cancel() {
     this.dialogRef.close(false);

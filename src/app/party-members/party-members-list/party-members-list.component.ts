@@ -63,7 +63,7 @@ export class PartyMembersListComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
 
       if (result) {
-        this.serviceProviderService.post('register/member/delete', { code: param.code }).subscribe(data => {
+        this.serviceProviderService.post('partyMembers/delete', { code: param.code }).subscribe(data => {
           this.toastr.success('ลบรายการเรียบร้อย', 'แจ้งเตือนระบบ', { timeOut: 2000 });
           this.messageInput.splice(idx, 1);
         }, err => {
@@ -92,7 +92,7 @@ export class PartyMembersListComponent implements OnInit {
           }
         })
 
-        this.serviceProviderService.post('register/member/delete', { code: model }).subscribe(data => {
+        this.serviceProviderService.post('partyMembers/delete', { code: model }).subscribe(data => {
           this.toastr.success('ลบรายการเรียบร้อย', 'แจ้งเตือนระบบ', { timeOut: 2000 });
           setTimeout(() => {
             window.location.reload()

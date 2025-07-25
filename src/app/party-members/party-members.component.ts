@@ -47,7 +47,7 @@ export class PartyMembersComponent implements OnInit {
     if (this.isAdvanceSearch)
       this.criteriaModel.keySearch = ''
 
-    this.serviceProviderService.post('register/member/read', this.criteriaModel).subscribe(data => {
+    this.serviceProviderService.post('partyMembers/read', this.criteriaModel).subscribe(data => {
       setTimeout(() => {
         let model: any = {};
         model = data;
