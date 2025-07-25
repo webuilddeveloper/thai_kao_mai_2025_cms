@@ -200,6 +200,11 @@ const routes: Routes = [
     path: "donate-details/:code",
     component: DonateDetailsComponent,
   },
+  { path: "donate-category", component: DonateComponent },
+  {
+    path: "donate-category-edit/:code",
+    component: DonateDetailsComponent,
+  },
 ];
 
 @NgModule({

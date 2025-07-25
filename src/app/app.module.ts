@@ -238,6 +238,12 @@ import { SuggestionListComponent } from "./suggestion/suggestion-list/suggestion
 import { SuggestionEditComponent } from "./suggestion/suggestion-edit/suggestion-edit.component";
 import { DonateComponent } from './donate/donate.component';
 import { DonateDetailsComponent } from './donate/donate-details/donate-details.component';
+import { DonateCriteriaComponent } from './donate/donate-criteria/donate-criteria.component';
+import { DonateListComponent } from './donate/donate-list/donate-list.component';
+import { DonateCategoryComponent } from './donate-category/donate-category.component';
+import { DonateCategoryCriteriaComponent } from './donate-category/donate-category-criteria/donate-category-criteria.component';
+import { DonateCategoryEditComponent } from './donate-category/donate-category-edit/donate-category-edit.component';
+import { DonateCategoryListComponent } from './donate-category/donate-category-list/donate-category-list.component';
 
 export const DateFormat = {
   display: {
@@ -444,6 +450,12 @@ export const DateFormat = {
     SuggestionCategoryEditComponent,
     DonateComponent,
     DonateDetailsComponent,
+    DonateCriteriaComponent,
+    DonateListComponent,
+    DonateCategoryComponent,
+    DonateCategoryCriteriaComponent,
+    DonateCategoryEditComponent,
+    DonateCategoryListComponent,
   ],
   imports: [
     BrowserModule,
