@@ -382,7 +382,7 @@ export class ApiProviderService {
     delete: "contentKeyword/delete",
   };
 
-   suggestion = {
+  suggestion = {
     create: "suggestion/create",
     read: "suggestion/read",
     update: "suggestion/update",
@@ -404,6 +404,31 @@ export class ApiProviderService {
       read: "suggestion/galleryFile/read",
       update: "suggestion/galleryFile/update",
       delete: "suggestion/galleryFile/delete",
+    },
+  };
+
+  partyExecutive = {
+    create: "partyExecutive/create",
+    read: "partyExecutive/read",
+    update: "partyExecutive/update",
+    delete: "partyExecutive/delete",
+    category: {
+      create: "partyExecutive/category/create",
+      read: "partyExecutive/category/read",
+      update: "partyExecutive/category/update",
+      delete: "partyExecutive/category/delete",
+    },
+    gallery: {
+      create: "partyExecutive/gallery/create",
+      read: "partyExecutive/gallery/read",
+      update: "partyExecutive/gallery/update",
+      delete: "partyExecutive/gallery/delete",
+    },
+    galleryFile: {
+      create: "partyExecutive/galleryFile/create",
+      read: "partyExecutive/galleryFile/read",
+      update: "partyExecutive/galleryFile/update",
+      delete: "partyExecutive/galleryFile/delete",
     },
   };
 

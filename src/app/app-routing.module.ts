@@ -83,6 +83,10 @@ import { SuggestionCategoryComponent } from "./suggestion-category/suggestion-ca
 import { SuggestionCategoryEditComponent } from "./suggestion-category/suggestion-category-edit/suggestion-category-edit.component";
 import { DonateComponent } from "./donate/donate.component";
 import { DonateDetailsComponent } from "./donate/donate-details/donate-details.component";
+import { PartyExecutiveComponent } from "./party-executive/party-executive.component";
+import { PartyExecutiveEditComponent } from "./party-executive/party-executive-edit/party-executive-edit.component";
+import { PartyExecutiveCategoryComponent } from "./party-executive-category/party-executive-category.component";
+import { PartyExecutiveCategoryEditComponent } from "./party-executive-category/party-executive-category-edit/party-executive-category-edit.component";
 
 const routes: Routes = [
   { path: "", component: DashboardComponent },
@@ -204,6 +208,18 @@ const routes: Routes = [
   {
     path: "donate-category-edit/:code",
     component: DonateDetailsComponent,
+  },
+
+
+  { path: "party-executive", component: PartyExecutiveComponent },
+  { path: "party-executive/:code", component: PartyExecutiveEditComponent },
+  {
+    path: "party-executive-category",
+    component: PartyExecutiveCategoryComponent,
+  },
+  {
+    path: "party-executive-category-edit/:code",
+    component: PartyExecutiveCategoryEditComponent,
   },
 ];
 

@@ -244,6 +244,14 @@ import { DonateCategoryComponent } from './donate-category/donate-category.compo
 import { DonateCategoryCriteriaComponent } from './donate-category/donate-category-criteria/donate-category-criteria.component';
 import { DonateCategoryEditComponent } from './donate-category/donate-category-edit/donate-category-edit.component';
 import { DonateCategoryListComponent } from './donate-category/donate-category-list/donate-category-list.component';
+import { PartyExecutiveComponent } from "./party-executive/party-executive.component";
+import { PartyExecutiveCriteriaComponent } from "./party-executive/party-executive-criteria/party-executive-criteria.component";
+import { PartyExecutiveListComponent } from "./party-executive/party-executive-list/party-executive-list.component";
+import { PartyExecutiveEditComponent } from "./party-executive/party-executive-edit/party-executive-edit.component";
+import { PartyExecutiveCategoryComponent } from "./party-executive-category/party-executive-category.component";
+import { PartyExecutiveCategoryCriteriaComponent } from "./party-executive-category/party-executive-category-criteria/party-executive-category-criteria.component";
+import { PartyExecutiveCategoryListComponent } from "./party-executive-category/party-executive-category-list/party-executive-category-list.component";
+import { PartyExecutiveCategoryEditComponent } from "./party-executive-category/party-executive-category-edit/party-executive-category-edit.component";
 
 export const DateFormat = {
   display: {
@@ -456,6 +464,14 @@ export const DateFormat = {
     DonateCategoryCriteriaComponent,
     DonateCategoryEditComponent,
     DonateCategoryListComponent,
+    PartyExecutiveComponent,
+    PartyExecutiveCriteriaComponent,
+    PartyExecutiveListComponent,
+    PartyExecutiveEditComponent,
+    PartyExecutiveCategoryComponent,
+    PartyExecutiveCategoryCriteriaComponent,
+    PartyExecutiveCategoryListComponent,
+    PartyExecutiveCategoryEditComponent,
   ],
   imports: [
     BrowserModule,
