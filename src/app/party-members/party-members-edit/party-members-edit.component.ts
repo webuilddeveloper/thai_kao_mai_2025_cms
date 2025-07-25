@@ -167,7 +167,7 @@ export class PartyMembersEditComponent implements OnInit {
     //   isValid = true;
     // }
 
-    if (this.editModel.image.length == 0) {
+    if (this.editModel?.image?.length == 0) {
       this.toastr.warning("กรุณาใส่รูปภาพ", "แจ้งเตือนระบบ", { timeOut: 2000 });
       isValid = true;
     }
@@ -477,13 +477,11 @@ export class PartyMembersEditComponent implements OnInit {
     //   isValid = true;
     // }
 
-    if ((this.editModel.imageUrl ?? "") == "") {
-      if (this.editModel.image.length == 0) {
-        this.toastr.warning("กรุณาใส่รูปภาพ", "แจ้งเตือนระบบ", {
-          timeOut: 2000,
-        });
-        isValid = true;
-      }
+    if (this.editModel?.image?.length == 0) {
+      this.toastr.warning("กรุณาใส่รูปภาพ", "แจ้งเตือนระบบ", {
+        timeOut: 2000,
+      });
+      isValid = true;
     }
 
     if (isValid) return;
