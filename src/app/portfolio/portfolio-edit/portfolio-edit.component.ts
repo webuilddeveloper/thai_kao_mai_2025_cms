@@ -226,7 +226,6 @@ export class PortfolioEditComponent implements OnInit {
     }
   
     update() {
-      debugger
       if (this.editModel.image != undefined)
         this.editModel.imageUrl = this.editModel.image[0].imageUrl;
   

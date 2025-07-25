@@ -112,7 +112,6 @@ export class PolicyPartyEditComponent implements OnInit {
         this.hiddenBtnComment = true; // ปิดปุ่ม comment ตอน create
       }
     });
-
   }
 
   create() {
@@ -223,7 +222,6 @@ export class PolicyPartyEditComponent implements OnInit {
   }
 
   update() {
-    debugger
     if (this.editModel.image != undefined)
       this.editModel.imageUrl = this.editModel.image[0].imageUrl;
 

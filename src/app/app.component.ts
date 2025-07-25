@@ -420,11 +420,11 @@ export class AppComponent {
       },
       {
         name: "หมวดหมู่ปฏิทินกิจกรรม",
-        routing: "/policy-party-category",
+        routing: "/event-category",
         data: "",
         type: "N",
         isActive: false,
-        isShow: this.category.policyPartyCategoryPage,
+        isShow: this.category.eventCategoryPage,
       },
       {
         name: "หมวดหมู่นโยบายพรรค",

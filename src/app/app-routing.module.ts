@@ -71,6 +71,10 @@ import { PolicyPartyCategoryComponent } from "./policy-party-category/policy-par
 import { PolicyPartyCategoryEditComponent } from "./policy-party-category/policy-party-category-edit/policy-party-category-edit.component";
 import { PartyMembersComponent } from "./party-members/party-members.component";
 import { PartyMembersEditComponent } from "./party-members/party-members-edit/party-members-edit.component";
+import { EventComponent } from "./event/event.component";
+import { EventEditComponent } from "./event/event-edit/event-edit.component";
+import { EventCategoryComponent } from "./event-category/event-category.component";
+import { EventCategoryEditComponent } from "./event-category/event-category-edit/event-category-edit.component";
 
 const routes: Routes = [
   { path: "", component: DashboardComponent },
@@ -168,6 +172,10 @@ const routes: Routes = [
 
   { path: "party-members", component: PartyMembersComponent },
   { path: "party-members-edit/:code", component: PartyMembersEditComponent },
+  { path: "event", component: EventComponent },
+  { path: "event-edit/:code", component: EventEditComponent },
+  { path: "event-category", component: EventCategoryComponent },
+  { path: "event-category-edit/:code", component: EventCategoryEditComponent },
 ];
 
 @NgModule({

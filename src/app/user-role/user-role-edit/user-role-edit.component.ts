@@ -629,11 +629,11 @@ export class UserRoleEditComponent implements OnInit {
     await this.eventCategory.forEach((element) => {
       if (
         this.messageInput.findIndex(
-          (item) => item.category == element.value && item.page == "กิจกรรม"
+          (item) => item.category == element.value && item.page == "ปฏิทินกิจกรรม"
         ) === -1
       ) {
         this.messageInput.splice(0, 0, {
-          page: "กิจกรรม",
+          page: "ปฏิทินกิจกรรม",
           category: element.value,
           title: element.display,
           eventPage: true,
@@ -650,11 +650,11 @@ export class UserRoleEditComponent implements OnInit {
     await this.policyPartyCategory.forEach((element) => {
       if (
         this.messageInput.findIndex(
-          (item) => item.category == element.value && item.page == "กิจกรรม"
+          (item) => item.category == element.value && item.page == "นโยบาย"
         ) === -1
       ) {
         this.messageInput.splice(0, 0, {
-          page: "กิจกรรม",
+          page: "นโยบาย",
           category: element.value,
           title: element.display,
           policyPartyPage: true,

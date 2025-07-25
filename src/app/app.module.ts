@@ -212,18 +212,18 @@ import { PolicyPartyCategoryComponent } from './policy-party-category/policy-par
 import { PolicyPartyCategoryListComponent } from './policy-party-category/policy-party-category-list/policy-party-category-list.component';
 import { PolicyPartyCategoryEditComponent } from './policy-party-category/policy-party-category-edit/policy-party-category-edit.component';
 import { PolicyPartyCategoryCriteriaComponent } from './policy-party-category/policy-party-category-criteria/policy-party-category-criteria.component';
-import { EventCalendarComponent } from './event-calendar/event-calendar.component';
-import { EventCalendarCriteriaComponent } from './event-calendar/event-calendar-criteria/event-calendar-criteria.component';
-import { EventCalendarEditComponent } from './event-calendar/event-calendar-edit/event-calendar-edit.component';
-import { EventCalendarListComponent } from './event-calendar/event-calendar-list/event-calendar-list.component';
-import { EventCalendarCategoryComponent } from './event-calendar-category/event-calendar-category.component';
-import { EventCalendarCategoryListComponent } from './event-calendar-category/event-calendar-category-list/event-calendar-category-list.component';
-import { EventCalendarCategoryCriteriaComponent } from './event-calendar-category/event-calendar-category-criteria/event-calendar-category-criteria.component';
-import { EventCalendarCategoryEditComponent } from './event-calendar-category/event-calendar-category-edit/event-calendar-category-edit.component';
 import { PartyMembersComponent } from "./party-members/party-members.component";
 import { PartyMembersCriteriaComponent } from "./party-members/party-members-criteria/party-members-criteria.component";
 import { PartyMembersEditComponent } from "./party-members/party-members-edit/party-members-edit.component";
 import { PartyMembersListComponent } from "./party-members/party-members-list/party-members-list.component";
+import { EventCategoryComponent } from './event-category/event-category.component';
+import { EventComponent } from './event/event.component';
+import { EventCriteriaComponent } from './event/event-criteria/event-criteria.component';
+import { EventListComponent } from './event/event-list/event-list.component';
+import { EventEditComponent } from './event/event-edit/event-edit.component';
+import { EventCategoryListComponent } from './event-category/event-category-list/event-category-list.component';
+import { EventCategoryEditComponent } from './event-category/event-category-edit/event-category-edit.component';
+import { EventCategoryCriteriaComponent } from './event-category/event-category-criteria/event-category-criteria.component';
 
 export const DateFormat = {
   display: {
@@ -404,18 +404,18 @@ export const DateFormat = {
     PolicyPartyCategoryListComponent,
     PolicyPartyCategoryEditComponent,
     PolicyPartyCategoryCriteriaComponent,
-    EventCalendarComponent,
-    EventCalendarCriteriaComponent,
-    EventCalendarEditComponent,
-    EventCalendarListComponent,
-    EventCalendarCategoryComponent,
-    EventCalendarCategoryListComponent,
-    EventCalendarCategoryCriteriaComponent,
-    EventCalendarCategoryEditComponent,
     PartyMembersComponent,
     PartyMembersCriteriaComponent,
     PartyMembersEditComponent,
     PartyMembersListComponent,
+    EventCategoryComponent,
+    EventComponent,
+    EventCriteriaComponent,
+    EventListComponent,
+    EventEditComponent,
+    EventCategoryListComponent,
+    EventCategoryEditComponent,
+    EventCategoryCriteriaComponent,
   ],
   imports: [
     BrowserModule,

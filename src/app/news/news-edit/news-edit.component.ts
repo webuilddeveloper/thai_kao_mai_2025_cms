@@ -117,7 +117,7 @@ export class NewsEditComponent implements OnInit {
         this.readCategory(this.editModel.language);
         this.hiddenBtnComment = true; // ปิดปุ่ม comment ตอน create
       }
-    });
+    });    
   }
 
   create() {

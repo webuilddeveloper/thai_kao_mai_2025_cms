@@ -57,7 +57,6 @@ export class AboutUsComponent implements OnInit {
         isValid = true;
       }
     }
-    debugger;
 
     if (isValid)
       return;

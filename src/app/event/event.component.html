@@ -1,0 +1,13 @@
+<h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>ปฏิทินกิจกรรม</span></h5>
+<ol class="breadcrumbs mb-0">
+    <li class="breadcrumb-item"><a href="javascript:void(0)">เมนูหลัก</a>
+    </li>
+    <li class="breadcrumb-item active">ปฏิทินกิจกรรม
+    </li>
+</ol>
+<br>
+<br>
+
+<!-- {{paginationModel.totalItems}} -->
+<app-event-criteria [paginationModel]="paginationModel" (messageToEmit)="getMessageCriteria($event)"></app-event-criteria>
+<app-event-list [paginationModel]="paginationModel" [criteriaModel]="criteriaModel" [messageInput]="listModel" (messageToEmit)="getMessageList($event)"></app-event-list>
