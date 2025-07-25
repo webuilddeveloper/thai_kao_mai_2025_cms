@@ -56,15 +56,15 @@ export class PartyExecutiveListComponent implements OnInit {
   }
 
   create() {
-    this.router.navigate(['partyExecutive-edit', ''], { skipLocationChange: true });
+    this.router.navigate(['party-executive-edit', ''], { skipLocationChange: true });
   }
 
   view(param) {
-    this.router.navigate(['partyExecutive-edit', param], { skipLocationChange: true });
+    this.router.navigate(['party-executive-edit', param], { skipLocationChange: true });
   }
 
   edit(param) {
-    this.router.navigate(['partyExecutive-edit', param], { skipLocationChange: true });
+    this.router.navigate(['party-executive-edit', param], { skipLocationChange: true });
   }
 
   delete(param, idx) {

@@ -100,7 +100,8 @@ export class PartyExecutiveEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.permission = this.permissionService.readPermission("partyExecutivePage");
+    this.permission =
+      this.permissionService.readPermission("partyExecutivePage");
     this.permissionList =
       this.permissionService.readLocalStorage("partyExecutivePage");
     this.organization = this.permissionService.readLocalStorage("organization");
@@ -123,7 +124,8 @@ export class PartyExecutiveEditComponent implements OnInit {
 
   create() {
     this.spinner.show();
-
+    if (this.editModel?.image.length > 0)
+      this.editModel.imageUrl = this.editModel.image[0].imageUrl;
     this.serviceProviderService.post(this.url.create, this.editModel).subscribe(
       (data) => {
         let model: any = {};
@@ -198,51 +200,10 @@ export class PartyExecutiveEditComponent implements OnInit {
 
   update() {
     this.spinner.show();
+    if (this.editModel?.image?.length > 0)
+      this.editModel.imageUrl = this.editModel.image[0].imageUrl;
     this.serviceProviderService.post(this.url.update, this.editModel).subscribe(
       (data) => {
-        this.serviceProviderService
-          .post(this.url.gallery.delete, this.editModel)
-          .subscribe(
-            (data) => {
-              if (this.editModel?.gallery?.length > 0) {
-                this.editModel.gallery.forEach((element) => {
-                  // element.code = this.editModel.code; //เพิ่ม set active false ทั้วหมด
-                  element.reference = this.editModel.code;
-                  element.imageUrl = element.imageUrl;
-                  this.serviceProviderService
-                    .post(this.url.gallery.create, element)
-                    .subscribe(
-                      (data) => {},
-                      (err) => {}
-                    );
-                });
-              }
-            },
-            (err) => {}
-          );
-
-        this.serviceProviderService
-          .post(this.url.galleryFile.delete, this.editModel)
-          .subscribe(
-            (data) => {
-              if (this.editModel?.galleryFile?.length > 0) {
-                this.editModel.galleryFile.forEach((element) => {
-                  // element.code = this.editModel.code; //เพิ่ม set active false ทั้วหมด
-                  element.reference = this.editModel.code;
-                  element.imageUrl = element.imageUrl;
-                  element.type = element.type;
-                  element.title = element.title;
-                  this.serviceProviderService
-                    .post(this.url.galleryFile.create, element)
-                    .subscribe(
-                      (data) => {},
-                      (err) => {}
-                    );
-                });
-              }
-            },
-            (err) => {}
-          );
 
         this.isSaveSuccess = true;
         this.spinner.hide();
@@ -423,7 +384,7 @@ export class PartyExecutiveEditComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(["partyExecutive"], { skipLocationChange: true });
+    this.router.navigate(["party-executive"], { skipLocationChange: true });
   }
 
   drop(event: CdkDragDrop<string[]>) {

@@ -74,17 +74,36 @@
                             </div>
 
                             <div class="col s6">
-                                <citxt (cModel)="editModel.email = $event" [label]="'อีเมล : '"
-                                    [data]="editModel.email || ''">
-                                </citxt>
+
                             </div>
                         </div>
 
                         <div class="row">
+                            <div class="col s6">
+                                <citxt (cModel)="editModel.title = $event" [label]="'หัวข้อ : '"
+                                    [data]="editModel.title || ''">
+                                </citxt>
+                            </div>
+                            <div class="col s6"></div>
+                        </div>
+
+                        <div class="row">
                             <div class="col s12">
-                                <ctxta (cModel)="editModel.description = $event" [label]="'ข้อเสนอแนะ/ข้อแนะนำ : '"
-                                    [data]="editModel.description || ''">
-                                </ctxta>
+                                <div class="col s6">
+                                    <div class="col s12">
+                                        <phe (cModel)="editModel.image = $event"
+                                            [label]="'* รูปภาพ (คลิกเลือกภาพ/ลากวางภาพที่นี่)'"
+                                            [data]="[{ imageUrl: this.editModel.imageUrl || '' }]" [code]="'news'">
+                                        </phe>
+
+                                    </div>
+                                    <div class="col s12" style="color: red;">
+                                        <span>*ขนาดรูปภาพแนะนำ 120 x 600 px</span>
+                                    </div>
+                                    <div class="col s12" style="color: red;">
+                                        <span>*Maximum 10 MB</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
