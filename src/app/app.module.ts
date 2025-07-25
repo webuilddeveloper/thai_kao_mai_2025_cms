@@ -224,6 +224,10 @@ import { PartyMembersComponent } from "./party-members/party-members.component";
 import { PartyMembersCriteriaComponent } from "./party-members/party-members-criteria/party-members-criteria.component";
 import { PartyMembersEditComponent } from "./party-members/party-members-edit/party-members-edit.component";
 import { PartyMembersListComponent } from "./party-members/party-members-list/party-members-list.component";
+import { PartyFanClubComponent } from "./party-fan-club/party-fan-club.component";
+import { PartyFanClubCriteriaComponent } from "./party-fan-club/party-fan-club-criteria/party-fan-club-criteria.component";
+import { PartyFanClubEditComponent } from "./party-fan-club/party-fan-club-edit/party-fan-club-edit.component";
+import { PartyFanClubListComponent } from "./party-fan-club/party-fan-club-list/party-fan-club-list.component";
 
 export const DateFormat = {
   display: {
@@ -416,6 +420,10 @@ export const DateFormat = {
     PartyMembersCriteriaComponent,
     PartyMembersEditComponent,
     PartyMembersListComponent,
+    PartyFanClubComponent,
+    PartyFanClubCriteriaComponent,
+    PartyFanClubEditComponent,
+    PartyFanClubListComponent,
   ],
   imports: [
     BrowserModule,
