@@ -19,16 +19,16 @@ import { Router, ActivatedRoute } from "@angular/router";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 @Component({
-  selector: "app-party-members-edit",
-  templateUrl: "./party-members-edit.component.html",
-  styleUrls: ["./party-members-edit.component.css"],
+  selector: "app-party-fan-club-edit",
+  templateUrl: "./party-fan-club-edit.component.html",
+  styleUrls: ["./party-fan-club-edit.component.css"],
 })
-export class PartyMembersEditComponent implements OnInit {
+export class PartyFanClubEditComponent implements OnInit {
   Editor = ClassicEditor;
   listCategory: any = [];
   editModel: any = { status: "N" };
   code: any;
-  title = "เพิ่มข้อมูลสมาชิกพรรค";
+  title = "เพิ่มข้อมูลแฟนคลับพรรค";
   category: any;
   permission: any;
   permissionList: any;
@@ -139,7 +139,7 @@ export class PartyMembersEditComponent implements OnInit {
       this.readCategoryProvince();
       // this.readCategory();
       if (this.code != "") {
-        this.title = "แก้ไขข้อมูลสมาชิกพรรค";
+        this.title = "แก้ไขข้อมูลแฟนคลับพรรค";
         this.read();
       }
     });
@@ -167,62 +167,48 @@ export class PartyMembersEditComponent implements OnInit {
     //   isValid = true;
     // }
 
-    if (this.editModel.image.length == 0) {
-      this.toastr.warning("กรุณาใส่รูปภาพ", "แจ้งเตือนระบบ", { timeOut: 2000 });
-      isValid = true;
-    }
+    // if (this.editModel.image.length == 0) {
+    //   this.toastr.warning("กรุณาใส่รูปภาพ", "แจ้งเตือนระบบ", { timeOut: 2000 });
+    //   isValid = true;
+    // }
 
     if (isValid) return;
 
-    this.editModel.province = this.listCategoryProvince.find(
-      (f) => f.value == this.editModel.provinceCode
-    ).display;
-    this.editModel.amphoe = this.listCategoryDistrict.find(
-      (f) => f.value == this.editModel.amphoeCode
-    ).display;
-    this.editModel.tambon = this.listCategoryTambon.find(
-      (f) => f.value == this.editModel.tambonCode
-    ).display;
+    // this.editModel.province = this.listCategoryProvince.find(
+    //   (f) => f.value == this.editModel.provinceCode
+    // ).display;
+    // this.editModel.amphoe = this.listCategoryDistrict.find(
+    //   (f) => f.value == this.editModel.amphoeCode
+    // ).display;
+    // this.editModel.tambon = this.listCategoryTambon.find(
+    //   (f) => f.value == this.editModel.tambonCode
+    // ).display;
+    // this.editModel.imageUrl = this.editModel.image[0].imageUrl;
+    // this.editModel.imageIdCardUrl = this.editModel.imageIdCard[0].imageUrl;
+    // this.editModel.imagePaymentUrl = this.editModel.imagePayment[0].imageUrl;
+    this.serviceProviderService.post('partyFanClub/create', this.editModel).subscribe(data => {
 
-    if (this.editModel.image !== undefined) {
-      this.editModel.imageUrl = this.editModel.image[0].imageUrl;
-    }
+      let model: any = {};
+      model = data;
 
-    if (this.editModel.imageIdCard !== undefined) {
-      this.editModel.imageIdCardUrl = this.editModel.imageIdCard[0].imageUrl;
-    }
+      this.isSaveSuccess = true;
+      this.spinner.hide();
+      this.toastr.success('บันทึกข้อมูลสำเร็จ', 'แจ้งเตือนระบบ', { timeOut: 2000 });
 
-    if (this.editModel.imagePayment !== undefined) {
-      this.editModel.imagePaymentUrl = this.editModel.imagePayment[0].imageUrl;
-    }
-    this.serviceProviderService
-      .post("partyMembers/create", this.editModel)
-      .subscribe(
-        (data) => {
-          let model: any = {};
-          model = data;
+      setTimeout(() => {
+        this.back();
+      }, 2000);
 
-          this.isSaveSuccess = true;
-          this.spinner.hide();
-          this.toastr.success("บันทึกข้อมูลสำเร็จ", "แจ้งเตือนระบบ", {
-            timeOut: 2000,
-          });
-
-          setTimeout(() => {
-            this.back();
-          }, 2000);
-        },
-        (err) => {
-          this.spinner.hide();
-          this.toastr.error(err.message, "แจ้งเตือนระบบ", { timeOut: 2000 });
-        }
-      );
+    }, err => {
+      this.spinner.hide();
+      this.toastr.error(err.message, 'แจ้งเตือนระบบ', { timeOut: 2000 });
+    });
   }
 
   read() {
     console.log("code :: ", this.code);
     this.serviceProviderService
-      .post("partyMembers/read", { code: this.code })
+      .post("partyFanClub/read", { code: this.code })
       .subscribe(
         (data) => {
           let model: any = {};
@@ -470,48 +456,16 @@ export class PartyMembersEditComponent implements OnInit {
     //   isValid = true;
     // }
 
-    // if (this.editModel.password == "") {
-    //   this.toastr.warning("กรุณาใส่รหัสผ่าน", "แจ้งเตือนระบบ", {
-    //     timeOut: 2000,
-    //   });
-    //   isValid = true;
+    if (isValid) {
+      return;
+    }
+
+    // if (this.editModel.image !== undefined) {
+    //   this.editModel.imageUrl = this.editModel.image[0].imageUrl;
     // }
 
-    if ((this.editModel.imageUrl ?? "") == "") {
-      if (this.editModel.image.length == 0) {
-        this.toastr.warning("กรุณาใส่รูปภาพ", "แจ้งเตือนระบบ", {
-          timeOut: 2000,
-        });
-        isValid = true;
-      }
-    }
-
-    if (isValid) return;
-
-    this.editModel.province = this.listCategoryProvince.find(
-      (f) => f.value == this.editModel.provinceCode
-    ).display;
-    this.editModel.amphoe = this.listCategoryDistrict.find(
-      (f) => f.value == this.editModel.amphoeCode
-    ).display;
-    this.editModel.tambon = this.listCategoryTambon.find(
-      (f) => f.value == this.editModel.tambonCode
-    ).display;
-
-    if (this.editModel.image !== undefined) {
-      this.editModel.imageUrl = this.editModel.image[0].imageUrl;
-    }
-
-    if (this.editModel.imageIdCard !== undefined) {
-      this.editModel.imageIdCardUrl = this.editModel.imageIdCard[0].imageUrl;
-    }
-
-    if (this.editModel.imagePayment !== undefined) {
-      this.editModel.imagePaymentUrl = this.editModel.imagePayment[0].imageUrl;
-    }
-
     this.serviceProviderService
-      .post("partyMembers/update", this.editModel)
+      .post("partyFanClub/update", this.editModel)
       .subscribe(
         (data) => {
           this.isSaveSuccess = true;
@@ -532,7 +486,7 @@ export class PartyMembersEditComponent implements OnInit {
   }
 
   // readCategory() {
-  //   this.serviceProviderService.post('partyMembers/category/read', {}).subscribe(data => {
+  //   this.serviceProviderService.post('partyFanClub/category/read', {}).subscribe(data => {
   //     let model: any = {};
   //     model = data;
   //     this.listCategory = [];
@@ -909,8 +863,9 @@ export class PartyMembersEditComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(["party-members"], { skipLocationChange: true });
+    this.router.navigate(["party-fan-club"], { skipLocationChange: true });
   }
+
 }
 
 @Component({

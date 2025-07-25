@@ -5,11 +5,11 @@ import { Component, OnInit, Input, Output, EventEmitter, KeyValueDiffer, KeyValu
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-party-members',
-  templateUrl: './party-members.component.html',
-  styleUrls: ['./party-members.component.css']
+  selector: 'app-party-fan-club',
+  templateUrl: './party-fan-club.component.html',
+  styleUrls: ['./party-fan-club.component.css']
 })
-export class PartyMembersComponent implements OnInit {
+export class PartyFanClubComponent implements OnInit {
   constructor(public dialog: MatDialog
             , private serviceProviderService: ServiceProviderService
             , private spinner: NgxSpinnerService
@@ -47,7 +47,7 @@ export class PartyMembersComponent implements OnInit {
     if (this.isAdvanceSearch)
       this.criteriaModel.keySearch = ''
 
-    this.serviceProviderService.post('partyMembers/read', this.criteriaModel).subscribe(data => {
+    this.serviceProviderService.post('partyFanClub/read', this.criteriaModel).subscribe(data => {
       setTimeout(() => {
         let model: any = {};
         model = data;

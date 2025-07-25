@@ -382,5 +382,30 @@ export class ApiProviderService {
     delete: "contentKeyword/delete",
   };
 
+   suggestion = {
+    create: "suggestion/create",
+    read: "suggestion/read",
+    update: "suggestion/update",
+    delete: "suggestion/delete",
+    category: {
+      create: "suggestion/category/create",
+      read: "suggestion/category/read",
+      update: "suggestion/category/update",
+      delete: "suggestion/category/delete",
+    },
+    gallery: {
+      create: "suggestion/gallery/create",
+      read: "suggestion/gallery/read",
+      update: "suggestion/gallery/update",
+      delete: "suggestion/gallery/delete",
+    },
+    galleryFile: {
+      create: "suggestion/galleryFile/create",
+      read: "suggestion/galleryFile/read",
+      update: "suggestion/galleryFile/update",
+      delete: "suggestion/galleryFile/delete",
+    },
+  };
+
   constructor() {}
 }

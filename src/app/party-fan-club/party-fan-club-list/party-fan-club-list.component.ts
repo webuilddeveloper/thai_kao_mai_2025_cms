@@ -8,11 +8,11 @@ import * as moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
-  selector: 'app-party-members-list',
-  templateUrl: './party-members-list.component.html',
-  styleUrls: ['./party-members-list.component.css']
+  selector: 'app-party-fan-club-list',
+  templateUrl: './party-fan-club-list.component.html',
+  styleUrls: ['./party-fan-club-list.component.css']
 })
-export class PartyMembersListComponent implements OnInit {
+export class PartyFanClubListComponent implements OnInit {
 
   @Input() messageInput: any = [];
   @Output() messageToEmit = new EventEmitter<any>();
@@ -45,15 +45,15 @@ export class PartyMembersListComponent implements OnInit {
   }
 
   create() {
-    this.router.navigate(['party-members-edit', ''], { skipLocationChange: true });
+    this.router.navigate(['party-fan-club-edit', ''], { skipLocationChange: true });
   }
 
   view(param) {
-    this.router.navigate(['party-members-edit', param], { skipLocationChange: true });
+    this.router.navigate(['party-fan-club-edit', param], { skipLocationChange: true });
   }
 
   edit(param) {
-    this.router.navigate(['party-members-edit', param], { skipLocationChange: true });
+    this.router.navigate(['party-fan-club-edit', param], { skipLocationChange: true });
   }
 
   delete(param, idx) {
@@ -63,7 +63,7 @@ export class PartyMembersListComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
 
       if (result) {
-        this.serviceProviderService.post('partyMembers/delete', { code: param.code }).subscribe(data => {
+        this.serviceProviderService.post('partyFanClub/delete', { code: param.code }).subscribe(data => {
           this.toastr.success('ลบรายการเรียบร้อย', 'แจ้งเตือนระบบ', { timeOut: 2000 });
           this.messageInput.splice(idx, 1);
         }, err => {
@@ -92,7 +92,7 @@ export class PartyMembersListComponent implements OnInit {
           }
         })
 
-        this.serviceProviderService.post('partyMembers/delete', { code: model }).subscribe(data => {
+        this.serviceProviderService.post('partyFanClub/delete', { code: model }).subscribe(data => {
           this.toastr.success('ลบรายการเรียบร้อย', 'แจ้งเตือนระบบ', { timeOut: 2000 });
           setTimeout(() => {
             window.location.reload()
@@ -129,16 +129,15 @@ export class PartyMembersListComponent implements OnInit {
   // start select user
   async isAllSelected(param, param2) {
     if (this.category.deleteAction) {
-      // this.itemSelected = await this.messageInput.every(function (item: any) {
-      //   return item.isSelected == true;
-      // })
+      this.itemSelected = await this.messageInput.every(function (item: any) {
+        return item.isSelected == true;
+      })
     }
     this.getCheckedItemList();
   }
 
   async checkUncheckAll() {
     if (this.category.deleteAction) {
-      this.itemSelected = !this.itemSelected;
       for (var i = 0; i < this.messageInput.length; i++) {
 
         this.messageInput[i].isSelected = this.itemSelected;

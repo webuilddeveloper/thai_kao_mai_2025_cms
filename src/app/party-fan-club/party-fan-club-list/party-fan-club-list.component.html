@@ -43,7 +43,6 @@
                 [data]="searchModel.keySearch"></citxt>
             </div>
 
-
           </div>
 
           <div style="overflow-x:auto;">
@@ -64,10 +63,10 @@
                   <th>ลำดับ</th>
                   <th>จัดการ</th>
                   <th>สถานะ</th>
-                  <th>รูปภาพ</th>
+                  <!-- <th>รูปภาพ</th> -->
                   <th>ชื่อ</th>
                   <th>นามสกุล</th>
-                  <th>รูปแบบการเป็นสมาชิก</th>
+                  <!-- <th>รูปแบบการเป็นสมาชิก</th> -->
                   <th>อัพเดทวันที่</th>
                   <th>อัพเดทโดย</th>
                 </tr>
@@ -107,11 +106,11 @@
                       </span>
                     </div>
                   </td>
-                  <td>
+                  <!-- <td>
                     <div class="w150">
                       <img src="{{i.imageUrl}}" height="75" width="75">
                     </div>
-                  </td>
+                  </td> -->
                   <td>
                     <div class="w150">
                       <a href="javascript:void(0)">{{i.firstName}}</a>
@@ -122,11 +121,11 @@
                       <a href="javascript:void(0)">{{i.lastName}}</a>
                     </div>
                   </td>
-                  <td>
+                  <!-- <td>
                     <div class="w150">
                       {{i.membershipType === 'monthly' ? 'รายเดือน':'รายปี'}}
                     </div>
-                  </td>
+                  </td> -->
                   <td>
                     <div class="w150">
                       {{i.updateDate | datetimeFormat}}

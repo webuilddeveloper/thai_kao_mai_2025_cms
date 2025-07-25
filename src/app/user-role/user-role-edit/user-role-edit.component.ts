@@ -525,7 +525,7 @@ export class UserRoleEditComponent implements OnInit {
           let model: any = {};
           model = data;
           model.objectData.forEach((element) => {
-            this.eventCategory.push({
+            this.partyExecutiveCategory.push({
               value: element.code,
               display: element.title,
             });
@@ -544,7 +544,7 @@ export class UserRoleEditComponent implements OnInit {
           let model: any = {};
           model = data;
           model.objectData.forEach((element) => {
-            this.eventCategory.push({
+            this.suggestionCategory.push({
               value: element.code,
               display: element.title,
             });
@@ -561,7 +561,7 @@ export class UserRoleEditComponent implements OnInit {
         let model: any = {};
         model = data;
         model.objectData.forEach((element) => {
-          this.eventCategory.push({
+          this.donateCategory.push({
             value: element.code,
             display: element.title,
           });
@@ -650,11 +650,11 @@ export class UserRoleEditComponent implements OnInit {
     await this.policyPartyCategory.forEach((element) => {
       if (
         this.messageInput.findIndex(
-          (item) => item.category == element.value && item.page == "นโยบาย"
+          (item) => item.category == element.value && item.page == "นโยบายพรรค"
         ) === -1
       ) {
         this.messageInput.splice(0, 0, {
-          page: "นโยบาย",
+          page: "นโยบายพรรค",
           category: element.value,
           title: element.display,
           policyPartyPage: true,
@@ -671,11 +671,11 @@ export class UserRoleEditComponent implements OnInit {
     await this.partyExecutiveCategory.forEach((element) => {
       if (
         this.messageInput.findIndex(
-          (item) => item.category == element.value && item.page == "กิจกรรม"
+          (item) => item.category == element.value && item.page == "กรรมการบริหารพรรค"
         ) === -1
       ) {
         this.messageInput.splice(0, 0, {
-          page: "กิจกรรม",
+          page: "กรรมการบริหารพรรค",
           category: element.value,
           title: element.display,
           partyExecutivePage: true,
@@ -692,11 +692,11 @@ export class UserRoleEditComponent implements OnInit {
     await this.suggestionCategory.forEach((element) => {
       if (
         this.messageInput.findIndex(
-          (item) => item.category == element.value && item.page == "กิจกรรม"
+          (item) => item.category == element.value && item.page == "ข้อเสนอแนะ/ข้อแนะนำ"
         ) === -1
       ) {
         this.messageInput.splice(0, 0, {
-          page: "กิจกรรม",
+          page: "ข้อเสนอแนะ/ข้อแนะนำ",
           category: element.value,
           title: element.display,
           suggestionPage: true,
@@ -713,11 +713,11 @@ export class UserRoleEditComponent implements OnInit {
     await this.donateCategory.forEach((element) => {
       if (
         this.messageInput.findIndex(
-          (item) => item.category == element.value && item.page == "กิจกรรม"
+          (item) => item.category == element.value && item.page == "บริจาค"
         ) === -1
       ) {
         this.messageInput.splice(0, 0, {
-          page: "กิจกรรม",
+          page: "บริจาค",
           category: element.value,
           title: element.display,
           donatePage: true,

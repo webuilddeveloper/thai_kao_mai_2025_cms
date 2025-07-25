@@ -75,6 +75,12 @@ import { EventComponent } from "./event/event.component";
 import { EventEditComponent } from "./event/event-edit/event-edit.component";
 import { EventCategoryComponent } from "./event-category/event-category.component";
 import { EventCategoryEditComponent } from "./event-category/event-category-edit/event-category-edit.component";
+import { PartyFanClubEditComponent } from "./party-fan-club/party-fan-club-edit/party-fan-club-edit.component";
+import { PartyFanClubComponent } from "./party-fan-club/party-fan-club.component";
+import { SuggestionComponent } from "./suggestion/suggestion.component";
+import { SuggestionEditComponent } from "./suggestion/suggestion-edit/suggestion-edit.component";
+import { SuggestionCategoryComponent } from "./suggestion-category/suggestion-category.component";
+import { SuggestionCategoryEditComponent } from "./suggestion-category/suggestion-category-edit/suggestion-category-edit.component";
 
 const routes: Routes = [
   { path: "", component: DashboardComponent },
@@ -176,6 +182,17 @@ const routes: Routes = [
   { path: "event-edit/:code", component: EventEditComponent },
   { path: "event-category", component: EventCategoryComponent },
   { path: "event-category-edit/:code", component: EventCategoryEditComponent },
+
+  { path: "party-fan-club", component: PartyFanClubComponent },
+  { path: "party-fan-club-edit/:code", component: PartyFanClubEditComponent },
+
+  { path: "suggestion", component: SuggestionComponent },
+  { path: "suggestion-edit/:code", component: SuggestionEditComponent },
+  { path: "suggestion-category", component: SuggestionCategoryComponent },
+  {
+    path: "suggestion-category-edit/:code",
+    component: SuggestionCategoryEditComponent,
+  },
 ];
 
 @NgModule({

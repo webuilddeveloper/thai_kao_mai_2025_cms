@@ -1,0 +1,18 @@
+<h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>สมาชิก</span></h5>
+<ol class="breadcrumbs mb-0">
+    <li class="breadcrumb-item"><a href="javascript:void(0)">จัดการแฟนคลับพรรค</a>
+    </li>
+    <li class="breadcrumb-item active">สมาชิก
+    </li>
+</ol>
+<br>
+<br>
+<!-- {{paginationModel.totalItems}} -->
+<app-party-fan-club-criteria (messageToEmit)="getMessageCriteria($event)"></app-party-fan-club-criteria>
+<app-party-fan-club-list [paginationModel]="paginationModel" [criteriaModel]="criteriaModel" [messageInput]="listModel" (messageToEmit)="getMessageList($event)"></app-party-fan-club-list>
+
+<!-- <----- Pagination -->
+<!-- <div style="text-align: right;">
+    <ul><li *ngFor="let item of [] | paginate: paginationModel"></li></ul>
+    <pagination-controls (pageChange)="paginationModel.currentPage = $event" previousLabel="ก่อนหน้า" nextLabel="ถัดไป" ></pagination-controls>
+</div> -->

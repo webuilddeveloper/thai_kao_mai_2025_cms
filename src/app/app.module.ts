@@ -204,14 +204,14 @@ import { CertificateCategoryComponent } from "./certificate-category/certificate
 import { CertificateCategoryListComponent } from "./certificate-category/certificate-category-list/certificate-category-list.component";
 import { CertificateCategoryEditComponent } from "./certificate-category/certificate-category-edit/certificate-category-edit.component";
 import { CertificateCategoryCriteriaComponent } from "./certificate-category/certificate-category-criteria/certificate-category-criteria.component";
-import { PolicyPartyComponent } from './policy-party/policy-party.component';
-import { PolicyPartyCriteriaComponent } from './policy-party/policy-party-criteria/policy-party-criteria.component';
-import { PolicyPartyEditComponent } from './policy-party/policy-party-edit/policy-party-edit.component';
-import { PolicyPartyListComponent } from './policy-party/policy-party-list/policy-party-list.component';
-import { PolicyPartyCategoryComponent } from './policy-party-category/policy-party-category.component';
-import { PolicyPartyCategoryListComponent } from './policy-party-category/policy-party-category-list/policy-party-category-list.component';
-import { PolicyPartyCategoryEditComponent } from './policy-party-category/policy-party-category-edit/policy-party-category-edit.component';
-import { PolicyPartyCategoryCriteriaComponent } from './policy-party-category/policy-party-category-criteria/policy-party-category-criteria.component';
+import { PolicyPartyComponent } from "./policy-party/policy-party.component";
+import { PolicyPartyCriteriaComponent } from "./policy-party/policy-party-criteria/policy-party-criteria.component";
+import { PolicyPartyEditComponent } from "./policy-party/policy-party-edit/policy-party-edit.component";
+import { PolicyPartyListComponent } from "./policy-party/policy-party-list/policy-party-list.component";
+import { PolicyPartyCategoryComponent } from "./policy-party-category/policy-party-category.component";
+import { PolicyPartyCategoryListComponent } from "./policy-party-category/policy-party-category-list/policy-party-category-list.component";
+import { PolicyPartyCategoryEditComponent } from "./policy-party-category/policy-party-category-edit/policy-party-category-edit.component";
+import { PolicyPartyCategoryCriteriaComponent } from "./policy-party-category/policy-party-category-criteria/policy-party-category-criteria.component";
 import { PartyMembersComponent } from "./party-members/party-members.component";
 import { PartyMembersCriteriaComponent } from "./party-members/party-members-criteria/party-members-criteria.component";
 import { PartyMembersEditComponent } from "./party-members/party-members-edit/party-members-edit.component";
@@ -224,6 +224,18 @@ import { EventEditComponent } from './event/event-edit/event-edit.component';
 import { EventCategoryListComponent } from './event-category/event-category-list/event-category-list.component';
 import { EventCategoryEditComponent } from './event-category/event-category-edit/event-category-edit.component';
 import { EventCategoryCriteriaComponent } from './event-category/event-category-criteria/event-category-criteria.component';
+import { PartyFanClubComponent } from "./party-fan-club/party-fan-club.component";
+import { PartyFanClubCriteriaComponent } from "./party-fan-club/party-fan-club-criteria/party-fan-club-criteria.component";
+import { PartyFanClubEditComponent } from "./party-fan-club/party-fan-club-edit/party-fan-club-edit.component";
+import { PartyFanClubListComponent } from "./party-fan-club/party-fan-club-list/party-fan-club-list.component";
+import { SuggestionCategoryComponent } from "./suggestion-category/suggestion-category.component";
+import { SuggestionCategoryCriteriaComponent } from "./suggestion-category/suggestion-category-criteria/suggestion-category-criteria.component";
+import { SuggestionComponent } from "./suggestion/suggestion.component";
+import { SuggestionCriteriaComponent } from "./suggestion/suggestion-criteria/suggestion-criteria.component";
+import { SuggestionCategoryEditComponent } from "./suggestion-category/suggestion-category-edit/suggestion-category-edit.component";
+import { SuggestionCategoryListComponent } from "./suggestion-category/suggestion-category-list/suggestion-category-list.component";
+import { SuggestionListComponent } from "./suggestion/suggestion-list/suggestion-list.component";
+import { SuggestionEditComponent } from "./suggestion/suggestion-edit/suggestion-edit.component";
 
 export const DateFormat = {
   display: {
@@ -416,6 +428,18 @@ export const DateFormat = {
     EventCategoryListComponent,
     EventCategoryEditComponent,
     EventCategoryCriteriaComponent,
+    PartyFanClubComponent,
+    PartyFanClubCriteriaComponent,
+    PartyFanClubEditComponent,
+    PartyFanClubListComponent,
+    SuggestionComponent,
+    SuggestionCriteriaComponent,
+    SuggestionListComponent,
+    SuggestionEditComponent,
+    SuggestionCategoryComponent,
+    SuggestionCategoryCriteriaComponent,
+    SuggestionCategoryListComponent,
+    SuggestionCategoryEditComponent,
   ],
   imports: [
     BrowserModule,
