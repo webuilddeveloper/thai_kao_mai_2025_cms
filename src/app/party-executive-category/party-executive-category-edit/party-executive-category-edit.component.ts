@@ -6,15 +6,15 @@ import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-suggestion-category-edit',
-  templateUrl: './suggestion-category-edit.component.html',
-  styleUrls: ['./suggestion-category-edit.component.css']
+  selector: 'app-party-executive-category-edit',
+  templateUrl: './party-executive-category-edit.component.html',
+  styleUrls: ['./party-executive-category-edit.component.css']
 })
-export class SuggestionCategoryEditComponent implements OnInit {
+export class PartyExecutiveCategoryEditComponent implements OnInit {
 
   editModel: any = {};
   code: any;
-  title = 'เพิ่มข้อมูลหมวดหมู่ข้อเสนอแนะ/ข้อแนะนำ';
+  title = 'เพิ่มข้อมูลหมวดหมู่กรรมการบริหารพรรค';
   category: any;
 
   constructor(private fileuploadService: FileUploadService
@@ -29,7 +29,7 @@ export class SuggestionCategoryEditComponent implements OnInit {
       let model: any = this.activetedRoute.snapshot.params;
       this.code = model.code;
       if (this.code != '') {
-        this.title = 'แก้ไขข้อมูลหมวดหมู่ข้อเสนอแนะ/ข้อแนะนำ';
+        this.title = 'แก้ไขข้อมูลหมวดหมู่กรรมการบริหารพรรค';
         this.read();
       }
     });
@@ -56,7 +56,7 @@ export class SuggestionCategoryEditComponent implements OnInit {
 
     this.spinner.show();
     // this.editModel.imageUrl = this.editModel.image[0].imageUrl;
-    this.serviceProviderService.post('suggestion/category/create', this.editModel).subscribe(data => {
+    this.serviceProviderService.post('partyExecutive/category/create', this.editModel).subscribe(data => {
       let model: any = {};
       model = data;
       if (model.status === 'S') {
@@ -77,7 +77,7 @@ export class SuggestionCategoryEditComponent implements OnInit {
   }
 
   read() {
-    this.serviceProviderService.post('suggestion/category/read', { code: this.code, permission: 'all' }).subscribe(data => {
+    this.serviceProviderService.post('partyExecutive/category/read', { code: this.code, permission: 'all' }).subscribe(data => {
       let model: any = {};
       model = data;
       this.editModel = model.objectData[0];
@@ -105,7 +105,7 @@ export class SuggestionCategoryEditComponent implements OnInit {
     this.spinner.show();
     // if (this.editModel.image != undefined)
     //   this.editModel.imageUrl = this.editModel.image[0].imageUrl;
-    this.serviceProviderService.post('suggestion/category/update', this.editModel).subscribe(data => {
+    this.serviceProviderService.post('partyExecutive/category/update', this.editModel).subscribe(data => {
       let model: any = {};
       model = data;
       if (model.status === 'S') {
@@ -127,7 +127,7 @@ export class SuggestionCategoryEditComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(['suggestion-category'], { skipLocationChange: true });
+    this.router.navigate(['party-executive-category'], { skipLocationChange: true });
   }
 
 }

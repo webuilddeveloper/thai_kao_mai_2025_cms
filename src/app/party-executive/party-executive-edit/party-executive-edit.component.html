@@ -1,0 +1,126 @@
+<h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>{{title}}</span></h5>
+<ol class="breadcrumbs mb-0">
+    <li class="breadcrumb-item"><a href="javascript:void(0)">เมนูหลัก</a>
+    </li>
+    <li class="breadcrumb-item active">{{title}}
+    </li>
+</ol>
+<br>
+<br>
+<ngx-spinner>
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<!-- BEGIN: Page Main-->
+
+
+<div class="row">
+    <div class="col s12">
+        <div class="container">
+            <section class="users-list-wrapper section">
+                <div class="users-list-filter">
+
+                    <!-- Header -->
+                    <div class="card-panel"
+                        style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+
+                        <div class="row" [hidden]="hiddenBtnComment">
+                            <div class="col s6">
+                                <i class="material-icons header-icon">
+                                    border_color
+                                </i>
+                                <span style="position: relative; float:left; padding-left: 10px; padding-top: 10px;">
+                                    {{title}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row" [hidden]="!hiddenBtnComment">
+                            <div class="col s6">
+                                <i class="material-icons header-icon">
+                                    border_color
+                                </i>
+                                <span style="position: relative; float:left; padding-left: 10px; padding-top: 10px;">
+                                    {{title}}
+                                </span>
+                            </div>
+                            <div class="col s6">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;" [hidden]="!hiddenComment">
+
+                        <!-- BEGIN: Do Something This Here -->
+
+                        <div class="row">
+
+                            <div class="col s6">
+                                <csop (cModel)="editModel.status = $event" [label]="'สถานะ'"
+                                    [data]="editModel.status ||'N'"
+                                    [sources]="[{ value: 'R', display: 'ไม่อนุมัติ' },{ value: 'N', display: 'รออนุมัติ' }, { value: 'A', display: 'อนุมัติ' }]">
+                                </csop>
+                            </div>
+                            <div class="col s6">
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s6">
+                                <csop (cModel)="editModel.category = $event" [label]="'* หมวดหมู่ : '"
+                                    [data]="editModel.category" [sources]="listCategory">
+                                </csop>
+                            </div>
+
+                            <div class="col s6">
+                                <citxt (cModel)="editModel.email = $event" [label]="'อีเมล : '"
+                                    [data]="editModel.email || ''">
+                                </citxt>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s12">
+                                <ctxta (cModel)="editModel.description = $event" [label]="'ข้อเสนอแนะ/ข้อแนะนำ : '"
+                                    [data]="editModel.description || ''">
+                                </ctxta>
+                            </div>
+                        </div>
+
+                        <!-- END: Do Something This Here -->
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<div class="row" [hidden]="!hiddenComment">
+    <div class="col s12">
+        <div class="container">
+            <section class="users-list-wrapper section">
+                <div class="users-list-filter">
+
+                    <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+
+                        <!-- BEGIN: Do Something This Here -->
+
+                        <div class="row" [hidden]="isSaveSuccess">
+                            <div class="col s12" style="text-align: center; margin-top: 10px;">
+                                <cbtn (click)="checkSave()" [label]="'บันทึก'" [color]="'blue'"></cbtn>
+                                <cbtn [label]="'ยกเลิก'" [color]="'red'" (click)="back()"></cbtn>
+                            </div>
+                        </div>
+
+                        <!-- END: Do Something This Here -->
+
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<!-- END: Page Main-->
