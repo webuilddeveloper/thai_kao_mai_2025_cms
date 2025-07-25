@@ -60,7 +60,7 @@
                 <div class="row">
 
                   <div class="col s6">
-                    <csop (cModel)="editModel.status = $event" [label]="'สถานะ'" [data]="''"
+                    <csop (cModel)="editModel.status = $event" [label]="'สถานะ'" [data]="editModel.status ||'N'"
                       [sources]="[{ value: 'R', display: 'ไม่อนุมัติ' },{ value: 'N', display: 'รออนุมัติ' }, { value: 'A', display: 'อนุมัติ' }]">
                     </csop>
                   </div>

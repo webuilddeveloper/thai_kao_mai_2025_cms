@@ -60,7 +60,7 @@
                 <div class="row">
 
                   <div class="col s6">
-                    <csop (cModel)="editModel.status = $event" [label]="'สถานะ'" [data]="''"
+                    <csop (cModel)="editModel.status = $event" [label]="'สถานะ'" [data]="editModel.status ||'N'"
                       [sources]="[{ value: 'R', display: 'ไม่อนุมัติ' },{ value: 'N', display: 'รออนุมัติ' }, { value: 'A', display: 'อนุมัติ' }]">
                     </csop>
                   </div>
@@ -70,8 +70,10 @@
                 </div>
                 <div class="row">
                   <div class="col s6">
-                    <citxt (cModel)="editModel.idcard = $event" [label]="'บัตรประจำตัวประชาชน : '"
-                      [data]="editModel.idcard || ''"></citxt>
+                    <!-- <citxt (cModel)="editModel.idcard = $event" [label]="'บัตรประจำตัวประชาชน : '"
+                      [data]="editModel.idcard || ''"></citxt> -->
+                    <citxt (cModel)="editModel.email = $event" [label]="'อีเมล : '" [data]="editModel.email || ''">
+                    </citxt>
                   </div>
                   <div class="col s6" style="padding-bottom: 20px;">
                     <csop (cModel)="editModel.prefixName = $event" [label]="'คำนำหน้าชื่อ : '"
@@ -89,7 +91,7 @@
                       [data]="editModel.lastName || ''"></citxt>
                   </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                   <div class="col s6">
                     <cdp (cModel)="editModel.birthDay = $event" [label]="'วันเกิด'" [data]="editModel.birthDay"></cdp>
                   </div>
@@ -97,17 +99,17 @@
                     <citxt (cModel)="editModel.phone = $event" [label]="'เบอร์โทรศัพท์ : '"
                       [data]="editModel.phone || ''"></citxt>
                   </div>
-                </div>
-                <div class="row">
+                </div> -->
+                <!-- <div class="row">
                   <div class="col s6">
                     <citxt (cModel)="editModel.email = $event" [label]="'อีเมล : '" [data]="editModel.email || ''">
                     </citxt>
                   </div>
                   <div class="col s6"></div>
-                </div>
+                </div> -->
               </div>
               <!-- ก้อน3 -->
-              <div class="col s3">
+              <!-- <div class="col s3">
                 <div class="col s12">
                   <cds (cModel)="editModel.image = $event" [label]="'รูปถ่ายตนเอง (เลือกภาพ/วางภาพที่นี่)'"
                     [data]="[{ imageUrl: this.editModel.imageUrl || '' }]" [code]="'member-mobile'">
@@ -126,7 +128,7 @@
                 <div class="col s12" style="color: red;padding-top: 20px;">
                   <span>*Maximum 10 MB</span>
                 </div>
-              </div>
+              </div> -->
             </div>
             <!-- END: Do Something This Here -->
           </div>
@@ -136,7 +138,7 @@
   </div>
 </div>
 
-<div class="row">
+<!-- <div class="row">
   <div class="col s12">
     <div class="container">
       <section class="users-list-wrapper section">
@@ -155,9 +157,7 @@
           </div>
 
           <div class="card-panel">
-            <!-- BEGIN: Do Something This Here -->
             <div class="row">
-              <!-- ก้อน1 -->
               <div class="col s4">
                 <div class="col s12">
                   <citxt (cModel)="editModel.address = $event" [label]="'ที่อยู่ : '" [data]="editModel.address || ''">
@@ -172,7 +172,6 @@
                   </csop>
                 </div>
               </div>
-              <!-- ก้อน2 -->
               <div class="col s4">
                 <div class="col s12">
                   <citxt (cModel)="editModel.village = $event" [label]="'อาคาร/หมู่บ้าน : '"
@@ -189,7 +188,6 @@
                 </div>
 
               </div>
-              <!-- ก้อน3 -->
               <div class="col s4">
                 <div class="col s12">
                   <citxt (cModel)="editModel.moo = $event" [label]="'หมู่ที่ : '" [data]="editModel.moo || ''"></citxt>
@@ -211,14 +209,6 @@
             </div>
             <div class="row">
               <div class="col s9">
-                <!-- <div class="col s12">
-                  <ccb (cModel)="onMonthlyChange($event)" [label]="'ลงทะเบียนสมาชิกแบบรายเดือน (20 บาท/ปี)'"
-                    [data]="editModel.partyMembersPage === true">
-                  </ccb>
-                  <ccb (cModel)="onLifetimeChange($event)" [label]="'ลงทะเบียนสมาชิกตลอดชีพ (200 บาท)'"
-                    [data]="editModel.lifetimeMembership === true">
-                  </ccb>
-                </div> -->
                 <div class="col s9">
                   <div class="col s12" style="margin-bottom: 10px;">
                     <span>รูปแบบการเป็นสมาชิก</span>
@@ -248,13 +238,12 @@
                 </div>
               </div>
             </div>
-            <!-- END: Do Something This Here -->
           </div>
         </div>
       </section>
     </div>
   </div>
-</div>
+</div> -->
 
 
 <div class="row">

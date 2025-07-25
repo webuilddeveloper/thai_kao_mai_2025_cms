@@ -129,15 +129,16 @@ export class PartyMembersListComponent implements OnInit {
   // start select user
   async isAllSelected(param, param2) {
     if (this.category.deleteAction) {
-      this.itemSelected = await this.messageInput.every(function (item: any) {
-        return item.isSelected == true;
-      })
+      // this.itemSelected = await this.messageInput.every(function (item: any) {
+      //   return item.isSelected == true;
+      // })
     }
     this.getCheckedItemList();
   }
 
   async checkUncheckAll() {
     if (this.category.deleteAction) {
+      this.itemSelected = !this.itemSelected;
       for (var i = 0; i < this.messageInput.length; i++) {
 
         this.messageInput[i].isSelected = this.itemSelected;

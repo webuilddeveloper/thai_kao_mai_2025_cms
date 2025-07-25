@@ -153,39 +153,39 @@ export class PartyFanClubEditComponent implements OnInit {
     this.spinner.show();
 
     let isValid = false;
-    if (this.editModel.username == "") {
-      this.toastr.warning("กรุณาใส่ชื่อผู้ใช้งาน", "แจ้งเตือนระบบ", {
-        timeOut: 2000,
-      });
-      isValid = true;
-    }
+    // if (this.editModel.username == "") {
+    //   this.toastr.warning("กรุณาใส่ชื่อผู้ใช้งาน", "แจ้งเตือนระบบ", {
+    //     timeOut: 2000,
+    //   });
+    //   isValid = true;
+    // }
 
-    if (this.editModel.password == "") {
-      this.toastr.warning("กรุณาใส่รหัสผ่าน", "แจ้งเตือนระบบ", {
-        timeOut: 2000,
-      });
-      isValid = true;
-    }
+    // if (this.editModel.password == "") {
+    //   this.toastr.warning("กรุณาใส่รหัสผ่าน", "แจ้งเตือนระบบ", {
+    //     timeOut: 2000,
+    //   });
+    //   isValid = true;
+    // }
 
-    if (this.editModel.image.length == 0) {
-      this.toastr.warning("กรุณาใส่รูปภาพ", "แจ้งเตือนระบบ", { timeOut: 2000 });
-      isValid = true;
-    }
+    // if (this.editModel.image.length == 0) {
+    //   this.toastr.warning("กรุณาใส่รูปภาพ", "แจ้งเตือนระบบ", { timeOut: 2000 });
+    //   isValid = true;
+    // }
 
     if (isValid) return;
 
-    this.editModel.province = this.listCategoryProvince.find(
-      (f) => f.value == this.editModel.provinceCode
-    ).display;
-    this.editModel.amphoe = this.listCategoryDistrict.find(
-      (f) => f.value == this.editModel.amphoeCode
-    ).display;
-    this.editModel.tambon = this.listCategoryTambon.find(
-      (f) => f.value == this.editModel.tambonCode
-    ).display;
-    this.editModel.imageUrl = this.editModel.image[0].imageUrl;
-    this.editModel.imageIdCardUrl = this.editModel.imageIdCard[0].imageUrl;
-    this.editModel.imagePaymentUrl = this.editModel.imagePayment[0].imageUrl;
+    // this.editModel.province = this.listCategoryProvince.find(
+    //   (f) => f.value == this.editModel.provinceCode
+    // ).display;
+    // this.editModel.amphoe = this.listCategoryDistrict.find(
+    //   (f) => f.value == this.editModel.amphoeCode
+    // ).display;
+    // this.editModel.tambon = this.listCategoryTambon.find(
+    //   (f) => f.value == this.editModel.tambonCode
+    // ).display;
+    // this.editModel.imageUrl = this.editModel.image[0].imageUrl;
+    // this.editModel.imageIdCardUrl = this.editModel.imageIdCard[0].imageUrl;
+    // this.editModel.imagePaymentUrl = this.editModel.imagePayment[0].imageUrl;
     this.serviceProviderService.post('partyFanClub/create', this.editModel).subscribe(data => {
 
       let model: any = {};
@@ -449,97 +449,20 @@ export class PartyFanClubEditComponent implements OnInit {
   update() {
     this.spinner.show();
     let isValid = false;
-    if (this.editModel.username == "") {
-      this.toastr.warning("กรุณาใส่ชื่อผู้ใช้งาน", "แจ้งเตือนระบบ", {
-        timeOut: 2000,
-      });
-      isValid = true;
-    }
+    // if (this.editModel.username == "") {
+    //   this.toastr.warning("กรุณาใส่ชื่อผู้ใช้งาน", "แจ้งเตือนระบบ", {
+    //     timeOut: 2000,
+    //   });
+    //   isValid = true;
+    // }
 
     if (isValid) {
       return;
     }
 
-    if (this.editModel.image !== undefined) {
-      this.editModel.imageUrl = this.editModel.image[0].imageUrl;
-    }
-
-    if (this.editModel.department1) {
-      if (this.editModel.countUnit != "") {
-        this.editModel.countUnit =
-          this.editModel.countUnit + "," + "อาสาสมัครป้องกันภัยฝ่ายพลเรือน";
-      } else {
-        this.editModel.countUnit = "อาสาสมัครป้องกันภัยฝ่ายพลเรือน";
-      }
-    }
-    if (this.editModel.department2) {
-      if (this.editModel.countUnit != "") {
-        this.editModel.countUnit =
-          this.editModel.countUnit + "," + "เครือข่ายแจ้งเตือนภัยภาคประชาชน";
-      } else {
-        this.editModel.countUnit = "เครือข่ายแจ้งเตือนภัยภาคประชาชน";
-      }
-    }
-    if (this.editModel.department3) {
-      if (this.editModel.countUnit != "") {
-        this.editModel.countUnit =
-          this.editModel.countUnit + "," + "มิสเตอร์เตือนภัย";
-      } else {
-        this.editModel.countUnit = "มิสเตอร์เตือนภัย";
-      }
-    }
-    if (this.editModel.department4) {
-      if (this.editModel.countUnit != "") {
-        this.editModel.countUnit =
-          this.editModel.countUnit +
-          "," +
-          "อาสาสมัคร หนึ่งตำบลหนึ่งทีมกู้ชีพกู้ภัย (OTOS)";
-      } else {
-        this.editModel.countUnit =
-          "อาสาสมัคร หนึ่งตำบลหนึ่งทีมกู้ชีพกู้ภัย (OTOS)";
-      }
-    }
-    if (this.editModel.department5) {
-      if (this.editModel.countUnit != "") {
-        this.editModel.countUnit =
-          this.editModel.countUnit +
-          "," +
-          "อาสาสมัครป้องกันและสาธารณภัย (อส.ปภ)";
-      } else {
-        this.editModel.countUnit = "อาสาสมัครป้องกันและสาธารณภัย (อส.ปภ)";
-      }
-    }
-    if (this.editModel.department6) {
-      if (this.editModel.countUnit != "") {
-        this.editModel.countUnit =
-          this.editModel.countUnit + "," + "องค์การสาธารณกุศล";
-      } else {
-        this.editModel.countUnit = "องค์การสาธารณกุศล";
-      }
-    }
-
-    this.editModel.lv0 = "";
-    this.editModel.lv1 = "";
-    this.editModel.lv2 = "";
-    this.editModel.lv3 = "";
-    this.editModel.lv4 = "";
-
-    this.editModel.organization = "manual";
-    if (this.editModel.countUnit.length > 0) {
-      this.editModel.countUnit.forEach((e) => {
-        if (e.status == "A") {
-          this.replaceCategoryLv0(e);
-          this.replaceCategoryLv1(e);
-          this.replaceCategoryLv2(e);
-          this.replaceCategoryLv3(e);
-          this.replaceCategoryLv4(e);
-        }
-      });
-    }
-
-    this.editModel.countUnit = JSON.stringify(this.editModel.countUnit);
-    if (this.editModel.prefixName === "นาย") this.editModel.sex = "ชาย";
-    else this.editModel.sex = "หญิง";
+    // if (this.editModel.image !== undefined) {
+    //   this.editModel.imageUrl = this.editModel.image[0].imageUrl;
+    // }
 
     this.serviceProviderService
       .post("partyFanClub/update", this.editModel)
