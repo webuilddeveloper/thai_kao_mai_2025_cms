@@ -236,6 +236,8 @@ import { SuggestionCategoryEditComponent } from "./suggestion-category/suggestio
 import { SuggestionCategoryListComponent } from "./suggestion-category/suggestion-category-list/suggestion-category-list.component";
 import { SuggestionListComponent } from "./suggestion/suggestion-list/suggestion-list.component";
 import { SuggestionEditComponent } from "./suggestion/suggestion-edit/suggestion-edit.component";
+import { DonateComponent } from './donate/donate.component';
+import { DonateDetailsComponent } from './donate/donate-details/donate-details.component';
 
 export const DateFormat = {
   display: {
@@ -440,6 +442,8 @@ export const DateFormat = {
     SuggestionCategoryCriteriaComponent,
     SuggestionCategoryListComponent,
     SuggestionCategoryEditComponent,
+    DonateComponent,
+    DonateDetailsComponent,
   ],
   imports: [
     BrowserModule,

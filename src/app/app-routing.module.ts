@@ -81,6 +81,8 @@ import { SuggestionComponent } from "./suggestion/suggestion.component";
 import { SuggestionEditComponent } from "./suggestion/suggestion-edit/suggestion-edit.component";
 import { SuggestionCategoryComponent } from "./suggestion-category/suggestion-category.component";
 import { SuggestionCategoryEditComponent } from "./suggestion-category/suggestion-category-edit/suggestion-category-edit.component";
+import { DonateComponent } from "./donate/donate.component";
+import { DonateDetailsComponent } from "./donate/donate-details/donate-details.component";
 
 const routes: Routes = [
   { path: "", component: DashboardComponent },
@@ -192,6 +194,11 @@ const routes: Routes = [
   {
     path: "suggestion-category-edit/:code",
     component: SuggestionCategoryEditComponent,
+  },
+  { path: "donate", component: DonateComponent },
+  {
+    path: "donate-details/:code",
+    component: DonateDetailsComponent,
   },
 ];
 
