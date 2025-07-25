@@ -1,1 +1,11 @@
-<p>donate-category works!</p>
+<h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>หมวดหมู่บริตาค</span></h5>
+<ol class="breadcrumbs mb-0">
+    <li class="breadcrumb-item"><a href="javascript:void(0)">จัดการหมวดหมู่</a>
+    </li>
+    <li class="breadcrumb-item active">หมวดหมู่บริตาค
+    </li>
+</ol>
+<br>
+<br>
+<app-donate-category-criteria [hidden]="true" (messageToEmit)="getMessageCriteria($event)"></app-donate-category-criteria>
+<app-donate-category-list [paginationModel]="paginationModel" [messageInput]="listModel" (messageToEmit)="getMessageList($event)"></app-donate-category-list>
