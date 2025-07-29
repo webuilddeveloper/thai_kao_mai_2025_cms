@@ -54,7 +54,14 @@
                         <!-- BEGIN: Do Something This Here -->
 
                         <div class="row">
+                            <div class="col s6">
+                                <cinum (cModel)="editModel.sequence = $event" [label]="'ลำดับข้อมูล'"
+                                    [data]="editModel.sequence || 0"></cinum>
+                            </div>
+                            <div class="col s6"></div>
+                        </div>
 
+                        <div class="row">
                             <div class="col s6">
                                 <csop (cModel)="editModel.status = $event" [label]="'สถานะ'"
                                     [data]="editModel.status ||'N'"
