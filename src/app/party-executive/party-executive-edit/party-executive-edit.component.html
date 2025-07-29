@@ -12,115 +12,192 @@
 </ngx-spinner>
 <!-- BEGIN: Page Main-->
 
+<div class="col s9" style="padding-left: 0px !important;">
 
-<div class="row">
-    <div class="col s12">
-        <div class="container">
-            <section class="users-list-wrapper section">
-                <div class="users-list-filter">
+    <div class="row">
+        <div class="col s12">
+            <div class="container">
+                <section class="users-list-wrapper section">
+                    <div class="users-list-filter">
 
-                    <!-- Header -->
-                    <div class="card-panel"
-                        style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+                        <!-- Header -->
+                        <div class="card-panel"
+                            style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
 
-                        <div class="row" [hidden]="hiddenBtnComment">
-                            <div class="col s6">
-                                <i class="material-icons header-icon">
-                                    border_color
-                                </i>
-                                <span style="position: relative; float:left; padding-left: 10px; padding-top: 10px;">
-                                    {{title}}
-                                </span>
+                            <div class="row" [hidden]="hiddenBtnComment">
+                                <div class="col s6">
+                                    <i class="material-icons header-icon">
+                                        border_color
+                                    </i>
+                                    <span
+                                        style="position: relative; float:left; padding-left: 10px; padding-top: 10px;">
+                                        {{title}}
+                                    </span>
+                                </div>
                             </div>
+                            <div class="row" [hidden]="!hiddenBtnComment">
+                                <div class="col s6">
+                                    <i class="material-icons header-icon">
+                                        border_color
+                                    </i>
+                                    <span
+                                        style="position: relative; float:left; padding-left: 10px; padding-top: 10px;">
+                                        {{title}}
+                                    </span>
+                                </div>
+                                <div class="col s6">
+                                </div>
+                            </div>
+
+
                         </div>
-                        <div class="row" [hidden]="!hiddenBtnComment">
-                            <div class="col s6">
-                                <i class="material-icons header-icon">
-                                    border_color
-                                </i>
-                                <span style="position: relative; float:left; padding-left: 10px; padding-top: 10px;">
-                                    {{title}}
-                                </span>
-                            </div>
-                            <div class="col s6">
-                            </div>
-                        </div>
 
+                        <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;" [hidden]="!hiddenComment">
+
+                            <!-- BEGIN: Do Something This Here -->
+
+                            <div class="row">
+                                <div class="col s6">
+                                    <cinum (cModel)="editModel.sequence = $event" [label]="'ลำดับข้อมูล'"
+                                        [data]="editModel.sequence || 0"></cinum>
+                                </div>
+                                <div class="col s6"></div>
+                            </div>
+
+                            <!-- <div class="row">
+                                <div class="col s6">
+                                    <csop (cModel)="editModel.status = $event" [label]="'สถานะ'"
+                                        [data]="editModel.status ||'N'"
+                                        [sources]="[{ value: 'R', display: 'ไม่อนุมัติ' },{ value: 'N', display: 'รออนุมัติ' }, { value: 'A', display: 'อนุมัติ' }]">
+                                    </csop>
+                                </div>
+                                <div class="col s6">
+
+                                </div>
+                            </div> -->
+
+                            <div class="row">
+                                <div class="col s6">
+                                    <csop (cModel)="editModel.category = $event" [label]="'* หมวดหมู่ : '"
+                                        [data]="editModel.category" [sources]="listCategory">
+                                    </csop>
+                                </div>
+
+                                <div class="col s6">
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col s6">
+                                    <citxt (cModel)="editModel.title = $event" [label]="'หัวข้อ : '"
+                                        [data]="editModel.title || ''">
+                                    </citxt>
+                                </div>
+                                <div class="col s6"></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="col s6">
+                                        <div class="col s12">
+                                            <cds (cModel)="editModel.image = $event"
+                                                [label]="'* รูปภาพ (คลิกเลือกภาพ/ลากวางภาพที่นี่)'"
+                                                [data]="[{ imageUrl: this.editModel.imageUrl || '' }]" [code]="'news'">
+                                            </cds>
+                                            <!-- <phe (cModel)="editModel.image = $event"
+                                            [label]="'* รูปภาพ (คลิกเลือกภาพ/ลากวางภาพที่นี่)'"
+                                            [data]="[{ imageUrl: this.editModel.imageUrl || '' }]" [code]="'news'">
+                                        </phe> -->
+
+                                        </div>
+                                        <div class="col s12" style="color: red;">
+                                            <span>*ขนาดรูปภาพแนะนำ 120 x 600 px</span>
+                                        </div>
+                                        <div class="col s12" style="color: red;">
+                                            <span>*Maximum 10 MB</span>
+                                        </div>
+                                    </div>
+                                    <div class="col s6"></div>
+                                </div>
+                            </div>
+
+                            <!-- END: Do Something This Here -->
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" [hidden]="!hiddenComment">
+        <div class="col s12">
+            <div class="container">
+                <section class="users-list-wrapper section">
+                    <div class="users-list-filter">
+
+                        <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+
+                            <!-- BEGIN: Do Something This Here -->
+
+                            <div class="row" [hidden]="isSaveSuccess">
+                                <div class="col s12" style="text-align: center; margin-top: 10px;">
+                                    <cbtn (click)="checkSave()" [label]="'บันทึก'" [color]="'blue'"></cbtn>
+                                    <cbtn [label]="'ยกเลิก'" [color]="'red'" (click)="back()"></cbtn>
+                                </div>
+                            </div>
+
+                            <!-- END: Do Something This Here -->
+
+                        </div>
 
                     </div>
-
-                    <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;" [hidden]="!hiddenComment">
-
-                        <!-- BEGIN: Do Something This Here -->
-
-                        <div class="row">
-
-                            <div class="col s6">
-                                <csop (cModel)="editModel.status = $event" [label]="'สถานะ'"
-                                    [data]="editModel.status ||'N'"
-                                    [sources]="[{ value: 'R', display: 'ไม่อนุมัติ' },{ value: 'N', display: 'รออนุมัติ' }, { value: 'A', display: 'อนุมัติ' }]">
-                                </csop>
-                            </div>
-                            <div class="col s6">
-
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col s6">
-                                <csop (cModel)="editModel.category = $event" [label]="'* หมวดหมู่ : '"
-                                    [data]="editModel.category" [sources]="listCategory">
-                                </csop>
-                            </div>
-
-                            <div class="col s6">
-                                <citxt (cModel)="editModel.email = $event" [label]="'อีเมล : '"
-                                    [data]="editModel.email || ''">
-                                </citxt>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col s12">
-                                <ctxta (cModel)="editModel.description = $event" [label]="'ข้อเสนอแนะ/ข้อแนะนำ : '"
-                                    [data]="editModel.description || ''">
-                                </ctxta>
-                            </div>
-                        </div>
-
-                        <!-- END: Do Something This Here -->
-
-                    </div>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
     </div>
 </div>
 
-<div class="row" [hidden]="!hiddenComment">
-    <div class="col s12">
-        <div class="container">
-            <section class="users-list-wrapper section">
-                <div class="users-list-filter">
+<div class="col s3" style="padding-left: 0px !important;">
+    <div class="row">
+        <div class="col s12">
+            <div class="container">
+                <section class="users-list-wrapper section">
+                    <div class="users-list-filter">
 
-                    <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
-
-                        <!-- BEGIN: Do Something This Here -->
-
-                        <div class="row" [hidden]="isSaveSuccess">
-                            <div class="col s12" style="text-align: center; margin-top: 10px;">
-                                <cbtn (click)="checkSave()" [label]="'บันทึก'" [color]="'blue'"></cbtn>
-                                <cbtn [label]="'ยกเลิก'" [color]="'red'" (click)="back()"></cbtn>
+                        <!-- Header -->
+                        <div class="card-panel"
+                            style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+                            <div class="row">
+                                <div class="col s8">
+                                    <span
+                                        style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+                                        ตั้งค่าการแสดงผล *
+                                    </span>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- END: Do Something This Here -->
+                        <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+                            <div class="row">
+                                <div class="col s12" style="padding-bottom: 40px !important;">
+                                    <ccb (cModel)="editModel.isActive = $event" [label]="'เผยแพร่'"
+                                        [data]="editModel.isActive"></ccb>
+                                    <!-- <ccb (cModel)="editModel.isHighlight = $event" [label]="'รายการแนะนำ'" [data]="editModel.isHighlight"></ccb> -->
+                                    <!-- <ccb (cModel)="editModel.isPublic = $event" [label]="'เปิดสาธารณะ'"
+                                        [data]="editModel.isPublic"></ccb>
+                                    <ccb (cModel)="editModel.isNotification = $event" [label]="'แจ้งเตือน'"
+                                        [data]="editModel.isNotification"></ccb> -->
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
-
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
     </div>
+
 </div>
 <!-- END: Page Main-->

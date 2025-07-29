@@ -47,14 +47,18 @@
                 <cinum (cModel)="editModel.sequence = $event" [label]="'ลำดับ : '" [data]="editModel.sequence || 0">
                 </cinum>
               </div>
-              <div class="col s12" style="padding-bottom: 20px;">
+              <!-- <div class="col s12" style="padding-bottom: 20px;">
                 <csop (cModel)="editModel.language = $event" [label]="'* ภาษา : '" [data]="editModel.language || 'th'"
                   [sources]="[{ value: 'th', display: 'ไทย' }, { value: 'en', display: 'อังกฤษ' }]">
                 </csop>
-              </div>
+              </div> -->
               <div class="col s12">
                 <citxt (cModel)="editModel.title = $event" [label]="'* หัวข้อ : '" [data]="editModel.title || ''">
                 </citxt>
+              </div>
+                 <div class="col s12">
+                <citxt (cModel)="editModel.titleEN = $event" [label]="'* หัวข้อ (ภาษาอังกฤษ): '"
+                  [data]="editModel.titleEN || ''"></citxt>
               </div>
               <!-- </div> -->
 

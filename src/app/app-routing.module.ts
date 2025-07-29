@@ -214,7 +214,7 @@ const routes: Routes = [
 
 
   { path: "party-executive", component: PartyExecutiveComponent },
-  { path: "party-executive/:code", component: PartyExecutiveEditComponent },
+  { path: "party-executive-edit/:code", component: PartyExecutiveEditComponent },
   {
     path: "party-executive-category",
     component: PartyExecutiveCategoryComponent,
