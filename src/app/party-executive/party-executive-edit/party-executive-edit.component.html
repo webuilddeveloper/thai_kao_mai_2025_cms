@@ -98,10 +98,14 @@
                             <div class="col s12">
                                 <div class="col s6">
                                     <div class="col s12">
-                                        <phe (cModel)="editModel.image = $event"
+                                        <cds (cModel)="editModel.image = $event"
                                             [label]="'* รูปภาพ (คลิกเลือกภาพ/ลากวางภาพที่นี่)'"
                                             [data]="[{ imageUrl: this.editModel.imageUrl || '' }]" [code]="'news'">
-                                        </phe>
+                                        </cds>
+                                        <!-- <phe (cModel)="editModel.image = $event"
+                                            [label]="'* รูปภาพ (คลิกเลือกภาพ/ลากวางภาพที่นี่)'"
+                                            [data]="[{ imageUrl: this.editModel.imageUrl || '' }]" [code]="'news'">
+                                        </phe> -->
 
                                     </div>
                                     <div class="col s12" style="color: red;">
@@ -111,6 +115,7 @@
                                         <span>*Maximum 10 MB</span>
                                     </div>
                                 </div>
+                                <div class="col s6"></div>
                             </div>
                         </div>
 
