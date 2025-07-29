@@ -1,0 +1,17 @@
+.title {
+    font-weight: 600;
+    font-size: 20px !important;
+}
+
+.div-text {
+    padding: 5px 10px 5px 30px;
+}
+
+.div-text .title {
+    font-weight: 600;
+    font-size: 16px !important;
+}
+
+.div-text .sub-title {
+    font-size: 16px !important;
+}

@@ -1,1 +1,180 @@
-<p>donate-details works!</p>
+<h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>{{title}}</span></h5>
+<ol class="breadcrumbs mb-0">
+    <li class="breadcrumb-item"><a href="javascript:void(0)">เมนูหลัก</a>
+    </li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:void(0)">ข่าวประชาสัมพันธ์</a>
+    </li> -->
+    <li class="breadcrumb-item active">{{title}}
+    </li>
+</ol>
+<br>
+<br>
+<ngx-spinner>
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<!-- BEGIN: Page Main-->
+
+<!-- <div class="row">
+    <div class="col s12">
+        <div class="container">
+            <section class="users-list-wrapper section">
+                <div class="users-list-filter">
+                    <div class="card-panel">
+
+
+                        <div class="row">
+                            {{editModel | json}}
+                        </div>
+
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div> -->
+
+<div class="col s12" style="padding-left: 0px !important;">
+    <div class="row">
+        <div class="col s12">
+            <div class="container">
+                <section class="users-list-wrapper section">
+                    <div class="users-list-filter">
+
+                        <!-- Header -->
+                        <div class="card-panel"
+                            style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+
+                            <div class="row" [hidden]="hiddenBtnComment">
+                                <div class="col s6">
+                                    <i class="material-icons header-icon">
+                                        border_color
+                                    </i>
+                                    <span
+                                        style="position: relative; float:left; padding-left: 10px; padding-top: 10px;">
+                                        ข้อมูลผู้บริจาค
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+
+                            <!-- BEGIN: Do Something This Here -->
+
+                            <div class="row">
+                                <div class="col s8">
+                                    <div class="row">
+                                        <span></span>
+                                        <!-- <div class="col s12"
+                                            style="margin-top: -15px !important; padding-bottom: 10px !important;">
+                                            <csop (cModel)="editModel.category = $event" [label]="'* หมวดหมู่ : '"
+                                                [data]="editModel.category" [sources]="listCategory">
+                                            </csop>
+                                        </div> -->
+                                    </div>
+                                    <div class="row div-text">
+                                        <span class="title">ชื่อ - นามสกุล :&nbsp;&nbsp;</span><span class="sub-title">{{editModel.firstName}}&nbsp;{{editModel.lastName}}</span>
+                                    </div>
+                                    <div class="row div-text">
+                                        <span class="title">อีเมล :&nbsp;&nbsp;</span><span class="sub-title">{{editModel.email}}</span>
+                                    </div>
+                                    <div class="row div-text">
+                                        <span class="title">เบอร์โทรศัพท์ :&nbsp;&nbsp;</span><span class="sub-title">{{editModel.phone}}</span>
+                                    </div>
+                                    <div class="row div-text">
+                                        <span class="title">เลขบัตรประชาชน :&nbsp;&nbsp;</span><span class="sub-title">{{editModel.cardID}}</span>
+                                    </div>
+                                   
+                                    
+                                </div>
+                            </div>
+
+                            <!-- END: Do Something This Here -->
+
+                        </div>
+                    </div>
+                </section>
+
+                <section class="users-list-wrapper section">
+                    <div class="users-list-filter">
+
+                        <!-- Header -->
+                        <div class="card-panel"
+                            style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+                            <div class="row">
+                                <div class="col s6">
+                                    <i class="material-icons header-icon">
+                                        border_color
+                                    </i>
+                                    <span
+                                        style="position: relative; float:left; padding-left: 10px; padding-top: 10px;">
+                                        ข้อมูลการบริจาค
+                                    </span>
+                                </div>
+                                <div class="col s6">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;" >
+
+                            <!-- BEGIN: Do Something This Here -->
+
+                            <div class="row">
+                                <div class="col s8">
+                                    
+                                    <div class="row div-text">
+                                        <span class="title">บริจาคในนาม :&nbsp;&nbsp;</span><span class="sub-title">{{editModel.donateType == '0' ? "บุคคลธรรมดา" : "นิติบุคคล"}}&nbsp;{{editModel.lastName}}</span>
+                                    </div>
+                                    <div class="row div-text">
+                                        <span class="title">รูปแบบการชำระเงิน :&nbsp;&nbsp;</span><span class="sub-title">{{editModel.paymentType == '0' ? "QR Code" : editModel.paymentType == '1' ? "โอนเงิน" : "บัตรเครดิต"  }}</span>
+                                    </div>
+                                    <div class="row div-text">
+                                        <span class="title">จำนวนเงิน :&nbsp;&nbsp;</span><span class="sub-title">{{editModel.amount}} บาท</span>
+                                    </div>
+                                    <div class="row div-text">
+                                        <span class="title">วัน-เวลาที่โอน :&nbsp;&nbsp;</span><span class="sub-title">{{editModel.createDate | datetimeFormat}}</span>
+                                    </div>
+                                    <div class="row div-text">
+                                        <span class="title">หลักฐานการชำระเงิน :</span>
+                                    </div>
+                                    <img src="{{editModel.slip}}" alt="" style="width: 300px;">
+                                   
+                                    
+                                </div>
+                                
+                            </div>
+
+                            <!-- END: Do Something This Here -->
+
+                        </div>
+                    </div>
+                </section>
+                <section class="users-list-wrapper section">
+                    <div class="users-list-filter">
+
+                        <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+
+                            <!-- BEGIN: Do Something This Here -->
+
+                            <div class="row" >
+                                <div class="col s12" style="text-align: center; margin-top: 10px;">
+                                    <cbtn [label]="'ย้อนกลับ'" [color]="'red'" (click)="back()"></cbtn>
+                                </div>
+                            </div>
+
+                            <!-- END: Do Something This Here -->
+
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<!-- END: Page Main-->

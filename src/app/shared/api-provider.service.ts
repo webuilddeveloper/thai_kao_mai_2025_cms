@@ -29,6 +29,31 @@ export class ApiProviderService {
     },
   };
 
+  donate = {
+    create: "donate/create",
+    read: "donate/read",
+    update: "donate/update",
+    delete: "donate/delete",
+    category: {
+      create: "donate/category/create",
+      read: "donate/category/read",
+      update: "donate/category/update",
+      delete: "donate/category/delete",
+    },
+    gallery: {
+      create: "donate/gallery/create",
+      read: "donate/gallery/read",
+      update: "donate/gallery/update",
+      delete: "donate/gallery/delete",
+    },
+    galleryFile: {
+      create: "donate/galleryFile/create",
+      read: "donate/galleryFile/read",
+      update: "donate/galleryFile/update",
+      delete: "donate/galleryFile/delete",
+    },
+  };
+
   workprocess = {
     create: "workprocess/create",
     read: "workprocess/read",

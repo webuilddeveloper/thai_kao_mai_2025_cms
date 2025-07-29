@@ -87,6 +87,8 @@ import { PartyExecutiveComponent } from "./party-executive/party-executive.compo
 import { PartyExecutiveEditComponent } from "./party-executive/party-executive-edit/party-executive-edit.component";
 import { PartyExecutiveCategoryComponent } from "./party-executive-category/party-executive-category.component";
 import { PartyExecutiveCategoryEditComponent } from "./party-executive-category/party-executive-category-edit/party-executive-category-edit.component";
+import { DonateCategoryComponent } from "./donate-category/donate-category.component";
+import { DonateCategoryEditComponent } from "./donate-category/donate-category-edit/donate-category-edit.component";
 
 const routes: Routes = [
   { path: "", component: DashboardComponent },
@@ -204,10 +206,10 @@ const routes: Routes = [
     path: "donate-details/:code",
     component: DonateDetailsComponent,
   },
-  { path: "donate-category", component: DonateComponent },
+  { path: "donate-category", component: DonateCategoryComponent },
   {
     path: "donate-category-edit/:code",
-    component: DonateDetailsComponent,
+    component: DonateCategoryEditComponent,
   },
 
 
