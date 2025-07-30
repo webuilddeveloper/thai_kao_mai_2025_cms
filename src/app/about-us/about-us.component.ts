@@ -113,6 +113,7 @@ export class AboutUsComponent implements OnInit {
   }
 
   update() {
+    debugger;
     let isValid = false;
     if (this.editModel.title == '') {
       this.toastr.warning('กรุณาใส่ชื่อ', 'แจ้งเตือนระบบ', { timeOut: 2000 });
