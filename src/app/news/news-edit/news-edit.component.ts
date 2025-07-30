@@ -29,7 +29,7 @@ export class NewsEditComponent implements OnInit {
   };
   listCenter: any = [];
   commentList: any = [];
-  productList: any = [];
+  // productList: any = [];
   commentModel: any;
   hiddenBtnComment: boolean = false;
   hiddenComment: boolean = true;
@@ -108,7 +108,7 @@ export class NewsEditComponent implements OnInit {
     this.activetedRoute.queryParams.subscribe((params) => {
       let model: any = this.activetedRoute.snapshot.params;
       this.code = model.code;
-      this.readProduct();
+      // this.readProduct();
 
       if (this.code != "") {
         this.title = "แก้ไขข้อมูลข่าวประชาสัมพันธ์";
@@ -358,26 +358,26 @@ export class NewsEditComponent implements OnInit {
     }
   }
 
-  readProduct() {
-    this.serviceProviderService
-      .post("m/product/read", { permission: this.permission })
-      .subscribe(
-        (data) => {
-          let model: any = {};
-          model = data;
-          this.productList = [{ value: "", display: "งานภายใน" }];
-          model.objectData.forEach((element) => {
-            this.productList.push({
-              value: element.code,
-              display: element.title,
-            });
-          });
-          if (this.code == "")
-            this.editModel.productCode = this.productList[0].value;
-        },
-        (err) => {}
-      );
-  }
+  // readProduct() {
+  //   this.serviceProviderService
+  //     .post("m/product/read", { permission: this.permission })
+  //     .subscribe(
+  //       (data) => {
+  //         let model: any = {};
+  //         model = data;
+  //         this.productList = [{ value: "", display: "งานภายใน" }];
+  //         model.objectData.forEach((element) => {
+  //           this.productList.push({
+  //             value: element.code,
+  //             display: element.title,
+  //           });
+  //         });
+  //         if (this.code == "")
+  //           this.editModel.productCode = this.productList[0].value;
+  //       },
+  //       (err) => {}
+  //     );
+  // }
 
   galleryRead() {
     this.serviceProviderService
