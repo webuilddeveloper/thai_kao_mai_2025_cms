@@ -679,7 +679,7 @@ export class AppComponent {
         isShow: this.category.reportNewsKeysearchPage,
       },
       // {
-      //   'name': 'รายงานคำค้นหาสารWe Tech Makers',
+      //   'name': 'รายงานคำค้นหาสารThai Kao Mai',
       //   'routing': '/report-knowledge-keysearch',
       //   'data': '',
       //   'type': 'N',
