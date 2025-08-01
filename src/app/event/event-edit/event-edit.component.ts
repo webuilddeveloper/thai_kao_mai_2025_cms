@@ -372,7 +372,6 @@ export class EventEditComponent implements OnInit {
           // this.lv4Category = arr;
 
           //เช็คเฉพาะตอน edit check ค่ากลับเข้าไป
-          //debugger
           setTimeout(() => {
             if (this.isReadOGLv4) {
               let lvContent = this.editModel.lv4.split(',');
@@ -424,7 +423,6 @@ export class EventEditComponent implements OnInit {
 
 
           //เช็คเฉพาะตอน edit check ค่ากลับเข้าไป
-          //debugger
           setTimeout(() => {
             if (this.isReadOGLv3) {
               let lvContent = this.editModel.lv3.split(',');
@@ -477,7 +475,6 @@ export class EventEditComponent implements OnInit {
           // this.lv2Category = arr;
 
           //เช็คเฉพาะตอน edit check ค่ากลับเข้าไป
-          //debugger
           setTimeout(() => {
             if (this.isReadOGLv2) {
               let lvContent = this.editModel.lv2.split(',');
@@ -530,7 +527,6 @@ export class EventEditComponent implements OnInit {
           // this.lv1Category = arr;
 
           //เช็คเฉพาะตอน edit check ค่ากลับเข้าไป
-          //debugger
           setTimeout(() => {
             if (this.isReadOGLv1) {
               let lvContent = this.editModel.lv1.split(',');
@@ -574,7 +570,6 @@ export class EventEditComponent implements OnInit {
           // this.lv0Category = arr;
 
           //เช็คเฉพาะตอน edit check ค่ากลับเข้าไป
-          //debugger
           setTimeout(() => {
             if (this.isReadOGLv0) {
               let lvContent = this.editModel.lv0.split(',');
@@ -852,7 +847,6 @@ export class EventEditComponent implements OnInit {
 
   manageComment(param) {
     param.isActive = param.isActive = !param.isActive
-    // debugger
     this.spinner.show()
     this.serviceProviderService.post('eventCalendar/comment/update', param).subscribe(data => {
       let model: any = {};
