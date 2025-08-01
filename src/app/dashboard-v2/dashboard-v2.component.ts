@@ -17,9 +17,9 @@ export class DashboardV2Component implements OnInit {
   modelregisterJob: any;
   modelregisterProvince: any;
   apiModel: any = [
-    { display: "สช. On Mobile", value: "http://opec.we-builds.com/opec-api/" },
+    { display: "สช. On Mobile", value: "https://opec.we-builds.com/opec-api/" },
   ];
-  api = "http://opec.we-builds.com/opec-api/";
+  api = "https://opec.we-builds.com/opec-api/";
   criteriaModel: any = {};
 
   // options

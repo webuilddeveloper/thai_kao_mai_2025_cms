@@ -57,7 +57,7 @@ $(document).ready(function () {
       },
       {
         title: 'Click for Google',
-        url: 'http://google.com/',
+        url: 'https://google.com/',
         start: '2019-01-28'
       }
     ],
@@ -124,7 +124,7 @@ $(document).ready(function () {
       },
       {
         title: 'Click for Google',
-        url: 'http://google.com/',
+        url: 'https://google.com/',
         start: '2019-01-28',
       }
     ],

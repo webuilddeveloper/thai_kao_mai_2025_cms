@@ -17,7 +17,7 @@ export class CallService {
     constructor(private http: HttpClient) { }
     postData = (url: string, data: any, ) => {
         // this.baseUrl = 'https://localhost:5001/';
-        this.baseUrl = 'http://122.155.223.63/td-web-api/'
+        this.baseUrl = 'https://122.155.223.63/td-web-api/'
         let headers = new HttpHeaders({
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ export class CallService {
         });
         let options = { headers: headers };
         // this.baseUrl = 'https://localhost:5004/api/UploadImage/UploadImage'
-        this.baseUrl = 'http://122.155.223.63/td-doc/upload';
+        this.baseUrl = 'https://122.155.223.63/td-doc/upload';
         const endpoint = this.baseUrl;
         return this.http.post(endpoint, data, options);
     }

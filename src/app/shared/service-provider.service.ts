@@ -8,10 +8,10 @@ export class ServiceProviderService {
   // ng build --base-href "/td-vet-font/" --prod
 
   // server: string = 'http://localhost:8600/';
-  // server: string = 'http://122.155.223.63/td-webuild-api/';
-  server: string = "http://gateway.we-builds.com/thai-kao-mai-api/";
+  // server: string = 'https://122.155.223.63/td-webuild-api/';
+  server: string = "https://gateway.we-builds.com/thai-kao-mai-api/";
   //dev
-  // server: string = 'http://vet.we-builds.com/vet-api/';
+  // server: string = 'https://vet.we-builds.com/vet-api/';
   //product
   // server: string = 'https://vetweb.we-builds.com/thai-kao-mai-api/';
 
@@ -23,7 +23,7 @@ export class ServiceProviderService {
 
   post(url, param) {
     // let server = 'https://localhost:5001/';
-    // let server = 'http://122.155.223.63/td-ddpm-api/';
+    // let server = 'https://122.155.223.63/td-ddpm-api/';
 
     if (localStorage.getItem("username") != null) {
       param.imageUrlCreateBy = localStorage.getItem("imageUrl");
@@ -91,10 +91,10 @@ export class ServiceProviderService {
   }
 
   postStatistics(url, param) {
-    // let server = 'http://202.139.196.8/statistic-api/statistics/';
-    let server = "http://vet.we-builds.com/statistic-api/statistics/";
-    // let server = 'http://localhost:6100/statistics/';
-    // let server = 'http://122.155.223.63/td-statistics-api/statistics/';
+    // let server = 'https://202.139.196.8/statistic-api/statistics/';
+    let server = "https://vet.we-builds.com/statistic-api/statistics/";
+    // let server = 'https://localhost:6100/statistics/';
+    // let server = 'https://122.155.223.63/td-statistics-api/statistics/';
     param.databaseName = "vet_prod_statistics";
 
     if (localStorage.getItem("username") != null) {
@@ -126,7 +126,7 @@ export class ServiceProviderService {
 
   postByPass(url, param) {
     // let server = 'https://localhost:5001/';
-    // let server = 'http://122.155.223.63/td-ddpm-api/';
+    // let server = 'https://122.155.223.63/td-ddpm-api/';
 
     if (localStorage.getItem("username") != null) {
       param.imageUrlCreateBy = localStorage.getItem("imageUrl");
@@ -189,7 +189,7 @@ export class ServiceProviderService {
   }
 
   SendIPAddress(page) {
-    this.http.get("http://api.ipify.org/?format=json").subscribe((res: any) => {
+    this.http.get("https://api.ipify.org/?format=json").subscribe((res: any) => {
       this.post("ip/createCms", {
         ipAddress: res.ip,
         page: page,

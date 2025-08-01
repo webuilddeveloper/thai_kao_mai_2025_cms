@@ -1,5 +1,5 @@
 /*!
- * Materialize 1.0.0 (http://materializecss.com)
+ * Materialize 1.0.0 (https://materializecss.com)
  * Copyright 2014-2017 Materialize
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
@@ -176,7 +176,7 @@
         return pieces.length > 1 ? pieces[1].length : 0;
     }
 
-    // http://youmightnotneedjquery.com/#add_class
+    // https://youmightnotneedjquery.com/#add_class
     function addClass(el, className) {
         if (el.classList) {
             el.classList.add(className);
@@ -185,7 +185,7 @@
         }
     }
 
-    // http://youmightnotneedjquery.com/#remove_class
+    // https://youmightnotneedjquery.com/#remove_class
     function removeClass(el, className) {
         if (el.classList) {
             el.classList.remove(className);

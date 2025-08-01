@@ -5,7 +5,7 @@ Responsive will automatically optimise the table's layout for different screen s
 
 # Installation
 
-To use Responsive the primary way to obtain the software is to use the [DataTables downloader](//datatables.net/download). You can also include the individual files from the [DataTables CDN](//cdn.datatables.net). See the [documentation](http://datatables.net/extensions/responsive/) for full details.
+To use Responsive the primary way to obtain the software is to use the [DataTables downloader](//datatables.net/download). You can also include the individual files from the [DataTables CDN](//cdn.datatables.net). See the [documentation](https://datatables.net/extensions/responsive/) for full details.
 
 ## NPM and Bower
 
@@ -32,7 +32,7 @@ $(document).ready( function () {
 # Documentation / support
 
 * [Documentation](https://datatables.net/extensions/responsive/)
-* [DataTables support forums](http://datatables.net/forums)
+* [DataTables support forums](https://datatables.net/forums)
 
 
 # GitHub

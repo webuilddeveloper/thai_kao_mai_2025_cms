@@ -5,7 +5,7 @@
 	Item Name: Materialize Admin Template
 	Version: 1.0
 	Author: GeeksLabs
-	Author URL: http://www.themeforest.net/user/geekslabs
+	Author URL: https://www.themeforest.net/user/geekslabs
 ==========================================================================================*/
 (function (window, document, $) {
   'use strict';

@@ -201,11 +201,11 @@
 
                   </csop>
                 </div>
-
                 <div class="col s12" style="padding-bottom: 20px;">
-                  <csop (cModel)="editModel.postnoCode = $event" [label]="'รหัสไปรษณีย์ : '" (click)="validTambon()"
+                  <citxt (cModel)="editModel.postnoCode = $event" [label]="'รหัสไปรษณีย์ : '" [data]="editModel.postnoCode || ''"></citxt>
+                  <!-- <csop (cModel)="editModel.postnoCode = $event" [label]="'รหัสไปรษณีย์ : '" (click)="validTambon()"
                     [data]="editModel.postnoCode || 'none'" [sources]="listCategoryPostCode">
-                  </csop>
+                  </csop> -->
                 </div>
               </div>
             </div>
