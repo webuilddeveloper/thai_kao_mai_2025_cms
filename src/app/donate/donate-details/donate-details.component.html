@@ -85,7 +85,9 @@
                                     <div class="row div-text">
                                         <span class="title">เลขบัตรประชาชน :&nbsp;&nbsp;</span><span class="sub-title">{{editModel.cardID}}</span>
                                     </div>
-                                   
+                                     <div class="row div-text" *ngIf="editModel.donateType != '0'">
+                                        <span class="title">เลขนิติบุคคล :&nbsp;&nbsp;</span><span class="sub-title">{{editModel.taxIdNumber}}</span>
+                                    </div>
                                     
                                 </div>
                             </div>
@@ -125,7 +127,7 @@
                                 <div class="col s8">
                                     
                                     <div class="row div-text">
-                                        <span class="title">บริจาคในนาม :&nbsp;&nbsp;</span><span class="sub-title">{{editModel.donateType == '0' ? "บุคคลธรรมดา" : "นิติบุคคล"}}&nbsp;{{editModel.lastName}}</span>
+                                        <span class="title">บริจาคในนาม :&nbsp;&nbsp;</span><span class="sub-title">{{editModel.donateType == '0' ? "บุคคลธรรมดา" : "นิติบุคคล"}}</span>
                                     </div>
                                     <div class="row div-text">
                                         <span class="title">รูปแบบการชำระเงิน :&nbsp;&nbsp;</span><span class="sub-title">{{editModel.paymentType == '0' ? "QR Code" : editModel.paymentType == '1' ? "โอนเงิน" : "บัตรเครดิต"  }}</span>
