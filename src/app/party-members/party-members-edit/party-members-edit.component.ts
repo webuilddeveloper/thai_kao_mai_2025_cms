@@ -53,12 +53,18 @@ export class PartyMembersEditComponent implements OnInit {
   listCategoryTambon: any = [];
   listCategoryPostCode: any = [];
 
+  listDistrictIssue: any = [];
+
   categoryProvince: any;
   categoryDistrict: any;
   categoryTambon: any;
   categoryPostCode: any;
 
   lvModel: any = [];
+  imageFile: string = '';
+  fileCopyIDCard: string = '';
+  fileCopyHouseRegistration: string = '';
+  fileNameChangeCertificate: string = '';
 
   constructor(
     private fileuploadService: FileUploadService,
@@ -184,6 +190,17 @@ export class PartyMembersEditComponent implements OnInit {
       (f) => f.value == this.editModel.tambonCode
     ).display;
 
+    this.editModel.provinceBirth = this.listCategoryProvince.find(
+      (f) => f.value == this.editModel.provinceBirthCode
+    ).display;
+
+    this.editModel.provinceIssue = this.listCategoryProvince.find(
+      (f) => f.value == this.editModel.provinceIssueCode
+    ).display;
+    this.editModel.districtIssue = this.listDistrictIssue.find(
+      (f) => f.value == this.editModel.districtIssueCode
+    ).display;
+
     if (this.editModel.image !== undefined) {
       this.editModel.imageUrl = this.editModel.image[0].imageUrl;
     }
@@ -229,10 +246,40 @@ export class PartyMembersEditComponent implements OnInit {
           let rawCountUnit = [];
           model = data;
           this.editModel = model.objectData[0];
+          if (this.editModel.copyIDCard != '') {
+            debugger
+            let resultArray = this.editModel.copyIDCard.split('.');
+            let type = resultArray[resultArray.length - 1];
+            if (type == 'pdf') {
+              this.fileCopyIDCard = 'assets/img/267px-PDF_file_icon.svg.png';
+            } else {
+              this.fileCopyIDCard = 'assets/img/excel.png';
+            }
+          }
+          if (this.editModel.copyHouseRegistration != '') {
+            let resultArray = this.editModel.copyHouseRegistration.split('.');
+            let type = resultArray[resultArray.length - 1];
+            if (type == 'pdf') {
+              this.fileCopyHouseRegistration = 'assets/img/267px-PDF_file_icon.svg.png';
+            } else {
+              this.fileCopyHouseRegistration = 'assets/img/excel.png';
+            }
+          }
+          if (this.editModel.nameChangeCertificate != '') {
+            let resultArray = this.editModel.nameChangeCertificate.split('.');
+            let type = resultArray[resultArray.length - 1];
+            if (type == 'pdf') {
+              this.fileNameChangeCertificate = 'assets/img/267px-PDF_file_icon.svg.png';
+            } else {
+              this.fileNameChangeCertificate = 'assets/img/excel.png';
+            }
+          }
 
           this.readCategoryDistrict(this.editModel.provinceCode);
           this.readCategoryTambon(this.editModel.amphoeCode);
           this.readCategoryPostCode(this.editModel.tambonCode);
+
+          this.readDistrictIssue(this.editModel.provinceIssueCode);
 
           this.spinner.hide();
         },
@@ -348,6 +395,7 @@ export class PartyMembersEditComponent implements OnInit {
       );
     }
   }
+  
 
   validProvince() {
     if (
@@ -380,6 +428,33 @@ export class PartyMembersEditComponent implements OnInit {
     ) {
       this.toastr.warning("กรุณาเลือกตำบล", "แจ้งเตือนระบบ", { timeOut: 2000 });
       return;
+    }
+  }
+
+  readDistrictIssue(param) {
+    if (param == "none" || param == "") {
+    } else {
+      this.editModel.provinceIssueCode = param;
+      if (this.editModel.language != "") {
+        this.serviceProviderService
+          .post("route/district/read", {
+            province: this.editModel.provinceIssueCode,
+          })
+          .subscribe(
+            (data) => {
+              let model: any = {};
+              model = data;
+              this.listDistrictIssue = [];
+              model.objectData.forEach((element) => {
+                this.listDistrictIssue.push({
+                  value: element.code,
+                  display: element.title,
+                });
+              });
+            },
+            (err) => {}
+          );
+      }
     }
   }
 
@@ -486,28 +561,42 @@ export class PartyMembersEditComponent implements OnInit {
 
     if (isValid) return;
 
-    this.editModel.province = this.listCategoryProvince.find(
-      (f) => f.value == this.editModel.provinceCode
-    ).display;
-    this.editModel.amphoe = this.listCategoryDistrict.find(
-      (f) => f.value == this.editModel.amphoeCode
-    ).display;
-    this.editModel.tambon = this.listCategoryTambon.find(
-      (f) => f.value == this.editModel.tambonCode
-    ).display;
+    // this.editModel.province = this.listCategoryProvince.find(
+    //   (f) => f.value == this.editModel.provinceCode
+    // ).display;
+    // this.editModel.amphoe = this.listCategoryDistrict.find(
+    //   (f) => f.value == this.editModel.amphoeCode
+    // ).display;
+    // this.editModel.tambon = this.listCategoryTambon.find(
+    //   (f) => f.value == this.editModel.tambonCode
+    // ).display;
+
+    // this.editModel.provinceBirth = this.listCategoryProvince.find(
+    //   (f) => f.value == this.editModel.provinceBirthCode
+    // ).display;
+
+    // this.editModel.provinceIssue = this.listCategoryProvince.find(
+    //   (f) => f.value == this.editModel.provinceIssueCode
+    // ).display;
+    // this.editModel.districtIssue = this.listDistrictIssue.find(
+    //   (f) => f.value == this.editModel.districtIssueCode
+    // ).display;
 
     if (this.editModel.image !== undefined) {
-      this.editModel.imageUrl = this.editModel.image[0].imageUrl;
+      this.editModel.onFilePhoto1_5 = this.editModel.image[0].onFilePhoto1_5;
     }
 
-    if (this.editModel.imageIdCard !== undefined) {
-      this.editModel.imageIdCardUrl = this.editModel.imageIdCard[0].imageUrl;
+    if (this.editModel.fileCopyIDCard !== undefined) {
+      this.editModel.copyIDCard = this.editModel.fileCopyIDCard[0].fileUrl;
     }
 
-    if (this.editModel.imagePayment !== undefined) {
-      this.editModel.imagePaymentUrl = this.editModel.imagePayment[0].imageUrl;
+    if (this.editModel.fileCopyHouseRegistration !== undefined) {
+      this.editModel.copyHouseRegistration = this.editModel.fileCopyHouseRegistration[0].fileUrl;
     }
-
+    if (this.editModel.fileNameChangeCertificate !== undefined) {
+      this.editModel.nameChangeCertificate = this.editModel.fileNameChangeCertificate[0].fileUrl;
+    }
+    debugger;
     this.serviceProviderService
       .post("partyMembers/update", this.editModel)
       .subscribe(

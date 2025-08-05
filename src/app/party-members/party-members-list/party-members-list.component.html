@@ -67,7 +67,6 @@
                   <th>รูปภาพ</th>
                   <th>ชื่อ</th>
                   <th>นามสกุล</th>
-                  <th>รูปแบบการเป็นสมาชิก</th>
                   <th>อัพเดทวันที่</th>
                   <th>อัพเดทโดย</th>
                 </tr>
@@ -109,7 +108,7 @@
                   </td>
                   <td>
                     <div class="w150">
-                      <img src="{{i.imageUrl}}" height="75" width="75">
+                      <img src="{{i.onFilePhoto1_5}}" height="75" width="75">
                     </div>
                   </td>
                   <td>
@@ -122,11 +121,7 @@
                       <a href="javascript:void(0)">{{i.lastName}}</a>
                     </div>
                   </td>
-                  <td>
-                    <div class="w150">
-                      {{i.membershipType === 'monthly' ? 'รายเดือน':'รายปี'}}
-                    </div>
-                  </td>
+                  
                   <td>
                     <div class="w150">
                       {{i.updateDate | datetimeFormat}}

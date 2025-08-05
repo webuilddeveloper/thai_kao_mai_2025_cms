@@ -74,4 +74,8 @@ export class DropzoneSingleFileComponent implements OnInit {
     this.cModel.emit(param);
   }
 
+  openFile(link) {
+    window.open(link, '_blank');
+  }
+
 }

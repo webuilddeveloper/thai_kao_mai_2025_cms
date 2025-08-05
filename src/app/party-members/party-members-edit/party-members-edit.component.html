@@ -59,25 +59,23 @@
 
                 <div class="row">
 
-                  <div class="col s6">
+                  <div class="col s6" style="padding-bottom: 20px;">
                     <csop (cModel)="editModel.status = $event" [label]="'สถานะ'" [data]="editModel.status ||'N'"
                       [sources]="[{ value: 'R', display: 'ไม่อนุมัติ' },{ value: 'N', display: 'รออนุมัติ' }, { value: 'A', display: 'อนุมัติ' }]">
                     </csop>
                   </div>
                   <div class="col s6">
-
+                    <citxt (cModel)="editModel.partyOfficials = $event" [label]="'ลงชื่อเจ้าหน้าที่พรรค : '" [data]="editModel.partyOfficials || ''">
+                    </citxt>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col s6">
-                    <citxt (cModel)="editModel.idcard = $event" [label]="'บัตรประจำตัวประชาชน : '"
-                      [data]="editModel.idcard || ''"></citxt>
-                  </div>
                   <div class="col s6" style="padding-bottom: 20px;">
                     <csop (cModel)="editModel.prefixName = $event" [label]="'คำนำหน้าชื่อ : '"
                       [data]="editModel.prefixName || 'none'" [sources]="listPrefixName">
                     </csop>
                   </div>
+                  <div class="col s6"></div>
                 </div>
                 <div class="row">
                   <div class="col s6">
@@ -94,39 +92,81 @@
                     <cdp (cModel)="editModel.birthDay = $event" [label]="'วันเกิด'" [data]="editModel.birthDay"></cdp>
                   </div>
                   <div class="col s6">
-                    <citxt (cModel)="editModel.phone = $event" [label]="'เบอร์โทรศัพท์ : '"
-                      [data]="editModel.phone || ''"></citxt>
+                    <citxt (cModel)="editModel.age = $event" [label]="'อายุ : '" [data]="editModel.age || ''">
+                    </citxt>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col s6">
+                    <citxt (cModel)="editModel.nationality = $event" [label]="'ศาสนา : '"
+                      [data]="editModel.nationality || ''">
+                    </citxt>
+                  </div>
+                  <div class="col s6">
+                    <citxt (cModel)="editModel.religion = $event" [label]="'สัญชาติ : '"
+                      [data]="editModel.religion || ''">
+                    </citxt>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s6">
+                    <citxt (cModel)="editModel.idcard = $event" [label]="'บัตรประจำตัวประชาชน : '"
+                      [data]="editModel.idcard || ''"></citxt>
+                  </div>
+                  <div class="col s6" style="padding-bottom: 20px;">
+                    <csop [label]="'จังหวัดที่เกิด : '" [data]="editModel.provinceBirthCode "
+                      [sources]="listCategoryProvince">
+                    </csop>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s6" style="padding-bottom: 20px;">
+                    <cdp (cModel)="editModel.issueDate = $event" [label]="'วันที่ออกบัตร'" [data]="editModel.issueDate">
+                    </cdp>
+                  </div>
+                  <div class="col s6" style="padding-bottom: 20px;">
+                    <cdp (cModel)="editModel.expiryDate = $event" [label]="'วันหมดอายุ'" [data]="editModel.expiryDate">
+                    </cdp>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col s6" style="padding-bottom: 20px;">
+                    <csop (cModel)="readDistrictIssue($event)" [label]="'จังหวัดที่ออกบัตร : '"
+                      [data]="editModel.provinceIssueCode " [sources]="listCategoryProvince">
+                    </csop>
+                  </div>
+                  <div class="col s6" style="padding-bottom: 20px;">
+                    <csop [label]="'อำเภอ/เขต : '" (click)="validProvince()" [data]="editModel.districtIssueCode "
+                      [sources]="listDistrictIssue">
+                    </csop>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col s6">
+                    <citxt (cModel)="editModel.phone = $event" [label]="'เบอร์โทรศัพท์ : '"
+                      [data]="editModel.phone || ''"></citxt>
+                  </div>
+                  <div class="col s6">
                     <citxt (cModel)="editModel.email = $event" [label]="'อีเมล : '" [data]="editModel.email || ''">
                     </citxt>
                   </div>
-                  <div class="col s6"></div>
                 </div>
+
               </div>
               <!-- ก้อน3 -->
               <div class="col s3">
                 <div class="col s12">
                   <cds (cModel)="editModel.image = $event" [label]="'รูปถ่ายตนเอง (เลือกภาพ/วางภาพที่นี่)'"
-                    [data]="[{ imageUrl: this.editModel.imageUrl || '' }]" [code]="'member-mobile'">
+                    [data]="[{ imageUrl: this.editModel.onFilePhoto1_5 || '' }]" [code]="'member-mobile'">
                   </cds>
                 </div>
                 <div class="col s12" style="color: red;padding-top: 20px;">
                   <span>*Maximum 10 MB</span>
                 </div>
               </div>
-              <div class="col s3">
-                <div class="col s12">
-                  <cds (cModel)="editModel.imageIdCard = $event" [label]="'รูปถ่ายบัตรประชาชน (เลือกภาพ/วางภาพที่นี่)'"
-                    [data]="[{ imageUrl: this.editModel.imageIdCardUrl || '' }]" [code]="'member-mobile'">
-                  </cds>
-                </div>
-                <div class="col s12" style="color: red;padding-top: 20px;">
-                  <span>*Maximum 10 MB</span>
-                </div>
-              </div>
+
             </div>
             <!-- END: Do Something This Here -->
           </div>
@@ -148,7 +188,7 @@
                   border_color
                 </span>
                 <span style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
-                  ที่อยู่และรูปแบบการเป็นสมาชิก
+                  ที่อยู่ตามสำเนาทะเบียนบ้าน
                 </span>
               </div>
             </div>
@@ -164,28 +204,31 @@
                   </citxt>
                 </div>
                 <div class="col s12">
-                  <citxt (cModel)="editModel.soi = $event" [label]="'ซอย : '" [data]="editModel.soi || ''"></citxt>
-                </div>
-                <div class="col s12">
-                  <csop (cModel)="readCategoryTambon($event)" [label]="'อำเภอ/เขต : '" (click)="validProvince()"
-                    [data]="editModel.amphoeCode " [sources]="listCategoryDistrict">
-                  </csop>
-                </div>
-              </div>
-              <!-- ก้อน2 -->
-              <div class="col s4">
-                <div class="col s12">
-                  <citxt (cModel)="editModel.village = $event" [label]="'อาคาร/หมู่บ้าน : '"
-                    [data]="editModel.village || ''">
-                  </citxt>
-                </div>
-                <div class="col s12">
                   <citxt (cModel)="editModel.road = $event" [label]="'ถนน : '" [data]="editModel.road || ''"></citxt>
                 </div>
                 <div class="col s12" style="padding-bottom: 20px;">
                   <csop (cModel)="readCategoryPostCode($event)" [label]="'ตำบล/แขวง : '" (click)="validDistrict()"
                     [data]="editModel.tambonCode || 'none'" [sources]="listCategoryTambon">
                   </csop>
+                </div>
+              </div>
+              <!-- ก้อน2 -->
+              <div class="col s4">
+                <div class="col s12">
+                  <citxt (cModel)="editModel.soi = $event" [label]="'ซอย : '" [data]="editModel.soi || ''"></citxt>
+                </div>
+
+                <div class="col s12" style="padding-bottom: 20px;">
+                  <csop (cModel)="readCategoryDistrict($event)" [label]="'จังหวัด : '" [data]="editModel.provinceCode "
+                    [sources]="listCategoryProvince">
+                  </csop>
+                </div>
+                <div class="col s12" style="padding-bottom: 20px;">
+                  <citxt (cModel)="editModel.postnoCode = $event" [label]="'รหัสไปรษณีย์ : '"
+                    [data]="editModel.postnoCode || ''"></citxt>
+                  <!-- <csop (cModel)="editModel.postnoCode = $event" [label]="'รหัสไปรษณีย์ : '" (click)="validTambon()"
+                    [data]="editModel.postnoCode || 'none'" [sources]="listCategoryPostCode">
+                  </csop> -->
                 </div>
 
               </div>
@@ -194,60 +237,242 @@
                 <div class="col s12">
                   <citxt (cModel)="editModel.moo = $event" [label]="'หมู่ที่ : '" [data]="editModel.moo || ''"></citxt>
                 </div>
-
-                <div class="col s12" style="padding-bottom: 20px;">
-                  <csop (cModel)="readCategoryDistrict($event)" [label]="'จังหวัด : '" [data]="editModel.provinceCode "
-                    [sources]="listCategoryProvince">
-
+                <div class="col s12">
+                  <csop (cModel)="readCategoryTambon($event)" [label]="'อำเภอ/เขต : '" (click)="validProvince()"
+                    [data]="editModel.amphoeCode " [sources]="listCategoryDistrict">
                   </csop>
                 </div>
-                <div class="col s12" style="padding-bottom: 20px;">
-                  <citxt (cModel)="editModel.postnoCode = $event" [label]="'รหัสไปรษณีย์ : '" [data]="editModel.postnoCode || ''"></citxt>
-                  <!-- <csop (cModel)="editModel.postnoCode = $event" [label]="'รหัสไปรษณีย์ : '" (click)="validTambon()"
-                    [data]="editModel.postnoCode || 'none'" [sources]="listCategoryPostCode">
-                  </csop> -->
-                </div>
+              </div>
+            </div>
+
+            <!-- END: Do Something This Here -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col s12">
+    <div class="container">
+      <section class="users-list-wrapper section">
+        <div class="users-list-filter">
+          <div class="card-panel" style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+            <div class="row">
+              <div class="col s8">
+                <span class="material-icons header-icon">
+                  border_color
+                </span>
+                <span style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+                  ประวัติการศึกษา
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-panel">
+            <!-- BEGIN: Do Something This Here -->
+            <div class="row">
+              <div class="col s6">
+                <citxt (cModel)="editModel.highestLevelEducation = $event" [label]="'การศึกษาสูงสุด : '"
+                  [data]="editModel.highestLevelEducation || ''">
+                </citxt>
+              </div>
+              <div class="col s6">
+                <citxt (cModel)="editModel.faculty_major = $event" [label]="'คณะ/สาขา : '"
+                  [data]="editModel.faculty_major || ''">
+                </citxt>
+              </div>
+              <div class="col s6">
+                <citxt (cModel)="editModel.institute = $event" [label]="'ชื่อสถาบันการศึกษา : '"
+                  [data]="editModel.institute || ''">
+                </citxt>
+              </div>
+            </div>
+
+            <!-- END: Do Something This Here -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col s12">
+    <div class="container">
+      <section class="users-list-wrapper section">
+        <div class="users-list-filter">
+          <div class="card-panel" style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+            <div class="row">
+              <div class="col s8">
+                <span class="material-icons header-icon">
+                  border_color
+                </span>
+                <span style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+                  ประวัติการทำงาน
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-panel">
+            <!-- BEGIN: Do Something This Here -->
+            <div class="row">
+              <div class="col s6">
+                <citxt (cModel)="editModel.currentOccupation = $event" [label]="'อาชีพปัจจุบัน : '"
+                  [data]="editModel.currentOccupation || ''">
+                </citxt>
+              </div>
+              <div class="col s6">
+                <citxt (cModel)="editModel.position = $event" [label]="'ตำแหน่ง : '" [data]="editModel.position || ''">
+                </citxt>
+              </div>
+              <div class="col s6">
+                <citxt (cModel)="editModel.workplace = $event" [label]="'สถานที่ทำงาน : '"
+                  [data]="editModel.workplace || ''">
+                </citxt>
               </div>
             </div>
             <div class="row">
-              <div class="col s9">
-                <!-- <div class="col s12">
-                  <ccb (cModel)="onMonthlyChange($event)" [label]="'ลงทะเบียนสมาชิกแบบรายเดือน (20 บาท/ปี)'"
-                    [data]="editModel.partyMembersPage === true">
-                  </ccb>
-                  <ccb (cModel)="onLifetimeChange($event)" [label]="'ลงทะเบียนสมาชิกตลอดชีพ (200 บาท)'"
-                    [data]="editModel.lifetimeMembership === true">
-                  </ccb>
-                </div> -->
-                <div class="col s9">
-                  <div class="col s12" style="margin-bottom: 10px;">
-                    <span>รูปแบบการเป็นสมาชิก</span>
-                  </div>
+              <div class="col s6">
+                <citxt (cModel)="editModel.telephone = $event" [label]="'โทรศัพท์ : '"
+                  [data]="editModel.telephone || ''">
+                </citxt>
+              </div>
+              <div class="col s6">
+                <citxt (cModel)="editModel.fax = $event" [label]="'โทรสาร : '" [data]="editModel.fax || ''">
+                </citxt>
+              </div>
+              <div class="col s6"></div>
+            </div>
+
+            <!-- END: Do Something This Here -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col s12">
+    <div class="container">
+      <section class="users-list-wrapper section">
+        <div class="users-list-filter">
+          <div class="card-panel" style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+            <div class="row">
+              <div class="col s8">
+                <span class="material-icons header-icon">
+                  border_color
+                </span>
+                <span style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+                  ประวัติการเป็นสมาชิกพรรคการเมือง
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-panel">
+            <!-- BEGIN: Do Something This Here -->
+
+            <div class="row">
+              <div class="col s12">
+                <label>
+                  <input type="radio" name="partyRegisterHistory" [(ngModel)]="editModel.partyRegisterHistory"
+                    value="never" />
+                  <span>ไม่เคย</span>
+                </label>
+                <br>
+                <label>
+                  <input type="radio" name="partyRegisterHistory" [(ngModel)]="editModel.partyRegisterHistory"
+                    value="ever" />
+                  <span>เคย</span>
+                </label>
+                <br>
+                <div class="row d-flex align-items-center" style="padding-left: 20px;">
+                  <span>ชื่อพรรค</span>
                   <div class="col s12">
-                    <label>
-                      <input type="radio" name="membership" [(ngModel)]="editModel.membershipType" value="monthly" />
-                      <span>ลงทะเบียนสมาชิกแบบรายเดือน (20 บาท/ปี)</span>
-                    </label>
-                    <br>
-                    <label>
-                      <input type="radio" name="membership" [(ngModel)]="editModel.membershipType" value="lifetime" />
-                      <span>ลงทะเบียนสมาชิกตลอดชีพ (200 บาท)'</span>
-                    </label>
+                    <citxt (cModel)="editModel.partyOldName = $event" [label]="''" [data]="editModel.partyOldName || ''"
+                      [readonly]="editModel.partyRegisterHistory == 'never'">
+                    </citxt>
                   </div>
+                  <span>และได้ลาออกจากการเป็นสมาชิกพรรคแล้ว</span>
+                  <div class="col s12"></div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- END: Do Something This Here -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col s12">
+    <div class="container">
+      <section class="users-list-wrapper section">
+        <div class="users-list-filter">
+          <div class="card-panel" style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+            <div class="row">
+              <div class="col s8">
+                <span class="material-icons header-icon">
+                  border_color
+                </span>
+                <span style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+                  หลักฐานการสมัคร
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-panel">
+            <!-- BEGIN: Do Something This Here -->
+
+            <div class="row">
+              <div class="col-4">
+                <span>สำเนาบัตรประชาชน</span>
+                <div class="col-12">
+                  <cdsf (cModel)="editModel.fileCopyIDCard = $event"
+                    [label]="'ไฟล์ PDF (เลือกไฟล์ PDF , Excel/วางไฟล์ PDF , Excelที่นี่)'"
+                    [data]="[{ imageUrl: editModel.copyIDCard == '' ? '' : fileCopyIDCard, url: editModel.copyIDCard }]" [code]="'event'">
+                  </cdsf>
+                </div>
+                <div class="col-12" style="color: red;padding-top: 20px;">
+                  <span>*Maximum 100 MB</span>
                 </div>
               </div>
-              <div class="col s3">
-                <div class="col s12">
-                  <cds (cModel)="editModel.imagePayment = $event"
-                    [label]="'รูปถ่ายหลักฐานการโอนชำระเงินค่าลงทะเบียนสมาชิก (เลือกภาพ/วางภาพที่นี่)'"
-                    [data]="[{ imageUrl: this.editModel.imagePaymentUrl || '' }]" [code]="'member-mobile'">
-                  </cds>
+              <div class="col-4">
+                <span>สำเนาทะเบียนบ้าน</span>
+                <div class="col-12">
+                  <cdsf (cModel)="editModel.fileCopyHouseRegistration = $event"
+                    [label]="'ไฟล์ PDF (เลือกไฟล์ PDF , Excel/วางไฟล์ PDF , Excelที่นี่)'"
+                    [data]="[{ imageUrl: editModel.copyHouseRegistration == '' ? '' : fileCopyHouseRegistration, url: editModel.copyHouseRegistration }]" [code]="'event'">
+                  </cdsf>
                 </div>
-                <div class="col s12" style="color: red;padding-top: 20px;">
-                  <span>*Maximum 10 MB</span>
+                <div class="col-12" style="color: red;padding-top: 20px;">
+                  <span>*Maximum 100 MB</span>
+                </div>
+              </div>
+              <div class="col-4">
+                <span>ใบสำคัญการเปลี่ยนชื่อ-สกุล</span>
+                <div class="col-12">
+                  <cdsf (cModel)="editModel.fileNameChangeCertificate = $event"
+                    [label]="'ไฟล์ PDF (เลือกไฟล์ PDF , Excel/วางไฟล์ PDF , Excelที่นี่)'"
+                    [data]="[{ imageUrl: editModel.nameChangeCertificate == '' ? '' : fileNameChangeCertificate, url: editModel.nameChangeCertificate }]" [code]="'event'">
+                  </cdsf>
+                </div>
+                <div class="col-12" style="color: red;padding-top: 20px;">
+                  <span>*Maximum 100 MB</span>
                 </div>
               </div>
             </div>
+
             <!-- END: Do Something This Here -->
           </div>
         </div>
