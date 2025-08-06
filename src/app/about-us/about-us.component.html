@@ -52,17 +52,39 @@
                                         [data]="editModel.telephone || ''"></citxt>
                                 </div>
                                 <div class="col s4" style="padding-left: 50px !important;">
-                                    <div class="col s12">
-                                        <cds (cModel)="editModel.image = $event"
-                                            [label]="'รูปภาพโลโก้ (เลือกภาพ/วางภาพที่นี่)'"
-                                            [data]="[{ imageUrl: this.editModel.imageLogoUrl || '' }]"
-                                            [code]="'aboutUs'">
-                                        </cds>
+                                    <div class="row">
+                                        <div class="col s6">
+                                            <div class="col s12">
+                                                <cds (cModel)="editModel.image = $event"
+                                                    [label]="'รูปภาพโลโก้ (เลือกภาพ/วางภาพที่นี่)'"
+                                                    [data]="[{ imageUrl: this.editModel.imageLogoUrl || '' }]"
+                                                    [code]="'aboutUs'">
+                                                </cds>
+                                            </div>
+                                            <div class="col s12" style="color: red;padding-top: 20px;">
+                                                <span>*Maximum 10 MB</span>
+                                            </div>
+                                        </div>
+                                        <div class="col s6">
+                                            <div class="col-12">
+                                                <span>ใบสมัครสมาชิกพรรค</span>
+                                                <div class="col-12">
+                                                    <cdsf (cModel)="editModel.fileMembershipApplication = $event"
+                                                        [label]="'ไฟล์ PDF (เลือกไฟล์ PDF , Excel/วางไฟล์ PDF , Excelที่นี่)'"
+                                                        [data]="[{ imageUrl: editModel.membershipApplication == '' ? '' : fileMembershipApplication, url: editModel.membershipApplication }]"
+                                                        [code]="'event'">
+                                                    </cdsf>
+                                                </div>
+                                                <div class="col-12" style="color: red;padding-top: 20px;">
+                                                    <span>*Maximum 100 MB</span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col s12" style="color: red;padding-top: 20px;">
-                                        <span>*Maximum 10 MB</span>
-                                    </div>
+
+
                                 </div>
+
                             </div>
                             <div class="row">
                                 <div class="col s8">
@@ -280,8 +302,9 @@
                                     <div class="row">
                                         <div class="col s6">
                                             <div class="col s12">
-                                                <ctxte (cModel)="editModel.ideologyDes = $event" [label]="'รายละเอียดหลัก : '"
-                                                    [data]="editModel.ideologyDes || ''"></ctxte>
+                                                <ctxte (cModel)="editModel.ideologyDes = $event"
+                                                    [label]="'รายละเอียดหลัก : '" [data]="editModel.ideologyDes || ''">
+                                                </ctxte>
                                             </div>
                                         </div>
                                         <div class="col s6">

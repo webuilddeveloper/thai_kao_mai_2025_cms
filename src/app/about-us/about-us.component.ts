@@ -24,6 +24,7 @@ export class AboutUsComponent implements OnInit {
   messageInputSlice: any = [];
   paginationModelDiffer: KeyValueDiffer<string, any>; // <----- Pagination
   paginationModel: any = { itemsPerPage: 5, currentPage: 1, totalItems: 0, itemsPerPageString: '5' }; // <----- Pagination
+  fileMembershipApplication: string = '';
 
 
   constructor(private fileuploadService: FileUploadService
@@ -100,6 +101,15 @@ export class AboutUsComponent implements OnInit {
       model = data;
 
       if (model.objectData.length > 0) {
+        if ((this.editModel.nameChangeCertificate ?? '') != '' && this.editModel.nameChangeCertificate != undefined) {
+          let resultArray = this.editModel.nameChangeCertificate.split('.');
+          let type = resultArray[resultArray.length - 1];
+          if (type == 'pdf') {
+            this.fileMembershipApplication = 'assets/img/267px-PDF_file_icon.svg.png';
+          } else {
+            this.fileMembershipApplication = 'assets/img/excel.png';
+          }
+        }
         this.editModel = model.objectData[0];
         this.code = this.editModel.code;
         this.messageInputSlice = model.objectData[0].ideologyList;
@@ -145,6 +155,10 @@ export class AboutUsComponent implements OnInit {
     }
 
     this.editModel.ideologyList = this.messageInputSlice;
+
+    if (this.editModel.fileMembershipApplication !== undefined) {
+      this.editModel.membershipApplication = this.editModel.fileMembershipApplication[0].fileUrl;
+    }
 
     this.spinner.show();
     this.serviceProviderService.post('aboutUs/update', this.editModel).subscribe(data => {

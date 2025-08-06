@@ -561,26 +561,26 @@ export class PartyMembersEditComponent implements OnInit {
 
     if (isValid) return;
 
-    // this.editModel.province = this.listCategoryProvince.find(
-    //   (f) => f.value == this.editModel.provinceCode
-    // ).display;
-    // this.editModel.amphoe = this.listCategoryDistrict.find(
-    //   (f) => f.value == this.editModel.amphoeCode
-    // ).display;
-    // this.editModel.tambon = this.listCategoryTambon.find(
-    //   (f) => f.value == this.editModel.tambonCode
-    // ).display;
+    this.editModel.province = this.listCategoryProvince.find(
+      (f) => f.value == this.editModel.provinceCode
+    ).display;
+    this.editModel.amphoe = this.listCategoryDistrict.find(
+      (f) => f.value == this.editModel.amphoeCode
+    ).display;
+    this.editModel.tambon = this.listCategoryTambon.find(
+      (f) => f.value == this.editModel.tambonCode
+    ).display;
 
-    // this.editModel.provinceBirth = this.listCategoryProvince.find(
-    //   (f) => f.value == this.editModel.provinceBirthCode
-    // ).display;
+    this.editModel.provinceBirth = this.listCategoryProvince.find(
+      (f) => f.value == this.editModel.provinceBirthCode
+    ).display;
 
-    // this.editModel.provinceIssue = this.listCategoryProvince.find(
-    //   (f) => f.value == this.editModel.provinceIssueCode
-    // ).display;
-    // this.editModel.districtIssue = this.listDistrictIssue.find(
-    //   (f) => f.value == this.editModel.districtIssueCode
-    // ).display;
+    this.editModel.provinceIssue = this.listCategoryProvince.find(
+      (f) => f.value == this.editModel.provinceIssueCode
+    ).display;
+    this.editModel.districtIssue = this.listDistrictIssue.find(
+      (f) => f.value == this.editModel.districtIssueCode
+    ).display;
 
     if (this.editModel.image !== undefined) {
       this.editModel.onFilePhoto1_5 = this.editModel.image[0].onFilePhoto1_5;
@@ -596,7 +596,6 @@ export class PartyMembersEditComponent implements OnInit {
     if (this.editModel.fileNameChangeCertificate !== undefined) {
       this.editModel.nameChangeCertificate = this.editModel.fileNameChangeCertificate[0].fileUrl;
     }
-    debugger;
     this.serviceProviderService
       .post("partyMembers/update", this.editModel)
       .subscribe(
