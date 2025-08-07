@@ -99,10 +99,14 @@ export class AboutUsComponent implements OnInit {
     this.serviceProviderService.post('aboutUs/read', { code: this.editModel.code }).subscribe(data => {
       let model: any = {};
       model = data;
-
+      
       if (model.objectData.length > 0) {
-        if ((this.editModel.nameChangeCertificate ?? '') != '' && this.editModel.nameChangeCertificate != undefined) {
-          let resultArray = this.editModel.nameChangeCertificate.split('.');
+        this.editModel = model.objectData[0];
+        this.code = this.editModel.code;
+        this.messageInputSlice = model.objectData[0].ideologyList;
+
+        if ((this.editModel.membershipApplication ?? '') != '' && this.editModel.membershipApplication != undefined) {
+          let resultArray = this.editModel.membershipApplication.split('.');
           let type = resultArray[resultArray.length - 1];
           if (type == 'pdf') {
             this.fileMembershipApplication = 'assets/img/267px-PDF_file_icon.svg.png';
@@ -110,9 +114,6 @@ export class AboutUsComponent implements OnInit {
             this.fileMembershipApplication = 'assets/img/excel.png';
           }
         }
-        this.editModel = model.objectData[0];
-        this.code = this.editModel.code;
-        this.messageInputSlice = model.objectData[0].ideologyList;
       }
 
       this.spinner.hide();
