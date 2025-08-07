@@ -285,7 +285,7 @@ export class AppComponent {
         isShow: this.category.partyMembersPage,
       },
       {
-        name: "จัดกากแฟนคลับพรรค",
+        name: "จัดการแฟนคลับพรรค",
         routing: "/party-fan-club",
         data: "",
         type: "N",
