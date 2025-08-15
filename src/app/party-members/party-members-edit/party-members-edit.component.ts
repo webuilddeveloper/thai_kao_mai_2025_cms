@@ -249,8 +249,11 @@ export class PartyMembersEditComponent implements OnInit {
         (data) => {
           let model: any = {};
           model = data;
-
-          this.isSaveSuccess = true;
+          if (model.status == 'N') {
+            this.toastr.warning(model.message, 'แจ้งเตือน');
+            return;
+          } else {
+            this.isSaveSuccess = true;
           this.spinner.hide();
           this.toastr.success("บันทึกข้อมูลสำเร็จ", "แจ้งเตือนระบบ", {
             timeOut: 2000,
@@ -259,6 +262,8 @@ export class PartyMembersEditComponent implements OnInit {
           setTimeout(() => {
             this.back();
           }, 2000);
+          }
+          
         },
         (err) => {
           this.spinner.hide();
@@ -337,7 +342,7 @@ export class PartyMembersEditComponent implements OnInit {
             });
           });
         },
-        (err) => {}
+        (err) => { }
       );
   }
 
@@ -361,7 +366,7 @@ export class PartyMembersEditComponent implements OnInit {
               });
             });
           },
-          (err) => {}
+          (err) => { }
         );
     } else if (lv == "lv1") {
       this.editModel.lv1 = param;
@@ -382,7 +387,7 @@ export class PartyMembersEditComponent implements OnInit {
               });
             });
           },
-          (err) => {}
+          (err) => { }
         );
     } else if (lv == "lv2") {
       this.editModel.lv2 = param;
@@ -403,7 +408,7 @@ export class PartyMembersEditComponent implements OnInit {
               });
             });
           },
-          (err) => {}
+          (err) => { }
         );
     }
   }
@@ -422,11 +427,11 @@ export class PartyMembersEditComponent implements OnInit {
             });
           });
         },
-        (err) => {}
+        (err) => { }
       );
     }
   }
-  
+
 
   validProvince() {
     if (
@@ -483,7 +488,7 @@ export class PartyMembersEditComponent implements OnInit {
                 });
               });
             },
-            (err) => {}
+            (err) => { }
           );
       }
     }
@@ -510,7 +515,7 @@ export class PartyMembersEditComponent implements OnInit {
                 });
               });
             },
-            (err) => {}
+            (err) => { }
           );
       }
     }
@@ -535,7 +540,7 @@ export class PartyMembersEditComponent implements OnInit {
                 });
               });
             },
-            (err) => {}
+            (err) => { }
           );
       }
     }
@@ -560,7 +565,7 @@ export class PartyMembersEditComponent implements OnInit {
                 });
               });
             },
-            (err) => {}
+            (err) => { }
           );
       }
     }
@@ -654,16 +659,24 @@ export class PartyMembersEditComponent implements OnInit {
     this.serviceProviderService
       .post("partyMembers/update", this.editModel)
       .subscribe(
-        (data) => {
-          this.isSaveSuccess = true;
-          this.spinner.hide();
-          this.toastr.success("บันทึกข้อมูลสำเร็จ", "แจ้งเตือนระบบ", {
-            timeOut: 2000,
-          });
+        (res) => {
+          let data: any = {};
+          data = res;
+          if (data.status == 'N') {
+            this.toastr.warning(data.message, 'แจ้งเตือน');
+            return;
+          } else {
+            this.isSaveSuccess = true;
+            this.spinner.hide();
+            this.toastr.success("บันทึกข้อมูลสำเร็จ", "แจ้งเตือนระบบ", {
+              timeOut: 2000,
+            });
 
-          setTimeout(() => {
-            this.back();
-          }, 2000);
+            setTimeout(() => {
+              this.back();
+            }, 2000);
+          }
+
         },
         (err) => {
           this.spinner.hide();
@@ -939,7 +952,7 @@ export class PartyMembersEditComponent implements OnInit {
             });
           });
         },
-        (err) => {}
+        (err) => { }
       );
   }
 
@@ -967,7 +980,7 @@ export class PartyMembersEditComponent implements OnInit {
               });
             }
           },
-          (err) => {}
+          (err) => { }
         );
     } else if (lv == "lv1") {
       param2.lv1 = param;
@@ -992,7 +1005,7 @@ export class PartyMembersEditComponent implements OnInit {
               });
             }
           },
-          (err) => {}
+          (err) => { }
         );
     } else if (lv == "lv2") {
       param2.lv2 = param;
@@ -1017,7 +1030,7 @@ export class PartyMembersEditComponent implements OnInit {
               });
             }
           },
-          (err) => {}
+          (err) => { }
         );
     } else if (lv == "lv3") {
       param2.lv3 = param;
@@ -1042,7 +1055,7 @@ export class PartyMembersEditComponent implements OnInit {
               });
             }
           },
-          (err) => {}
+          (err) => { }
         );
     } else if (lv == "lv4") {
       param2.lv4 = param;
@@ -1062,7 +1075,7 @@ export class ConfirmDeleteDialog {
   constructor(
     public dialogRef: MatDialogRef<ConfirmDeleteDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) { }
 
   cancel() {
     this.dialogRef.close(false);
