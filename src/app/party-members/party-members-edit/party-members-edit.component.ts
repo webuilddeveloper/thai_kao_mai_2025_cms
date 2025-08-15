@@ -178,6 +178,28 @@ export class PartyMembersEditComponent implements OnInit {
       isValid = true;
     }
 
+    if (this.editModel?.fileCopyHouseRegistration?.length == 0) {
+      this.toastr.warning("กรุณาแนบไฟล์สำเนาทะเบียนบ้าน", "แจ้งเตือนระบบ", { timeOut: 2000 });
+      isValid = true;
+    }
+
+    if (this.editModel?.fileCopyIDCard?.length == 0) {
+      this.toastr.warning("กรุณาแนบไฟล์สำเนาบัตรประชาชน", "แจ้งเตือนระบบ", { timeOut: 2000 });
+      isValid = true;
+    }
+
+    if (this.editModel?.fileSlipPay?.length == 0) {
+      this.toastr.warning("กรุณาแนบรูปภาพหลักฐานการโอนเงิน", "แจ้งเตือนระบบ", { timeOut: 2000 });
+      isValid = true;
+    }
+
+    if (this.editModel.partyOfficials == "") {
+      this.toastr.warning("กรุณาลงชื่อเจ้าหน้าที่พรรค", "แจ้งเตือนระบบ", {
+        timeOut: 2000,
+      });
+      isValid = true;
+    }
+
     if (isValid) return;
 
     this.editModel.province = this.listCategoryProvince.find(
@@ -202,16 +224,25 @@ export class PartyMembersEditComponent implements OnInit {
     ).display;
 
     if (this.editModel.image !== undefined) {
-      this.editModel.imageUrl = this.editModel.image[0].imageUrl;
+      this.editModel.onFilePhoto1_5 = this.editModel.image[0].imageUrl;
     }
 
-    if (this.editModel.imageIdCard !== undefined) {
-      this.editModel.imageIdCardUrl = this.editModel.imageIdCard[0].imageUrl;
+    if (this.editModel.fileCopyHouseRegistration !== undefined) {
+      this.editModel.copyHouseRegistration = this.editModel.fileCopyHouseRegistration[0].imageUrl;
     }
 
-    if (this.editModel.imagePayment !== undefined) {
-      this.editModel.imagePaymentUrl = this.editModel.imagePayment[0].imageUrl;
+    if (this.editModel.fileCopyIDCard !== undefined) {
+      this.editModel.copyIDCard = this.editModel.fileCopyIDCard[0].imageUrl;
     }
+
+    if (this.editModel.fileNameChangeCertificate !== undefined) {
+      this.editModel.nameChangeCertificate = this.editModel.fileNameChangeCertificate[0].imageUrl;
+    }
+
+    if (this.editModel.fileSlipPay !== undefined) {
+      this.editModel.slipPay = this.editModel.fileSlipPay[0].imageUrl;
+    }
+
     this.serviceProviderService
       .post("partyMembers/create", this.editModel)
       .subscribe(
@@ -553,7 +584,27 @@ export class PartyMembersEditComponent implements OnInit {
     // }
 
     if (this.editModel?.image?.length == 0) {
-      this.toastr.warning("กรุณาใส่รูปภาพ", "แจ้งเตือนระบบ", {
+      this.toastr.warning("กรุณาใส่รูปภาพ", "แจ้งเตือนระบบ", { timeOut: 2000 });
+      isValid = true;
+    }
+
+    if (this.editModel?.fileCopyHouseRegistration?.length == 0) {
+      this.toastr.warning("กรุณาแนบไฟล์สำเนาทะเบียนบ้าน", "แจ้งเตือนระบบ", { timeOut: 2000 });
+      isValid = true;
+    }
+
+    if (this.editModel?.fileCopyIDCard?.length == 0) {
+      this.toastr.warning("กรุณาแนบไฟล์สำเนาบัตรประชาชน", "แจ้งเตือนระบบ", { timeOut: 2000 });
+      isValid = true;
+    }
+
+    if (this.editModel?.fileSlipPay?.length == 0) {
+      this.toastr.warning("กรุณาแนบรูปภาพหลักฐานการโอนเงิน", "แจ้งเตือนระบบ", { timeOut: 2000 });
+      isValid = true;
+    }
+
+    if (this.editModel.partyOfficials == "") {
+      this.toastr.warning("กรุณาลงชื่อเจ้าหน้าที่พรรค", "แจ้งเตือนระบบ", {
         timeOut: 2000,
       });
       isValid = true;
@@ -595,6 +646,10 @@ export class PartyMembersEditComponent implements OnInit {
     }
     if (this.editModel.fileNameChangeCertificate !== undefined) {
       this.editModel.nameChangeCertificate = this.editModel.fileNameChangeCertificate[0].fileUrl;
+    }
+
+    if (this.editModel.fileSlipPay !== undefined) {
+      this.editModel.slipPay = this.editModel.fileSlipPay[0].fileUrl;
     }
     this.serviceProviderService
       .post("partyMembers/update", this.editModel)

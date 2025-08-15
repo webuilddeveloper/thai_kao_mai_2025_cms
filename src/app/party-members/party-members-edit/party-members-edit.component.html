@@ -130,7 +130,7 @@
                   </div>
                 </div>
 
-                <div class="row">
+                <!-- <div class="row">
                   <div class="col s6" style="padding-bottom: 20px;">
                     <csop (cModel)="readDistrictIssue($event)" [label]="'จังหวัดที่ออกบัตร : '"
                       [data]="editModel.provinceIssueCode " [sources]="listCategoryProvince">
@@ -141,7 +141,7 @@
                       [sources]="listDistrictIssue">
                     </csop>
                   </div>
-                </div>
+                </div> -->
 
                 <div class="row">
                   <div class="col s6">
@@ -151,6 +151,16 @@
                   <div class="col s6">
                     <citxt (cModel)="editModel.email = $event" [label]="'อีเมล : '" [data]="editModel.email || ''">
                     </citxt>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col s6">
+                    <citxt (cModel)="editModel.lineID = $event" [label]="'ID Line : '"
+                      [data]="editModel.lineID || ''"></citxt>
+                  </div>
+                  <div class="col s6">
+                   
                   </div>
                 </div>
 
@@ -335,7 +345,7 @@
                 </citxt>
               </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
               <div class="col s6">
                 <citxt (cModel)="editModel.telephone = $event" [label]="'โทรศัพท์ : '"
                   [data]="editModel.telephone || ''">
@@ -346,7 +356,7 @@
                 </citxt>
               </div>
               <div class="col s6"></div>
-            </div>
+            </div> -->
 
             <!-- END: Do Something This Here -->
           </div>
@@ -378,7 +388,7 @@
             <!-- BEGIN: Do Something This Here -->
 
             <div class="row">
-              <div class="col s12">
+              <div class="col s6">
                 <label>
                   <input type="radio" name="partyRegisterHistory" [(ngModel)]="editModel.partyRegisterHistory"
                     value="never" />
@@ -403,6 +413,65 @@
                 </div>
 
               </div>
+              <div class="col s6">
+
+              </div>
+            </div>
+
+            <!-- END: Do Something This Here -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col s12">
+    <div class="container">
+      <section class="users-list-wrapper section">
+        <div class="users-list-filter">
+          <div class="card-panel" style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+            <div class="row">
+              <div class="col s8">
+                <span class="material-icons header-icon">
+                  border_color
+                </span>
+                <span style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+                  ประเภทการเป็นสมาชิกพรรค
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-panel">
+            <!-- BEGIN: Do Something This Here -->
+
+            <div class="row">
+              <div class="col s12">
+                <label>
+                  <input type="radio" name="registerType" [(ngModel)]="editModel.registerType"
+                    value="yearly" />
+                  <span>ประเภทรายปี (ชำระค่าบำรุงพรรคจำนวน 20 บาท)</span>
+                </label>
+                <br>
+                <label>
+                  <input type="radio" name="registerType" [(ngModel)]="editModel.registerType"
+                    value="lifetime" />
+                  <span>ประเภทตลอดชีพ (ชำระค่าบำรุงพรรคจำนวน 200 บาท)</span>
+                </label>
+              </div>
+              <div class="col s3">
+                <div class="col s12">
+                  <cds (cModel)="editModel.fileSlipPay = $event" [label]="'รูปหลักฐานการโอนเงิน (เลือกภาพ/วางภาพที่นี่)'"
+                    [data]="[{ imageUrl: this.editModel.slipPay || '' }]" [code]="'member-mobile'">
+                  </cds>
+                </div>
+                <div class="col s12" style="color: red;padding-top: 20px;">
+                  <span>*Maximum 10 MB</span>
+                </div>
+              </div>
+              <div class="col s3"></div>
             </div>
 
             <!-- END: Do Something This Here -->
