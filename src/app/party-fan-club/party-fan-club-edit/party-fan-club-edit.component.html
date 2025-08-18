@@ -92,20 +92,44 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col s12" style="padding-bottom: 40px !important;">
+                  <div class="col s6">
+                    <citxt (cModel)="editModel.phone = $event" [label]="'เบอร์โทรศัพท์: '"
+                      [data]="editModel.phone || ''"></citxt>
+                  </div>
+                  <div class="col s6">
+                    <citxt (cModel)="editModel.lineId = $event" [label]="'ID Line : '" [data]="editModel.lineId || ''">
+                    </citxt>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="d-flex flex-column" style="padding-bottom: 40px !important; width: -webkit-fill-available;">
                     <span
                       style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
                       มีตวามประสงค์ร่วมงาน/กิจกรรมพรรค
                     </span>
-                    <ccb (cModel)="editModel.volunteerWorkArea = $event" [label]="'อาสาสมัครทำงานพื้นที่'"
-                      [data]="editModel.volunteerWorkArea"></ccb>
-                    <ccb (cModel)="editModel.thinkTank = $event" [label]="'คลังสมอง'" [data]="editModel.thinkTank">
+                    <ccb (cModel)="editModel.brainBank = $event" [label]="'คลังสมอง / สนับสนุนงานวิชาการ'"
+                      [data]="editModel.brainBank"></ccb>
+                    <ccb (cModel)="editModel.applySenator = $event" [label]="'สนใจสมัคร สก.'"
+                      [data]="editModel.applySenator">
                     </ccb>
-                    <ccb (cModel)="editModel.trainingDemocrats = $event" [label]="'อบรมยุวไทยก้าวใหม่'"
-                      [data]="editModel.trainingDemocrats"></ccb>
-                    <ccb (cModel)="editModel.applyPartyMembership = $event" [label]="'สมัครสมาชิกพรรค'"
-                      [data]="editModel.applyPartyMembership"></ccb>
+                    <ccb (cModel)="editModel.applyMpConstituency = $event" [label]="'สนใจสมัคร สส. เขต'"
+                      [data]="editModel.applyMpConstituency"></ccb>
+                    <ccb (cModel)="editModel.applyMpPartylist = $event" [label]="'สนใจสมัคร สส. บัญชีรายชื่อ'"
+                      [data]="editModel.applyMpPartylist"></ccb>
+                    <ccb (cModel)="editModel.volunteerField = $event" [label]="'อาสาสมัครลงพื้นที่'"
+                      [data]="editModel.volunteerField"></ccb>
+                    <ccb (cModel)="editModel.joinWorkshop = $event" [label]="'ร่วม workshop หรือ event ของพรรค'"
+                      [data]="editModel.joinWorkshop"></ccb>
+                    <div class="row d-flex justify-content-start" style="padding-left: 10px; gap: 40px;">
+                      <ccb (cModel)="editModel.isOther = $event" [label]="'อื่นๆ'" [data]="editModel.isOther"></ccb>
+                      <div class="d-flex col-8">
+                        <citxt (cModel)="editModel.other = $event" [label]="'ระบุ :'" [data]="editModel.other || ''"
+                          *ngIf="editModel.isOther" style="margin-top: 20px;"></citxt>
+                      </div>
+                    </div>
                   </div>
+
+
                 </div>
                 <!-- <div class="row">
                   <div class="col s6">
