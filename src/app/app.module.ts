@@ -252,6 +252,7 @@ import { PartyExecutiveCategoryComponent } from "./party-executive-category/part
 import { PartyExecutiveCategoryCriteriaComponent } from "./party-executive-category/party-executive-category-criteria/party-executive-category-criteria.component";
 import { PartyExecutiveCategoryListComponent } from "./party-executive-category/party-executive-category-list/party-executive-category-list.component";
 import { PartyExecutiveCategoryEditComponent } from "./party-executive-category/party-executive-category-edit/party-executive-category-edit.component";
+import { DropzoneSingleAllComponent } from './component/dropzone-single-all/dropzone-single-all.component';
 
 export const DateFormat = {
   display: {
@@ -472,6 +473,7 @@ export const DateFormat = {
     PartyExecutiveCategoryCriteriaComponent,
     PartyExecutiveCategoryListComponent,
     PartyExecutiveCategoryEditComponent,
+    DropzoneSingleAllComponent,
   ],
   imports: [
     BrowserModule,

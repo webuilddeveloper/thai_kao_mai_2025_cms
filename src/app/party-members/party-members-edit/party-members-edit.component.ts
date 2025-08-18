@@ -63,6 +63,7 @@ export class PartyMembersEditComponent implements OnInit {
   lvModel: any = [];
   imageFile: string = '';
   fileCopyIDCard: string = '';
+  filePhotoSelfie: string = '';
   fileCopyHouseRegistration: string = '';
   fileNameChangeCertificate: string = '';
 
@@ -183,6 +184,11 @@ export class PartyMembersEditComponent implements OnInit {
       isValid = true;
     }
 
+    if (this.editModel?.filePhotoSelfie?.length == 0) {
+      this.toastr.warning("กรุณาแนบรูปถ่ายคู่บัตรประชาชน", "แจ้งเตือนระบบ", { timeOut: 2000 });
+      isValid = true;
+    }
+
     if (this.editModel?.fileCopyIDCard?.length == 0) {
       this.toastr.warning("กรุณาแนบไฟล์สำเนาบัตรประชาชน", "แจ้งเตือนระบบ", { timeOut: 2000 });
       isValid = true;
@@ -235,6 +241,10 @@ export class PartyMembersEditComponent implements OnInit {
       this.editModel.copyIDCard = this.editModel.fileCopyIDCard[0].imageUrl;
     }
 
+    if (this.editModel.filePhotoSelfie !== undefined) {
+      this.editModel.copyIDCard = this.editModel.filePhotoSelfie[0].imageUrl;
+    }
+
     if (this.editModel.fileNameChangeCertificate !== undefined) {
       this.editModel.nameChangeCertificate = this.editModel.fileNameChangeCertificate[0].imageUrl;
     }
@@ -282,32 +292,41 @@ export class PartyMembersEditComponent implements OnInit {
           let rawCountUnit = [];
           model = data;
           this.editModel = model.objectData[0];
-          if (this.editModel.copyIDCard != '') {
-            debugger
+          debugger
+          if (this.editModel.copyIDCard != '' && this.editModel.copyIDCard != undefined) {
             let resultArray = this.editModel.copyIDCard.split('.');
             let type = resultArray[resultArray.length - 1];
             if (type == 'pdf') {
               this.fileCopyIDCard = 'assets/img/267px-PDF_file_icon.svg.png';
             } else {
-              this.fileCopyIDCard = 'assets/img/excel.png';
+              this.fileCopyIDCard = this.editModel.copyIDCard;
             }
           }
-          if (this.editModel.copyHouseRegistration != '') {
+          if (this.editModel.photoSelfie != '' && this.editModel.photoSelfie != undefined) {
+            let resultArray = this.editModel.photoSelfie.split('.');
+            let type = resultArray[resultArray.length - 1];
+            if (type == 'pdf') {
+              this.filePhotoSelfie = 'assets/img/267px-PDF_file_icon.svg.png';
+            } else {
+              this.filePhotoSelfie = this.editModel.photoSelfie;
+            }
+          }
+          if (this.editModel.copyHouseRegistration != '' && this.editModel.copyHouseRegistration != undefined) {
             let resultArray = this.editModel.copyHouseRegistration.split('.');
             let type = resultArray[resultArray.length - 1];
             if (type == 'pdf') {
               this.fileCopyHouseRegistration = 'assets/img/267px-PDF_file_icon.svg.png';
             } else {
-              this.fileCopyHouseRegistration = 'assets/img/excel.png';
+              this.fileCopyHouseRegistration = this.editModel.copyHouseRegistration;
             }
           }
-          if (this.editModel.nameChangeCertificate != '') {
+          if (this.editModel.nameChangeCertificate != '' && this.editModel.nameChangeCertificate != undefined) {
             let resultArray = this.editModel.nameChangeCertificate.split('.');
             let type = resultArray[resultArray.length - 1];
             if (type == 'pdf') {
               this.fileNameChangeCertificate = 'assets/img/267px-PDF_file_icon.svg.png';
             } else {
-              this.fileNameChangeCertificate = 'assets/img/excel.png';
+              this.fileNameChangeCertificate = this.editModel.nameChangeCertificate;
             }
           }
 

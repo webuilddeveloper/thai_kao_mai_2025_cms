@@ -504,37 +504,49 @@
             <!-- BEGIN: Do Something This Here -->
 
             <div class="row">
-              <div class="col-4">
+              <div class="col-3">
+                <span>รูปถ่ายคู่บัตรประชาชน</span>
+                <div class="col-12">
+                  <cds (cModel)="editModel.filePhotoSelfie = $event"
+                    [label]="'รูปถ่ายคู่บัตรประชาชน (เลือกภาพ/วางภาพที่นี่)'"
+                    [data]="[{ imageUrl: editModel.photoSelfie || ''}]" [code]="'event'">
+                  </cds>
+                </div>
+                <div class="col-12" style="color: red;padding-top: 20px;">
+                  <span>*Maximum 100 MB</span>
+                </div>
+              </div>
+              <div class="col-3">
                 <span>สำเนาบัตรประชาชน</span>
                 <div class="col-12">
-                  <cdsf (cModel)="editModel.fileCopyIDCard = $event"
-                    [label]="'ไฟล์ PDF (เลือกไฟล์ PDF , Excel/วางไฟล์ PDF , Excelที่นี่)'"
-                    [data]="[{ imageUrl: editModel.copyIDCard == '' ? '' : fileCopyIDCard, url: editModel.copyIDCard }]" [code]="'event'">
-                  </cdsf>
+                  <cdsa (cModel)="editModel.fileCopyIDCard = $event"
+                    [label]="'ไฟล์ PDF หรือภาพ (เลือกไฟล์ PDF , เลือกภาพ/วางไฟล์ PDF , วางภาพที่นี่)'"
+                    [data]="[{ imageUrl: fileCopyIDCard != '' ? fileCopyIDCard : editModel.copyIDCard != '' ? editModel.copyIDCard : '' }]" [code]="'event'">
+                  </cdsa>
                 </div>
                 <div class="col-12" style="color: red;padding-top: 20px;">
                   <span>*Maximum 100 MB</span>
                 </div>
               </div>
-              <div class="col-4">
+              <div class="col-3">
                 <span>สำเนาทะเบียนบ้าน</span>
                 <div class="col-12">
-                  <cdsf (cModel)="editModel.fileCopyHouseRegistration = $event"
-                    [label]="'ไฟล์ PDF (เลือกไฟล์ PDF , Excel/วางไฟล์ PDF , Excelที่นี่)'"
-                    [data]="[{ imageUrl: editModel.copyHouseRegistration == '' ? '' : fileCopyHouseRegistration, url: editModel.copyHouseRegistration }]" [code]="'event'">
-                  </cdsf>
+                  <cdsa (cModel)="editModel.fileCopyHouseRegistration = $event"
+                    [label]="'ไฟล์ PDF หรือภาพ (เลือกไฟล์ PDF , เลือกภาพ/วางไฟล์ PDF , วางภาพที่นี่)'"
+                    [data]="[{ imageUrl: fileCopyHouseRegistration != '' ? fileCopyHouseRegistration : editModel.copyHouseRegistration != '' ? editModel.copyHouseRegistration : '', url: editModel.copyHouseRegistration }]" [code]="'event'">
+                  </cdsa>
                 </div>
                 <div class="col-12" style="color: red;padding-top: 20px;">
                   <span>*Maximum 100 MB</span>
                 </div>
               </div>
-              <div class="col-4">
+              <div class="col-3">
                 <span>ใบสำคัญการเปลี่ยนชื่อ-สกุล</span>
                 <div class="col-12">
-                  <cdsf (cModel)="editModel.fileNameChangeCertificate = $event"
-                    [label]="'ไฟล์ PDF (เลือกไฟล์ PDF , Excel/วางไฟล์ PDF , Excelที่นี่)'"
-                    [data]="[{ imageUrl: editModel.nameChangeCertificate == '' ? '' : fileNameChangeCertificate, url: editModel.nameChangeCertificate }]" [code]="'event'">
-                  </cdsf>
+                  <cdsa (cModel)="editModel.fileNameChangeCertificate = $event"
+                    [label]="'ไฟล์ PDF หรือภาพ (เลือกไฟล์ PDF , เลือกภาพ/วางไฟล์ PDF , วางภาพที่นี่)'"
+                    [data]="[{ imageUrl: fileNameChangeCertificate != '' ? fileNameChangeCertificate : editModel.nameChangeCertificate != '' ? editModel.nameChangeCertificate : '', url: editModel.nameChangeCertificate }]" [code]="'event'">
+                  </cdsa>
                 </div>
                 <div class="col-12" style="color: red;padding-top: 20px;">
                   <span>*Maximum 100 MB</span>
