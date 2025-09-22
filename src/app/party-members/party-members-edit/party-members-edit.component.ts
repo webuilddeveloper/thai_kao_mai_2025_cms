@@ -157,7 +157,7 @@ export class PartyMembersEditComponent implements OnInit {
   }
 
   create() {
-    this.spinner.show();
+    
 
     let isValid = false;
     // if (this.editModel.username == "") {
@@ -179,10 +179,10 @@ export class PartyMembersEditComponent implements OnInit {
       isValid = true;
     }
 
-    if (this.editModel?.fileCopyHouseRegistration?.length == 0) {
-      this.toastr.warning("กรุณาแนบไฟล์สำเนาทะเบียนบ้าน", "แจ้งเตือนระบบ", { timeOut: 2000 });
-      isValid = true;
-    }
+    // if (this.editModel?.fileCopyHouseRegistration?.length == 0) {
+    //   this.toastr.warning("กรุณาแนบไฟล์สำเนาทะเบียนบ้าน", "แจ้งเตือนระบบ", { timeOut: 2000 });
+    //   isValid = true;
+    // }
 
     if (this.editModel?.filePhotoSelfie?.length == 0) {
       this.toastr.warning("กรุณาแนบรูปถ่ายคู่บัตรประชาชน", "แจ้งเตือนระบบ", { timeOut: 2000 });
@@ -253,6 +253,7 @@ export class PartyMembersEditComponent implements OnInit {
       this.editModel.slipPay = this.editModel.fileSlipPay[0].imageUrl;
     }
 
+    this.spinner.show();
     this.serviceProviderService
       .post("partyMembers/create", this.editModel)
       .subscribe(
@@ -591,7 +592,7 @@ export class PartyMembersEditComponent implements OnInit {
   }
 
   update() {
-    this.spinner.show();
+    
     let isValid = false;
     // if (this.editModel.username == "") {
     //   this.toastr.warning("กรุณาใส่ชื่อผู้ใช้งาน", "แจ้งเตือนระบบ", {
@@ -612,10 +613,10 @@ export class PartyMembersEditComponent implements OnInit {
       isValid = true;
     }
 
-    if (this.editModel?.fileCopyHouseRegistration?.length == 0) {
-      this.toastr.warning("กรุณาแนบไฟล์สำเนาทะเบียนบ้าน", "แจ้งเตือนระบบ", { timeOut: 2000 });
-      isValid = true;
-    }
+    // if (this.editModel?.fileCopyHouseRegistration?.length == 0) {
+    //   this.toastr.warning("กรุณาแนบไฟล์สำเนาทะเบียนบ้าน", "แจ้งเตือนระบบ", { timeOut: 2000 });
+    //   isValid = true;
+    // }
 
     if (this.editModel?.fileCopyIDCard?.length == 0) {
       this.toastr.warning("กรุณาแนบไฟล์สำเนาบัตรประชาชน", "แจ้งเตือนระบบ", { timeOut: 2000 });
@@ -675,6 +676,8 @@ export class PartyMembersEditComponent implements OnInit {
     if (this.editModel.fileSlipPay !== undefined) {
       this.editModel.slipPay = this.editModel.fileSlipPay[0].fileUrl;
     }
+
+    this.spinner.show();
     this.serviceProviderService
       .post("partyMembers/update", this.editModel)
       .subscribe(

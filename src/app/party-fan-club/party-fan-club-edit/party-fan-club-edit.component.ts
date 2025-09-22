@@ -150,22 +150,43 @@ export class PartyFanClubEditComponent implements OnInit {
   }
 
   create() {
-    this.spinner.show();
+    
 
     let isValid = false;
-    // if (this.editModel.username == "") {
-    //   this.toastr.warning("กรุณาใส่ชื่อผู้ใช้งาน", "แจ้งเตือนระบบ", {
-    //     timeOut: 2000,
-    //   });
-    //   isValid = true;
-    // }
+    if (this.editModel.prefixName == "" || this.editModel.prefixName == "none") {
+      this.toastr.warning("กรุณาเลือกคำนำหน้า", "แจ้งเตือนระบบ", {
+        timeOut: 2000,
+      });
+      isValid = true;
+    }
 
-    // if (this.editModel.password == "") {
-    //   this.toastr.warning("กรุณาใส่รหัสผ่าน", "แจ้งเตือนระบบ", {
-    //     timeOut: 2000,
-    //   });
-    //   isValid = true;
-    // }
+    if (this.editModel.firstName == "") {
+      this.toastr.warning("กรุณาชื่อ", "แจ้งเตือนระบบ", {
+        timeOut: 2000,
+      });
+      isValid = true;
+    }
+
+    if (this.editModel.lastName == "") {
+      this.toastr.warning("กรุณาใส่นามสกุล", "แจ้งเตือนระบบ", {
+        timeOut: 2000,
+      });
+      isValid = true;
+    }
+
+    if (this.editModel.phone == "") {
+      this.toastr.warning("กรุณาใส่เบอร์โทรศัพท์", "แจ้งเตือนระบบ", {
+        timeOut: 2000,
+      });
+      isValid = true;
+    }
+
+    if (this.editModel.email == "") {
+      this.toastr.warning("กรุณาใส่อีเมล", "แจ้งเตือนระบบ", {
+        timeOut: 2000,
+      });
+      isValid = true;
+    }
 
     // if (this.editModel.image.length == 0) {
     //   this.toastr.warning("กรุณาใส่รูปภาพ", "แจ้งเตือนระบบ", { timeOut: 2000 });
@@ -186,6 +207,7 @@ export class PartyFanClubEditComponent implements OnInit {
     // this.editModel.imageUrl = this.editModel.image[0].imageUrl;
     // this.editModel.imageIdCardUrl = this.editModel.imageIdCard[0].imageUrl;
     // this.editModel.imagePaymentUrl = this.editModel.imagePayment[0].imageUrl;
+    this.spinner.show();
     this.serviceProviderService.post('partyFanClub/create', this.editModel).subscribe(data => {
 
       let model: any = {};
@@ -447,14 +469,42 @@ export class PartyFanClubEditComponent implements OnInit {
   }
 
   update() {
-    this.spinner.show();
+    
     let isValid = false;
-    // if (this.editModel.username == "") {
-    //   this.toastr.warning("กรุณาใส่ชื่อผู้ใช้งาน", "แจ้งเตือนระบบ", {
-    //     timeOut: 2000,
-    //   });
-    //   isValid = true;
-    // }
+    if (this.editModel.prefixName == "" || this.editModel.prefixName == "none") {
+      this.toastr.warning("กรุณาเลือกคำนำหน้า", "แจ้งเตือนระบบ", {
+        timeOut: 2000,
+      });
+      isValid = true;
+    }
+
+    if (this.editModel.firstName == "") {
+      this.toastr.warning("กรุณาชื่อ", "แจ้งเตือนระบบ", {
+        timeOut: 2000,
+      });
+      isValid = true;
+    }
+
+    if (this.editModel.lastName == "") {
+      this.toastr.warning("กรุณาใส่นามสกุล", "แจ้งเตือนระบบ", {
+        timeOut: 2000,
+      });
+      isValid = true;
+    }
+
+    if (this.editModel.phone == "") {
+      this.toastr.warning("กรุณาใส่เบอร์โทรศัพท์", "แจ้งเตือนระบบ", {
+        timeOut: 2000,
+      });
+      isValid = true;
+    }
+
+    if (this.editModel.email == "") {
+      this.toastr.warning("กรุณาใส่อีเมล", "แจ้งเตือนระบบ", {
+        timeOut: 2000,
+      });
+      isValid = true;
+    }
 
     if (isValid) {
       return;
@@ -463,7 +513,7 @@ export class PartyFanClubEditComponent implements OnInit {
     // if (this.editModel.image !== undefined) {
     //   this.editModel.imageUrl = this.editModel.image[0].imageUrl;
     // }
-
+    this.spinner.show();
     this.serviceProviderService
       .post("partyFanClub/update", this.editModel)
       .subscribe(
