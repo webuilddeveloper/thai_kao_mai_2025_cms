@@ -9,7 +9,7 @@ export class ServiceProviderService {
 
   // server: string = 'http://localhost:8600/';
   // server: string = 'https://122.155.223.63/td-webuild-api/';
-  server: string = "https://gateway.we-builds.com/thai-kao-mai-api/";
+  server: string = "https://www.thaikaomai.or.th/thai-kao-mai-api/";
   //dev
   // server: string = 'https://vet.we-builds.com/vet-api/';
   //product
