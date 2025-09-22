@@ -61,11 +61,11 @@ export class PartyMembersEditComponent implements OnInit {
   categoryPostCode: any;
 
   lvModel: any = [];
-  imageFile: string = '';
-  fileCopyIDCard: string = '';
-  filePhotoSelfie: string = '';
-  fileCopyHouseRegistration: string = '';
-  fileNameChangeCertificate: string = '';
+  imageFile: string = "";
+  fileCopyIDCard: string = "";
+  filePhotoSelfie: string = "";
+  fileCopyHouseRegistration: string = "";
+  fileNameChangeCertificate: string = "";
 
   maxDate: string = '';
 
@@ -166,8 +166,6 @@ export class PartyMembersEditComponent implements OnInit {
   }
 
   create() {
-    
-
     let isValid = false;
     // if (this.editModel.username == "") {
     //   this.toastr.warning("กรุณาใส่ชื่อผู้ใช้งาน", "แจ้งเตือนระบบ", {
@@ -194,17 +192,23 @@ export class PartyMembersEditComponent implements OnInit {
     // }
 
     if (this.editModel?.filePhotoSelfie?.length == 0) {
-      this.toastr.warning("กรุณาแนบรูปถ่ายคู่บัตรประชาชน", "แจ้งเตือนระบบ", { timeOut: 2000 });
+      this.toastr.warning("กรุณาแนบรูปถ่ายคู่บัตรประชาชน", "แจ้งเตือนระบบ", {
+        timeOut: 2000,
+      });
       isValid = true;
     }
 
     if (this.editModel?.fileCopyIDCard?.length == 0) {
-      this.toastr.warning("กรุณาแนบไฟล์สำเนาบัตรประชาชน", "แจ้งเตือนระบบ", { timeOut: 2000 });
+      this.toastr.warning("กรุณาแนบไฟล์สำเนาบัตรประชาชน", "แจ้งเตือนระบบ", {
+        timeOut: 2000,
+      });
       isValid = true;
     }
 
     if (this.editModel?.fileSlipPay?.length == 0) {
-      this.toastr.warning("กรุณาแนบรูปภาพหลักฐานการโอนเงิน", "แจ้งเตือนระบบ", { timeOut: 2000 });
+      this.toastr.warning("กรุณาแนบรูปภาพหลักฐานการโอนเงิน", "แจ้งเตือนระบบ", {
+        timeOut: 2000,
+      });
       isValid = true;
     }
 
@@ -243,7 +247,8 @@ export class PartyMembersEditComponent implements OnInit {
     }
 
     if (this.editModel.fileCopyHouseRegistration !== undefined) {
-      this.editModel.copyHouseRegistration = this.editModel.fileCopyHouseRegistration[0].imageUrl;
+      this.editModel.copyHouseRegistration =
+        this.editModel.fileCopyHouseRegistration[0].imageUrl;
     }
 
     if (this.editModel.fileCopyIDCard !== undefined) {
@@ -255,7 +260,8 @@ export class PartyMembersEditComponent implements OnInit {
     }
 
     if (this.editModel.fileNameChangeCertificate !== undefined) {
-      this.editModel.nameChangeCertificate = this.editModel.fileNameChangeCertificate[0].imageUrl;
+      this.editModel.nameChangeCertificate =
+        this.editModel.fileNameChangeCertificate[0].imageUrl;
     }
 
     if (this.editModel.fileSlipPay !== undefined) {
@@ -269,21 +275,20 @@ export class PartyMembersEditComponent implements OnInit {
         (data) => {
           let model: any = {};
           model = data;
-          if (model.status == 'N') {
-            this.toastr.warning(model.message, 'แจ้งเตือน');
+          if (model.status == "N") {
+            this.toastr.warning(model.message, "แจ้งเตือน");
             return;
           } else {
             this.isSaveSuccess = true;
-          this.spinner.hide();
-          this.toastr.success("บันทึกข้อมูลสำเร็จ", "แจ้งเตือนระบบ", {
-            timeOut: 2000,
-          });
+            this.spinner.hide();
+            this.toastr.success("บันทึกข้อมูลสำเร็จ", "แจ้งเตือนระบบ", {
+              timeOut: 2000,
+            });
 
-          setTimeout(() => {
-            this.back();
-          }, 2000);
+            setTimeout(() => {
+              this.back();
+            }, 2000);
           }
-          
         },
         (err) => {
           this.spinner.hide();
@@ -302,41 +307,57 @@ export class PartyMembersEditComponent implements OnInit {
           let rawCountUnit = [];
           model = data;
           this.editModel = model.objectData[0];
-          debugger
-          if (this.editModel.copyIDCard != '' && this.editModel.copyIDCard != undefined) {
-            let resultArray = this.editModel.copyIDCard.split('.');
+          debugger;
+          if (
+            this.editModel.copyIDCard != "" &&
+            this.editModel.copyIDCard != undefined
+          ) {
+            let resultArray = this.editModel.copyIDCard.split(".");
             let type = resultArray[resultArray.length - 1];
-            if (type == 'pdf') {
-              this.fileCopyIDCard = 'assets/img/267px-PDF_file_icon.svg.png';
+            if (type == "pdf") {
+              this.fileCopyIDCard = "assets/img/267px-PDF_file_icon.svg.png";
             } else {
               this.fileCopyIDCard = this.editModel.copyIDCard;
             }
           }
-          if (this.editModel.photoSelfie != '' && this.editModel.photoSelfie != undefined) {
-            let resultArray = this.editModel.photoSelfie.split('.');
+          if (
+            this.editModel.photoSelfie != "" &&
+            this.editModel.photoSelfie != undefined
+          ) {
+            let resultArray = this.editModel.photoSelfie.split(".");
             let type = resultArray[resultArray.length - 1];
-            if (type == 'pdf') {
-              this.filePhotoSelfie = 'assets/img/267px-PDF_file_icon.svg.png';
+            if (type == "pdf") {
+              this.filePhotoSelfie = "assets/img/267px-PDF_file_icon.svg.png";
             } else {
               this.filePhotoSelfie = this.editModel.photoSelfie;
             }
           }
-          if (this.editModel.copyHouseRegistration != '' && this.editModel.copyHouseRegistration != undefined) {
-            let resultArray = this.editModel.copyHouseRegistration.split('.');
+          if (
+            this.editModel.copyHouseRegistration != "" &&
+            this.editModel.copyHouseRegistration != undefined
+          ) {
+            let resultArray = this.editModel.copyHouseRegistration.split(".");
             let type = resultArray[resultArray.length - 1];
-            if (type == 'pdf') {
-              this.fileCopyHouseRegistration = 'assets/img/267px-PDF_file_icon.svg.png';
+            if (type == "pdf") {
+              this.fileCopyHouseRegistration =
+                "assets/img/267px-PDF_file_icon.svg.png";
             } else {
-              this.fileCopyHouseRegistration = this.editModel.copyHouseRegistration;
+              this.fileCopyHouseRegistration =
+                this.editModel.copyHouseRegistration;
             }
           }
-          if (this.editModel.nameChangeCertificate != '' && this.editModel.nameChangeCertificate != undefined) {
-            let resultArray = this.editModel.nameChangeCertificate.split('.');
+          if (
+            this.editModel.nameChangeCertificate != "" &&
+            this.editModel.nameChangeCertificate != undefined
+          ) {
+            let resultArray = this.editModel.nameChangeCertificate.split(".");
             let type = resultArray[resultArray.length - 1];
-            if (type == 'pdf') {
-              this.fileNameChangeCertificate = 'assets/img/267px-PDF_file_icon.svg.png';
+            if (type == "pdf") {
+              this.fileNameChangeCertificate =
+                "assets/img/267px-PDF_file_icon.svg.png";
             } else {
-              this.fileNameChangeCertificate = this.editModel.nameChangeCertificate;
+              this.fileNameChangeCertificate =
+                this.editModel.nameChangeCertificate;
             }
           }
 
@@ -371,7 +392,7 @@ export class PartyMembersEditComponent implements OnInit {
             });
           });
         },
-        (err) => { }
+        (err) => {}
       );
   }
 
@@ -395,7 +416,7 @@ export class PartyMembersEditComponent implements OnInit {
               });
             });
           },
-          (err) => { }
+          (err) => {}
         );
     } else if (lv == "lv1") {
       this.editModel.lv1 = param;
@@ -416,7 +437,7 @@ export class PartyMembersEditComponent implements OnInit {
               });
             });
           },
-          (err) => { }
+          (err) => {}
         );
     } else if (lv == "lv2") {
       this.editModel.lv2 = param;
@@ -437,7 +458,7 @@ export class PartyMembersEditComponent implements OnInit {
               });
             });
           },
-          (err) => { }
+          (err) => {}
         );
     }
   }
@@ -456,11 +477,10 @@ export class PartyMembersEditComponent implements OnInit {
             });
           });
         },
-        (err) => { }
+        (err) => {}
       );
     }
   }
-
 
   validProvince() {
     if (
@@ -517,7 +537,7 @@ export class PartyMembersEditComponent implements OnInit {
                 });
               });
             },
-            (err) => { }
+            (err) => {}
           );
       }
     }
@@ -544,7 +564,7 @@ export class PartyMembersEditComponent implements OnInit {
                 });
               });
             },
-            (err) => { }
+            (err) => {}
           );
       }
     }
@@ -569,7 +589,7 @@ export class PartyMembersEditComponent implements OnInit {
                 });
               });
             },
-            (err) => { }
+            (err) => {}
           );
       }
     }
@@ -594,14 +614,13 @@ export class PartyMembersEditComponent implements OnInit {
                 });
               });
             },
-            (err) => { }
+            (err) => {}
           );
       }
     }
   }
 
   update() {
-    
     let isValid = false;
     // if (this.editModel.username == "") {
     //   this.toastr.warning("กรุณาใส่ชื่อผู้ใช้งาน", "แจ้งเตือนระบบ", {
@@ -628,12 +647,16 @@ export class PartyMembersEditComponent implements OnInit {
     // }
 
     if (this.editModel?.fileCopyIDCard?.length == 0) {
-      this.toastr.warning("กรุณาแนบไฟล์สำเนาบัตรประชาชน", "แจ้งเตือนระบบ", { timeOut: 2000 });
+      this.toastr.warning("กรุณาแนบไฟล์สำเนาบัตรประชาชน", "แจ้งเตือนระบบ", {
+        timeOut: 2000,
+      });
       isValid = true;
     }
 
     if (this.editModel?.fileSlipPay?.length == 0) {
-      this.toastr.warning("กรุณาแนบรูปภาพหลักฐานการโอนเงิน", "แจ้งเตือนระบบ", { timeOut: 2000 });
+      this.toastr.warning("กรุณาแนบรูปภาพหลักฐานการโอนเงิน", "แจ้งเตือนระบบ", {
+        timeOut: 2000,
+      });
       isValid = true;
     }
 
@@ -676,10 +699,12 @@ export class PartyMembersEditComponent implements OnInit {
     }
 
     if (this.editModel.fileCopyHouseRegistration !== undefined) {
-      this.editModel.copyHouseRegistration = this.editModel.fileCopyHouseRegistration[0].fileUrl;
+      this.editModel.copyHouseRegistration =
+        this.editModel.fileCopyHouseRegistration[0].fileUrl;
     }
     if (this.editModel.fileNameChangeCertificate !== undefined) {
-      this.editModel.nameChangeCertificate = this.editModel.fileNameChangeCertificate[0].fileUrl;
+      this.editModel.nameChangeCertificate =
+        this.editModel.fileNameChangeCertificate[0].fileUrl;
     }
 
     if (this.editModel.fileSlipPay !== undefined) {
@@ -693,12 +718,12 @@ export class PartyMembersEditComponent implements OnInit {
         (res) => {
           let data: any = {};
           data = res;
-          if (data.status == 'N') {
-            this.toastr.warning(data.message, 'แจ้งเตือน');
+          if (data.status == "N") {
+            this.toastr.warning(data.message, "แจ้งเตือน");
             return;
           } else {
             this.isSaveSuccess = true;
-            this.spinner.hide();
+
             this.toastr.success("บันทึกข้อมูลสำเร็จ", "แจ้งเตือนระบบ", {
               timeOut: 2000,
             });
@@ -707,7 +732,7 @@ export class PartyMembersEditComponent implements OnInit {
               this.back();
             }, 2000);
           }
-
+          this.spinner.hide();
         },
         (err) => {
           this.spinner.hide();
@@ -983,7 +1008,7 @@ export class PartyMembersEditComponent implements OnInit {
             });
           });
         },
-        (err) => { }
+        (err) => {}
       );
   }
 
@@ -1011,7 +1036,7 @@ export class PartyMembersEditComponent implements OnInit {
               });
             }
           },
-          (err) => { }
+          (err) => {}
         );
     } else if (lv == "lv1") {
       param2.lv1 = param;
@@ -1036,7 +1061,7 @@ export class PartyMembersEditComponent implements OnInit {
               });
             }
           },
-          (err) => { }
+          (err) => {}
         );
     } else if (lv == "lv2") {
       param2.lv2 = param;
@@ -1061,7 +1086,7 @@ export class PartyMembersEditComponent implements OnInit {
               });
             }
           },
-          (err) => { }
+          (err) => {}
         );
     } else if (lv == "lv3") {
       param2.lv3 = param;
@@ -1086,7 +1111,7 @@ export class PartyMembersEditComponent implements OnInit {
               });
             }
           },
-          (err) => { }
+          (err) => {}
         );
     } else if (lv == "lv4") {
       param2.lv4 = param;
@@ -1126,7 +1151,7 @@ export class ConfirmDeleteDialog {
   constructor(
     public dialogRef: MatDialogRef<ConfirmDeleteDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  ) {}
 
   cancel() {
     this.dialogRef.close(false);
