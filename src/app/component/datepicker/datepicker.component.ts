@@ -58,6 +58,7 @@ export class DatepickerComponent implements OnInit {
 
   @Input() label;
   @Input() data = '';
+  @Input() max = '';
   @Input() dateControl = new FormControl(moment().format('YYYYMMDD'));
   @Output() cModel = new EventEmitter<any>();
 

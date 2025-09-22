@@ -67,6 +67,8 @@ export class PartyMembersEditComponent implements OnInit {
   fileCopyHouseRegistration: string = '';
   fileNameChangeCertificate: string = '';
 
+  maxDate: string = '';
+
   constructor(
     private fileuploadService: FileUploadService,
     private serviceProviderService: ServiceProviderService,
@@ -135,6 +137,13 @@ export class PartyMembersEditComponent implements OnInit {
         display: "ยืนยันตนไม่สำเร็จ",
       },
     ];
+
+    const today = new Date();
+    // ลบออก 20 ปี
+    today.setFullYear(today.getFullYear() - 20);
+
+    // แปลงเป็น yyyy-MM-dd
+    this.maxDate = today.toISOString().split('T')[0];
   }
 
   ngOnInit(): void {
@@ -1086,6 +1095,26 @@ export class PartyMembersEditComponent implements OnInit {
 
   back() {
     this.router.navigate(["party-members"], { skipLocationChange: true });
+  }
+
+  calculateAge(birthDateStr: string) {
+    debugger;
+    if (!birthDateStr) return;
+
+    // let dateEdit = birthDateStr.slice(0,4)+'-'+birthDateStr.slice(4,6)+'-'+birthDateStr.slice(6,8)
+
+    const today = new Date();
+    const birthDate = new Date(birthDateStr.slice(0,4)+'-'+birthDateStr.slice(4,6)+'-'+birthDateStr.slice(6,8));
+
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+
+    // ตรวจสอบว่ายังไม่ถึงวันเกิดปีนี้
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+
+    this.editModel.age = age;
   }
 }
 

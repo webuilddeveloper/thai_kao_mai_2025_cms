@@ -89,10 +89,10 @@
                 </div>
                 <div class="row">
                   <div class="col s6">
-                    <cdp (cModel)="editModel.birthDay = $event" [label]="'วันเกิด'" [data]="editModel.birthDay"></cdp>
+                    <cdp (cModel)="[editModel.birthDay = $event, calculateAge($event)]" [label]="'วันเกิด'" [max]="maxDate" [data]="editModel.birthDay"></cdp>
                   </div>
                   <div class="col s6">
-                    <citxt (cModel)="editModel.age = $event" [label]="'อายุ : '" [data]="editModel.age || ''">
+                    <citxt (cModel)="editModel.age = $event" [label]="'อายุ : '" [data]="editModel.age || ''" [readonly]="true">
                     </citxt>
                   </div>
                 </div>
