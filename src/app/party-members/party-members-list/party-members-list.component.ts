@@ -138,7 +138,6 @@ export class PartyMembersListComponent implements OnInit {
 
   async checkUncheckAll() {
     if (this.category.deleteAction) {
-      this.itemSelected = !this.itemSelected;
       for (var i = 0; i < this.messageInput.length; i++) {
 
         this.messageInput[i].isSelected = this.itemSelected;
