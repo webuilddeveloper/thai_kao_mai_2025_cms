@@ -3,6 +3,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ServiceProviderService } from './../shared/service-provider.service';
 import { Component, OnInit, Input, Output, EventEmitter, KeyValueDiffer, KeyValueDiffers, KeyValueChanges } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
+import { EncryptionService } from '../shared/encryption.service';
 
 @Component({
   selector: 'app-party-members',
@@ -11,10 +12,10 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angu
 })
 export class PartyMembersComponent implements OnInit {
   constructor(public dialog: MatDialog
-            , private serviceProviderService: ServiceProviderService
-            , private spinner: NgxSpinnerService
-            , private toastr: ToastrService
-            , private differs: KeyValueDiffers) { }
+    , private serviceProviderService: ServiceProviderService
+    , private spinner: NgxSpinnerService
+    , private toastr: ToastrService
+    , private differs: KeyValueDiffers, private encryptionService: EncryptionService) { }
 
   model: any = [];
   listModel: any = [];
@@ -42,25 +43,26 @@ export class PartyMembersComponent implements OnInit {
     this.paginationModelDiffer = this.differs.find(this.paginationModel).create(); // <----- Pagination
   }
 
-  read() {
+  readList() {
     this.spinner.show();
     if (this.isAdvanceSearch)
       this.criteriaModel.keySearch = ''
 
-    this.serviceProviderService.post('partyMembers/read', this.criteriaModel).subscribe(data => {
+    this.serviceProviderService.post('partyMembers/readList', this.criteriaModel).subscribe(data => {
       setTimeout(() => {
         let model: any = {};
         model = data;
-        this.model = JSON.stringify(model.objectData); // <----- Pagination
-        this.listModel = model.objectData; // <----- Pagination
+        let aaa = this.encryptionService.decrypt(model.objectData);
+        this.model = JSON.stringify(aaa); // <----- Pagination
+        this.listModel = JSON.parse(aaa); // <----- Pagination
 
-        let  countUnit = []
+        let countUnit = []
         this.listModel.forEach(e => {
-          if(e.countUnit != null) {
-            if(e.countUnit.length > 0){
+          if (e.countUnit != null) {
+            if (e.countUnit.length > 0) {
               countUnit = JSON.parse(e.countUnit);
               countUnit.findIndex(o => {
-                if(o.status == 'V' || o.status == 'R') {
+                if (o.status == 'V' || o.status == 'R') {
                   e.status = o.status
                 }
               })
@@ -73,7 +75,7 @@ export class PartyMembersComponent implements OnInit {
         this.paginationModel.itemsPerPageString = this.paginationModel.itemsPerPage.toString();
 
         if ((this.criteriaModel.skip + this.paginationModel.itemsPerPage) > this.paginationModel.totalItems)
-          this.paginationModel.textPage = this.paginationModel.totalItems != 0 ? 'แสดง ' + (this.criteriaModel.skip + 1) + ' ถึง ' + this.paginationModel.totalItems + ' จาก ' + this.paginationModel.totalItems + ' แถว' : 'แสดง 0 ถึง 0 จาก 0 แถว' ;
+          this.paginationModel.textPage = this.paginationModel.totalItems != 0 ? 'แสดง ' + (this.criteriaModel.skip + 1) + ' ถึง ' + this.paginationModel.totalItems + ' จาก ' + this.paginationModel.totalItems + ' แถว' : 'แสดง 0 ถึง 0 จาก 0 แถว';
         else
           this.paginationModel.textPage = 'แสดง ' + (this.criteriaModel.skip + 1) + ' ถึง ' + (this.criteriaModel.skip + this.paginationModel.itemsPerPage) + ' จาก ' + this.paginationModel.totalItems + ' แถว';
 
@@ -88,7 +90,7 @@ export class PartyMembersComponent implements OnInit {
   async getMessageCriteria(message: any) {
     this.criteriaModel = message;
     this.isAdvanceSearch = true;
-    await this.read();
+    await this.readList();
   }
 
   getMessageList(message: any) {
@@ -108,7 +110,7 @@ export class PartyMembersComponent implements OnInit {
       this.criteriaModel.skip = 0;
       this.paginationModel.currentPage = 1;
       this.paginationModel.itemsPerPage = message.limit;
-      this.read();
+      this.readList();
     }
   }
 
@@ -119,7 +121,7 @@ export class PartyMembersComponent implements OnInit {
     this.criteriaModel.limit = this.paginationModel.itemsPerPage; // <----- Pagination
     this.criteriaModel.permission = this.permission;
 
-    this.read();
+    this.readList();
     /* If you want to see details then use
       changes.forEachRemovedItem((record) => ...);
       changes.forEachAddedItem((record) => ...);
@@ -130,10 +132,10 @@ export class PartyMembersComponent implements OnInit {
   // <----- Pagination
   ngDoCheck(): void {
 
-      const changes = this.paginationModelDiffer.diff(this.paginationModel);
-      if (changes) {
-        this.paginationModelChanged(changes);
-      }
+    const changes = this.paginationModelDiffer.diff(this.paginationModel);
+    if (changes) {
+      this.paginationModelChanged(changes);
+    }
   }
 
 }

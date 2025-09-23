@@ -17,6 +17,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
 import { Router, ActivatedRoute } from "@angular/router";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { EncryptionService } from "src/app/shared/encryption.service";
 
 @Component({
   selector: "app-party-members-edit",
@@ -76,7 +77,8 @@ export class PartyMembersEditComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     public dialog: MatDialog,
-    private activetedRoute: ActivatedRoute
+    private activetedRoute: ActivatedRoute, 
+    private encryptionService: EncryptionService
   ) {
     this.listPrefixName = [
       {
@@ -304,10 +306,10 @@ export class PartyMembersEditComponent implements OnInit {
       .subscribe(
         (data) => {
           let model: any = {};
-          let rawCountUnit = [];
           model = data;
-          this.editModel = model.objectData[0];
-          debugger;
+          let aaa = JSON.parse(this.encryptionService.decrypt(model.objectData));
+          this.editModel = aaa[0];
+          let rawCountUnit = [];
           if (
             this.editModel.copyIDCard != "" &&
             this.editModel.copyIDCard != undefined
@@ -1123,7 +1125,6 @@ export class PartyMembersEditComponent implements OnInit {
   }
 
   calculateAge(birthDateStr: string) {
-    debugger;
     if (!birthDateStr) return;
 
     // let dateEdit = birthDateStr.slice(0,4)+'-'+birthDateStr.slice(4,6)+'-'+birthDateStr.slice(6,8)

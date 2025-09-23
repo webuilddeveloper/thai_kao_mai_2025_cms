@@ -20,7 +20,6 @@ export class DropzoneSingleAllComponent implements OnInit {
   constructor(private fileuploadService: FileUploadService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    debugger
     if (this.data[0].imageUrl == '' || this.data[0].imageUrl == undefined)
       this.data = [];
 
