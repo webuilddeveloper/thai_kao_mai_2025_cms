@@ -235,12 +235,12 @@ export class PartyMembersEditComponent implements OnInit {
       (f) => f.value == this.editModel.provinceBirthCode
     ).display;
 
-    this.editModel.provinceIssue = this.listCategoryProvince.find(
-      (f) => f.value == this.editModel.provinceIssueCode
-    ).display;
-    this.editModel.districtIssue = this.listDistrictIssue.find(
-      (f) => f.value == this.editModel.districtIssueCode
-    ).display;
+    // this.editModel.provinceIssue = this.listCategoryProvince.find(
+    //   (f) => f.value == this.editModel.provinceIssueCode
+    // ).display;
+    // this.editModel.districtIssue = this.listDistrictIssue.find(
+    //   (f) => f.value == this.editModel.districtIssueCode
+    // ).display;
 
     if (this.editModel.image !== undefined) {
       this.editModel.onFilePhoto1_5 = this.editModel.image[0].imageUrl;
@@ -365,7 +365,7 @@ export class PartyMembersEditComponent implements OnInit {
           this.readCategoryTambon(this.editModel.amphoeCode);
           this.readCategoryPostCode(this.editModel.tambonCode);
 
-          this.readDistrictIssue(this.editModel.provinceIssueCode);
+          // this.readDistrictIssue(this.editModel.provinceIssueCode);
 
           this.spinner.hide();
         },
@@ -683,12 +683,12 @@ export class PartyMembersEditComponent implements OnInit {
       (f) => f.value == this.editModel.provinceBirthCode
     ).display;
 
-    this.editModel.provinceIssue = this.listCategoryProvince.find(
-      (f) => f.value == this.editModel.provinceIssueCode
-    ).display;
-    this.editModel.districtIssue = this.listDistrictIssue.find(
-      (f) => f.value == this.editModel.districtIssueCode
-    ).display;
+    // this.editModel.provinceIssue = this.listCategoryProvince.find(
+    //   (f) => f.value == this.editModel.provinceIssueCode
+    // ).display;
+    // this.editModel.districtIssue = this.listDistrictIssue.find(
+    //   (f) => f.value == this.editModel.districtIssueCode
+    // ).display;
 
     if (this.editModel.image !== undefined) {
       this.editModel.onFilePhoto1_5 = this.editModel.image[0].onFilePhoto1_5;
