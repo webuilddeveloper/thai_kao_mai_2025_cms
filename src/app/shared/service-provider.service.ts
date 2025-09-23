@@ -8,9 +8,9 @@ import { EncryptionService } from "./encryption.service";
 export class ServiceProviderService {
   // ng build --base-href "/td-vet-font/" --prod
 
-  server: string = 'http://localhost:8600/';
+  // server: string = 'http://localhost:8600/';
   // server: string = 'https://122.155.223.63/td-webuild-api/';
-  // server: string = "https://www.thaikaomai.or.th/thai-kao-mai-api/";
+  server: string = "https://www.thaikaomai.or.th/thai-kao-mai-api/";
   //dev
   // server: string = 'https://vet.we-builds.com/vet-api/';
   //product
