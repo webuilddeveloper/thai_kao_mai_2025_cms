@@ -114,7 +114,7 @@
                       [data]="editModel.idcard || ''"></citxt>
                   </div>
                   <div class="col s6" style="padding-bottom: 20px;">
-                    <csop [label]="'จังหวัดที่เกิด : '" [data]="editModel.provinceBirthCode "
+                    <csop (cModel)="editModel.provinceBirthCode = $event" [label]="'จังหวัดที่เกิด : '" [data]="editModel.provinceBirthCode "
                       [sources]="listCategoryProvince">
                     </csop>
                   </div>

@@ -68,7 +68,7 @@ export class PartyMembersEditComponent implements OnInit {
   fileCopyHouseRegistration: string = "";
   fileNameChangeCertificate: string = "";
 
-  maxDate: string = '';
+  maxDate: string = "";
 
   constructor(
     private fileuploadService: FileUploadService,
@@ -77,7 +77,7 @@ export class PartyMembersEditComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     public dialog: MatDialog,
-    private activetedRoute: ActivatedRoute, 
+    private activetedRoute: ActivatedRoute,
     private encryptionService: EncryptionService
   ) {
     this.listPrefixName = [
@@ -145,7 +145,7 @@ export class PartyMembersEditComponent implements OnInit {
     today.setFullYear(today.getFullYear() - 20);
 
     // แปลงเป็น yyyy-MM-dd
-    this.maxDate = today.toISOString().split('T')[0];
+    this.maxDate = today.toISOString().split("T")[0];
   }
 
   ngOnInit(): void {
@@ -282,7 +282,6 @@ export class PartyMembersEditComponent implements OnInit {
             return;
           } else {
             this.isSaveSuccess = true;
-            this.spinner.hide();
             this.toastr.success("บันทึกข้อมูลสำเร็จ", "แจ้งเตือนระบบ", {
               timeOut: 2000,
             });
@@ -291,6 +290,7 @@ export class PartyMembersEditComponent implements OnInit {
               this.back();
             }, 2000);
           }
+          this.spinner.hide();
         },
         (err) => {
           this.spinner.hide();
@@ -307,7 +307,9 @@ export class PartyMembersEditComponent implements OnInit {
         (data) => {
           let model: any = {};
           model = data;
-          let aaa = JSON.parse(this.encryptionService.decrypt(model.objectData));
+          let aaa = JSON.parse(
+            this.encryptionService.decrypt(model.objectData)
+          );
           this.editModel = aaa[0];
           let rawCountUnit = [];
           if (
@@ -608,6 +610,7 @@ export class PartyMembersEditComponent implements OnInit {
             (data) => {
               let model: any = {};
               model = data;
+              this.editModel.postnoCode = model.objectData[0]?.postCode;
               this.listCategoryPostCode = [];
               model.objectData.forEach((element) => {
                 this.listCategoryPostCode.push({
@@ -693,7 +696,7 @@ export class PartyMembersEditComponent implements OnInit {
     // ).display;
 
     if (this.editModel.image !== undefined) {
-      this.editModel.onFilePhoto1_5 = this.editModel.image[0].onFilePhoto1_5;
+      this.editModel.onFilePhoto1_5 = this.editModel.image[0].imageUrl;
     }
 
     if (this.editModel.fileCopyIDCard !== undefined) {
@@ -1130,7 +1133,13 @@ export class PartyMembersEditComponent implements OnInit {
     // let dateEdit = birthDateStr.slice(0,4)+'-'+birthDateStr.slice(4,6)+'-'+birthDateStr.slice(6,8)
 
     const today = new Date();
-    const birthDate = new Date(birthDateStr.slice(0,4)+'-'+birthDateStr.slice(4,6)+'-'+birthDateStr.slice(6,8));
+    const birthDate = new Date(
+      birthDateStr.slice(0, 4) +
+        "-" +
+        birthDateStr.slice(4, 6) +
+        "-" +
+        birthDateStr.slice(6, 8)
+    );
 
     let age = today.getFullYear() - birthDate.getFullYear();
     const m = today.getMonth() - birthDate.getMonth();
