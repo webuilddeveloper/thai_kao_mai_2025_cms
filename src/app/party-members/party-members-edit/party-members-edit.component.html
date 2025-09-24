@@ -169,13 +169,15 @@
               <div class="col s3">
                 <div class="col s12">
                   <cds (cModel)="editModel.image = $event" [label]="'รูปถ่ายตนเอง (เลือกภาพ/วางภาพที่นี่)'"
-                    [data]="[{ imageUrl: this.editModel.onFilePhoto1_5 || '' }]" [code]="'member-mobile'">
+                    [data]="[{ imageUrl: editModel.onFilePhoto1_5 || '' }]" 
+                    [code]="'member-mobile'">
                   </cds>
                 </div>
                 <div class="col s12" style="color: red;padding-top: 20px;">
                   <span>*Maximum 10 MB</span>
                 </div>
               </div>
+              
 
             </div>
             <!-- END: Do Something This Here -->
@@ -507,10 +509,10 @@
               <div class="col-3">
                 <span>รูปถ่ายคู่บัตรประชาชน</span>
                 <div class="col-12">
-                  <cds (cModel)="editModel.filePhotoSelfie = $event"
+                  <cdsa (cModel)="[editModel.filePhotoSelfie = $event, filePhotoSelfie = $event[0]?.imageUrl]"
                     [label]="'รูปถ่ายคู่บัตรประชาชน (เลือกภาพ/วางภาพที่นี่)'"
-                    [data]="[{ imageUrl: editModel.photoSelfie || ''}]" [code]="'event'">
-                  </cds>
+                    [data]="[{ imageUrl: filePhotoSelfie != '' ? filePhotoSelfie : editModel.filePhotoSelfie.length > 0 ? editModel.filePhotoSelfie[0].imageUrl : editModel.photoSelfie != '' ? editModel.photoSelfie : '', url: editModel.photoSelfie }]" [code]="'event'">
+                  </cdsa>
                 </div>
                 <div class="col-12" style="color: red;padding-top: 20px;">
                   <span>*Maximum 100 MB</span>
@@ -519,7 +521,7 @@
               <div class="col-3">
                 <span>สำเนาบัตรประชาชน</span>
                 <div class="col-12">
-                  <cdsa (cModel)="[editModel.fileCopyIDCard = $event, fileCopyIDCard = $event[0].imageUrl]"
+                  <cdsa (cModel)="[editModel.fileCopyIDCard = $event, fileCopyIDCard = $event[0]?.imageUrl]"
                     [label]="'ไฟล์ PDF หรือภาพ (เลือกไฟล์ PDF , เลือกภาพ/วางไฟล์ PDF , วางภาพที่นี่)'"
                     [data]="[{ imageUrl: fileCopyIDCard != '' ? fileCopyIDCard : editModel.fileCopyIDCard.length > 0 ? editModel.fileCopyIDCard[0].imageUrl : editModel.copyIDCard != '' ? editModel.copyIDCard : '', url: editModel.copyIDCard }]" [code]="'event'">
                   </cdsa>
@@ -531,7 +533,7 @@
               <div class="col-3">
                 <span>สำเนาทะเบียนบ้าน</span>
                 <div class="col-12">
-                  <cdsa (cModel)="[editModel.fileCopyHouseRegistration = $event, fileCopyHouseRegistration = $event[0].imageUrl]"
+                  <cdsa (cModel)="[editModel.fileCopyHouseRegistration = $event, fileCopyHouseRegistration = $event[0]?.imageUrl]"
                     [label]="'ไฟล์ PDF หรือภาพ (เลือกไฟล์ PDF , เลือกภาพ/วางไฟล์ PDF , วางภาพที่นี่)'"
                     [data]="[{ imageUrl: fileCopyHouseRegistration != '' ? fileCopyHouseRegistration : editModel.fileCopyHouseRegistration.length > 0 ? editModel.fileCopyHouseRegistration[0].imageUrl : editModel.copyHouseRegistration != '' ? editModel.copyHouseRegistration : '', url: editModel.copyHouseRegistration }]" [code]="'event'">
                   </cdsa>
@@ -543,7 +545,7 @@
               <div class="col-3">
                 <span>ใบสำคัญการเปลี่ยนชื่อ-สกุล</span>
                 <div class="col-12">
-                  <cdsa (cModel)="[editModel.fileNameChangeCertificate = $event, fileNameChangeCertificate = $event[0].imageUrl]"
+                  <cdsa (cModel)="[editModel.fileNameChangeCertificate = $event, fileNameChangeCertificate = $event[0]?.imageUrl]"
                     [label]="'ไฟล์ PDF หรือภาพ (เลือกไฟล์ PDF , เลือกภาพ/วางไฟล์ PDF , วางภาพที่นี่)'"
                     [data]="[{ imageUrl: fileNameChangeCertificate != '' ? fileNameChangeCertificate : editModel.fileNameChangeCertificate.length > 0 ? editModel.fileNameChangeCertificate[0].imageUrl : editModel.nameChangeCertificate != '' ? editModel.nameChangeCertificate : '', url: editModel.nameChangeCertificate }]" [code]="'event'">
                   </cdsa>

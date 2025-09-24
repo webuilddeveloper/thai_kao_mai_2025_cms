@@ -27,7 +27,7 @@ import { EncryptionService } from "src/app/shared/encryption.service";
 export class PartyMembersEditComponent implements OnInit {
   Editor = ClassicEditor;
   listCategory: any = [];
-  editModel: any = { status: "N", fileNameChangeCertificate: [], fileCopyIDCard: [], fileCopyHouseRegistration: []};
+  editModel: any = { status: "N", filePhotoSelfie: [], fileNameChangeCertificate: [], fileCopyIDCard: [], fileCopyHouseRegistration: []};
   code: any;
   title = "เพิ่มข้อมูลสมาชิกพรรค";
   category: any;
@@ -322,8 +322,20 @@ export class PartyMembersEditComponent implements OnInit {
           this.editModel = aaa[0];
           let rawCountUnit = [];
           if (
+            this.editModel.onFilePhoto1_5 != "" &&
+            this.editModel.onFilePhoto1_5 != undefined &&
+            this.editModel.onFilePhoto1_5 != null
+          ) {
+            
+          } else {
+            this.fileCopyIDCard = "";
+            this.editModel.image = [];
+          }
+
+          if (
             this.editModel.copyIDCard != "" &&
-            this.editModel.copyIDCard != undefined
+            this.editModel.copyIDCard != undefined &&
+            this.editModel.copyIDCard != null
           ) {
             let resultArray = this.editModel.copyIDCard.split(".");
             let type = resultArray[resultArray.length - 1];
@@ -332,10 +344,14 @@ export class PartyMembersEditComponent implements OnInit {
             } else {
               this.fileCopyIDCard = this.editModel.copyIDCard;
             }
+          } else {
+            this.fileCopyIDCard = "";
+            this.editModel.fileCopyIDCard = [];
           }
           if (
             this.editModel.photoSelfie != "" &&
-            this.editModel.photoSelfie != undefined
+            this.editModel.photoSelfie != undefined &&
+            this.editModel.photoSelfie != null
           ) {
             let resultArray = this.editModel.photoSelfie.split(".");
             let type = resultArray[resultArray.length - 1];
@@ -344,10 +360,14 @@ export class PartyMembersEditComponent implements OnInit {
             } else {
               this.filePhotoSelfie = this.editModel.photoSelfie;
             }
+          } else {
+            this.filePhotoSelfie = "";
+            this.editModel.filePhotoSelfie = [];
           }
           if (
             this.editModel.copyHouseRegistration != "" &&
-            this.editModel.copyHouseRegistration != undefined
+            this.editModel.copyHouseRegistration != undefined &&
+            this.editModel.copyHouseRegistration != null
           ) {
             let resultArray = this.editModel.copyHouseRegistration.split(".");
             let type = resultArray[resultArray.length - 1];
@@ -358,10 +378,14 @@ export class PartyMembersEditComponent implements OnInit {
               this.fileCopyHouseRegistration =
                 this.editModel.copyHouseRegistration;
             }
+          } else {
+            this.fileCopyHouseRegistration = "";
+            this.editModel.fileCopyHouseRegistration = [];
           }
           if (
             this.editModel.nameChangeCertificate != "" &&
-            this.editModel.nameChangeCertificate != undefined
+            this.editModel.nameChangeCertificate != undefined && 
+            this.editModel.nameChangeCertificate != null
           ) {
             let resultArray = this.editModel.nameChangeCertificate.split(".");
             let type = resultArray[resultArray.length - 1];
@@ -372,6 +396,9 @@ export class PartyMembersEditComponent implements OnInit {
               this.fileNameChangeCertificate =
                 this.editModel.nameChangeCertificate;
             }
+          } else {
+             this.fileNameChangeCertificate = "";
+             this.editModel.fileNameChangeCertificate = [];
           }
 
           this.readCategoryDistrict(this.editModel.provinceCode);
@@ -705,14 +732,21 @@ export class PartyMembersEditComponent implements OnInit {
     //   (f) => f.value == this.editModel.districtIssueCode
     // ).display;
 
-    debugger
 
     if (this.editModel.image !== undefined) {
       this.editModel.onFilePhoto1_5 = this.editModel.image[0].imageUrl;
     }
 
+    // if (this.editModel.filePhotoSelfie !== undefined) {
+    //   this.editModel.photoSelfie = this.editModel.filePhotoSelfie[0].imageUrl;
+    // }
+
     if (this.editModel.filePhotoSelfie !== undefined) {
-      this.editModel.photoSelfie = this.editModel.filePhotoSelfie[0].imageUrl;
+      if (this.editModel.filePhotoSelfie[0].imageType == "application/pdf")
+        this.editModel.photoSelfie = this.editModel.filePhotoSelfie[0].fileUrl;
+      else if (this.editModel.filePhotoSelfie[0].imageType == 'image/png' || this.editModel.filePhotoSelfie[0].imageType == 'image/jpeg' || this.editModel.filePhotoSelfie[0].imageType == 'image/gif'
+        || this.editModel.filePhotoSelfie[0].imageType == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        this.editModel.photoSelfie = this.editModel.filePhotoSelfie[0].imageUrl;
     }
 
     if (this.editModel.fileCopyIDCard !== undefined) {
@@ -1154,7 +1188,6 @@ export class PartyMembersEditComponent implements OnInit {
   }
 
   calculateAge(birthDateStr: string) {
-    debugger;
     if (!birthDateStr) return;
 
     // let dateEdit = birthDateStr.slice(0,4)+'-'+birthDateStr.slice(4,6)+'-'+birthDateStr.slice(6,8)

@@ -18,7 +18,7 @@ export class DropzoneSingleComponent implements OnInit {
   constructor(private fileuploadService: FileUploadService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    if (this.data[0].imageUrl == '')
+    if (this.data[0].imageUrl == '' || this.data[0].imageUrl == undefined)
       this.data = [];
 
     this.cModel.emit(this.data);
