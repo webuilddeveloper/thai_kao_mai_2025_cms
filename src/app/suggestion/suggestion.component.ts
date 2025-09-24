@@ -58,6 +58,7 @@ export class SuggestionComponent implements OnInit {
         model = data;
         this.model = JSON.stringify(model.objectData); // <----- Pagination
         this.listModel = model.objectData; // <----- Pagination
+        debugger;
         this.paginationModel.totalItems = model.totalData; // <----- Pagination
         this.paginationModel.itemsPerPage = this.criteriaModel.limit;
         this.paginationModel.itemsPerPageString = this.paginationModel.itemsPerPage.toString();

@@ -22,6 +22,7 @@ export class AboutUsComponent implements OnInit {
   ideologyDesEN: string = '';
   messageInput: any = [];
   messageInputSlice: any = [];
+  criteriaModel: any = {}
   paginationModelDiffer: KeyValueDiffer<string, any>; // <----- Pagination
   paginationModel: any = { itemsPerPage: 5, currentPage: 1, totalItems: 0, itemsPerPageString: '5' }; // <----- Pagination
   fileMembershipApplication: string = '';
@@ -95,15 +96,28 @@ export class AboutUsComponent implements OnInit {
 
   read() {
     this.spinner.show();
+    if (this.criteriaModel.skip == 0) {
+      this.paginationModel.currentPage = 1;
+    }
     this.editModel.code = localStorage.getItem('userCode');
     this.serviceProviderService.post('aboutUs/read', { code: this.editModel.code }).subscribe(data => {
       let model: any = {};
       model = data;
-      
+
       if (model.objectData.length > 0) {
         this.editModel = model.objectData[0];
         this.code = this.editModel.code;
         this.messageInputSlice = model.objectData[0].ideologyList;
+        debugger;
+
+        this.paginationModel.totalItems = this.messageInputSlice; // <----- Pagination
+        this.paginationModel.itemsPerPage = this.criteriaModel.limit;
+        this.paginationModel.itemsPerPageString = this.paginationModel.itemsPerPage.toString();
+
+        if ((this.criteriaModel.skip + this.paginationModel.itemsPerPage) > this.paginationModel.totalItems)
+          this.paginationModel.textPage = this.paginationModel.totalItems != 0 ? 'แสดง ' + (this.criteriaModel.skip + 1) + ' ถึง ' + this.paginationModel.totalItems + ' จาก ' + this.paginationModel.totalItems + ' แถว' : 'แสดง 0 ถึง 0 จาก 0 แถว';
+        else
+          this.paginationModel.textPage = 'แสดง ' + (this.criteriaModel.skip + 1) + ' ถึง ' + (this.criteriaModel.skip + this.paginationModel.itemsPerPage) + ' จาก ' + this.paginationModel.totalItems + ' แถว';
 
         if ((this.editModel.membershipApplication ?? '') != '' && this.editModel.membershipApplication != undefined) {
           let resultArray = this.editModel.membershipApplication.split('.');
@@ -115,6 +129,8 @@ export class AboutUsComponent implements OnInit {
           }
         }
       }
+
+      
 
       this.spinner.hide();
     }, err => {
@@ -190,6 +206,7 @@ export class AboutUsComponent implements OnInit {
   }
 
   deleteItem(param) {
+    debugger;
     this.messageInputSlice.splice(param + (this.paginationModel.itemsPerPage * (this.paginationModel.currentPage - 1)), 1);
     this.messageInput.splice(param + (this.paginationModel.itemsPerPage * (this.paginationModel.currentPage - 1)), 1);
     this.setLocalTable((this.paginationModel.currentPage - 1) * this.paginationModel.itemsPerPage, this.paginationModel.itemsPerPage + (this.paginationModel.currentPage - 1) * this.paginationModel.itemsPerPage);

@@ -52,6 +52,7 @@ export class PartyMembersComponent implements OnInit {
       setTimeout(() => {
         let model: any = {};
         model = data;
+        debugger;
         let aaa = this.encryptionService.decrypt(model.objectData);
         this.model = JSON.stringify(aaa); // <----- Pagination
         this.listModel = JSON.parse(aaa); // <----- Pagination
