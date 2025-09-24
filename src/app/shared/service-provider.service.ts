@@ -83,6 +83,40 @@ export class ServiceProviderService {
     return this.http.post(this.server + url, param, { headers: headers });
   }
 
+  postXKey(url, param) {
+    // let server = 'https://localhost:5001/';
+    // let server = 'https://122.155.223.63/td-ddpm-api/';
+
+    if (localStorage.getItem("username") != null) {
+      param.imageUrlCreateBy = localStorage.getItem("imageUrl");
+      // param.createBy = localStorage.getItem('username');
+      param.updateBy = localStorage.getItem("username");
+    }
+
+    if (localStorage.getItem("category") != null) {
+      let model = JSON.parse(localStorage.getItem("category"));
+
+      if (param.organization != "manual") {
+        param.lv0 = model.lv0;
+        param.lv1 = model.lv1;
+        param.lv2 = model.lv2;
+        param.lv3 = model.lv3;
+        param.lv4 = model.lv4;
+      }
+    }
+
+    const dekGenZ = (param.idcard ?? "") != "" ? this.encryptionService.encrypt(param.idcard) : "";
+    let headers = new HttpHeaders();
+    headers.append("Accept", "application/json");
+    headers.append("Content-Type", "application/json");
+    headers = headers.append('dek-gen-z', dekGenZ);
+
+    // let options = new RequestOptions();
+    // options.headers = headers;
+    param.organization = JSON.parse(localStorage.getItem("organization"));
+    return this.http.post(this.server + url, param, { headers: headers });
+  }
+
   getUrl(url) {
     let headers = new HttpHeaders();
     headers.append("Accept", "application/json");

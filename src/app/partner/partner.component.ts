@@ -56,7 +56,7 @@ export class PartnerComponent implements OnInit {
           this.paginationModel.textPage = this.paginationModel.totalItems != 0 ? 'แสดง ' + (this.criteriaModel.skip + 1) + ' ถึง ' + this.paginationModel.totalItems + ' จาก ' + this.paginationModel.totalItems + ' แถว' : 'แสดง 0 ถึง 0 จาก 0 แถว' ;
         else
           this.paginationModel.textPage = 'แสดง ' + (this.criteriaModel.skip + 1) + ' ถึง ' + (this.criteriaModel.skip + this.paginationModel.itemsPerPage) + ' จาก ' + this.paginationModel.totalItems + ' แถว';
-
+debugger
         this.spinner.hide();
       }, 500);
     }, err => {

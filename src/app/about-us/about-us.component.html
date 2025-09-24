@@ -365,6 +365,7 @@
 
                                         </div>
                                     </div>
+                                    
                                     <div class="row">
                                         <div class="col s12">
                                             <div class="responsive-table">
@@ -412,7 +413,7 @@
                                                 <ul>
                                                     <li *ngFor="let item of [] | paginate: paginationModel"></li>
                                                 </ul>
-                                                <pagination-controls (pageChange)="paginationModel.currentPage = $event"
+                                                <pagination-controls (pageChange)="[paginationModel.currentPage = $event, setPagination($event)]"
                                                     previousLabel="ก่อนหน้า" nextLabel="ถัดไป"></pagination-controls>
                                             </div>
                                         </div>

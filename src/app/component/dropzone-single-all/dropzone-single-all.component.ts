@@ -28,7 +28,6 @@ export class DropzoneSingleAllComponent implements OnInit {
 
   onSelectApi(event) {
 
-    debugger;
     if (event.addedFiles[0].type == 'application/pdf'
       || event.addedFiles[0].type == 'image/png' || event.addedFiles[0].type == 'image/jpeg' || event.addedFiles[0].type == 'image/gif'
       || event.addedFiles[0].type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {

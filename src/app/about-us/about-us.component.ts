@@ -1,4 +1,4 @@
-import { Component, KeyValueDiffer, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, KeyValueChanges, KeyValueDiffer, KeyValueDiffers, OnInit, ViewEncapsulation } from '@angular/core';
 import { FileUploadService } from 'src/app/shared/file-upload.service';
 import { ServiceProviderService } from 'src/app/shared/service-provider.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -33,10 +33,17 @@ export class AboutUsComponent implements OnInit {
     , private spinner: NgxSpinnerService
     , private toastr: ToastrService
     , private router: Router
-    , private activetedRoute: ActivatedRoute) { }
+    , private activetedRoute: ActivatedRoute
+    , private differs: KeyValueDiffers) { }
 
   ngOnInit(): void {
+    // this.read();
+    this.criteriaModel.skip = this.paginationModel.currentPage == 1 ? 0 : (this.paginationModel.currentPage * this.paginationModel.itemsPerPage) - this.paginationModel.itemsPerPage; // <----- Pagination
+    this.criteriaModel.limit = this.paginationModel.itemsPerPage; // <----- Pagination
+    // this.criteriaModel.permission = this.permission; 
+
     this.read();
+    this.paginationModelDiffer = this.differs.find(this.paginationModel).create(); // <----- Pagination
   }
 
   create() {
@@ -107,18 +114,10 @@ export class AboutUsComponent implements OnInit {
       if (model.objectData.length > 0) {
         this.editModel = model.objectData[0];
         this.code = this.editModel.code;
-        this.messageInputSlice = model.objectData[0].ideologyList;
+        this.messageInput = model.objectData[0].ideologyList;
+
+        this.setPagination(0);
         debugger;
-
-        this.paginationModel.totalItems = this.messageInputSlice; // <----- Pagination
-        this.paginationModel.itemsPerPage = this.criteriaModel.limit;
-        this.paginationModel.itemsPerPageString = this.paginationModel.itemsPerPage.toString();
-
-        if ((this.criteriaModel.skip + this.paginationModel.itemsPerPage) > this.paginationModel.totalItems)
-          this.paginationModel.textPage = this.paginationModel.totalItems != 0 ? 'แสดง ' + (this.criteriaModel.skip + 1) + ' ถึง ' + this.paginationModel.totalItems + ' จาก ' + this.paginationModel.totalItems + ' แถว' : 'แสดง 0 ถึง 0 จาก 0 แถว';
-        else
-          this.paginationModel.textPage = 'แสดง ' + (this.criteriaModel.skip + 1) + ' ถึง ' + (this.criteriaModel.skip + this.paginationModel.itemsPerPage) + ' จาก ' + this.paginationModel.totalItems + ' แถว';
-
         if ((this.editModel.membershipApplication ?? '') != '' && this.editModel.membershipApplication != undefined) {
           let resultArray = this.editModel.membershipApplication.split('.');
           let type = resultArray[resultArray.length - 1];
@@ -130,7 +129,7 @@ export class AboutUsComponent implements OnInit {
         }
       }
 
-      
+
 
       this.spinner.hide();
     }, err => {
@@ -200,6 +199,7 @@ export class AboutUsComponent implements OnInit {
   }
 
   setPerPage(param) {
+    debugger
     this.paginationModel.currentPage = 1;
     this.paginationModel.itemsPerPage = parseInt(param); // <----- Pagination
     this.setLocalTable(this.paginationModel.currentPage - 1, this.paginationModel.itemsPerPage)
@@ -266,5 +266,48 @@ export class AboutUsComponent implements OnInit {
   drop(event: CdkDragDrop<any[]>) {
     moveItemInArray(this.messageInputSlice, event.previousIndex, event.currentIndex);
   }
+
+  setPagination(skip) {
+    debugger
+    this.criteriaModel.skip = skip;
+    this.criteriaModel.skip = this.criteriaModel.skip == 0 ? 0 : (this.criteriaModel.limit * skip) - this.criteriaModel.limit;
+    const start = (this.paginationModel.currentPage - 1) * this.paginationModel.itemsPerPage;
+    this.messageInputSlice = this.messageInput.slice(start, start + this.paginationModel.itemsPerPage);
+
+    this.paginationModel.totalItems = this.messageInput.length; // <----- Pagination
+    this.paginationModel.itemsPerPage = this.criteriaModel.limit;
+    this.paginationModel.itemsPerPageString = this.paginationModel.itemsPerPage.toString();
+
+    if ((this.criteriaModel.skip + this.paginationModel.itemsPerPage) > this.paginationModel.totalItems)
+      this.paginationModel.textPage = this.paginationModel.totalItems != 0 ? 'แสดง ' + (this.criteriaModel.skip + 1) + ' ถึง ' + this.paginationModel.totalItems + ' จาก ' + this.paginationModel.totalItems + ' แถว' : 'แสดง 0 ถึง 0 จาก 0 แถว';
+    else
+      this.paginationModel.textPage = 'แสดง ' + (this.criteriaModel.skip + 1) + ' ถึง ' + (this.criteriaModel.skip + this.paginationModel.itemsPerPage) + ' จาก ' + this.paginationModel.totalItems + ' แถว';
+
+  }
+
+  // <----- Pagination
+  // paginationModelChanged(changes: KeyValueChanges<string, any>) {
+  //   // console.log('changes');
+
+  //   this.criteriaModel.skip = this.paginationModel.currentPage == 1 ? 0 : (this.paginationModel.currentPage * this.paginationModel.itemsPerPage) - this.paginationModel.itemsPerPage; // <----- Pagination
+  //   this.criteriaModel.limit = this.paginationModel.itemsPerPage; // <----- Pagination
+  //   // this.criteriaModel.permission = this.permission; 
+
+  //   this.read();
+  //   /* If you want to see details then use
+  //     changes.forEachRemovedItem((record) => ...);
+  //     changes.forEachAddedItem((record) => ...);
+  //     changes.forEachChangedItem((record) => ...);
+  //   */
+  // }
+
+  // // // <----- Pagination 
+  // ngDoCheck(): void {
+
+  //   const changes = this.paginationModelDiffer.diff(this.paginationModel);
+  //   if (changes) {
+  //     this.paginationModelChanged(changes);
+  //   }
+  // }
 
 }
