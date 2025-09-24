@@ -413,7 +413,7 @@
                                                 <ul>
                                                     <li *ngFor="let item of [] | paginate: paginationModel"></li>
                                                 </ul>
-                                                <pagination-controls (pageChange)="[paginationModel.currentPage = $event, setPagination($event)]"
+                                                <pagination-controls (pageChange)="[paginationModel.currentPage = $event, setPagination()]"
                                                     previousLabel="ก่อนหน้า" nextLabel="ถัดไป"></pagination-controls>
                                             </div>
                                         </div>
