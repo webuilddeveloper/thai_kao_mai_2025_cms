@@ -13,13 +13,16 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class DashboardV2Component implements OnInit {
   model: any;
   modelregister: any;
-  modelregisterSex: any;
+  // modelregisterSex: any;
   modelregisterJob: any;
   modelregisterProvince: any;
   apiModel: any = [
-    { display: "สช. On Mobile", value: "https://opec.we-builds.com/opec-api/" },
+    {
+      display: "พรรคไทยก้าวใหม่",
+      value: "https://www.thaikaomai.or.th/thai-kao-mai-api/",
+    },
   ];
-  api = "https://opec.we-builds.com/opec-api/";
+  api = "https://www.thaikaomai.or.th/thai-kao-mai-api/";
   criteriaModel: any = {};
 
   // options
@@ -49,7 +52,7 @@ export class DashboardV2Component implements OnInit {
   }
 
   ngOnInit(): void {
-    this._callReadRegisterSex();
+    // this._callReadRegisterSex();
     this._callReadRegisterJob();
     this._callReadRegisterProvince();
   }
@@ -233,12 +236,23 @@ export class DashboardV2Component implements OnInit {
           let model: any = {};
           model = data;
           let result: any = [];
-          model.forEach((e, index) => {
-            if (this.job == e.name || this.province == e.name) {
+          let number = 0;
+          model.forEach((e) => {
+            number++;
+            // if (this.job == e.name || this.province == e.name) {
+            //   return;
+            // }
+            if (e.name == "ข้อมูลอาชีพ" || e.name == "ข้อมูลจังหวัด") {
+              result.push({});
+              result.push({
+                ลำดับ: e.name,
+              });
+              number = 0;
               return;
             }
+
             result.push({
-              ลำดับ: index + 1,
+              ลำดับ: number,
               ชื่อ: e.name,
               จำนวน: e.values,
             });
