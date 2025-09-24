@@ -333,7 +333,7 @@ export class AppComponent {
         data: "",
         type: "N",
         isActive: false,
-        isShow: this.category.bannerPage,
+        isShow: false,//this.category.bannerPage,
       },
       {
         name: "ป้ายโฆษณาบังคับปิดเมนูย่อย",
@@ -357,7 +357,7 @@ export class AppComponent {
         data: "",
         type: "N",
         isActive: false,
-        isShow: this.category.partnerPage,
+        isShow: false,//this.category.partnerPage,
       },
       {
         name: "พันธมิตร",
@@ -365,7 +365,7 @@ export class AppComponent {
         data: "",
         type: "N",
         isActive: false,
-        isShow: this.category.alliancePage,
+        isShow: false,//this.category.alliancePage,
       },
       {
         name: "กิจกรรมภายในออฟฟิศ",
@@ -373,7 +373,7 @@ export class AppComponent {
         data: "",
         type: "N",
         isActive: false,
-        isShow: this.category.officeActivitiesPage,
+        isShow: false,//this.category.officeActivitiesPage,
       },
     ];
 

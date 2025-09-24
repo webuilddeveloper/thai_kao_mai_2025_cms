@@ -47,20 +47,22 @@
                         </div>
                         <div class="col s4">
                             <csop (cModel)="criteriaModel.status = $event" [label]="'สถานะ'" [data]="criteriaModel.status"
-                                [sources]="[{ value: '', display: 'ทั้งหมด' },{ value: 'N', display: 'รอการยืนยันตัวตน' }, { value: 'A', display: 'ตรวจสอบเรียบร้อยแล้ว' }, { value: 'VR', display: 'รอการตรวจสอบ' }, { value: 'J', display: 'ยืนยันตนไม่สำเร็จ' }]">
+                                [sources]="[{ value: '', display: 'ทั้งหมด' },{ value: 'R', display: 'ไม่อนุมัติ' },{ value: 'N', display: 'รออนุมัติ' }, { value: 'A', display: 'อนุมัติ' }]">
                             </csop>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col s4">
+                        <!-- <div class="col s4">
                             <csop (cModel)="criteriaModel.category = $event" [label]="'ประเภท'" [data]="criteriaModel.category"
                                 [sources]="listCategory">
                             </csop>
-                        </div>
+                        </div> -->
                         <div class="col s4">
                             <citxt (cModel)="criteriaModel.createBy = $event" [label]="'ผู้สร้าง'" [data]="criteriaModel.createBy"></citxt>
                         </div>
+                        <div class="col s4"></div>
+                        <div class="col s4"></div>
                     </div>
 
                     <!-- END: Do Something This Here -->
