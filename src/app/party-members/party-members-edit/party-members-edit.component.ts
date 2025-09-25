@@ -69,10 +69,10 @@ export class PartyMembersEditComponent implements OnInit {
 
   lvModel: any = [];
   imageFile: string = "";
-  fileCopyIDCard: string = null;
-  filePhotoSelfie: string = null;
-  fileCopyHouseRegistration: string = null;
-  fileNameChangeCertificate: string = null;
+  // fileCopyIDCard: string = null;
+  // filePhotoSelfie: string = null;
+  // fileCopyHouseRegistration: string = null;
+  // fileNameChangeCertificate: string = null;
 
   maxDate: string = "";
 
@@ -358,7 +358,7 @@ export class PartyMembersEditComponent implements OnInit {
             this.editModel.onFilePhoto1_5 != null
           ) {
           } else {
-            this.fileCopyIDCard = "";
+            // this.fileCopyIDCard = "";
             this.editModel.image = [];
           }
 
@@ -370,13 +370,16 @@ export class PartyMembersEditComponent implements OnInit {
             let resultArray = this.editModel.copyIDCard.split(".");
             let type = resultArray[resultArray.length - 1];
             if (type == "pdf") {
-              this.fileCopyIDCard = "assets/img/267px-PDF_file_icon.svg.png";
+              this.editModel.copyIDCardFileUrl = this.editModel.copyIDCard;
+              this.editModel.copyIDCard = "assets/img/267px-PDF_file_icon.svg.png";
+              // this.fileCopyIDCard = "assets/img/267px-PDF_file_icon.svg.png";
+
             } else {
-              this.fileCopyIDCard = this.editModel.copyIDCard;
+              // this.fileCopyIDCard = this.editModel.copyIDCard;
             }
           } else {
-            this.fileCopyIDCard = "";
-            this.editModel.fileCopyIDCard = [];
+            // this.fileCopyIDCard = "";
+            // this.editModel.fileCopyIDCard = [];
           }
           if (
             this.editModel.photoSelfie != "" &&
@@ -386,13 +389,15 @@ export class PartyMembersEditComponent implements OnInit {
             let resultArray = this.editModel.photoSelfie.split(".");
             let type = resultArray[resultArray.length - 1];
             if (type == "pdf") {
-              this.filePhotoSelfie = "assets/img/267px-PDF_file_icon.svg.png";
+              this.editModel.photoSelfieFileUrl = this.editModel.photoSelfie;
+              this.editModel.photoSelfie = "assets/img/267px-PDF_file_icon.svg.png";
+              // this.filePhotoSelfie = "assets/img/267px-PDF_file_icon.svg.png";
             } else {
-              this.filePhotoSelfie = this.editModel.photoSelfie;
+              // this.filePhotoSelfie = this.editModel.photoSelfie;
             }
           } else {
-            this.filePhotoSelfie = "";
-            this.editModel.filePhotoSelfie = [];
+            // this.filePhotoSelfie = "";
+            // this.editModel.filePhotoSelfie = [];
           }
           if (
             this.editModel.copyHouseRegistration != "" &&
@@ -402,15 +407,17 @@ export class PartyMembersEditComponent implements OnInit {
             let resultArray = this.editModel.copyHouseRegistration.split(".");
             let type = resultArray[resultArray.length - 1];
             if (type == "pdf") {
-              this.fileCopyHouseRegistration =
-                "assets/img/267px-PDF_file_icon.svg.png";
+              this.editModel.copyHouseRegistrationFileUrl = this.editModel.copyHouseRegistration;
+              this.editModel.copyHouseRegistration = "assets/img/267px-PDF_file_icon.svg.png";
+              // this.fileCopyHouseRegistration =
+              //   "assets/img/267px-PDF_file_icon.svg.png";
             } else {
-              this.fileCopyHouseRegistration =
-                this.editModel.copyHouseRegistration;
+              // this.fileCopyHouseRegistration =
+              //   this.editModel.copyHouseRegistration;
             }
           } else {
-            this.fileCopyHouseRegistration = "";
-            this.editModel.fileCopyHouseRegistration = [];
+            // this.fileCopyHouseRegistration = "";
+            // this.editModel.fileCopyHouseRegistration = [];
           }
           if (
             this.editModel.nameChangeCertificate != "" &&
@@ -420,15 +427,17 @@ export class PartyMembersEditComponent implements OnInit {
             let resultArray = this.editModel.nameChangeCertificate.split(".");
             let type = resultArray[resultArray.length - 1];
             if (type == "pdf") {
-              this.fileNameChangeCertificate =
-                "assets/img/267px-PDF_file_icon.svg.png";
+              this.editModel.nameChangeCertificateFileUrl = this.editModel.nameChangeCertificate;
+              this.editModel.nameChangeCertificate = "assets/img/267px-PDF_file_icon.svg.png";
+              // this.fileNameChangeCertificate =
+              //   "assets/img/267px-PDF_file_icon.svg.png";
             } else {
-              this.fileNameChangeCertificate =
-                this.editModel.nameChangeCertificate;
+              // this.fileNameChangeCertificate =
+              //   this.editModel.nameChangeCertificate;
             }
           } else {
-            this.fileNameChangeCertificate = "";
-            this.editModel.fileNameChangeCertificate = [];
+            // this.fileNameChangeCertificate = "";
+            // this.editModel.fileNameChangeCertificate = [];
           }
 
           this.readCategoryDistrict(this.editModel.provinceCode);

@@ -510,9 +510,10 @@
               <div class="col-3">
                 <span>รูปถ่ายคู่บัตรประชาชน</span>
                 <div class="col-12">
-                  <cdsa (cModel)="[editModel.filePhotoSelfie = $event, filePhotoSelfie = $event[0]?.imageUrl]"
+                  <cdsa (cModel)="editModel.filePhotoSelfie = $event"
                     [label]="'รูปถ่ายคู่บัตรประชาชน (เลือกภาพ/วางภาพที่นี่)'"
-                    [data]="[{ imageUrl: editModel.photoSelfie}]" [code]="'member-mobile'">
+                    [data]="[{ imageUrl: editModel.photoSelfie,fileUrl:editModel.photoSelfieFileUrl}]"
+                    [code]="'member-mobile'">
                   </cdsa>
                 </div>
                 <div class="col-12" style="color: red;padding-top: 20px;">
@@ -522,9 +523,10 @@
               <div class="col-3">
                 <span>สำเนาบัตรประชาชน</span>
                 <div class="col-12">
-                  <cdsa (cModel)="[editModel.fileCopyIDCard = $event, fileCopyIDCard = $event[0]?.imageUrl]"
-                    [label]="'ไฟล์ PDF หรือภาพ (เลือกไฟล์ PDF , เลือกภาพ/วางไฟล์ PDF , วางภาพที่นี่)'" 
-                    [data]="[{ imageUrl: editModel.copyIDCard }]" [code]="'member-mobile'">
+                  <cdsa (cModel)="editModel.fileCopyIDCard = $event"
+                    [label]="'ไฟล์ PDF หรือภาพ (เลือกไฟล์ PDF , เลือกภาพ/วางไฟล์ PDF , วางภาพที่นี่)'"
+                    [data]="[{ imageUrl: editModel.copyIDCard ,fileUrl:editModel.copyIDCardFileUrl }]"
+                    [code]="'member-mobile'">
                   </cdsa>
                 </div>
                 <div class="col-12" style="color: red;padding-top: 20px;">
@@ -535,9 +537,10 @@
                 <span>สำเนาทะเบียนบ้าน</span>
                 <div class="col-12">
                   <cdsa
-                    (cModel)="[editModel.fileCopyHouseRegistration = $event, fileCopyHouseRegistration = $event[0]?.imageUrl]"
+                    (cModel)="editModel.fileCopyHouseRegistration = $event"
                     [label]="'ไฟล์ PDF หรือภาพ (เลือกไฟล์ PDF , เลือกภาพ/วางไฟล์ PDF , วางภาพที่นี่)'"
-                    [data]="[{ imageUrl: editModel.copyHouseRegistration }]" [code]="'member-mobile'">
+                    [data]="[{ imageUrl: editModel.copyHouseRegistration,fileUrl:editModel.copyHouseRegistrationFileUrl }]"
+                    [code]="'member-mobile'">
                   </cdsa>
                 </div>
                 <div class="col-12" style="color: red;padding-top: 20px;">
@@ -548,9 +551,10 @@
                 <span>ใบสำคัญการเปลี่ยนชื่อ-สกุล</span>
                 <div class="col-12">
                   <cdsa
-                    (cModel)="[editModel.fileNameChangeCertificate = $event, fileNameChangeCertificate = $event[0]?.imageUrl]"
+                    (cModel)="editModel.fileNameChangeCertificate = $event"
                     [label]="'ไฟล์ PDF หรือภาพ (เลือกไฟล์ PDF , เลือกภาพ/วางไฟล์ PDF , วางภาพที่นี่)'"
-                    [data]="[{ imageUrl: editModel.nameChangeCertificate }]" [code]="'member-mobile'">
+                    [data]="[{ imageUrl: editModel.nameChangeCertificate,fileUrl:editModel.nameChangeCertiFicateUrl }]"
+                    [code]="'member-mobile'">
                   </cdsa>
                 </div>
                 <div class="col-12" style="color: red;padding-top: 20px;">
