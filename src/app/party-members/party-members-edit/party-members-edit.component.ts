@@ -27,7 +27,13 @@ import { EncryptionService } from "src/app/shared/encryption.service";
 export class PartyMembersEditComponent implements OnInit {
   Editor = ClassicEditor;
   listCategory: any = [];
-  editModel: any = { status: "N", filePhotoSelfie: [], fileNameChangeCertificate: [], fileCopyIDCard: [], fileCopyHouseRegistration: []};
+  editModel: any = {
+    status: "N",
+    filePhotoSelfie: [],
+    fileNameChangeCertificate: [],
+    fileCopyIDCard: [],
+    fileCopyHouseRegistration: [],
+  };
   code: any;
   title = "เพิ่มข้อมูลสมาชิกพรรค";
   category: any;
@@ -63,10 +69,10 @@ export class PartyMembersEditComponent implements OnInit {
 
   lvModel: any = [];
   imageFile: string = "";
-  fileCopyIDCard: string = "";
-  filePhotoSelfie: string = "";
-  fileCopyHouseRegistration: string = "";
-  fileNameChangeCertificate: string = "";
+  fileCopyIDCard: string = null;
+  filePhotoSelfie: string = null;
+  fileCopyHouseRegistration: string = null;
+  fileNameChangeCertificate: string = null;
 
   maxDate: string = "";
 
@@ -250,25 +256,50 @@ export class PartyMembersEditComponent implements OnInit {
     if (this.editModel.fileCopyIDCard !== undefined) {
       if (this.editModel.fileCopyIDCard[0].imageType == "application/pdf")
         this.editModel.copyIDCard = this.editModel.fileCopyIDCard[0].fileUrl;
-      else if (this.editModel.fileCopyIDCard[0].imageType == 'image/png' || this.editModel.fileCopyIDCard[0].imageType == 'image/jpeg' || this.editModel.fileCopyIDCard[0].imageType == 'image/gif'
-        || this.editModel.fileCopyIDCard[0].imageType == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+      else if (
+        this.editModel.fileCopyIDCard[0].imageType == "image/png" ||
+        this.editModel.fileCopyIDCard[0].imageType == "image/jpeg" ||
+        this.editModel.fileCopyIDCard[0].imageType == "image/gif" ||
+        this.editModel.fileCopyIDCard[0].imageType ==
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      )
         this.editModel.copyIDCard = this.editModel.fileCopyIDCard[0].imageUrl;
     }
 
     if (this.editModel.fileCopyHouseRegistration !== undefined) {
-      if (this.editModel.fileCopyHouseRegistration[0].imageType == "application/pdf")
-        this.editModel.copyHouseRegistration = this.editModel.fileCopyHouseRegistration[0].fileUrl;
-      else if (this.editModel.fileCopyHouseRegistration[0].imageType == 'image/png' || this.editModel.fileCopyHouseRegistration[0].imageType == 'image/jpeg' || this.editModel.fileCopyHouseRegistration[0].imageType == 'image/gif'
-        || this.editModel.fileCopyHouseRegistration[0].imageType == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-        this.editModel.copyHouseRegistration = this.editModel.fileCopyHouseRegistration[0].imageUrl;
+      if (
+        this.editModel.fileCopyHouseRegistration[0].imageType ==
+        "application/pdf"
+      )
+        this.editModel.copyHouseRegistration =
+          this.editModel.fileCopyHouseRegistration[0].fileUrl;
+      else if (
+        this.editModel.fileCopyHouseRegistration[0].imageType == "image/png" ||
+        this.editModel.fileCopyHouseRegistration[0].imageType == "image/jpeg" ||
+        this.editModel.fileCopyHouseRegistration[0].imageType == "image/gif" ||
+        this.editModel.fileCopyHouseRegistration[0].imageType ==
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      )
+        this.editModel.copyHouseRegistration =
+          this.editModel.fileCopyHouseRegistration[0].imageUrl;
     }
-    
+
     if (this.editModel.fileNameChangeCertificate !== undefined) {
-      if (this.editModel.fileNameChangeCertificate[0].imageType == "application/pdf")
-        this.editModel.nameChangeCertificate = this.editModel.fileNameChangeCertificate[0].fileUrl;
-      else if (this.editModel.fileNameChangeCertificate[0].imageType == 'image/png' || this.editModel.fileNameChangeCertificate[0].imageType == 'image/jpeg' || this.editModel.fileNameChangeCertificate[0].imageType == 'image/gif'
-        || this.editModel.fileNameChangeCertificate[0].imageType == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-        this.editModel.nameChangeCertificate = this.editModel.fileNameChangeCertificate[0].imageUrl;
+      if (
+        this.editModel.fileNameChangeCertificate[0].imageType ==
+        "application/pdf"
+      )
+        this.editModel.nameChangeCertificate =
+          this.editModel.fileNameChangeCertificate[0].fileUrl;
+      else if (
+        this.editModel.fileNameChangeCertificate[0].imageType == "image/png" ||
+        this.editModel.fileNameChangeCertificate[0].imageType == "image/jpeg" ||
+        this.editModel.fileNameChangeCertificate[0].imageType == "image/gif" ||
+        this.editModel.fileNameChangeCertificate[0].imageType ==
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      )
+        this.editModel.nameChangeCertificate =
+          this.editModel.fileNameChangeCertificate[0].imageUrl;
     }
 
     if (this.editModel.filePhotoSelfie !== undefined) {
@@ -326,7 +357,6 @@ export class PartyMembersEditComponent implements OnInit {
             this.editModel.onFilePhoto1_5 != undefined &&
             this.editModel.onFilePhoto1_5 != null
           ) {
-            
           } else {
             this.fileCopyIDCard = "";
             this.editModel.image = [];
@@ -384,7 +414,7 @@ export class PartyMembersEditComponent implements OnInit {
           }
           if (
             this.editModel.nameChangeCertificate != "" &&
-            this.editModel.nameChangeCertificate != undefined && 
+            this.editModel.nameChangeCertificate != undefined &&
             this.editModel.nameChangeCertificate != null
           ) {
             let resultArray = this.editModel.nameChangeCertificate.split(".");
@@ -397,8 +427,8 @@ export class PartyMembersEditComponent implements OnInit {
                 this.editModel.nameChangeCertificate;
             }
           } else {
-             this.fileNameChangeCertificate = "";
-             this.editModel.fileNameChangeCertificate = [];
+            this.fileNameChangeCertificate = "";
+            this.editModel.fileNameChangeCertificate = [];
           }
 
           this.readCategoryDistrict(this.editModel.provinceCode);
@@ -432,7 +462,7 @@ export class PartyMembersEditComponent implements OnInit {
             });
           });
         },
-        (err) => { }
+        (err) => {}
       );
   }
 
@@ -456,7 +486,7 @@ export class PartyMembersEditComponent implements OnInit {
               });
             });
           },
-          (err) => { }
+          (err) => {}
         );
     } else if (lv == "lv1") {
       this.editModel.lv1 = param;
@@ -477,7 +507,7 @@ export class PartyMembersEditComponent implements OnInit {
               });
             });
           },
-          (err) => { }
+          (err) => {}
         );
     } else if (lv == "lv2") {
       this.editModel.lv2 = param;
@@ -498,7 +528,7 @@ export class PartyMembersEditComponent implements OnInit {
               });
             });
           },
-          (err) => { }
+          (err) => {}
         );
     }
   }
@@ -517,7 +547,7 @@ export class PartyMembersEditComponent implements OnInit {
             });
           });
         },
-        (err) => { }
+        (err) => {}
       );
     }
   }
@@ -577,7 +607,7 @@ export class PartyMembersEditComponent implements OnInit {
                 });
               });
             },
-            (err) => { }
+            (err) => {}
           );
       }
     }
@@ -604,7 +634,7 @@ export class PartyMembersEditComponent implements OnInit {
                 });
               });
             },
-            (err) => { }
+            (err) => {}
           );
       }
     }
@@ -629,7 +659,7 @@ export class PartyMembersEditComponent implements OnInit {
                 });
               });
             },
-            (err) => { }
+            (err) => {}
           );
       }
     }
@@ -655,7 +685,7 @@ export class PartyMembersEditComponent implements OnInit {
                 });
               });
             },
-            (err) => { }
+            (err) => {}
           );
       }
     }
@@ -724,14 +754,12 @@ export class PartyMembersEditComponent implements OnInit {
       (f) => f.value == this.editModel.provinceBirthCode
     ).display;
 
-
     // this.editModel.provinceIssue = this.listCategoryProvince.find(
     //   (f) => f.value == this.editModel.provinceIssueCode
     // ).display;
     // this.editModel.districtIssue = this.listDistrictIssue.find(
     //   (f) => f.value == this.editModel.districtIssueCode
     // ).display;
-
 
     if (this.editModel.image !== undefined) {
       this.editModel.onFilePhoto1_5 = this.editModel.image[0].imageUrl;
@@ -744,32 +772,62 @@ export class PartyMembersEditComponent implements OnInit {
     if (this.editModel.filePhotoSelfie !== undefined) {
       if (this.editModel.filePhotoSelfie[0].imageType == "application/pdf")
         this.editModel.photoSelfie = this.editModel.filePhotoSelfie[0].fileUrl;
-      else if (this.editModel.filePhotoSelfie[0].imageType == 'image/png' || this.editModel.filePhotoSelfie[0].imageType == 'image/jpeg' || this.editModel.filePhotoSelfie[0].imageType == 'image/gif'
-        || this.editModel.filePhotoSelfie[0].imageType == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+      else if (
+        this.editModel.filePhotoSelfie[0].imageType == "image/png" ||
+        this.editModel.filePhotoSelfie[0].imageType == "image/jpeg" ||
+        this.editModel.filePhotoSelfie[0].imageType == "image/gif" ||
+        this.editModel.filePhotoSelfie[0].imageType ==
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      )
         this.editModel.photoSelfie = this.editModel.filePhotoSelfie[0].imageUrl;
     }
 
     if (this.editModel.fileCopyIDCard !== undefined) {
       if (this.editModel.fileCopyIDCard[0].imageType == "application/pdf")
         this.editModel.copyIDCard = this.editModel.fileCopyIDCard[0].fileUrl;
-      else if (this.editModel.fileCopyIDCard[0].imageType == 'image/png' || this.editModel.fileCopyIDCard[0].imageType == 'image/jpeg' || this.editModel.fileCopyIDCard[0].imageType == 'image/gif'
-        || this.editModel.fileCopyIDCard[0].imageType == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+      else if (
+        this.editModel.fileCopyIDCard[0].imageType == "image/png" ||
+        this.editModel.fileCopyIDCard[0].imageType == "image/jpeg" ||
+        this.editModel.fileCopyIDCard[0].imageType == "image/gif" ||
+        this.editModel.fileCopyIDCard[0].imageType ==
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      )
         this.editModel.copyIDCard = this.editModel.fileCopyIDCard[0].imageUrl;
     }
 
     if (this.editModel.fileCopyHouseRegistration !== undefined) {
-      if (this.editModel.fileCopyHouseRegistration[0].imageType == "application/pdf")
-        this.editModel.copyHouseRegistration = this.editModel.fileCopyHouseRegistration[0].fileUrl;
-      else if (this.editModel.fileCopyHouseRegistration[0].imageType == 'image/png' || this.editModel.fileCopyHouseRegistration[0].imageType == 'image/jpeg' || this.editModel.fileCopyHouseRegistration[0].imageType == 'image/gif'
-        || this.editModel.fileCopyHouseRegistration[0].imageType == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-        this.editModel.copyHouseRegistration = this.editModel.fileCopyHouseRegistration[0].imageUrl;
+      if (
+        this.editModel.fileCopyHouseRegistration[0].imageType ==
+        "application/pdf"
+      )
+        this.editModel.copyHouseRegistration =
+          this.editModel.fileCopyHouseRegistration[0].fileUrl;
+      else if (
+        this.editModel.fileCopyHouseRegistration[0].imageType == "image/png" ||
+        this.editModel.fileCopyHouseRegistration[0].imageType == "image/jpeg" ||
+        this.editModel.fileCopyHouseRegistration[0].imageType == "image/gif" ||
+        this.editModel.fileCopyHouseRegistration[0].imageType ==
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      )
+        this.editModel.copyHouseRegistration =
+          this.editModel.fileCopyHouseRegistration[0].imageUrl;
     }
     if (this.editModel.fileNameChangeCertificate !== undefined) {
-      if (this.editModel.fileNameChangeCertificate[0].imageType == "application/pdf")
-        this.editModel.nameChangeCertificate = this.editModel.fileNameChangeCertificate[0].fileUrl;
-      else if (this.editModel.fileNameChangeCertificate[0].imageType == 'image/png' || this.editModel.fileNameChangeCertificate[0].imageType == 'image/jpeg' || this.editModel.fileNameChangeCertificate[0].imageType == 'image/gif'
-        || this.editModel.fileNameChangeCertificate[0].imageType == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-        this.editModel.nameChangeCertificate = this.editModel.fileNameChangeCertificate[0].imageUrl;
+      if (
+        this.editModel.fileNameChangeCertificate[0].imageType ==
+        "application/pdf"
+      )
+        this.editModel.nameChangeCertificate =
+          this.editModel.fileNameChangeCertificate[0].fileUrl;
+      else if (
+        this.editModel.fileNameChangeCertificate[0].imageType == "image/png" ||
+        this.editModel.fileNameChangeCertificate[0].imageType == "image/jpeg" ||
+        this.editModel.fileNameChangeCertificate[0].imageType == "image/gif" ||
+        this.editModel.fileNameChangeCertificate[0].imageType ==
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      )
+        this.editModel.nameChangeCertificate =
+          this.editModel.fileNameChangeCertificate[0].imageUrl;
     }
 
     if (this.editModel.fileSlipPay !== undefined) {
@@ -1073,7 +1131,7 @@ export class PartyMembersEditComponent implements OnInit {
             });
           });
         },
-        (err) => { }
+        (err) => {}
       );
   }
 
@@ -1101,7 +1159,7 @@ export class PartyMembersEditComponent implements OnInit {
               });
             }
           },
-          (err) => { }
+          (err) => {}
         );
     } else if (lv == "lv1") {
       param2.lv1 = param;
@@ -1126,7 +1184,7 @@ export class PartyMembersEditComponent implements OnInit {
               });
             }
           },
-          (err) => { }
+          (err) => {}
         );
     } else if (lv == "lv2") {
       param2.lv2 = param;
@@ -1151,7 +1209,7 @@ export class PartyMembersEditComponent implements OnInit {
               });
             }
           },
-          (err) => { }
+          (err) => {}
         );
     } else if (lv == "lv3") {
       param2.lv3 = param;
@@ -1176,7 +1234,7 @@ export class PartyMembersEditComponent implements OnInit {
               });
             }
           },
-          (err) => { }
+          (err) => {}
         );
     } else if (lv == "lv4") {
       param2.lv4 = param;
@@ -1195,10 +1253,10 @@ export class PartyMembersEditComponent implements OnInit {
     const today = new Date();
     const birthDate = new Date(
       birthDateStr.slice(0, 4) +
-      "-" +
-      birthDateStr.slice(4, 6) +
-      "-" +
-      birthDateStr.slice(6, 8)
+        "-" +
+        birthDateStr.slice(4, 6) +
+        "-" +
+        birthDateStr.slice(6, 8)
     );
 
     let age = today.getFullYear() - birthDate.getFullYear();
@@ -1221,7 +1279,7 @@ export class ConfirmDeleteDialog {
   constructor(
     public dialogRef: MatDialogRef<ConfirmDeleteDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  ) {}
 
   cancel() {
     this.dialogRef.close(false);

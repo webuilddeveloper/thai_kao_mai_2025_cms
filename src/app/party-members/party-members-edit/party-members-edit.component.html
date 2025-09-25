@@ -65,7 +65,8 @@
                     </csop>
                   </div>
                   <div class="col s6">
-                    <citxt (cModel)="editModel.partyOfficials = $event" [label]="'ลงชื่อเจ้าหน้าที่พรรค : '" [data]="editModel.partyOfficials || ''">
+                    <citxt (cModel)="editModel.partyOfficials = $event" [label]="'ลงชื่อเจ้าหน้าที่พรรค : '"
+                      [data]="editModel.partyOfficials || ''">
                     </citxt>
                   </div>
                 </div>
@@ -89,10 +90,12 @@
                 </div>
                 <div class="row">
                   <div class="col s6">
-                    <cdp (cModel)="[editModel.birthDay = $event, calculateAge($event)]" [label]="'วันเกิด'" [max]="maxDate" [data]="editModel.birthDay"></cdp>
+                    <cdp (cModel)="[editModel.birthDay = $event, calculateAge($event)]" [label]="'วันเกิด'"
+                      [max]="maxDate" [data]="editModel.birthDay"></cdp>
                   </div>
                   <div class="col s6">
-                    <citxt (cModel)="editModel.age = $event" [label]="'อายุ : '" [data]="editModel.age || ''" [readonly]="true">
+                    <citxt (cModel)="editModel.age = $event" [label]="'อายุ : '" [data]="editModel.age || ''"
+                      [readonly]="true">
                     </citxt>
                   </div>
                 </div>
@@ -114,8 +117,8 @@
                       [data]="editModel.idcard || ''"></citxt>
                   </div>
                   <div class="col s6" style="padding-bottom: 20px;">
-                    <csop (cModel)="editModel.provinceBirthCode = $event" [label]="'จังหวัดที่เกิด : '" [data]="editModel.provinceBirthCode "
-                      [sources]="listCategoryProvince">
+                    <csop (cModel)="editModel.provinceBirthCode = $event" [label]="'จังหวัดที่เกิด : '"
+                      [data]="editModel.provinceBirthCode " [sources]="listCategoryProvince">
                     </csop>
                   </div>
                 </div>
@@ -156,11 +159,11 @@
 
                 <div class="row">
                   <div class="col s6">
-                    <citxt (cModel)="editModel.lineID = $event" [label]="'ID Line : '"
-                      [data]="editModel.lineID || ''"></citxt>
+                    <citxt (cModel)="editModel.lineID = $event" [label]="'ID Line : '" [data]="editModel.lineID || ''">
+                    </citxt>
                   </div>
                   <div class="col s6">
-                   
+
                   </div>
                 </div>
 
@@ -169,15 +172,14 @@
               <div class="col s3">
                 <div class="col s12">
                   <cds (cModel)="editModel.image = $event" [label]="'รูปถ่ายตนเอง (เลือกภาพ/วางภาพที่นี่)'"
-                    [data]="[{ imageUrl: editModel.onFilePhoto1_5 || '' }]" 
-                    [code]="'member-mobile'">
+                    [data]="[{ imageUrl: editModel.onFilePhoto1_5 || '' }]" [code]="'member-mobile'">
                   </cds>
                 </div>
                 <div class="col s12" style="color: red;padding-top: 20px;">
                   <span>*Maximum 10 MB</span>
                 </div>
               </div>
-              
+
 
             </div>
             <!-- END: Do Something This Here -->
@@ -452,20 +454,19 @@
             <div class="row">
               <div class="col s12">
                 <label>
-                  <input type="radio" name="registerType" [(ngModel)]="editModel.registerType"
-                    value="yearly" />
+                  <input type="radio" name="registerType" [(ngModel)]="editModel.registerType" value="yearly" />
                   <span>ประเภทรายปี (ชำระค่าบำรุงพรรคจำนวน 20 บาท)</span>
                 </label>
                 <br>
                 <label>
-                  <input type="radio" name="registerType" [(ngModel)]="editModel.registerType"
-                    value="lifetime" />
+                  <input type="radio" name="registerType" [(ngModel)]="editModel.registerType" value="lifetime" />
                   <span>ประเภทตลอดชีพ (ชำระค่าบำรุงพรรคจำนวน 200 บาท)</span>
                 </label>
               </div>
               <div class="col s3">
                 <div class="col s12">
-                  <cds (cModel)="editModel.fileSlipPay = $event" [label]="'รูปหลักฐานการโอนเงิน (เลือกภาพ/วางภาพที่นี่)'"
+                  <cds (cModel)="editModel.fileSlipPay = $event"
+                    [label]="'รูปหลักฐานการโอนเงิน (เลือกภาพ/วางภาพที่นี่)'"
                     [data]="[{ imageUrl: this.editModel.slipPay || '' }]" [code]="'member-mobile'">
                   </cds>
                 </div>
@@ -511,7 +512,7 @@
                 <div class="col-12">
                   <cdsa (cModel)="[editModel.filePhotoSelfie = $event, filePhotoSelfie = $event[0]?.imageUrl]"
                     [label]="'รูปถ่ายคู่บัตรประชาชน (เลือกภาพ/วางภาพที่นี่)'"
-                    [data]="[{ imageUrl: filePhotoSelfie != '' ? filePhotoSelfie : editModel.filePhotoSelfie.length > 0 ? editModel.filePhotoSelfie[0].imageUrl : editModel.photoSelfie != '' ? editModel.photoSelfie : '', url: editModel.photoSelfie }]" [code]="'event'">
+                    [data]="[{ imageUrl: editModel.photoSelfie}]" [code]="'member-mobile'">
                   </cdsa>
                 </div>
                 <div class="col-12" style="color: red;padding-top: 20px;">
@@ -522,8 +523,8 @@
                 <span>สำเนาบัตรประชาชน</span>
                 <div class="col-12">
                   <cdsa (cModel)="[editModel.fileCopyIDCard = $event, fileCopyIDCard = $event[0]?.imageUrl]"
-                    [label]="'ไฟล์ PDF หรือภาพ (เลือกไฟล์ PDF , เลือกภาพ/วางไฟล์ PDF , วางภาพที่นี่)'"
-                    [data]="[{ imageUrl: fileCopyIDCard != '' ? fileCopyIDCard : editModel.fileCopyIDCard.length > 0 ? editModel.fileCopyIDCard[0].imageUrl : editModel.copyIDCard != '' ? editModel.copyIDCard : '', url: editModel.copyIDCard }]" [code]="'event'">
+                    [label]="'ไฟล์ PDF หรือภาพ (เลือกไฟล์ PDF , เลือกภาพ/วางไฟล์ PDF , วางภาพที่นี่)'" 
+                    [data]="[{ imageUrl: editModel.copyIDCard }]" [code]="'member-mobile'">
                   </cdsa>
                 </div>
                 <div class="col-12" style="color: red;padding-top: 20px;">
@@ -533,9 +534,10 @@
               <div class="col-3">
                 <span>สำเนาทะเบียนบ้าน</span>
                 <div class="col-12">
-                  <cdsa (cModel)="[editModel.fileCopyHouseRegistration = $event, fileCopyHouseRegistration = $event[0]?.imageUrl]"
+                  <cdsa
+                    (cModel)="[editModel.fileCopyHouseRegistration = $event, fileCopyHouseRegistration = $event[0]?.imageUrl]"
                     [label]="'ไฟล์ PDF หรือภาพ (เลือกไฟล์ PDF , เลือกภาพ/วางไฟล์ PDF , วางภาพที่นี่)'"
-                    [data]="[{ imageUrl: fileCopyHouseRegistration != '' ? fileCopyHouseRegistration : editModel.fileCopyHouseRegistration.length > 0 ? editModel.fileCopyHouseRegistration[0].imageUrl : editModel.copyHouseRegistration != '' ? editModel.copyHouseRegistration : '', url: editModel.copyHouseRegistration }]" [code]="'event'">
+                    [data]="[{ imageUrl: editModel.copyHouseRegistration }]" [code]="'member-mobile'">
                   </cdsa>
                 </div>
                 <div class="col-12" style="color: red;padding-top: 20px;">
@@ -545,9 +547,10 @@
               <div class="col-3">
                 <span>ใบสำคัญการเปลี่ยนชื่อ-สกุล</span>
                 <div class="col-12">
-                  <cdsa (cModel)="[editModel.fileNameChangeCertificate = $event, fileNameChangeCertificate = $event[0]?.imageUrl]"
+                  <cdsa
+                    (cModel)="[editModel.fileNameChangeCertificate = $event, fileNameChangeCertificate = $event[0]?.imageUrl]"
                     [label]="'ไฟล์ PDF หรือภาพ (เลือกไฟล์ PDF , เลือกภาพ/วางไฟล์ PDF , วางภาพที่นี่)'"
-                    [data]="[{ imageUrl: fileNameChangeCertificate != '' ? fileNameChangeCertificate : editModel.fileNameChangeCertificate.length > 0 ? editModel.fileNameChangeCertificate[0].imageUrl : editModel.nameChangeCertificate != '' ? editModel.nameChangeCertificate : '', url: editModel.nameChangeCertificate }]" [code]="'event'">
+                    [data]="[{ imageUrl: editModel.nameChangeCertificate }]" [code]="'member-mobile'">
                   </cdsa>
                 </div>
                 <div class="col-12" style="color: red;padding-top: 20px;">
